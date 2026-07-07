@@ -1,3 +1,4 @@
+.htaccess
 # BEGIN WordPress
 # Директивы (строки) между `BEGIN WordPress` и `END WordPress`
 # созданы автоматически и подлежат изменению только через фильтры WordPress.
@@ -5,11 +6,11 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /
+RewriteBase /kdts.kz/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /kdts.kz/index.php [L]
 </IfModule>
 
 # END WordPress
