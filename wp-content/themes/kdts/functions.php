@@ -158,6 +158,7 @@ function kdts_scripts() {
 	wp_enqueue_script( 'kdts-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'mtk-main', get_template_directory_uri() . '/js/main.js', array(), '', true );
 		wp_enqueue_script( 'swiper-bundle-my', get_template_directory_uri() . '/js/swiper-bundle.js', array(), '', true );
+	wp_enqueue_script( 'kdts-new-design', get_template_directory_uri() . '/js/new-design.js', array(), _S_VERSION, true );
 
 	wp_enqueue_script( 'jquery3-3-1', "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" );
 	/*wp_enqueue_script( 'swiper-bundle-my', "https://unpkg.com/swiper/swiper-bundle.min.js" ); */

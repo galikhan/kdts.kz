@@ -11,61 +11,55 @@
  */
 
 ?>
-<footer class="footer-block">
-    <div class="footer-block__top">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/footerBlockBg.png" class="footer-block__bg" alt="#" />
-        <div class="container-footer">
-
-            <div class="footer-wrapper">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        <?php the_custom_logo(); ?>
-                    </div>
-                    <div class="footer-menu">
-                        <?php wp_nav_menu(array(
-                            'theme_location' => 'footer-menu',
-                            'container' => false,
-                            'menu_class'      => '',
-                        )) ?>
-                    </div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="f-logo">
+                    <?php the_custom_logo(); ?>
                 </div>
-                <div class="footer-rigth">
-                    <div class="footer-rigth__block">
-                        <a href="https://www.facebook.com/Kedentransservice.kz" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/iconFacebookFFF.svg" class="footer-rigth__icon" alt="#" />
-                        </a>
-                        <ul>
-                            <!--<li class="footer-rigth__tel"><a href="tel:87780979707">8 (778) 097-9707</a></li>
-                            <li class="footer-rigth__tel"><a href="tel:87780979779">8 (778) 097-9779</a></li>
-                            <li class="footer-rigth__tel"><a href="tel:87780979187">8 (778) 097-9187</a></li>-->
+                <p>АҚ «Кедентранссервис» — Қазақстанның жетекші кеден-қоймалық логистика операторы.</p>
+            </div>
 
-                            <li class="footer-rigth__tel"><a href="tel:+7 7172 648 888"> Call center  +7 (7172) 648 888</a> <br>
-                                <a style="visibility:hidden"> Call center  </a> <a href="tel:+7 778 097 97 97">+7 778 097 97 97</a>
-                            </li>
-                            <li class="footer-rigth__tel"><a href="mailto:kense@kdts"> kense@kdts.kz</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="footer-col">
+                <h4>Бөлімдер</h4>
+                <?php wp_nav_menu(array(
+                    'theme_location' => 'footer-menu',
+                    'container'      => false,
+                    'menu_class'     => '',
+                )); ?>
+            </div>
+
+            <div class="footer-col">
+                <h4>Байланыс</h4>
+                <ul>
+                    <li><a href="tel:+77172648888">+7 (7172) 648 888</a></li>
+                    <li><a href="tel:+77780979797">+7 778 097 97 97</a></li>
+                    <li><a href="mailto:kense@kdts.kz">kense@kdts.kz</a></li>
+                    <li style="margin-top:8px;opacity:0.7;"><?php echo CFS()->get('adres1', 606); ?><br>«Мәскеу» БО</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="footer-block__bottom">
-        <div class="container-footer">
-            <div class="footer-items">
-                <div class="footer-name">
-                    1997- <?= date('Y') ?>, “Кедентранссервис” АҚ<br>
-                    <!--<div style=" font-size:12px; padding-top:10px;"><a href="https://bestweb.kz/sozdaniye-saytov/" target="_blank">Создание и поддержка сайта</a> Digital агентство Bestweb.kz</div>-->
-                </div>
 
-                <p class="footer-name"><a href="https://bestweb.kz/sozdaniye-saytov/" target="_blank">Создание и поддержка сайта</a> Digital агентство Bestweb.kz</p>
-                <div class="footer-adders">
-                    <?php echo CFS()->get('adres1', 606); ?>
-                    <p>"Мәскеу" БО</p>
-                </div>
+        <div class="footer-bottom">
+            <div>1997–<?php echo date('Y'); ?>, АҚ «Кедентранссервис»</div>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/Kedentransservice.kz" target="_blank" rel="noopener" title="Facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v8h3v-8h3l1-3h-4V9z"/></svg>
+                </a>
+                <a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" title="Telegram">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg>
+                </a>
             </div>
         </div>
     </div>
 </footer>
+
+<div class="float-actions">
+    <a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" class="float-btn tg" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg>
+    </a>
+</div>
 
 <?php wp_footer(); ?>
 <!--<script src="//code.jivosite.com/widget/OF5ZNNK29W" async></script>-->
@@ -228,14 +222,6 @@
     console.log(lastItems)
 </script>
 <script>
-    let phone_menu = document.querySelector('.phone-menu__img');
-    let header_menu = document.querySelector('.header-menu');
-    phone_menu.addEventListener('click', () => {
-        header_menu.classList.toggle('menu-phone__active')
-        console.log(phone_menu)
-    })
-</script>
-<script>
     var acc = document.getElementsByClassName("accordion");
     var i;
 
@@ -287,14 +273,6 @@
             prevEl: '.godovaya-next',
         },
     });
-</script>
-<script>
-    let searchPhone = document.querySelector('.search-phone');
-    let headerSearch = document.querySelector('.header-search');
-    searchPhone.addEventListener('click', () => {
-        headerSearch.classList.add('header-searchBlock')
-
-    })
 </script>
 </body>
 

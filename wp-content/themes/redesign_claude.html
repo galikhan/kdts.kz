@@ -1,0 +1,2598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АО «Кедентранссервис» — Цифровая логистика. Рассчитайте ставку за 30 секунд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-dark: #0B2335;
+  --c-dark-2: #122d42;
+  --c-dark-3: #1a3a55;
+  --c-grey: #5F6366;
+  --c-grey-2: #8a8f93;
+  --c-grey-3: #c1c4c7;
+  --c-line: #e4e6e8;
+  --c-bg: #ffffff;
+  --c-bg-soft: #f5f5f1;
+  --c-bg-card: #f9f9f6;
+  --c-white: #ffffff;
+  --c-success: #2e9b5d;
+  --c-warning: #d97a1d;
+  --shadow-sm: 0 2px 8px rgba(11, 35, 53, 0.06);
+  --shadow-md: 0 6px 20px rgba(11, 35, 53, 0.10);
+  --shadow-lg: 0 16px 48px rgba(11, 35, 53, 0.16);
+  --tr: 0.2s cubic-bezier(.2,.7,.2,1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--c-dark);
+  background: var(--c-white);
+  line-height: 1.55;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: 'tnum' 1; }
+a { color: inherit; text-decoration: none; transition: color var(--tr); cursor: pointer; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* ================================================================
+   HEADER (slim, modern, no utility bar)
+   ================================================================ */
+.header {
+  background: var(--c-white);
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--c-line);
+  transition: box-shadow var(--tr);
+}
+.header.scrolled { box-shadow: var(--shadow-sm); }
+.header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px; gap: 24px;
+}
+.logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo img { width: 44px; height: auto; }
+.logo .logo-name {
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: 14px; letter-spacing: -0.01em;
+  color: var(--c-dark);
+}
+
+.nav { display: flex; gap: 4px; align-items: center; flex: 1; justify-content: center; }
+.nav-link {
+  font-size: 14px; font-weight: 500;
+  color: var(--c-dark);
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all var(--tr);
+  white-space: nowrap;
+}
+.nav-link:hover { background: var(--c-bg-soft); }
+.nav-link.active { background: var(--c-dark); color: var(--c-white); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.lang-switch { display: flex; gap: 2px; font-size: 12px; font-weight: 600; padding: 0 8px; border-right: 1px solid var(--c-line); }
+.lang-switch a { padding: 6px 6px; opacity: 0.45; transition: opacity var(--tr); }
+.lang-switch a.active { opacity: 1; }
+.lang-switch a:hover { opacity: 0.85; }
+
+.phone-link {
+  font-size: 13px; font-weight: 500; color: var(--c-grey);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.phone-link svg { width: 14px; height: 14px; }
+.phone-link:hover { color: var(--c-dark); }
+
+.btn-cabinet {
+  background: var(--c-dark); color: var(--c-white);
+  padding: 10px 16px; border-radius: 8px;
+  font-weight: 600; font-size: 13px;
+  cursor: pointer; transition: all var(--tr);
+  border: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-cabinet:hover { background: var(--c-dark-2); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-cabinet svg { width: 14px; height: 14px; }
+
+.burger { display: none; }
+
+/* ================================================================
+   PAGE SYSTEM
+   ================================================================ */
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 14px 0; font-size: 13px; }
+.breadcrumbs .container { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--c-grey); }
+.breadcrumbs a:hover { color: var(--c-dark); }
+.breadcrumbs .sep { opacity: 0.5; }
+.breadcrumbs .current { color: var(--c-dark); font-weight: 500; }
+
+/* ================================================================
+   HERO with calculator widget (split 55/45)
+   ================================================================ */
+.hero {
+  padding: 56px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; right: -200px; top: 50%; transform: translateY(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(11, 35, 53, 0.04) 0%, transparent 70%);
+  z-index: 0;
+}
+.hero .container { position: relative; z-index: 2; }
+
+.hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--c-bg-soft);
+  border: 1px solid var(--c-line);
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 12px; font-weight: 500;
+  color: var(--c-grey);
+  margin-bottom: 24px;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--c-success);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: clamp(36px, 4.8vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+.hero h1 .highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.hero h1 .highlight::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 4px;
+  height: 12px;
+  background: var(--c-bg-soft);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.hero p.lead {
+  font-size: 17px;
+  color: var(--c-grey);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 540px;
+}
+
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 40px; }
+.btn {
+  padding: 14px 24px;
+  font-size: 14px; font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer; transition: all var(--tr);
+  border: 1.5px solid transparent;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: inherit;
+}
+.btn-primary { background: var(--c-dark); color: var(--c-white); border-color: var(--c-dark); }
+.btn-primary:hover { background: var(--c-dark-2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-secondary { background: var(--c-white); color: var(--c-dark); border-color: var(--c-line); }
+.btn-secondary:hover { border-color: var(--c-dark); }
+.btn-ghost { background: transparent; color: var(--c-dark); border-color: transparent; padding: 10px 12px; }
+.btn-ghost:hover { background: var(--c-bg-soft); }
+
+.hero-trust {
+  display: flex; gap: 36px; padding-top: 32px;
+  border-top: 1px solid var(--c-line);
+  flex-wrap: wrap;
+}
+.hero-trust .trust-item {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.hero-trust .trust-num {
+  font-family: 'Inter', sans-serif; font-weight: 800; font-size: 24px;
+  color: var(--c-dark); line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hero-trust .trust-label {
+  font-size: 12px; color: var(--c-grey);
+}
+
+/* Calculator widget */
+.calc-widget {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.calc-widget::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px dashed var(--c-line);
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.calc-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px; position: relative; }
+.calc-header h3 { font-size: 18px; font-weight: 700; }
+.calc-header .badge-mini {
+  font-size: 11px; font-weight: 600; padding: 4px 8px;
+  background: var(--c-dark); color: var(--c-white);
+  border-radius: 6px;
+}
+.calc-tabs { display: flex; gap: 4px; margin-bottom: 18px; background: var(--c-bg-soft); padding: 4px; border-radius: 10px; position: relative; }
+.calc-tab {
+  flex: 1; text-align: center; padding: 8px 12px;
+  font-size: 13px; font-weight: 500;
+  border-radius: 7px; cursor: pointer;
+  transition: all var(--tr);
+  color: var(--c-grey);
+  background: transparent; border: none; font-family: inherit;
+}
+.calc-tab.active { background: var(--c-white); color: var(--c-dark); box-shadow: var(--shadow-sm); font-weight: 600; }
+
+.calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; position: relative; }
+.calc-field { display: flex; flex-direction: column; gap: 6px; }
+.calc-field label { font-size: 11px; font-weight: 600; color: var(--c-grey); text-transform: uppercase; letter-spacing: 0.04em; }
+.calc-field input,
+.calc-field select {
+  padding: 12px 14px;
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  font-family: inherit; font-size: 14px;
+  background: var(--c-white);
+  transition: border-color var(--tr);
+  color: var(--c-dark);
+}
+.calc-field input:focus,
+.calc-field select:focus { outline: none; border-color: var(--c-dark); }
+
+.calc-swap {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--c-white); border: 1px solid var(--c-line);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--tr);
+  z-index: 2;
+  margin-top: 12px;
+}
+.calc-swap:hover { background: var(--c-dark); color: var(--c-white); border-color: var(--c-dark); transform: translate(-50%, -50%) rotate(180deg); }
+.calc-swap svg { width: 14px; height: 14px; }
+
+.calc-row-full .calc-field { width: 100%; }
+
+.calc-submit {
+  width: 100%;
+  background: var(--c-dark); color: var(--c-white);
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: all var(--tr);
+  border: none; font-family: inherit;
+  margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.calc-submit:hover { background: var(--c-dark-2); }
+
+.calc-result {
+  display: none;
+  margin-top: 20px; padding: 18px;
+  background: var(--c-bg-soft);
+  border-radius: 10px;
+  border-left: 3px solid var(--c-dark);
+}
+.calc-result.show { display: block; animation: fadeIn 0.3s ease; }
+.calc-result .res-label { font-size: 11px; font-weight: 600; color: var(--c-grey); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.calc-result .res-price { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px; color: var(--c-dark); margin-bottom: 8px; letter-spacing: -0.02em; }
+.calc-result .res-meta { font-size: 12px; color: var(--c-grey); }
+
+.calc-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--c-grey);
+  margin-top: 14px;
+}
+.calc-foot .check { display: inline-flex; align-items: center; gap: 4px; }
+.calc-foot .check svg { width: 12px; height: 12px; color: var(--c-success); }
+
+/* ================================================================
+   SERVICES — 3 cards with SVG icons
+   ================================================================ */
+.services {
+  padding: 80px 0;
+  background: var(--c-bg-soft);
+}
+.section-head {
+  display: flex; justify-content: space-between; align-items: end;
+  margin-bottom: 48px; gap: 32px; flex-wrap: wrap;
+}
+.section-head .head-text { max-width: 700px; }
+.section-eyebrow {
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--c-grey);
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  font-size: clamp(28px, 3.6vw, 42px);
+  letter-spacing: -0.025em;
+}
+.section-head p {
+  color: var(--c-grey); margin-top: 12px; font-size: 16px; line-height: 1.6;
+}
+.section-head .head-link {
+  font-size: 14px; font-weight: 500;
+  color: var(--c-dark);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 14px;
+  border: 1px solid var(--c-line);
+  border-radius: 100px;
+  transition: all var(--tr);
+}
+.section-head .head-link:hover { background: var(--c-dark); color: var(--c-white); border-color: var(--c-dark); }
+
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all var(--tr);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--c-dark);
+}
+.service-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: var(--c-dark);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--tr);
+}
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-illustration {
+  width: 100%; height: 140px;
+  background: var(--c-bg-soft);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.service-illustration svg {
+  width: 75%; height: 75%;
+}
+.service-card h3 {
+  font-size: 19px; margin-bottom: 10px; letter-spacing: -0.015em;
+}
+.service-card p {
+  font-size: 14px; color: var(--c-grey);
+  line-height: 1.6; margin-bottom: 20px;
+  flex: 1;
+}
+.service-card .service-meta {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.service-card .meta-tag {
+  font-size: 11px; font-weight: 500;
+  background: var(--c-bg-soft);
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: var(--c-grey);
+}
+.service-card .service-link {
+  font-size: 13px; font-weight: 600;
+  color: var(--c-dark);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap var(--tr);
+}
+.service-card:hover .service-link { gap: 10px; }
+
+/* ================================================================
+   ROUTES MAP with TABS + departure board
+   ================================================================ */
+.routes-block {
+  padding: 80px 0;
+  background: var(--c-dark);
+  color: var(--c-white);
+  position: relative;
+  overflow: hidden;
+}
+.routes-block::before {
+  content: '';
+  position: absolute; left: -100px; top: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+}
+.routes-block .container { position: relative; z-index: 2; }
+.routes-block .section-head h2 { color: var(--c-white); }
+.routes-block .section-head .section-eyebrow { color: rgba(255,255,255,0.5); }
+.routes-block .section-head p { color: rgba(255,255,255,0.7); }
+
+.routes-tabs-pill {
+  display: inline-flex; gap: 4px;
+  background: rgba(255,255,255,0.08);
+  padding: 4px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.route-tab {
+  padding: 10px 22px;
+  font-size: 13px; font-weight: 500;
+  border-radius: 100px;
+  cursor: pointer;
+  background: transparent; border: none;
+  color: rgba(255,255,255,0.7);
+  transition: all var(--tr);
+  font-family: inherit;
+}
+.route-tab.active { background: var(--c-white); color: var(--c-dark); font-weight: 600; }
+
+.routes-content { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: start; }
+
+.routes-map {
+  background: var(--c-dark-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 28px;
+  aspect-ratio: 5/4;
+  position: relative;
+}
+.routes-map svg { width: 100%; height: 100%; }
+
+/* Departure board (like airport) */
+.departure-board {
+  background: var(--c-white);
+  border-radius: 16px;
+  padding: 24px;
+  color: var(--c-dark);
+}
+.dep-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--c-line);
+  margin-bottom: 16px;
+}
+.dep-head h3 { font-size: 15px; }
+.dep-head .live {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--c-success);
+}
+.dep-head .live .dot {
+  width: 6px; height: 6px; background: var(--c-success); border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.dep-row {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--c-line);
+  align-items: center;
+}
+.dep-row:last-child { border-bottom: none; }
+.dep-from-to {
+  font-weight: 600; font-size: 14px;
+}
+.dep-from-to .arrow { color: var(--c-grey); margin: 0 8px; }
+.dep-meta { font-size: 11px; color: var(--c-grey); margin-top: 4px; }
+.dep-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 13px;
+  text-align: right;
+}
+.dep-status {
+  display: inline-block;
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.dep-status.on { background: rgba(46,155,93,0.12); color: var(--c-success); }
+.dep-status.boarding { background: rgba(217,122,29,0.12); color: var(--c-warning); }
+.dep-status.scheduled { background: rgba(95,99,102,0.12); color: var(--c-grey); }
+
+/* ================================================================
+   STATS STRIP
+   ================================================================ */
+.stats-strip {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.stats-strip-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.stat-strip-item { display: flex; flex-direction: column; gap: 6px; }
+.stat-strip-item .num {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 44px; color: var(--c-dark); line-height: 1;
+  letter-spacing: -0.03em;
+}
+.stat-strip-item .num small {
+  font-size: 24px; font-weight: 700;
+  color: var(--c-grey);
+  margin-left: 2px;
+}
+.stat-strip-item .lab {
+  font-size: 13px; color: var(--c-grey); line-height: 1.4;
+}
+.stat-strip-item .sub {
+  font-size: 11px; color: var(--c-grey); opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* ================================================================
+   CABINET PROMO (digital portal feature)
+   ================================================================ */
+.cabinet-block {
+  padding: 80px 0;
+}
+.cabinet-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+.cabinet-text h2 {
+  font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 16px;
+  letter-spacing: -0.025em;
+}
+.cabinet-text p.lead {
+  font-size: 17px; color: var(--c-grey);
+  line-height: 1.6; margin-bottom: 28px;
+}
+
+.cabinet-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.cab-feat {
+  display: flex; align-items: start; gap: 12px;
+  padding: 14px 16px;
+  background: var(--c-bg-soft);
+  border-radius: 12px;
+  transition: background var(--tr);
+}
+.cab-feat:hover { background: var(--c-line); }
+.cab-feat .feat-ic {
+  width: 32px; height: 32px;
+  background: var(--c-dark); color: var(--c-white);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cab-feat .feat-ic svg { width: 16px; height: 16px; }
+.cab-feat h4 { font-size: 14px; margin-bottom: 2px; }
+.cab-feat p { font-size: 12px; color: var(--c-grey); margin: 0; }
+
+/* Mockup - browser frame with dashboard */
+.mockup {
+  background: var(--c-dark);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.mockup-bar {
+  display: flex; gap: 6px; padding: 6px 8px 12px;
+  align-items: center;
+}
+.mockup-bar .dot {
+  width: 11px; height: 11px; border-radius: 50%;
+}
+.mockup-bar .dot.r { background: rgba(255,255,255,0.25); }
+.mockup-bar .dot.y { background: rgba(255,255,255,0.18); }
+.mockup-bar .dot.g { background: rgba(255,255,255,0.12); }
+.mockup-bar .url {
+  flex: 1; margin: 0 12px;
+  background: rgba(255,255,255,0.08);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+
+.mockup-content {
+  background: var(--c-white);
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 320px;
+}
+.mock-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-line);
+}
+.mock-head h4 { font-size: 14px; }
+.mock-head .mock-pill {
+  font-size: 10px; font-weight: 600;
+  background: var(--c-bg-soft);
+  padding: 4px 10px; border-radius: 100px;
+  color: var(--c-grey);
+}
+.mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.mock-stat {
+  background: var(--c-bg-soft);
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.mock-stat .v { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: var(--c-dark); }
+.mock-stat .l { font-size: 9px; color: var(--c-grey); margin-top: 2px; }
+.mock-list .mock-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--c-line);
+  font-size: 11px;
+  align-items: center;
+}
+.mock-item .mi-id { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--c-dark); }
+.mock-item .mi-route { font-size: 10px; color: var(--c-grey); margin-top: 2px; }
+.mock-item .mi-status {
+  font-size: 9px; font-weight: 600;
+  padding: 3px 8px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.03em;
+}
+.mock-item .mi-status.transit { background: rgba(217,122,29,0.12); color: var(--c-warning); }
+.mock-item .mi-status.delivered { background: rgba(46,155,93,0.12); color: var(--c-success); }
+.mock-item .mi-status.pending { background: var(--c-bg-soft); color: var(--c-grey); }
+
+/* ================================================================
+   NEWS
+   ================================================================ */
+.news {
+  padding: 80px 0;
+  background: var(--c-bg-soft);
+}
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.news-card {
+  background: var(--c-white);
+  border-radius: 14px;
+  overflow: hidden; cursor: pointer;
+  transition: all var(--tr);
+  display: flex; flex-direction: column;
+  border: 1px solid var(--c-line);
+}
+.news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--c-dark); }
+.news-img {
+  aspect-ratio: 16/10;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.news-img.a { background: linear-gradient(135deg, var(--c-dark) 0%, var(--c-dark-3) 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+.news-img.b { background: linear-gradient(135deg, var(--c-grey) 0%, var(--c-dark) 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+.news-img.c { background: linear-gradient(135deg, var(--c-dark-3) 0%, var(--c-grey) 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+
+.news-tag {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(255,255,255,0.95);
+  color: var(--c-dark);
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.news-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+.news-date {
+  font-size: 11px; color: var(--c-grey);
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.news-body h3 {
+  font-size: 16px;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  flex: 1; letter-spacing: -0.015em;
+}
+.news-body .read {
+  font-size: 12px; font-weight: 600;
+  color: var(--c-dark);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap var(--tr);
+}
+.news-card:hover .news-body .read { gap: 10px; }
+
+/* ================================================================
+   CTA
+   ================================================================ */
+.cta {
+  padding: 80px 0;
+}
+.cta-card {
+  background: var(--c-dark);
+  color: var(--c-white);
+  border-radius: 24px;
+  padding: 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-card::before {
+  content: '';
+  position: absolute; right: -200px; top: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+}
+.cta-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.cta-grid h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 14px; color: var(--c-white); letter-spacing: -0.025em; }
+.cta-grid p { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.55; }
+.cta-actions { display: flex; flex-direction: column; gap: 10px; }
+.cta-actions .btn-primary { background: var(--c-white); color: var(--c-dark); border-color: var(--c-white); }
+.cta-actions .btn-primary:hover { background: var(--c-bg-soft); }
+.cta-actions .btn-ghost { color: var(--c-white); border-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.2); }
+.cta-actions .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer { background: var(--c-dark); color: rgba(255,255,255,0.85); padding-top: 60px; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand .f-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.footer-brand .f-logo img { width: 40px; height: auto; }
+.footer-brand .f-logo .nm { font-weight: 700; font-size: 14px; color: var(--c-white); }
+.footer-brand p { font-size: 13px; line-height: 1.6; opacity: 0.7; max-width: 320px; margin-bottom: 20px; }
+.footer-newsletter { display: flex; gap: 8px; }
+.footer-newsletter input {
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: var(--c-white);
+  font-family: inherit; font-size: 13px;
+}
+.footer-newsletter input::placeholder { color: rgba(255,255,255,0.4); }
+.footer-newsletter input:focus { outline: none; border-color: var(--c-white); }
+.footer-newsletter button {
+  padding: 10px 16px; background: var(--c-white); color: var(--c-dark);
+  border: none; border-radius: 8px;
+  font-weight: 600; font-size: 13px; cursor: pointer;
+  font-family: inherit;
+  transition: opacity var(--tr);
+}
+.footer-newsletter button:hover { opacity: 0.85; }
+
+.footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-white); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col li a { font-size: 13px; opacity: 0.7; transition: opacity var(--tr); }
+.footer-col li a:hover { opacity: 1; }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  padding: 24px 0;
+  font-size: 12px; opacity: 0.6;
+}
+.footer-socials { display: flex; gap: 8px; }
+.footer-socials a {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background var(--tr);
+}
+.footer-socials a:hover { background: var(--c-white); color: var(--c-dark); }
+.footer-socials svg { width: 14px; height: 14px; }
+
+/* ================================================================
+   FLOATING ACTIONS
+   ================================================================ */
+.float-actions {
+  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.float-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform var(--tr);
+  box-shadow: var(--shadow-md); color: white;
+}
+.float-btn:hover { transform: scale(1.05); }
+.float-btn.tg { background: #229ED9; }
+.float-btn.wa { background: #25D366; }
+.float-btn svg { width: 22px; height: 22px; }
+
+/* ================================================================
+   GENERIC PAGE HEADER (для внутренних страниц)
+   ================================================================ */
+.ph {
+  padding: 48px 0 56px;
+  background: var(--c-bg-soft);
+}
+.ph h1 {
+  font-size: clamp(34px, 4.6vw, 50px);
+  margin-bottom: 12px; letter-spacing: -0.03em;
+  max-width: 800px;
+}
+.ph p {
+  font-size: 17px; color: var(--c-grey);
+  max-width: 640px; line-height: 1.55;
+}
+
+/* ================================================================
+   ABOUT PAGE
+   ================================================================ */
+.about-section { padding: 64px 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.about-grid p { color: var(--c-grey); margin-bottom: 16px; line-height: 1.7; font-size: 15px; }
+.about-grid p:first-child { font-size: 18px; color: var(--c-dark); font-weight: 500; line-height: 1.5; }
+
+.facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fact-card {
+  background: var(--c-bg-soft);
+  border-radius: 14px;
+  padding: 24px 22px;
+  transition: background var(--tr);
+}
+.fact-card:hover { background: var(--c-line); }
+.fact-card .num {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 36px; color: var(--c-dark); line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+.fact-card .lab { font-size: 13px; color: var(--c-grey); }
+
+.team-section { padding: 64px 0 80px; }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.team-card {
+  background: var(--c-bg-soft);
+  border-radius: 14px;
+  padding: 22px;
+  transition: all var(--tr);
+}
+.team-card:hover { background: var(--c-white); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.team-photo {
+  width: 100%; aspect-ratio: 1;
+  background: var(--c-white); border-radius: 10px;
+  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 32px; color: var(--c-dark);
+  letter-spacing: -0.02em;
+  border: 1px solid var(--c-line);
+}
+.team-card h3 { font-size: 15px; margin-bottom: 4px; line-height: 1.3; }
+.team-card .pos { font-size: 12px; color: var(--c-grey); }
+
+.timeline-h { padding: 64px 0 80px; background: var(--c-bg-soft); }
+.timeline-h h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 40px; letter-spacing: -0.025em; }
+.tl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.tl-item {
+  background: var(--c-white);
+  border-radius: 14px;
+  padding: 24px 22px;
+  border-left: 3px solid var(--c-dark);
+}
+.tl-item .yr { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 22px; color: var(--c-dark); margin-bottom: 8px; }
+.tl-item p { font-size: 13px; color: var(--c-grey); line-height: 1.55; }
+
+/* ================================================================
+   SERVICE DETAIL PAGE
+   ================================================================ */
+.service-hero { padding: 56px 0 40px; }
+.service-hero h1 { font-size: clamp(34px, 4.6vw, 52px); margin-bottom: 18px; max-width: 820px; letter-spacing: -0.03em; }
+.service-hero .lead { font-size: 18px; color: var(--c-grey); max-width: 700px; line-height: 1.55; margin-bottom: 28px; }
+
+.svc-grid { padding: 24px 0 64px; }
+.svc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+.svc-text h2 { font-size: clamp(22px, 2.8vw, 30px); margin: 32px 0 16px; letter-spacing: -0.02em; }
+.svc-text h2:first-child { margin-top: 0; }
+.svc-text p { color: var(--c-grey); margin-bottom: 14px; line-height: 1.7; font-size: 15px; }
+.svc-text strong { color: var(--c-dark); font-weight: 600; }
+
+.svc-side {
+  background: var(--c-bg-soft);
+  border-radius: 16px;
+  padding: 28px;
+  position: sticky; top: 90px;
+}
+.svc-side h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-grey); margin-bottom: 18px; }
+.svc-side .kpi {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.svc-side .kpi:last-child { border-bottom: none; }
+.svc-side .kpi .label { font-size: 13px; color: var(--c-grey); margin-bottom: 4px; }
+.svc-side .kpi .val { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 22px; color: var(--c-dark); letter-spacing: -0.02em; }
+
+.svc-features { padding: 64px 0; background: var(--c-bg-soft); }
+.svc-features h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 40px; max-width: 700px; letter-spacing: -0.025em; }
+.svc-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.svc-feat {
+  background: var(--c-white);
+  border-radius: 14px;
+  padding: 28px;
+  transition: all var(--tr);
+}
+.svc-feat:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.svc-feat .ic-box {
+  width: 44px; height: 44px;
+  background: var(--c-dark); color: var(--c-white);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.svc-feat .ic-box svg { width: 20px; height: 20px; }
+.svc-feat h3 { font-size: 16px; margin-bottom: 8px; }
+.svc-feat p { font-size: 13px; color: var(--c-grey); line-height: 1.6; }
+
+.process-h { padding: 64px 0; }
+.process-h h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 40px; max-width: 700px; letter-spacing: -0.025em; }
+.proc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.proc-step {
+  background: var(--c-bg-soft);
+  border-radius: 14px;
+  padding: 28px 24px;
+  position: relative;
+  transition: background var(--tr);
+}
+.proc-step:hover { background: var(--c-line); }
+.proc-step .num {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 14px; color: var(--c-grey);
+  margin-bottom: 16px;
+  display: inline-block; padding: 4px 10px;
+  background: var(--c-white);
+  border-radius: 6px;
+}
+.proc-step h3 { font-size: 16px; margin-bottom: 8px; letter-spacing: -0.015em; }
+.proc-step p { font-size: 13px; color: var(--c-grey); line-height: 1.55; }
+
+/* ================================================================
+   CLIENTS PAGE TABS
+   ================================================================ */
+.tabs-bar {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-line);
+  position: sticky; top: 70px; z-index: 50;
+}
+.tabs-bar .container { display: flex; gap: 4px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; }
+.tab-btn {
+  padding: 10px 18px;
+  font-size: 14px; font-weight: 500;
+  color: var(--c-grey);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: all var(--tr);
+  font-family: inherit;
+}
+.tab-btn:hover { background: var(--c-bg-soft); color: var(--c-dark); }
+.tab-btn.active { background: var(--c-dark); color: var(--c-white); font-weight: 600; }
+
+.tab-content { display: none; padding: 56px 0 80px; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+.tab-content h2 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 12px; letter-spacing: -0.025em; }
+.tab-content > .container > p.desc { font-size: 16px; color: var(--c-grey); margin-bottom: 40px; max-width: 700px; line-height: 1.55; }
+
+/* Tariff cards (not table - more digital feel) */
+.tariff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tariff-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all var(--tr);
+}
+.tariff-card:hover { border-color: var(--c-dark); box-shadow: var(--shadow-sm); }
+.tariff-card .station {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--c-grey); margin-bottom: 10px;
+}
+.tariff-card h3 { font-size: 17px; margin-bottom: 6px; letter-spacing: -0.02em; }
+.tariff-card .type { font-size: 13px; color: var(--c-grey); margin-bottom: 18px; }
+.tariff-card .price-block {
+  padding: 16px 0;
+  border-top: 1px dashed var(--c-line);
+  display: flex; justify-content: space-between; align-items: end;
+}
+.tariff-card .price-block .pr {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 24px; color: var(--c-dark); line-height: 1;
+  letter-spacing: -0.02em;
+}
+.tariff-card .price-block .unit { font-size: 11px; color: var(--c-grey); }
+.tariff-card .incl { font-size: 11px; color: var(--c-grey); }
+.tariff-card .incl::before {
+  content: '✓ '; color: var(--c-success); font-weight: 700;
+}
+
+/* Park cards */
+.park-grid-d { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.park-d-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all var(--tr);
+}
+.park-d-card:hover { border-color: var(--c-dark); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.park-d-card .ic-park {
+  width: 40px; height: 40px;
+  background: var(--c-bg-soft);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  color: var(--c-dark);
+}
+.park-d-card .ic-park svg { width: 20px; height: 20px; }
+.park-d-card h3 { font-size: 16px; margin-bottom: 6px; }
+.park-d-card .qty {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 32px; color: var(--c-dark); line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 12px 0;
+}
+.park-d-card .qty small { font-size: 18px; color: var(--c-grey); margin-left: 2px; }
+.park-d-card p { font-size: 12px; color: var(--c-grey); line-height: 1.55; }
+
+/* Routes table - cleaner */
+.routes-list-d {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.route-d-row {
+  display: grid; grid-template-columns: 2fr 1.5fr 1.2fr 1fr 0.8fr;
+  gap: 20px;
+  padding: 16px 22px;
+  align-items: center;
+  border-bottom: 1px solid var(--c-line);
+  transition: background var(--tr);
+}
+.route-d-row:last-child { border-bottom: none; }
+.route-d-row:not(.head):hover { background: var(--c-bg-soft); }
+.route-d-row.head {
+  background: var(--c-bg-soft);
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--c-grey);
+}
+.route-d-row .ft { font-weight: 600; font-size: 14px; }
+.route-d-row .ft .arr { color: var(--c-grey); margin: 0 8px; }
+.route-d-row .freq { font-size: 13px; color: var(--c-grey); }
+.route-d-row .days { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.route-d-row .st {
+  display: inline-block; padding: 4px 10px;
+  background: rgba(46,155,93,0.12); color: var(--c-success);
+  border-radius: 100px; font-size: 11px; font-weight: 600;
+}
+
+/* Contracts cards */
+.contracts-d { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.contract-d-card {
+  display: flex; gap: 16px; align-items: center;
+  padding: 18px 20px;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.contract-d-card:hover { border-color: var(--c-dark); transform: translateX(4px); }
+.contract-d-card .ic-doc {
+  width: 40px; height: 48px;
+  background: var(--c-bg-soft);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+  color: var(--c-dark); flex-shrink: 0;
+}
+.contract-d-card h4 { font-size: 14px; margin-bottom: 4px; }
+.contract-d-card .meta { font-size: 11px; color: var(--c-grey); font-family: 'JetBrains Mono', monospace; }
+
+/* ================================================================
+   CONTACTS PAGE
+   ================================================================ */
+.contacts-d { padding: 56px 0; }
+.contacts-d-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.contacts-info h3 { font-size: 20px; margin-bottom: 24px; }
+.c-row {
+  display: flex; gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.c-row:last-child { border-bottom: none; }
+.c-row .c-ic {
+  width: 38px; height: 38px;
+  background: var(--c-bg-soft);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-dark); flex-shrink: 0;
+}
+.c-row .c-ic svg { width: 16px; height: 16px; }
+.c-row .lab { font-size: 11px; color: var(--c-grey); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+.c-row .val { font-size: 15px; line-height: 1.5; }
+
+.map-d {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--c-dark);
+  border-radius: 16px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-white);
+  overflow: hidden;
+}
+.map-d::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.map-d .pin-d {
+  position: relative; z-index: 2;
+  width: 56px; height: 56px;
+  background: var(--c-white); color: var(--c-dark);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 8px rgba(255,255,255,0.18), 0 8px 20px rgba(0,0,0,0.3);
+  animation: pulse-pin 2s ease-in-out infinite;
+}
+@keyframes pulse-pin {
+  0%, 100% { box-shadow: 0 0 0 8px rgba(255,255,255,0.18), 0 8px 20px rgba(0,0,0,0.3); }
+  50% { box-shadow: 0 0 0 18px rgba(255,255,255,0.08), 0 8px 20px rgba(0,0,0,0.3); }
+}
+.map-d .pin-d svg { width: 24px; height: 24px; }
+.map-d .map-info {
+  position: absolute; bottom: 18px; left: 18px;
+  background: var(--c-white); color: var(--c-dark);
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+.branches-d { padding: 64px 0; background: var(--c-bg-soft); }
+.branches-d h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 32px; letter-spacing: -0.025em; }
+.br-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.br-card {
+  background: var(--c-white);
+  border-radius: 12px;
+  padding: 22px;
+  transition: all var(--tr);
+}
+.br-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.br-card .city { font-size: 16px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.015em; }
+.br-card .addr { font-size: 13px; color: var(--c-grey); line-height: 1.5; margin-bottom: 10px; }
+.br-card .ph { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; }
+
+.form-d { padding: 64px 0 80px; }
+.form-d h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 12px; letter-spacing: -0.025em; }
+.form-d > .container > p { color: var(--c-grey); margin-bottom: 32px; max-width: 600px; }
+.form-card {
+  background: var(--c-bg-soft);
+  border-radius: 18px;
+  padding: 36px;
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-fld { display: flex; flex-direction: column; gap: 6px; }
+.form-fld label { font-size: 11px; font-weight: 600; color: var(--c-grey); text-transform: uppercase; letter-spacing: 0.04em; }
+.form-fld input,
+.form-fld textarea {
+  padding: 12px 14px;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  font-family: inherit; font-size: 14px;
+  transition: border-color var(--tr);
+}
+.form-fld input:focus,
+.form-fld textarea:focus { outline: none; border-color: var(--c-dark); }
+.form-fld textarea { resize: vertical; min-height: 100px; }
+.form-row-1 { margin-bottom: 16px; }
+.form-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+.form-foot p { font-size: 11px; color: var(--c-grey); max-width: 400px; line-height: 1.5; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1024px) {
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--c-white); flex-direction: column; padding: 16px 24px; box-shadow: var(--shadow-md); border-top: 1px solid var(--c-line); gap: 4px; }
+  .nav.open { display: flex; }
+  .nav-link { width: 100%; padding: 14px 16px; }
+  .header .container { position: relative; padding: 14px 24px; }
+  .lang-switch, .phone-link { display: none; }
+  .burger { display: flex; flex-direction: column; gap: 4px; cursor: pointer; padding: 8px; background: transparent; border: none; }
+  .burger span { width: 22px; height: 2px; background: var(--c-dark); transition: all var(--tr); }
+  .burger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .burger.active span:nth-child(2) { opacity: 0; }
+  .burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .routes-content { grid-template-columns: 1fr; gap: 24px; }
+  .stats-strip-grid { grid-template-columns: 1fr 1fr; }
+  .cabinet-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cabinet-features { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cta-grid { grid-template-columns: 1fr; }
+  .cta-card { padding: 36px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .tl-grid { grid-template-columns: 1fr 1fr; }
+  .svc-layout { grid-template-columns: 1fr; }
+  .svc-side { position: static; }
+  .svc-feat-grid { grid-template-columns: 1fr 1fr; }
+  .proc-steps { grid-template-columns: 1fr 1fr; }
+  .tariff-grid, .park-grid-d { grid-template-columns: 1fr 1fr; }
+  .route-d-row { grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; }
+  .route-d-row.head { display: none; }
+  .contracts-d { grid-template-columns: 1fr; }
+  .contacts-d-grid { grid-template-columns: 1fr; }
+  .br-grid { grid-template-columns: 1fr 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .tabs-bar { top: 64px; }
+}
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .services-grid, .news-grid, .stats-strip-grid, .team-grid, .tl-grid, .svc-feat-grid, .proc-steps, .tariff-grid, .park-grid-d, .br-grid, .footer-top { grid-template-columns: 1fr; }
+  .calc-row { grid-template-columns: 1fr; }
+  .calc-swap { display: none; }
+  .form-card { padding: 24px 18px; }
+  .cta-card { padding: 28px 20px; }
+  .logo .logo-name { display: none; }
+  .float-btn { width: 42px; height: 42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header" id="header">
+  <div class="container">
+    <div class="logo" onclick="goPage('home')">
+      <img src="data:image/jpeg;base64,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" alt="Кедентранссервис">
+      <div class="logo-name">Кедентранссервис</div>
+    </div>
+    <nav class="nav" id="nav">
+      <a class="nav-link" data-page="about" onclick="goPage('about')">О компании</a>
+      <a class="nav-link" data-page="clients" onclick="goPage('clients')">Клиентам</a>
+      <a class="nav-link" data-page="service" onclick="goPage('service')">Услуги</a>
+      <a class="nav-link" data-page="x1" onclick="goPage('home')">Акционерам</a>
+      <a class="nav-link" data-page="x2" onclick="goPage('home')">Закупки</a>
+      <a class="nav-link" data-page="contacts" onclick="goPage('contacts')">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 005 5L13 14l5 2v4a2 2 0 01-2 2A16 16 0 013 7a2 2 0 012-2"/></svg>
+        +7 (7172) 648 888
+      </a>
+      <div class="lang-switch">
+        <a class="active">RU</a><a>KZ</a><a>EN</a>
+      </div>
+      <button class="btn-cabinet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Кабинет
+      </button>
+      <button class="burger" id="burger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     PAGE: HOME
+     ============================================================ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO with calculator -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            <span>Работаем 24/7. Сейчас в пути 187 контейнерных составов</span>
+          </div>
+          <h1>Цифровая логистика<br>между <span class="highlight">Китаем</span> и <span class="highlight">Европой</span></h1>
+          <p class="lead">Рассчитайте стоимость перевозки, отследите контейнер, оформите документы — всё в одном кабинете. АО «Кедентранссервис» автоматизирует логистику с 1997 года.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary" onclick="document.querySelector('.calc-widget').scrollIntoView({behavior:'smooth', block:'center'})">
+              Рассчитать ставку
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-secondary" onclick="goPage('service')">Все услуги</button>
+            <button class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Видеотур
+            </button>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><div class="trust-num">29 лет</div><div class="trust-label">опыта</div></div>
+            <div class="trust-item"><div class="trust-num">1000+</div><div class="trust-label">поездов в год</div></div>
+            <div class="trust-item"><div class="trust-num">14</div><div class="trust-label">регионов РК</div></div>
+            <div class="trust-item"><div class="trust-num">99.7%</div><div class="trust-label">доставок в срок</div></div>
+          </div>
+        </div>
+
+        <!-- Calculator widget -->
+        <div class="calc-widget">
+          <div class="calc-header">
+            <h3>Расчёт стоимости</h3>
+            <span class="badge-mini">~30 сек</span>
+          </div>
+          <div class="calc-tabs">
+            <button class="calc-tab active" onclick="switchCalcTab(this, 'container')">Контейнер</button>
+            <button class="calc-tab" onclick="switchCalcTab(this, 'wagon')">Вагон</button>
+            <button class="calc-tab" onclick="switchCalcTab(this, 'bulk')">Насыпной</button>
+          </div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>Откуда</label>
+              <select>
+                <option>Сиань (КНР)</option>
+                <option>Урумчи (КНР)</option>
+                <option>Достык</option>
+                <option>Алтынколь</option>
+                <option>Алматы</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label>Куда</label>
+              <select>
+                <option>Алматы</option>
+                <option>Москва</option>
+                <option>Дуйсбург</option>
+                <option>Санкт-Петербург</option>
+                <option>Тегеран</option>
+              </select>
+            </div>
+            <button class="calc-swap" title="Поменять местами">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10h10M17 10l-3-3M17 10l-3 3M17 14H7M7 14l3 3M7 14l3-3"/></svg>
+            </button>
+          </div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>Тип контейнера</label>
+              <select>
+                <option>20' DC</option>
+                <option>40' DC</option>
+                <option>40' HC</option>
+                <option>45' HC</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label>Количество</label>
+              <input type="number" value="1" min="1" max="100">
+            </div>
+          </div>
+          <div class="calc-row-full" style="margin-bottom:8px;">
+            <div class="calc-field">
+              <label>Тип отправки</label>
+              <select>
+                <option>Регулярный поезд (расписание)</option>
+                <option>Блок-поезд под клиента</option>
+                <option>Сборная партия</option>
+              </select>
+            </div>
+          </div>
+          <button class="calc-submit" onclick="showCalcResult()">
+            Рассчитать
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </button>
+          <div class="calc-result" id="calcResult">
+            <div class="res-label">Предварительная стоимость</div>
+            <div class="res-price">от 2 850 USD</div>
+            <div class="res-meta">за 40' контейнер · срок доставки 9–12 суток · окончательная цена после уточнения объёма</div>
+          </div>
+          <div class="calc-foot">
+            <span class="check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Без скрытых платежей
+            </span>
+            <span class="check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Договор за 1 день
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Услуги</div>
+          <h2>Полный комплекс<br>логистических операций</h2>
+          <p>От перегруза на границе с Китаем до доставки контейнера на терминал в любой точке Казахстана.</p>
+        </div>
+        <a class="head-link" onclick="goPage('service')">Все услуги
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" onclick="goPage('service')">
+          <div class="service-illustration">
+            <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="60" height="40" fill="none" stroke="#0B2335" stroke-width="2"/>
+              <line x1="35" y1="50" x2="35" y2="90" stroke="#0B2335" stroke-width="1.5"/>
+              <line x1="50" y1="50" x2="50" y2="90" stroke="#0B2335" stroke-width="1.5"/>
+              <line x1="65" y1="50" x2="65" y2="90" stroke="#0B2335" stroke-width="1.5"/>
+              <path d="M85 70 L120 70" stroke="#5F6366" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
+              <polygon points="115,65 125,70 115,75" fill="#5F6366"/>
+              <rect x="125" y="50" width="55" height="40" fill="#0B2335"/>
+              <rect x="130" y="55" width="45" height="6" fill="rgba(255,255,255,0.3)"/>
+              <rect x="130" y="65" width="45" height="6" fill="rgba(255,255,255,0.3)"/>
+              <rect x="130" y="75" width="45" height="6" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="36" cy="98" r="4" fill="#5F6366"/>
+              <circle cx="64" cy="98" r="4" fill="#5F6366"/>
+              <circle cx="138" cy="98" r="4" fill="#5F6366"/>
+              <circle cx="166" cy="98" r="4" fill="#5F6366"/>
+              <text x="100" y="30" fill="#5F6366" font-size="9" font-family="Inter" text-anchor="middle" font-weight="600">КОЛЕЯ 1520 → 1435</text>
+            </svg>
+          </div>
+          <h3>Перегруз на границе</h3>
+          <p>Перегруз контейнерных, тарно-штучных и насыпных грузов на станциях Достык — Алашанькоу и Алтынколь — Хоргос.</p>
+          <div class="service-meta">
+            <span class="meta-tag">3-4 часа на состав</span>
+            <span class="meta-tag">24/7</span>
+            <span class="meta-tag">АЕО</span>
+          </div>
+          <a class="service-link">Подробнее
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-illustration">
+            <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="40" width="50" height="50" fill="none" stroke="#0B2335" stroke-width="2"/>
+              <rect x="78" y="40" width="50" height="50" fill="#0B2335"/>
+              <rect x="136" y="40" width="50" height="50" fill="none" stroke="#0B2335" stroke-width="2"/>
+              <line x1="20" y1="55" x2="70" y2="55" stroke="#0B2335" stroke-width="1"/>
+              <line x1="20" y1="70" x2="70" y2="70" stroke="#0B2335" stroke-width="1"/>
+              <line x1="86" y1="55" x2="120" y2="55" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+              <line x1="86" y1="70" x2="120" y2="70" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+              <line x1="136" y1="55" x2="186" y2="55" stroke="#0B2335" stroke-width="1"/>
+              <line x1="136" y1="70" x2="186" y2="70" stroke="#0B2335" stroke-width="1"/>
+              <path d="M30 100 L180 100" stroke="#5F6366" stroke-width="1.5"/>
+              <text x="100" y="20" fill="#5F6366" font-size="9" font-family="Inter" text-anchor="middle" font-weight="600">14 ТЕРМИНАЛОВ В РК</text>
+            </svg>
+          </div>
+          <h3>Грузовые терминалы</h3>
+          <p>Полный цикл операций: погрузо-разгрузочные работы, хранение СВХ, таможенное оформление, обслуживание контейнеров.</p>
+          <div class="service-meta">
+            <span class="meta-tag">14 регионов</span>
+            <span class="meta-tag">СВХ</span>
+            <span class="meta-tag">Декларирование</span>
+          </div>
+          <a class="service-link">Подробнее
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-illustration">
+            <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+              <rect x="14" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="40" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="66" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="92" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="118" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="144" y="50" width="22" height="22" fill="#0B2335" rx="2"/>
+              <rect x="170" y="50" width="16" height="22" fill="none" stroke="#0B2335" stroke-width="2" rx="2"/>
+              <line x1="10" y1="80" x2="195" y2="80" stroke="#5F6366" stroke-width="1.5"/>
+              <line x1="14" y1="80" x2="14" y2="86" stroke="#5F6366" stroke-width="1"/>
+              <line x1="50" y1="80" x2="50" y2="86" stroke="#5F6366" stroke-width="1"/>
+              <line x1="100" y1="80" x2="100" y2="86" stroke="#5F6366" stroke-width="1"/>
+              <line x1="150" y1="80" x2="150" y2="86" stroke="#5F6366" stroke-width="1"/>
+              <line x1="190" y1="80" x2="190" y2="86" stroke="#5F6366" stroke-width="1"/>
+              <text x="100" y="30" fill="#5F6366" font-size="9" font-family="Inter" text-anchor="middle" font-weight="600">БЛОК-ПОЕЗД 71 ДФЭ</text>
+              <circle cx="14" cy="100" r="3" fill="#5F6366"/>
+              <circle cx="186" cy="100" r="3" fill="#0B2335"/>
+            </svg>
+          </div>
+          <h3>Контейнерные перевозки</h3>
+          <p>Регулярные блок-поезда Китай — РК — Европа. Маршруты ТМТМ, Россия, Иран, Грузия. Мультимодальные перевозки под ключ.</p>
+          <div class="service-meta">
+            <span class="meta-tag">Еженедельно</span>
+            <span class="meta-tag">ТМТМ</span>
+            <span class="meta-tag">Под клиента</span>
+          </div>
+          <a class="service-link">Подробнее
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTES MAP + DEPARTURE BOARD -->
+  <section class="routes-block">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Маршруты в реальном времени</div>
+          <h2>Где сейчас ваш груз</h2>
+          <p>Регулярные маршруты по направлениям импорта, экспорта и транзита. Подсвечены активные направления.</p>
+        </div>
+      </div>
+
+      <div class="routes-tabs-pill">
+        <button class="route-tab active" onclick="switchRouteTab(this, 'import')">Импорт из КНР</button>
+        <button class="route-tab" onclick="switchRouteTab(this, 'export')">Экспорт</button>
+        <button class="route-tab" onclick="switchRouteTab(this, 'transit')">Транзит ТМТМ</button>
+      </div>
+
+      <div class="routes-content">
+        <div class="routes-map">
+          <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+            <!-- Eurasia simplified -->
+            <path d="M30 220 L80 200 L140 180 L210 170 L290 165 L370 175 L450 195 L520 225 L555 270 L540 320 L490 355 L420 365 L340 360 L260 365 L180 370 L110 350 L60 310 L30 270 Z"
+                  fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+            <!-- Active route IMPORT (default visible) -->
+            <g id="route-import">
+              <path d="M520 270 Q450 230 350 220 T180 240 T80 260" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" fill="none" stroke-dasharray="6 4">
+                <animate attributeName="stroke-dashoffset" from="100" to="0" dur="3s" repeatCount="indefinite"/>
+              </path>
+            </g>
+            <!-- Cities -->
+            <g>
+              <!-- Сиань -->
+              <circle cx="540" cy="290" r="6" fill="#fff"/>
+              <text x="540" y="312" fill="rgba(255,255,255,0.85)" font-size="10" font-family="Inter" text-anchor="middle" font-weight="600">Сиань</text>
+              <!-- Достык -->
+              <circle cx="490" cy="265" r="7" fill="#fff" stroke="#fff" stroke-opacity="0.4" stroke-width="6"/>
+              <text x="490" y="248" fill="#fff" font-size="11" font-family="Inter" text-anchor="middle" font-weight="700">Достык</text>
+              <!-- Алтынколь -->
+              <circle cx="445" cy="290" r="6" fill="#fff"/>
+              <text x="455" y="310" fill="rgba(255,255,255,0.85)" font-size="10" font-family="Inter" text-anchor="start" font-weight="600">Алтынколь</text>
+              <!-- Жетысу -->
+              <circle cx="380" cy="245" r="5" fill="rgba(255,255,255,0.6)"/>
+              <text x="380" y="232" fill="rgba(255,255,255,0.7)" font-size="10" font-family="Inter" text-anchor="middle">Жетысу</text>
+              <!-- Астана -->
+              <circle cx="290" cy="220" r="5" fill="rgba(255,255,255,0.6)"/>
+              <text x="290" y="208" fill="rgba(255,255,255,0.7)" font-size="10" font-family="Inter" text-anchor="middle">Астана</text>
+              <!-- Тобыл -->
+              <circle cx="200" cy="210" r="5" fill="rgba(255,255,255,0.6)"/>
+              <text x="200" y="198" fill="rgba(255,255,255,0.7)" font-size="10" font-family="Inter" text-anchor="middle">Тобыл</text>
+              <!-- Алят -->
+              <circle cx="80" cy="270" r="5" fill="rgba(255,255,255,0.6)"/>
+              <text x="80" y="290" fill="rgba(255,255,255,0.7)" font-size="10" font-family="Inter" text-anchor="middle">Алят</text>
+              <!-- Дуйсбург (out of КЗ on left) -->
+              <circle cx="30" cy="240" r="5" fill="rgba(255,255,255,0.4)"/>
+              <text x="30" y="226" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Inter" text-anchor="middle">Дуйсбург</text>
+            </g>
+            <!-- Labels -->
+            <text x="300" y="290" fill="rgba(255,255,255,0.18)" font-size="14" font-family="Inter" font-weight="700" letter-spacing="3" text-anchor="middle">КАЗАХСТАН</text>
+            <text x="555" y="380" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Inter" text-anchor="end">КНР →</text>
+            <text x="30" y="380" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Inter">← ЕС</text>
+            <!-- Live container moving -->
+            <circle r="4" fill="#fff">
+              <animateMotion dur="6s" repeatCount="indefinite" path="M520 270 Q450 230 350 220 T180 240 T80 260"/>
+            </circle>
+            <circle r="8" fill="rgba(255,255,255,0.25)">
+              <animateMotion dur="6s" repeatCount="indefinite" path="M520 270 Q450 230 350 220 T180 240 T80 260"/>
+            </circle>
+          </svg>
+        </div>
+
+        <!-- Departure board -->
+        <div class="departure-board">
+          <div class="dep-head">
+            <h3>Ближайшие отправки</h3>
+            <span class="live"><span class="dot"></span>В реальном времени</span>
+          </div>
+          <div class="dep-row">
+            <div>
+              <div class="dep-from-to">Сиань<span class="arrow">→</span>Алматы</div>
+              <div class="dep-meta">КП-2487 · 76 ДФЭ · 9 суток</div>
+            </div>
+            <div>
+              <div class="dep-time">сегодня 14:30</div>
+              <span class="dep-status boarding">грузится</span>
+            </div>
+          </div>
+          <div class="dep-row">
+            <div>
+              <div class="dep-from-to">Алтынколь<span class="arrow">→</span>Москва</div>
+              <div class="dep-meta">КП-2491 · 71 ДФЭ · 11 суток</div>
+            </div>
+            <div>
+              <div class="dep-time">сегодня 19:15</div>
+              <span class="dep-status on">по графику</span>
+            </div>
+          </div>
+          <div class="dep-row">
+            <div>
+              <div class="dep-from-to">Достык<span class="arrow">→</span>Дуйсбург</div>
+              <div class="dep-meta">КП-2495 · 80 ДФЭ · 14 суток</div>
+            </div>
+            <div>
+              <div class="dep-time">завтра 08:00</div>
+              <span class="dep-status scheduled">запланирован</span>
+            </div>
+          </div>
+          <div class="dep-row">
+            <div>
+              <div class="dep-from-to">Жетысу<span class="arrow">→</span>Алят</div>
+              <div class="dep-meta">КП-2498 · 64 ДФЭ · 9 суток</div>
+            </div>
+            <div>
+              <div class="dep-time">завтра 16:45</div>
+              <span class="dep-status scheduled">запланирован</span>
+            </div>
+          </div>
+          <div class="dep-row">
+            <div>
+              <div class="dep-from-to">Тобыл<span class="arrow">→</span>СПб</div>
+              <div class="dep-meta">КП-2502 · 56 ДФЭ · 9 суток</div>
+            </div>
+            <div>
+              <div class="dep-time">04.05 · 11:20</div>
+              <span class="dep-status scheduled">запланирован</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS strip -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-strip-grid">
+        <div class="stat-strip-item">
+          <div class="num">220<small>k</small></div>
+          <div class="lab">ДФЭ переработка в год</div>
+          <div class="sub">+12% к прошлому году</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="num">800<small>+</small></div>
+          <div class="lab">фитинговых платформ</div>
+          <div class="sub">собственный парк</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="num">2 400</div>
+          <div class="lab">сотрудников</div>
+          <div class="sub">14 регионов Казахстана</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="num">99.7<small>%</small></div>
+          <div class="lab">доставок в срок</div>
+          <div class="sub">SLA по контрактам</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CABINET PROMO -->
+  <section class="cabinet-block">
+    <div class="container">
+      <div class="cabinet-grid">
+        <div class="cabinet-text">
+          <div class="section-eyebrow">— Личный кабинет</div>
+          <h2>Управляйте логистикой как ваш CRM</h2>
+          <p class="lead">Цифровой кабинет «Кедентранссервис» — это контроль над поставками без звонков и переписки. Заявки, документы, отслеживание контейнеров и счета — в одном окне.</p>
+          <div class="cabinet-features">
+            <div class="cab-feat">
+              <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+              <div><h4>Трекинг 24/7</h4><p>Контейнер на карте в реальном времени</p></div>
+            </div>
+            <div class="cab-feat">
+              <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div><h4>Документы</h4><p>ЭДО, подписание онлайн, архив</p></div>
+            </div>
+            <div class="cab-feat">
+              <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+              <div><h4>Счета и оплаты</h4><p>Автовыставление, история платежей</p></div>
+            </div>
+            <div class="cab-feat">
+              <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+              <div><h4>Заявки в один клик</h4><p>Шаблоны, повторные отправки</p></div>
+            </div>
+          </div>
+          <button class="btn btn-primary">Открыть демо-кабинет
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="mockup">
+          <div class="mockup-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="url">my.kdts.kz/dashboard</span>
+          </div>
+          <div class="mockup-content">
+            <div class="mock-head">
+              <h4>Активные перевозки</h4>
+              <span class="mock-pill">7 в пути</span>
+            </div>
+            <div class="mock-stats">
+              <div class="mock-stat"><div class="v">187</div><div class="l">КОНТЕЙНЕРОВ</div></div>
+              <div class="mock-stat"><div class="v">12</div><div class="l">СОСТАВОВ</div></div>
+              <div class="mock-stat"><div class="v">99%</div><div class="l">В СРОК</div></div>
+            </div>
+            <div class="mock-list">
+              <div class="mock-item">
+                <div>
+                  <div class="mi-id">CTNR-487291</div>
+                  <div class="mi-route">Сиань → Алматы · 7-й день</div>
+                </div>
+                <span class="mi-status transit">В пути</span>
+              </div>
+              <div class="mock-item">
+                <div>
+                  <div class="mi-id">CTNR-487305</div>
+                  <div class="mi-route">Алтынколь → Москва · 11-й день</div>
+                </div>
+                <span class="mi-status transit">В пути</span>
+              </div>
+              <div class="mock-item">
+                <div>
+                  <div class="mi-id">CTNR-487198</div>
+                  <div class="mi-route">Достык → Дуйсбург · доставлен</div>
+                </div>
+                <span class="mi-status delivered">Доставлен</span>
+              </div>
+              <div class="mock-item">
+                <div>
+                  <div class="mi-id">CTNR-487412</div>
+                  <div class="mi-route">Жетысу → Алят · ожидает</div>
+                </div>
+                <span class="mi-status pending">Ожидает</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Новости</div>
+          <h2>Что нового<br>в логистике КДТС</h2>
+        </div>
+        <a class="head-link">Все новости
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-img a">
+            <span class="news-tag">Праздник</span>
+            ОРАЗА АЙТ
+          </div>
+          <div class="news-body">
+            <div class="news-date">20.03.2026</div>
+            <h3>Поздравляем с праздником Ораза айт!</h3>
+            <a class="read">Читать
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img b">
+            <span class="news-tag">Партнёрство</span>
+            KEDENTRANSSERVICE × GANSU
+          </div>
+          <div class="news-body">
+            <div class="news-date">19.03.2026</div>
+            <h3>АО «Кедентранссервис» и Gansu International Logistics Group обсудили развитие сотрудничества</h3>
+            <a class="read">Читать
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img c">
+            <span class="news-tag">Выставки</span>
+            TRANSRUSSIA 2026
+          </div>
+          <div class="news-body">
+            <div class="news-date">19.03.2026</div>
+            <h3>АО «Кедентранссервис» приняло участие в международной выставке TransRussia 2026</h3>
+            <a class="read">Читать
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-grid">
+          <div>
+            <h2>Не нашли подходящий маршрут?</h2>
+            <p>Наши менеджеры рассчитают индивидуальное решение под ваш груз: маршрут, тип состава, тарифы. Ответ — в течение рабочего дня.</p>
+          </div>
+          <div class="cta-actions">
+            <button class="btn btn-primary" onclick="goPage('contacts')">Получить расчёт
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-ghost">+7 (7172) 648 888</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============================================================
+     PAGE: ABOUT
+     ============================================================ -->
+<div class="page" id="page-about">
+  <div class="breadcrumbs">
+    <div class="container">
+      <a onclick="goPage('home')">Главная</a><span class="sep">/</span><span class="current">О компании</span>
+    </div>
+  </div>
+
+  <section class="ph">
+    <div class="container">
+      <h1>Логистика, которой<br>доверяет Казахстан</h1>
+      <p>АО «Кедентранссервис» — крупнейший оператор логистических терминалов в РК. Часть группы АО «НК «Қазақстан темір жолы». Работаем с 1997 года.</p>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <p>Мы — единственный национальный оператор, обладающий уникальными активами и компетенциями в сфере терминальной обработки грузов на стыке колеи 1520/1435.</p>
+          <p>Компания занимает лидирующие позиции по перегрузке импортируемых из Китая грузов на пограничных станциях «Достык» и «Алтынколь». Осуществляет контейнерные перевозки по различным маршрутам, а её терминалы расположены во всех регионах и крупных городах Казахстана.</p>
+          <p>Стратегическая роль — обеспечение бесперебойных грузопотоков на ключевых международных маршрутах: Транскитайско-Европейском, Транскаспийском (ТМТМ), а также внутриказахстанских направлениях.</p>
+        </div>
+        <div class="facts-grid">
+          <div class="fact-card"><div class="num">29</div><div class="lab">лет на рынке</div></div>
+          <div class="fact-card"><div class="num">14</div><div class="lab">регионов РК</div></div>
+          <div class="fact-card"><div class="num">2 400</div><div class="lab">сотрудников</div></div>
+          <div class="fact-card"><div class="num">220 000</div><div class="lab">ДФЭ в год</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Руководство</div>
+          <h2>Команда, которая ведёт компанию</h2>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo">ЭА</div>
+          <h3>Эльнар Эрикович Айтенов</h3>
+          <div class="pos">Председатель Правления</div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">ВН</div>
+          <h3>Заместитель Председателя</h3>
+          <div class="pos">Операционная деятельность</div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">МР</div>
+          <h3>Заместитель Председателя</h3>
+          <div class="pos">Коммерция</div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">КС</div>
+          <h3>Заместитель Председателя</h3>
+          <div class="pos">Экономика и финансы</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-h">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— История</div>
+          <h2>Путь от локального оператора<br>до национального лидера</h2>
+        </div>
+      </div>
+      <div class="tl-grid">
+        <div class="tl-item"><div class="yr">1997</div><p>Основание АО «Кедентранссервис». Старт работы на пограничном переходе Достык — Алашанькоу.</p></div>
+        <div class="tl-item"><div class="yr">2008</div><p>Расширение терминальной сети до всех областных центров Казахстана.</p></div>
+        <div class="tl-item"><div class="yr">2015</div><p>Запуск операций на новом пограничном переходе Алтынколь — Хоргос.</p></div>
+        <div class="tl-item"><div class="yr">2024</div><p>Открытие зарубежных хабов в Сиане (КНР) и Аляте (Азербайджан) для развития ТМТМ.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE: SERVICE DETAIL
+     ============================================================ -->
+<div class="page" id="page-service">
+  <div class="breadcrumbs">
+    <div class="container">
+      <a onclick="goPage('home')">Главная</a><span class="sep">/</span><a>Услуги</a><span class="sep">/</span><span class="current">Перегруз: Достык и Алтынколь</span>
+    </div>
+  </div>
+
+  <section class="service-hero">
+    <div class="container">
+      <div class="hero-badge"><span class="dot"></span>Флагманская услуга компании</div>
+      <h1>Перегруз грузов на пограничных переходах Достык и Алтынколь</h1>
+      <p class="lead">Перегруз контейнерных, тарно-штучных и насыпных грузов на стыке колеи 1520/1435 — ключевая операция в логистическом коридоре Китай — Казахстан — Европа.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary">Рассчитать стоимость
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </button>
+        <button class="btn btn-secondary" onclick="goPage('contacts')">Связаться с менеджером</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-grid">
+    <div class="container">
+      <div class="svc-layout">
+        <div class="svc-text">
+          <h2>Ворота Шёлкового пути</h2>
+          <p>Пограничные переходы «Достык — Алашанькоу» и «Алтынколь — Хоргос» — единственные в регионе пункты, где меняется ширина железнодорожной колеи: с китайской 1435 мм на казахстанскую 1520 мм. Без качественного перегруза транзитный поезд из Китая не доедет до Европы.</p>
+          <p>АО «Кедентранссервис» работает на обеих станциях с момента их открытия. Мы переваливаем грузы быстро, безопасно и с полной таможенной поддержкой — компания обладает статусом <strong>уполномоченного экономического оператора (АЕО)</strong>.</p>
+
+          <h2>Что мы переваливаем</h2>
+          <p><strong>Контейнерные грузы.</strong> Платформенные краны грузоподъёмностью до 45 тонн, обработка 20-, 40- и 45-футовых контейнеров. Среднее время перегруза одного состава — 3-4 часа.</p>
+          <p><strong>Тарно-штучные грузы.</strong> Перегруз с применением вилочных погрузчиков, кранового оборудования, ручной обработкой при необходимости.</p>
+          <p><strong>Насыпные и зерновые грузы.</strong> Специализированные перегрузочные комплексы с весовым контролем. Поддержка как импорта, так и экспортных направлений в Китай.</p>
+        </div>
+        <aside class="svc-side">
+          <h4>Ключевые показатели</h4>
+          <div class="kpi"><div class="label">Время перегруза состава</div><div class="val">3–4 часа</div></div>
+          <div class="kpi"><div class="label">Пропускная способность в сутки</div><div class="val">25 поездов</div></div>
+          <div class="kpi"><div class="label">Грузоподъёмность кранов</div><div class="val">до 45 тонн</div></div>
+          <div class="kpi"><div class="label">Режим работы</div><div class="val">24/7/365</div></div>
+          <div class="kpi"><div class="label">Статус таможни</div><div class="val">АЕО</div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-features">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Преимущества</div>
+          <h2>Почему клиенты выбирают КДТС для перегруза</h2>
+        </div>
+      </div>
+      <div class="svc-feat-grid">
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <h3>Скорость обработки</h3>
+          <p>3–4 часа на состав. На пиковых направлениях задействуется до 8 кранов параллельно.</p>
+        </div>
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div>
+          <h3>Сохранность груза</h3>
+          <p>Сертифицированное оборудование, видеонаблюдение по периметру. Потери — менее 0,01%.</p>
+        </div>
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9l6-6m0 0v5m0-5h-5M10 15l-6 6m0 0v-5m0 5h5"/></svg></div>
+          <h3>Сквозной маршрут</h3>
+          <p>Подача вагонов, перегруз, таможенное оформление, отправка — под одним договором.</p>
+        </div>
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+          <h3>Цифровое окно</h3>
+          <p>Личный кабинет, отслеживание контейнера в реальном времени, ЭДО с таможней.</p>
+        </div>
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+          <h3>Любые типы грузов</h3>
+          <p>Контейнеры, тарно-штучные, насыпные, наливные. Проектные перевозки — индивидуально.</p>
+        </div>
+        <div class="svc-feat">
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div>
+          <h3>Гибкие тарифы</h3>
+          <p>Индивидуальные условия для регулярных партнёров, скидки за объём, прозрачное ценообразование.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-h">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Процесс</div>
+          <h2>Как происходит перегруз</h2>
+        </div>
+      </div>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <span class="num">01 / 04</span>
+          <h3>Согласование</h3>
+          <p>Заявка, дата подачи состава, тариф, тип груза и подвижного состава.</p>
+        </div>
+        <div class="proc-step">
+          <span class="num">02 / 04</span>
+          <h3>Прибытие</h3>
+          <p>Состав прибывает на станцию, проходит таможенное оформление с поддержкой нашего отдела.</p>
+        </div>
+        <div class="proc-step">
+          <span class="num">03 / 04</span>
+          <h3>Перегруз</h3>
+          <p>Перегрузка между вагонами разной колеи. Среднее время — 3–4 часа на состав.</p>
+        </div>
+        <div class="proc-step">
+          <span class="num">04 / 04</span>
+          <h3>Отправка</h3>
+          <p>Отправка переваленного состава по согласованному маршруту, передача документов.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-grid">
+          <div>
+            <h2>Готовы рассчитать перегруз для вашего груза?</h2>
+            <p>Заполните быструю форму или позвоните нам — рассчитаем стоимость и сроки в течение 30 минут.</p>
+          </div>
+          <div class="cta-actions">
+            <button class="btn btn-primary">Рассчитать ставку
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-ghost" onclick="goPage('contacts')">Контакты менеджеров</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE: CLIENTS
+     ============================================================ -->
+<div class="page" id="page-clients">
+  <div class="breadcrumbs">
+    <div class="container">
+      <a onclick="goPage('home')">Главная</a><span class="sep">/</span><span class="current">Клиентам</span>
+    </div>
+  </div>
+  <section class="ph">
+    <div class="container">
+      <h1>Клиентам</h1>
+      <p>Всё для работы с КДТС: тарифы, парк подвижного состава, маршруты и типовые договоры.</p>
+    </div>
+  </section>
+
+  <div class="tabs-bar">
+    <div class="container">
+      <button class="tab-btn active" onclick="switchClientTab(this, 'tariffs')">Ставки и тарифы</button>
+      <button class="tab-btn" onclick="switchClientTab(this, 'park')">Парк платформ</button>
+      <button class="tab-btn" onclick="switchClientTab(this, 'routes')">Маршруты</button>
+      <button class="tab-btn" onclick="switchClientTab(this, 'contracts')">Договоры</button>
+    </div>
+  </div>
+
+  <!-- TARIFFS -->
+  <div class="tab-content active" id="tab-tariffs">
+    <div class="container">
+      <h2>Ставки и тарифы на перегруз</h2>
+      <p class="desc">Базовые ставки на перегруз контейнерных и тарно-штучных грузов на пограничных переходах Достык и Алтынколь. Действуют с 1 января 2026 года.</p>
+      <div class="tariff-grid">
+        <div class="tariff-card">
+          <div class="station">Достык</div>
+          <h3>Контейнер 20'</h3>
+          <div class="type">Стандартный сухой контейнер</div>
+          <div class="price-block">
+            <div><div class="pr">от 28 000 ₸</div><div class="unit">за 1 контейнер · без НДС</div></div>
+          </div>
+          <div class="incl">ПРР включены</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Достык</div>
+          <h3>Контейнер 40'</h3>
+          <div class="type">Стандартный 40-футовый</div>
+          <div class="price-block">
+            <div><div class="pr">от 42 000 ₸</div><div class="unit">за 1 контейнер · без НДС</div></div>
+          </div>
+          <div class="incl">ПРР включены</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Достык</div>
+          <h3>Контейнер 45'</h3>
+          <div class="type">Высокий 45-футовый HC</div>
+          <div class="price-block">
+            <div><div class="pr">от 48 000 ₸</div><div class="unit">за 1 контейнер · без НДС</div></div>
+          </div>
+          <div class="incl">ПРР включены</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Алтынколь</div>
+          <h3>Контейнер 20'</h3>
+          <div class="type">Стандартный сухой контейнер</div>
+          <div class="price-block">
+            <div><div class="pr">от 28 000 ₸</div><div class="unit">за 1 контейнер · без НДС</div></div>
+          </div>
+          <div class="incl">ПРР включены</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Алтынколь</div>
+          <h3>Контейнер 40'</h3>
+          <div class="type">Стандартный 40-футовый</div>
+          <div class="price-block">
+            <div><div class="pr">от 42 000 ₸</div><div class="unit">за 1 контейнер · без НДС</div></div>
+          </div>
+          <div class="incl">ПРР включены</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Достык / Алтынколь</div>
+          <h3>Тарно-штучный</h3>
+          <div class="type">Перегруз ПШГ</div>
+          <div class="price-block">
+            <div><div class="pr">от 1 850 ₸</div><div class="unit">за 1 тонну · без НДС</div></div>
+          </div>
+          <div class="incl">Минимум 1 вагон</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Достык</div>
+          <h3>Зерновые грузы</h3>
+          <div class="type">Спец. оборудование</div>
+          <div class="price-block">
+            <div><div class="pr">от 1 200 ₸</div><div class="unit">за 1 тонну · без НДС</div></div>
+          </div>
+          <div class="incl">Весовой контроль</div>
+        </div>
+        <div class="tariff-card">
+          <div class="station">Все терминалы</div>
+          <h3>Хранение СВХ</h3>
+          <div class="type">Сертифицированный склад</div>
+          <div class="price-block">
+            <div><div class="pr">от 1 500 ₸</div><div class="unit">1 ктк/сут. · без НДС</div></div>
+          </div>
+          <div class="incl">Первые 24ч бесплатно</div>
+        </div>
+        <div class="tariff-card" style="background:var(--c-dark); color:var(--c-white); border-color:var(--c-dark);">
+          <div class="station" style="color:rgba(255,255,255,0.5);">Индивидуально</div>
+          <h3 style="color:var(--c-white);">Своя задача?</h3>
+          <div class="type" style="color:rgba(255,255,255,0.7);">Регулярный объём, сложный маршрут — готовы обсудить условия.</div>
+          <div class="price-block" style="border-top-color:rgba(255,255,255,0.15);">
+            <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="goPage('contacts')">Связаться</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARK -->
+  <div class="tab-content" id="tab-park">
+    <div class="container">
+      <h2>Парк платформ и контейнеров</h2>
+      <p class="desc">Собственный парк фитинговых платформ и контейнеров — стабильность перевозок и независимость от рынка аренды.</p>
+      <div class="park-grid-d">
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="8"/><line x1="7" y1="9" x2="7" y2="17"/><line x1="17" y1="9" x2="17" y2="17"/><circle cx="6" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div>
+          <h3>Фитинговые платформы 60'</h3>
+          <div class="qty">800<small>+</small></div>
+          <p>Универсальные платформы для перевозки 20', 40', 45' контейнеров. Год выпуска 2018-2024.</p>
+        </div>
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="16" x2="21" y2="16"/></svg></div>
+          <h3>Контейнеры 40' HC</h3>
+          <div class="qty">2 200<small>+</small></div>
+          <p>Высокие контейнеры для перевозки негабарита и лёгких объёмных грузов.</p>
+        </div>
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="10"/><line x1="4" y1="11" x2="20" y2="11"/></svg></div>
+          <h3>Контейнеры 20' DC</h3>
+          <div class="qty">1 100<small>+</small></div>
+          <p>Стандартные контейнеры для генеральных и тяжёлых грузов до 28 тонн брутто.</p>
+        </div>
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13"/><path d="M3 12h18M8 6v13M16 6v13"/></svg></div>
+          <h3>Рефрижераторы 40'</h3>
+          <div class="qty">85</div>
+          <p>Контейнеры с поддержкой температурного режима от −25°C до +25°C.</p>
+        </div>
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="8"/><line x1="12" y1="9" x2="12" y2="17"/><circle cx="6" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div>
+          <h3>Платформы для зерна</h3>
+          <div class="qty">120</div>
+          <p>Специализированный подвижной состав для перевозки зерновых и насыпных грузов.</p>
+        </div>
+        <div class="park-d-card">
+          <div class="ic-park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18 L3 9 L8 5 L16 5 L21 9 L21 18 Z"/><line x1="3" y1="13" x2="21" y2="13"/></svg></div>
+          <h3>Краны и техника</h3>
+          <div class="qty">42</div>
+          <p>Парк портальных и козловых кранов на терминалах, грузоподъёмность 36–45 тонн.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTES -->
+  <div class="tab-content" id="tab-routes">
+    <div class="container">
+      <h2>Регулярные маршруты перевозок</h2>
+      <p class="desc">Расписание контейнерных поездов и блок-составов по основным направлениям ТМТМ, Россия и внутри Казахстана.</p>
+      <div class="routes-list-d">
+        <div class="route-d-row head">
+          <div>Маршрут</div>
+          <div>Направление</div>
+          <div>Частота</div>
+          <div>Срок</div>
+          <div>Статус</div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Сиань<span class="arr">→</span>Алматы</div>
+          <div class="freq-text">Импорт из КНР</div>
+          <div class="freq">2 раза в неделю</div>
+          <div class="days">7–9 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Алтынколь<span class="arr">→</span>Москва</div>
+          <div class="freq-text">Транзит КНР–РФ</div>
+          <div class="freq">3 раза в неделю</div>
+          <div class="days">10–12 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Достык<span class="arr">→</span>Дуйсбург</div>
+          <div class="freq-text">Транзит КНР–ЕС</div>
+          <div class="freq">1 раз в неделю</div>
+          <div class="days">14–16 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Жетысу<span class="arr">→</span>Алят</div>
+          <div class="freq-text">ТМТМ через Каспий</div>
+          <div class="freq">2 раза в неделю</div>
+          <div class="days">8–10 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Тобыл<span class="arr">→</span>Санкт-Петербург</div>
+          <div class="freq-text">Экспорт в РФ</div>
+          <div class="freq">по заявке</div>
+          <div class="days">8–10 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Алтынколь<span class="arr">→</span>Тегеран</div>
+          <div class="freq-text">Транзит в Иран</div>
+          <div class="freq">1 раз в неделю</div>
+          <div class="days">12–14 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+        <div class="route-d-row">
+          <div class="ft">Астана<span class="arr">→</span>Поти</div>
+          <div class="freq-text">ТМТМ в Грузию</div>
+          <div class="freq">2 раза в месяц</div>
+          <div class="days">14–18 сут.</div>
+          <div><span class="st">активен</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTRACTS -->
+  <div class="tab-content" id="tab-contracts">
+    <div class="container">
+      <h2>Типовые договоры</h2>
+      <p class="desc">Шаблоны договоров и стандартные коммерческие условия. Договоры могут быть адаптированы под индивидуальные потребности клиента.</p>
+      <div class="contracts-d">
+        <div class="contract-d-card">
+          <div class="ic-doc">PDF</div>
+          <div><h4>Договор на оказание услуг по перегрузу</h4><div class="meta">320 КБ · 15.01.2026</div></div>
+        </div>
+        <div class="contract-d-card">
+          <div class="ic-doc">PDF</div>
+          <div><h4>Договор на транспортно-экспедиционные услуги</h4><div class="meta">412 КБ · 15.01.2026</div></div>
+        </div>
+        <div class="contract-d-card">
+          <div class="ic-doc">PDF</div>
+          <div><h4>Договор хранения на СВХ</h4><div class="meta">285 КБ · 12.12.2025</div></div>
+        </div>
+        <div class="contract-d-card">
+          <div class="ic-doc">PDF</div>
+          <div><h4>Договор аренды контейнеров</h4><div class="meta">256 КБ · 12.12.2025</div></div>
+        </div>
+        <div class="contract-d-card">
+          <div class="ic-doc">DOC</div>
+          <div><h4>Заявка на перевозку (форма)</h4><div class="meta">48 КБ · 01.02.2026</div></div>
+        </div>
+        <div class="contract-d-card">
+          <div class="ic-doc">PDF</div>
+          <div><h4>Условия предоставления подвижного состава</h4><div class="meta">198 КБ · 12.12.2025</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: CONTACTS
+     ============================================================ -->
+<div class="page" id="page-contacts">
+  <div class="breadcrumbs">
+    <div class="container">
+      <a onclick="goPage('home')">Главная</a><span class="sep">/</span><span class="current">Контакты</span>
+    </div>
+  </div>
+  <section class="ph">
+    <div class="container">
+      <h1>Свяжитесь с нами</h1>
+      <p>Расчёт стоимости, консультация по перевозке, партнёрство — наша команда поможет с любыми вопросами в течение рабочего дня.</p>
+    </div>
+  </section>
+
+  <section class="contacts-d">
+    <div class="container">
+      <div class="contacts-d-grid">
+        <div class="contacts-info">
+          <h3>Центральный офис</h3>
+          <div class="c-row">
+            <div class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg></div>
+            <div><div class="lab">Адрес</div><div class="val">Республика Казахстан, 010000<br>г. Астана, ул. Достык, 18, БЦ «Москва»</div></div>
+          </div>
+          <div class="c-row">
+            <div class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 005 5L13 14l5 2v4a2 2 0 01-2 2A16 16 0 013 7a2 2 0 012-2"/></svg></div>
+            <div><div class="lab">Call-центр</div><div class="val">+7 (7172) 648 888<br>+7 778 097 97 97</div></div>
+          </div>
+          <div class="c-row">
+            <div class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+            <div><div class="lab">Электронная почта</div><div class="val">kense@kdts.kz</div></div>
+          </div>
+          <div class="c-row">
+            <div class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="lab">Режим работы</div><div class="val">Пн–Пт: 09:00–18:00</div></div>
+          </div>
+        </div>
+        <div class="map-d">
+          <div class="pin-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg></div>
+          <div class="map-info">📍 г. Астана, ул. Достык, 18</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="branches-d">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Филиалы</div>
+          <h2>Офисы по всему Казахстану</h2>
+        </div>
+      </div>
+      <div class="br-grid">
+        <div class="br-card"><div class="city">Астана</div><div class="addr">ул. Достык, 18<br>БЦ «Москва»</div><div class="ph">+7 (7172) 648 888</div></div>
+        <div class="br-card"><div class="city">Алматы</div><div class="addr">пр. Райымбек, 415<br>Терминал «Жетысу»</div><div class="ph">+7 (727) 250 14 14</div></div>
+        <div class="br-card"><div class="city">Достык</div><div class="addr">ст. Достык<br>Алакольский район</div><div class="ph">+7 (72846) 6 12 12</div></div>
+        <div class="br-card"><div class="city">Алтынколь</div><div class="addr">ст. Алтынколь<br>Панфиловский район</div><div class="ph">+7 (72831) 5 88 88</div></div>
+        <div class="br-card"><div class="city">Шымкент</div><div class="addr">Темирлановское шоссе, 24<br>Грузовой терминал</div><div class="ph">+7 (7252) 53 24 24</div></div>
+        <div class="br-card"><div class="city">Тобыл</div><div class="addr">Костанайская обл.<br>Терминал «Тобыл»</div><div class="ph">+7 (7142) 90 11 11</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-d">
+    <div class="container">
+      <div class="section-head">
+        <div class="head-text">
+          <div class="section-eyebrow">— Заявка</div>
+          <h2>Напишите нам</h2>
+        </div>
+      </div>
+      <p>Расскажите о вашей задаче: расчёт ставки, организация перевозки, партнёрство. Менеджер свяжется в течение рабочего дня.</p>
+      <form class="form-card" onsubmit="event.preventDefault(); alert('Спасибо! Это демо-форма. В реальной версии заявка отправится менеджеру.');">
+        <div class="form-row-2">
+          <div class="form-fld"><label>Имя *</label><input type="text" placeholder="Ваше имя" required></div>
+          <div class="form-fld"><label>Компания *</label><input type="text" placeholder="ТОО «Пример»" required></div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-fld"><label>Телефон *</label><input type="tel" placeholder="+7 (___) ___ __ __" required></div>
+          <div class="form-fld"><label>Email *</label><input type="email" placeholder="email@company.kz" required></div>
+        </div>
+        <div class="form-row-1">
+          <div class="form-fld"><label>Кратко опишите задачу</label><textarea placeholder="Например: рассчитать стоимость перегруза 20 контейнеров 40' Достык — Москва, ежемесячно"></textarea></div>
+        </div>
+        <div class="form-foot">
+          <p>Нажимая «Отправить», вы соглашаетесь с условиями обработки персональных данных согласно Политике конфиденциальности.</p>
+          <button type="submit" class="btn btn-primary">Отправить заявку
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     FOOTER (shared)
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="f-logo">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCACbAKkDASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAcIBQYCBAkDAf/EAFIQAAEDAwIEAgQGDAoHCQAAAAECAwQABREGEgchMUETUQgUImEWFzJCUnEVIyRWV4GRk5Wh0dIzNVNUlLHB0+HwNmJ0dbKz8RglNENVcoLU4v/EABsBAQADAQEBAQAAAAAAAAAAAAAEBQYDAgcB/8QANREAAQMCAwUECgMAAwAAAAAAAQACAwQRBSExEkFRYfATcZHBBiI0QlKBobHR4RUW8RQjJP/aAAwDAQACEQMRAD8AplSlKIlKUoiUpSiJSlKIlKVunCXhze+Il/EC3ILMJogzJqk5Qyk9h9JZ7J7+4AkemtLjYLy5waLlacGnSyp8NrLSVBBXtO0KIJAz5nB/Ia4VdNhvhZYbf8Vi4Tb9pdSW50pZBR6xywVrHPfn545IIAGAOVdeOHCi68Obt4qPEm2GSvESbjmk9fDcxyC8dD0UOY7gTKnD5qdrXPGRUSnrop3FrToo2pSlQVNSlKURKUpREpSlESlKURKUpREpSlESlTvwS4UaK1Vw2k6q1RcbnD9XluNOOMvJS2hCQjBIKFHOVVsvxS8Cvvyun9IH9zU2HDqiZu1G24UOSvhidsuNiqx0qznxS8Cvvyun9IH9zT4peBX35XT+kD+5rr/EVnwHwP4XP+TpviUP8HOGd54jX0RoiVx7YwoeuTSnIQPop+ks9h26mrCal1DZ9HWAaF4fpTHYZBRLnNnKio8lBKvnLPzl/iFfDVOrLLYtONaM4fpREtTbex6Y3lJdz1Sgnnz+cs8z06VorkKYzBbmuQZTUNatjb6mFJaUcdAojBPuBrV4LgbYQJZxmdB19vFZ3FMVdMSyLRdcABO3Ax5VIOhNYW960uaM1s03OsEpHgocfBV4APRKu+zPMKHNBwR7tUlabv8AFk3CLKtEph+2+F6624napjxVJS1uB+kVpA+sVwd0/fWm7g4uyz/CtrymJzgYUpEdxJwpK1AEAjvzrQVEcFVHsPIIPXn9eapYTPTv2mgrR+O3CO4cPbj6/BLk7Tclf3NK5KLRPMNuEcs46KHJQ6YOQItq2XD7WsJq3OaU1W2i4adkoLX2xPierg9iOpb746pPMVi3eE3AhTq1J1fckJKiQlMnISPIZZzj66wNdgNRDKWxtuOQK2VHjEUkd5DYqsNKs58UvAr78rp/SB/c0+KXgV9+V0/pA/uahfxFZ8B8D+FK/k6b4lWOlWJ4kcHuHtq4V3bV+mLtdZ6om1LS1vpLZV4qEKBHhpPIKqu1QpoHwu2XixUuGZszdpuiUpSuS6pSlKItz+Kfin+DTWf6Ck/uU+Kfin+DTWf6Ck/uV6y0oi8mvin4p/g01n+gpP7lPin4p/g01n+gpP7lestKIqNcLrDfNOejdqG36hstxs8wvuOCPOirYc2EtYVtWAcHB5+6tEq2vpMf6NXv/d6P+YKqUSACScAcya+jejPsh7/ILCY97T1xQkAEkgAdSa2S1aSuEiwXDUMpp1uDbH225kdCSJIBSFqJSoYbHh5KVr5KVhKQSay+kNHXCRAfuNtcQrVNudYmMWp1CVExyErbeKCD4qHCpIyMJbSFKWQCK3O86ilXS9vW7Q4en3mXHbceuhkoeZiNFwOerObkkLDDgUWnle2nICcjrPqK121sxWy1J3afQjQ+C401E0N25vkF00t6R4fXq3uRbizMDUgtXF1UYF6TAlNlyNKj7s4W0CAooCcqAGPPX4uvJ0mw6csMa1yLszbFMi4p2qV6+iM+tyMkEZ8NICzuwkE9CSK3fTPDGw25Qk3tZvlwUStZeJDIUTkkJ6q591H8VbzGSiK0GorbcZsDAQygISPxDFU0lbA06F54nLj895tpbK2gVi2OU6WYOAz4fj78VFD2seIkmS/dUaNfj3OTHZjvzY0d1BW01I8dI2nPPBLZJydp7YFYnUurPX4kRvUumbzCci3KTK8KO+piNIZkyA8806FJypWNyAoEZBGelThuVnO4/lotaloKHD4iD1Ssbkn8R5VxZXxtIPZDLgSOX2XsxSkZyfQKKHbhpzVV7vtzuFyjX22worjlmtYgCI4wHFfwYSlSFLQy2gfIUfaVlIPPOA1Nwyu1vhQH4bTr1xmvJaNoSgqdbcWhTvhNqzl3wkJw4SE7VeeakfU/DvS18BWIgtkwnKZEMBPteakfJP4sH31o9s+yHCu+Tnr/AGUXmDdkhlc9hwBbyN25bO9YUEpd5BxJG4j5KuVT6ap2h/53Zj3TbPu0HEneVHmia4/9zcj7w3efLgoyWlSFqQtCkLSSlSVJIKSORBB5g+6vypZ1lpdjVFvRqK0XR6+Xu4OuuLUxb3vFur4KQtMdvACIzKcJLpHNWQTkgVFL7TrD7jD7TjLzSihxtxJSpCgcEEHmCD2NXVNUtnbcZEaj/d3WRuFT1NK6B3EHQqQJNrud69GC8WyzW6Zcp78lQZjRGFOuuEPtE7UJBJwATyHQGq7/ABT8U/waaz/QUn9yrteiv/Edt/26T/w1YuvnGO+2v7z9ytxg/sw63BeTXxT8U/waaz/QUn9ynxT8U/waaz/QUn9yvWWlU6tV5NfFPxT/AAaaz/QUn9ynxT8U/wAGms/0FJ/cr1lpREpSlESlK1XW2q49nivttSGm3G0Fb77igER09yT5+7/pXuON0jtlq8SSNjbtOUe+kspKtN30JIVtt6ArBzj7YOv5RVTmHXGH232lBLjSwtBKQoBQORyPI8x0PKt44o8QZOqJK4FvcdatCV7lFWQ5LVn5a/8AV8k/jPPpolfTsGon0tNsSan8L59ilU2on2mblIcnUl54grtOnbdbYVullosSnYzDaGg0kk70EJ8RlGCre2FFCuQAAOKmvh5pCHBYY0/Zgllke3IkLA3uq7rV5q8k9h7gTWh8C7Em36ZcvbqPuq5qw2SOaWEnAA/9ygT+IVMdgnWl61Gwz2fVS8veiYk9HPmqP0SOmen1ZqgxaoDSYYRZrT9d5523K4oIi+0kpzPVuV13xHtTCH9KzYwhSnMFmYfaDx+avJ5g9tvTqK1a4wpNvmLiTG/DdR+RQ+kD3FbI8C6sab1Sdrw/8FP658sk9Qff9R54Nc223JTydLajSUy0gmDNHMnl5nqMD9WDz51SMeWZ67z+R5jcrR7A/LTcPwfI71qFcm0LccQ00hTjiztQhIyVHyFZabp2dGvbFpDjDr0hJU0oK2gpHUkHmMfjzWVUwjSvhx46RPv8wEMkI9lpOcZA/wA574Ars6ZuWzmSuDYXXO1kAuTLECyW4WidERcrrPUCY6DyQfmgq+bjmcj3msDrXS7USOq33FtqdbpqNq0L7nuD3BHZQ/rrNgKsDnhNf946nm9T8oMZ/t/zyFJr8GywZMK4Zu13loxJWpeQ2Oyd3UAdcD6+XKuLHva4Oab3+vMcANy7vY1zbOFrfTkeJP0VYNTRJWgBfdOLadmWi/xkCLLS8WnkBpZUlO4dQFKIWjkFDB5VpN1uE663B24XOW7LmPbfFfdOVrwkJBJ7nAAz7qsRxFsCdRaPlwgkKlsJMmIruHEjJH/yGR+Sq2g5APnW8wqdtRGXkevv56Z/Ow8Fk8QY6Mht/V3KynotEIsNsWshKfX5IyTgZIAH6yBVjKoXw61vO0lO2kLk2t5WZEYHmk/yjeeivd0I5Hzq3nD3W0G826Mr1xEhh9P3PKB5K/1VeSh0OeY7+ZyfpDh0rJjNqCtHgldG6MRb1vFKUrMLQpSlKIlKV8pjS34rrLb62FrSQHEdU+8UCFarrzV8WzQ5CG5TTHgoKpMlZ9hhP9qvd/bVQ+JuvJWq5SokUusWdte5Daj7chX8o5/Ynt9dSvx10PqC4QEMRJDqnIii76kD9rmD6aT3WOwP6jVdCClRSpJSpJIUFDBBHUEdjW/9HqGnbH2oN3fbrrNYrGqydz9giwX5X4oEjCflHkPrr9rk2oIdQs9ErST+I1qVnhqrU2uI3AtUKA0NqI0ZtoD6kjP6812CARg8xX6pQVhY6KAUPqIzX5Xzskk3K2IFhYLY7DMZuzDenbwC42vlEkZ9tpWOScnqPL8hrNTZKrZDY07IKLhOXyiOrO0JBPsqWeqSD0xzOOXOtLtcR2fco8NglLjqxhQBOwDmVcvL9lbfMZFo9ZtToZmpuBTvmSeZbzyHjHy+h058uXWoMzWh4Hzt59aqdC5xYT8r+X73L5qYEJ92yzUJmXWYtCmZ6ndpJ+apR6tlODhI+V26mu9ElLgzHrQ8pD95dGGpqgMOZB27j8wgfM74yOtdJ1IhLf088piUiQ4gOXF4bihR6B0/ynL2OY7dO4oXuc0whTLrZfyu5KGShR54Ue7/AEwc+XliuRG0M+uf6/S6g7Jy65d/P9rrXIo0o0piO6qVeZaSt2Y4n5CSew8yf2nsK1QklRUpRUpRypSjkk9yTWY1hbpFuvJS/IekpeSFoed5qVjltJ6ZH9RFYapsIGztXuTvUKYna2bWA3Lk2rY4lWM4INVf1jBTbdW3eAkYQxMcSke7dkfqNWfqt3E5xLvEO/KQcj1xQz9QA/srRYCT2rxy81S4qB2YPNa5WzcPtZT9I3EraCpFveUDKibsbv8AXR9FY8+/Q1rNCQBknAFaSWJkrSx4uCqWOR0bg5uqvBw31zAvFsjLTMTIiPDDEg8ik90LHYjuD0+rnUgVVPgHozUMUrnPOPsevoHhW7pkdnnPokDp3wefYVaCzRHYNtZjPSFPrQMFR/qHuFfMMWpYaectidcL6BhlRLNEO0Fl3KUpVUrNKUpRF0rzbI11hmPJT70LHykHzFVw42cKnpcp24W5lDd4A3FI5Nz0j+pz39+h7GrOV1LtbotzhqjSkbknmlQ6pPmKsMPxCSjkDmFQa2hZVMIIzXnY4hbbi2nULbcQopWhYwpKh1BHY1wUNySD3GKsB6Q2gYkeNNvm5LNxhtpcccQPZltZCRuHZYz192DnkagCvplDWsrIhIxYGrpXUsmw5WY0BdE3nRdqn7tzngBl73ON+yR+oH8dbFAiSZ8tESG0XXlduyR5k9hUFcENUN2q7OWGe6G4dxWCytRwlp/oM+QUOX1gVZHTVzfRCesDRZiPyllLcpfs7M/KB7lXXb9furIYpA6llcAMjmO79LRUEjZ2Ak/7+12EH7GKNi0991XZ/wBmVMA5N+YB7Afq95rIWx+PAcRpiEn7JS3iozZC/aQjPyt2easDlj6gTXVXFdt7p01ptKly3EgzZyurYPYkfJ5c8e/lzOa6FwuEWzRF2exOblnlLmj5Sz3Sk/29vr51TbPaZDO/Vzy4BWu12eZyt1Yc+JWWlNt255GlWrhHEOXkqcdwp1od0HsSr5qjzHPrgV9p78KyMt6enR1fYmS2Utywc7Seu7zVnnu/H2NaBtGCMcj1z3rNWO8NMxlWq7NmTa3ex5qYP0k98e7t28q6OpyBe9+Pfx71zZUAm1rcO7h3LJuFVsAsWoiZdqe5xJoOSjyIPu/V7xWDvtpk2iQEPEOx182ZCR7Die3Psfd+Ss8hv7FpRabooTtPzCPVpWf4En5Ptdv8kdxX1uMlzS9qfshebm+KCYpWAS0k/KC09MDqnsfdivxjy13q53+vPkeIX69gc31sreI5cxwK0mRJZhRnp0lQSxGbU84T0CUjJ/qqqs6U5OnSJzv8JJdW8r61En+2pf46amRFt6dKw3MyJAS5OIPNtrqls+9RwSPIDzqGq22CUxjjMrve07v2srikwc8RjchIAyamzgxwskvTI11vMPxJqsORITg9lgdnXR59wk9O/PArr+j5oeJd1MX57ZIlqkLaiNOD7WwUcy4fpK8vLHnVrLFaI1oi+EzlbiubrqvlLP7PdVdjuN9leCLXeVYYRhPa2lk0XDT9mj2iMUoPiPr5uvHqo/srJ0pWFc4uNytg1oaLBKUpXlekpSlESlKURQp6TH+jV7/3ej/mCqlVbX0mP9Gr3/u9H/MFVKr6N6M+yHv8gsJj3tKkCzaGsc7h99lVX5T95mzWYUKNGiOutpeWhTngeyPbdKUjdj2WwoEkmtr0ZreTbJnwS16lUC4xglDUt5QKVpx7IcUMggjG10EpUO/eoy0Zqq46XnrkwytxC2nW9geLamlLSElxpY/g3OQG4DmAUnIJqTo8bROrtPyYgntrgW5hiQH/AFX1eZCyomQt9wjYPGdWG0oRuabQkK9kJOetbG4Eie7mk5HeN2X4Ou7PX1Suje0GKzXDUceuO5S9Hv8AcI1metadhQ+OTw+Xg9TkfKyO9YgAAAAYAqH7RG4g6XbhK036xeLNNiCdGiymhuQypwNp3JJ9halEbQhR3AgjyrLscWo8Z0xdRaZuVslJO1aU9iOvsrCVVTHC3gkw2cOWvzGqmmsBA7S479PFSTStGTxY0WUbi/chyzj1P/8AVdKRxesrjoj2ezXS5SVHahsAI3Hy2jco/iFeBh9UfcP2+6GpiHvKXrXfZUKzP2luO0+h5R2eIncEA/KG3vz5/lqMuIPEGNYlqttqULnf3SG0pT9sSwo8k7vpL6AIHuz5VrTl14gayeiQUrZ03AuKHVMIaz48lDaSpYQkfbXD7KgAAkKUNuc13Idi0roAXkzJrc6621UJbjbzXgS0oUsFb8FSvZURubcSeakqaUhWUqzUiCgigfeT1nH3RnvtmdNf9X4+eSVvq5NG8+OQWtSuHl4m2l+eZ7czUTUpf2YiqkoUqGTzHikZCeQUtTiiEJwEfL5VH4IPMHIrZ9Zaoau7slm3WuBbmX5Tr8qRFaU05cVKPy3ElStiTjd4KTsCiTzODWsVp6USht5fDh1u5a5qhqzCX2j8ePW9WV9Ff+I7b/t0n/hqxdV09Ff+I7b/ALdJ/wCGrF185x321/efuVtsH9mHW4JSlKp1apSlKIlK6ViukC+WOBe7W/6xAuEZuVFd2KT4jTiQpCsKAIykg4IB867tESlKURQ16RUSVPs92hQY7kmS9AQlppsZUs+IDgD6garL8B9Zfexc/wA1/jV7blYrXcZPrEyMXHdoTnxFDkPqNdX4J2H+ZH86v9taPDse/wCFD2bW3671Q12DGql2yVRz4D6y+9i5/mv8a+sXSGuoj4fiWC8x3glSQ40koVhQwoZB6EEgjuKu98E7D/Mj+dX+2nwTsP8AMj+dX+2p59LHHIsHXzUMejljcO68FTpvXep7Pcotv1VBXNEC6C7ORJI8Jx2QloIY3kcvDQQhYSABy/Jm4ev9M3TSVu0/qRV0cRGUwue9I3SHJu1Tj73hjOG3FvlCAs/+Uog4xUrcZuGEW7QxuPhrbyIc7blTJ/k3MdUH/EeVVcvlquFkuj1sukcsSmjzT1Ch2Uk90nsatqF9JiLA5o2XDPLL5jx6yUCqNVQu2XZt5qWGb9wrfubkyTHiNtzrgJicQylULdC2raUkJILXjBXJJO0qSoZwTXwj6/09brbp2bGlrbuUeN6lMjW+2hLbcdTIS6ClzH2wuIQcocwRvOUlWKiGvtBiSp81mDBjuSJT6whppsZUo/579qnHDIres4kczyI4KIMSlJs1ovyUgXXiCufITa9MafU0lu5CXZit5xb0d47SVBsKKVKLoW4kKKgguLGCDWDuOldfXB5Lk6w3h9SMhsLRlLQKiopQM4QnJPspwBnkKnHgnwsFs+6Hih24rTiVMAyhhJ6tNeZ81d/q6zQnSVhCQDDUcDqXVc/11QVGOwUcmxA2/M3J+/8Auqt4cKnq2bUrrctAqO/AfWX3sXP81/jT4D6y+9i5/mv8avH8E7D/ADI/nV/tp8E7D/Mj+dX+2uX9sd8HXivf9bHxdeChr0a7dcLVb7dCucN6HJEyQstOpwraU8jjyNWBrFQdO2iFKRKjRSh1vO1XiKOOWO5rK1mq+qFVMZbWur+ipjTxbBSlKVCUtKUqs3/bV4Wf+gaz/ocb/wCxRFCfox+k85wz06zo3VNmeumnmHVriPwihMmIF71qRsVhLqVOKBGVJKdy+ahtSLpaJ4q8ONaeqI0zrSyz5Mzf6vD9ZDctezdu+514dGAlR5pHsjd0515NUoi9mKV5T6N41cVtIeGmxa7vTTLMYRWY0l71qO00Nu1KGngtCMBIAKUggZAwCRU86K9Ny/tTijWmjbZLiOOtgO2hxcdxhGT4itjqnA6rBBSnc2MggnnkEV36VDOifSd4Nao9UZ+FH2Emyd/3Nd2FR/C27j7b3NhOQnI+2c8gfKO2pggS4s+DHnQZLMqJJaS8w+y4FtuoUMpWlQ5KSQQQRyINEX2pSlEXB9pt9lbLyErbWMKSoZBFQ1xj4Zw7vb9rgUlCMmJMSnK4qj81X0kHuP6j1miuLqEOtqbcQlaFDCkqGQRUmlqpKaQPYVHqaZlQzZcF59TtL36HqZOnHLe45clqw0hvml1PZaVdNnfPbvirFcFeFrVraLqlJdmLG2ZOA5JHdprPbzPfqeWBUkydDtLvaHmnEph7TkkZcQCeaEnyP/XPfcIsdmLHRHjtpbaQMJSnoKvsS9IX1EQYzLj15KlocEbDIXP+S4wYseFFRGjNhtpAwAP89a+1KVmSb5laEAAWCUpWM1JqGwaagonajvlss0Rx0Mofny0R21LIJCApZAKsJUcdcA+Vfi/Vk6VA2tfSz4P6bnCHFn3PUTqXXGnlWiIFttFBAzvdU2laVc9qmysEJJzgjMGa19NjV1xgiPpPSVssLq2nEOyJUhU1xJUAELaG1tKVJ5n20rBOMjAIJFeytM1txV4caL9bRqbWllgSYez1iH6yHJaN+3b9zoy6chSTySfZO7pzrzU1/wAXuJevGVx9U6yuc2I40lpyG2sR4zgSvekrZaCW1KCsHcUk8k8/ZGNFoitN6U3pQ/DS1vaM4dqmwrG9vbuVxdT4Ts5G4p8NsZyhlSQCSrC1hW0pSAoLqzSlESlKURKUpRErJ6b1Df8ATU5c7Tl8udmluNFlb8CWuO4pBIJQVIIJTlKTjpkDyrGUoisZo30xeK1n8Nq+t2XUrPrIceckxfAkFr2dzSFMlKE8gcKU2ogqOdwAFTnon0zeHF29Uj6mtV603Jd3+sO+GJcRjG4p9tGHVbgEjk1yUrHQbqoBSiL1y0bxB0PrLw06W1bZbu85GEr1aNMQqQho7faW1nejBUkEKSCCQDg8q2avGetg03rfWmmoK4OnNX6gs0Rx0vLYgXJ6O2pZABWUoUAVYSkZ64A8qIvXileTXxscU/wl6z/Tsn9+tZvd2ut8uj10vdzm3Oe/t8WVMfU865tSEjctRJOEgAZPQAURen+p+P3BrTvq/wBkOIVle9Y3bPsctU/G3Gd3q4Xs+UMbsZ54zg4gzWXpvWpvxGdHaHmyt0Y+HJu0pLHhPncBllvfvQPZP8IgnJHs4CjSalEUza29J3jLqj1tn4UfYSFJ2fc1oYTH8LbtPsPc305Kcn7ZzyR8k7aia93a63y6PXS93Obc57+3xZUx9Tzrm1ISNy1Ek4SABk9ABXSpREpSlESlKURKUpRF/9k=" alt="">
+          <div class="nm">Кедентранссервис</div>
+        </div>
+        <p>Цифровая логистика на стыке Китая и Европы. С 1997 года. Часть группы АО «НК «Қазақстан темір жолы».</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="Email для рассылки">
+          <button>Подписаться</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Разделы</h4>
+        <ul>
+          <li><a onclick="goPage('about')">О компании</a></li>
+          <li><a onclick="goPage('clients')">Клиентам</a></li>
+          <li><a>Акционерам</a></li>
+          <li><a>Закупки</a></li>
+          <li><a>Устойчивое развитие</a></li>
+          <li><a onclick="goPage('contacts')">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Услуги</h4>
+        <ul>
+          <li><a onclick="goPage('service')">Перегруз Достык/Алтынколь</a></li>
+          <li><a>Грузовые терминалы</a></li>
+          <li><a>Контейнерные перевозки</a></li>
+          <li><a onclick="goPage('clients')">Тарифы</a></li>
+          <li><a onclick="goPage('clients')">Маршруты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a>+7 (7172) 648 888</a></li>
+          <li><a>+7 778 097 97 97</a></li>
+          <li><a>kense@kdts.kz</a></li>
+          <li style="margin-top:8px; opacity:0.7;">Астана, ул. Достык, 18<br>БЦ «Москва»</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>1997–2026, АО «Кедентранссервис». Все права защищены.</div>
+      <div class="footer-socials">
+        <a title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg></a>
+        <a title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v8h3v-8h3l1-3h-4V9z"/></svg></a>
+        <a title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="float-actions">
+  <a class="float-btn tg" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg></a>
+  <a class="float-btn wa" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3 0 1.4 1 2.7 1.2 2.9.1.2 2 3 4.7 4.2 1.7.7 2.3.8 3.2.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 22a10 10 0 01-5-1l-5 2 1-5a10 10 0 1118 4 10 10 0 01-9 0z"/></svg></a>
+</div>
+
+<script>
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const link = document.querySelector('.nav-link[data-page="' + id + '"]');
+  if (link) link.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  document.getElementById('nav').classList.remove('open');
+  document.getElementById('burger').classList.remove('active');
+}
+
+function toggleNav() {
+  document.getElementById('nav').classList.toggle('open');
+  document.getElementById('burger').classList.toggle('active');
+}
+
+function switchCalcTab(btn, key) {
+  btn.parentElement.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function showCalcResult() {
+  document.getElementById('calcResult').classList.add('show');
+}
+
+function switchRouteTab(btn, key) {
+  btn.parentElement.querySelectorAll('.route-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function switchClientTab(btn, key) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + key).classList.add('active');
+}
+
+window.addEventListener('scroll', () => {
+  const h = document.getElementById('header');
+  if (window.scrollY > 10) h.classList.add('scrolled'); else h.classList.remove('scrolled');
+});
+
+// Animate numbers
+const animNum = (el) => {
+  const text = el.textContent;
+  const match = text.match(/([\d\s]+)/);
+  if (!match) return;
+  const target = parseInt(match[1].replace(/\s/g, ''));
+  if (isNaN(target) || target === 0) return;
+  const suffix = text.substring(match.index + match[1].length);
+  const prefix = text.substring(0, match.index);
+  let cur = 0;
+  const step = Math.max(1, Math.ceil(target / 40));
+  const fmt = (n) => n.toLocaleString('ru-RU').replace(/,/g, ' ');
+  const t = setInterval(() => {
+    cur += step;
+    if (cur >= target) { cur = target; clearInterval(t); }
+    el.textContent = prefix + fmt(cur) + suffix;
+  }, 25);
+};
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.a) {
+      e.target.dataset.a = '1';
+      animNum(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.stat-strip-item .num, .fact-card .num, .park-d-card .qty, .trust-num').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
