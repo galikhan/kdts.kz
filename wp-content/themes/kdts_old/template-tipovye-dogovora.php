@@ -1,0 +1,127 @@
+<?php
+ /*
+ * Template name: tipovye-dogovora
+ */
+?>
+<?php get_header(); ?>
+    <div class="pagination-block">
+  		<div class="sdfsdfjsdf">
+      		<div class="header-logo1"></div>
+            <?php get_template_part('breadcrumbs') ?>
+        </div>
+		<div class="yazyk">
+			<ul>
+                <li class="yazyk-active"><a href="<? echo home_url('/klientterge/ulgilik-sharttar/', 'https') ?>">Қаз</a></li>
+                <li><a href="<? echo home_url('/ru/klientam/tipovye-dogovora/', 'https') ?>">Рус</a></li>
+                <li><a href="<? echo home_url('/en/klientam/tipovye-dogovora/', 'https') ?>">Eng</a></li>
+            </ul>
+		</div>
+    </div>
+	<main>
+        <div class="container-rukovodstvo">
+            <section class="rukovodstvo-navbar">
+                <a href="<? echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
+         			Клиенттерге
+             	</a>
+			   <div class="rukovodstvo-navbar__block">
+					<?php wp_nav_menu ( array (
+						'theme_location' => 'klientam-menu',
+						'container' => false,
+						'menu_class'      => '', 
+					)) ?>
+				</div> 
+            </section> <!-- rukovodstvo-navbar / -->
+            <section class="rukovodstvo-content">
+                <h1 class="partnery-title">
+                    <?php the_title(); ?>
+                </h1>
+                <article class="tipovye-dogovora__head">
+                    <p class="tipovye-dogovora__head-bold"> 
+                        <? echo CFS()->get('tekst4'); ?> 
+                    </p>
+                    <p class="tipovye-dogovora__head-text">
+                        <? echo CFS()->get('tekst5'); ?>
+                    </p>
+                    <p class="tipovye-dogovora__head-color">
+                       <a href="<? echo CFS()->get('dokument1'); ?>" download > Өтініш хат </a>
+                    </p>
+                    <p class="tipovye-dogovora__head-italic">
+                        <? echo CFS()->get('tekst6'); ?>
+                    </p>
+                </article>
+            </section> <!-- rukovodstvo-content / -->  
+        </div>
+         
+        <section class="rezidentov">
+            <h1 class="rezidentov-title">
+               <? echo CFS()->get('zagolovka1'); ?>
+            </h1>
+           
+            <div class="rezidentov-items">
+                <div class="rezidentov-item">
+                    <div class="rezidentov-item__head">
+                        <? echo CFS()->get('zagolovka2'); ?>
+                    </div>
+                    <div class="rezidentov-item__body">
+                        
+						<? $teksty = CFS()->get('teksty1');
+							foreach ($teksty as $tekst) {
+								echo '<p> '.$tekst["text1"].' </p>';
+							}
+						?>
+						
+                    </div>
+                </div>
+                <div class="rezidentov-item">
+                    <div class="rezidentov-item__head">
+                        <? echo CFS()->get('zagolovka3'); ?>
+                    </div>
+                    <div class="rezidentov-item__body">
+                        <? $teksty = CFS()->get('teksty2');
+							foreach ($teksty as $tekst) {
+								echo '<p> '.$tekst["text2"].' </p>';
+							}
+						?>
+                    </div>
+                </div>
+            </div>
+        </section>  
+		
+		
+        <section class="tipovye-dogovora__zayavki">
+            <div class="tipovye-dogovora__wrapper">
+                <p class="tipovye-dogovora__zayavki-color">
+                    <? echo CFS()->get('tekst7'); ?>
+                </p>
+                <p class="tipovye-dogovora__zayavki-text">
+                    <? echo CFS()->get('tekst8'); ?>
+                </p>
+                <p class="tipovye-dogovora__zayavki-text">
+                    <? echo CFS()->get('tekst9'); ?>
+                </p>
+              
+            </div>
+        </section>
+        <section>
+            <div class="tipovye-dogovora__items">
+				
+				<? $dogovory = CFS()->get('dogovor-loop');
+					foreach ($dogovory as $dogovor) {
+						echo '<div class="tipovye-dogovora__item">
+							<a href="'.$dogovor["dokument"].'" download>
+								<div class="tipovye-dogovora__photo">
+									<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tipovye-dogovora__icon.png" alt="#"/>
+								</div>
+								<div class="tipovye-dogovora__text">
+									'.$dogovor["tekst3"].'
+								</div>
+							</a>
+						</div>';
+					}
+				?>
+           
+            </div>
+        </section>
+    </main>
+ 	
+<?php get_footer(); ?>
