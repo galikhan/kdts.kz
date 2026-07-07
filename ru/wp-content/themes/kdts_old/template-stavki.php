@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientam/stavki-i-tarify/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientam/stavki-i-tarify/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://kdts.kz/klientterge/molsherlemeler-zhane-tarifter/">Қаз</a></li>
                 <li><a href="https://kdts.kz/en/klientam/stavki-i-tarify/">Eng</a></li>
             </ul>
@@ -21,7 +21,7 @@
             <img src="<?php echo get_template_directory_uri(); ?>/img/tarifyBg.png" class="tarify-bg" />
             <div class="container-rukovodstvo">
                 <section class="rukovodstvo-navbar">
-                     <a href="<? echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
+                     <a href="<?php echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
          				КЛИЕНТАМ
              		</a>
 			   		<div class="rukovodstvo-navbar__block">
@@ -41,7 +41,7 @@
 						<?php the_content() ?>  
                     </div>
                     <div class="stavki-title">
-                        <? echo CFS()->get('tekst1'); ?>
+                        <?php echo CFS()->get('tekst1'); ?>
                     </div>
                 </section> <!-- rukovodstvo-content / -->
             </div>
@@ -49,26 +49,26 @@
                 <div class="tarify-content">
                     <div class="tarify-text"> 
                         <span class="tarify-number"> 1. </span> 
-                        	<? echo CFS()->get('tekst2'); ?>
+                        	<?php echo CFS()->get('tekst2'); ?>
 						   <p class="tarify-prilozhenie"> 
-								<a href="<? echo CFS()->get('dokumenеt1'); ?>" download > Приложение 1>>> </a>
+								<a href="<?php echo CFS()->get('dokumenеt1'); ?>" download > Приложение 1>>> </a>
 							</p>
 
                     </div>
                     <div class="tarify-text">
                         <span class="tarify-number"> 2. </span> 
-							 <? echo CFS()->get('tekst3'); ?>
+							 <?php echo CFS()->get('tekst3'); ?>
 							<p class="tarify-prilozhenie"> 
-								<a href="<? echo CFS()->get('dokumenеt2'); ?>" download > Приложение 2>>> </a>
+								<a href="<?php echo CFS()->get('dokumenеt2'); ?>" download > Приложение 2>>> </a>
 							</p>                    
 					</div>  
                     <div class="tarify-text">
                         <span class="tarify-number"> 3. </span> 
-                        <? echo CFS()->get('tekst4'); ?>
+                        <?php echo CFS()->get('tekst4'); ?>
                     </div>  
                     <div class="tarify-items">
 						
-						<? $bloki = CFS()->get('blok1-loop');
+						<?php $bloki = CFS()->get('blok1-loop');
 							foreach ($bloki as $blok) {
 								echo '<div class="tarify-item">
 										<a href="'.$blok["dokumenеt3"].'" download>
@@ -88,22 +88,22 @@
 
                     <div class="tarify-text"> 
                         <span class="tarify-number"> 4. </span> 
-                        	<? echo CFS()->get('tekst7'); ?>
+                        	<?php echo CFS()->get('tekst7'); ?>
                      	<!--   <p class="tarify-prilozhenie"> 
-							<a href="<? echo CFS()->get('dokumenеt4'); ?>" download > Приложение 2>>> </a>
+							<a href="<?php echo CFS()->get('dokumenеt4'); ?>" download > Приложение 2>>> </a>
 						</p> -->
                     </div>
                     <div class="tarify-text"> 
                         <span class="tarify-number"> 5. </span> 
-                           <? echo CFS()->get('tekst8'); ?>
+                           <?php echo CFS()->get('tekst8'); ?>
 						<p class="tarify-prilozhenie"> 
-							<a href="<? echo CFS()->get('dokumenеt5'); ?>" download > форма заявки>>> </a>
+							<a href="<?php echo CFS()->get('dokumenеt5'); ?>" download > форма заявки>>> </a>
 						</p> 
                         <div>
                             <table class="tarify-tabel">
                                 <tbody>
 									
-									<? $tablitsy = CFS()->get('Tablitsy');
+									<?php $tablitsy = CFS()->get('Tablitsy');
 										foreach ($tablitsy as $tablit) {
 											echo '<tr>
 													<td class="tarify-tabel__left"> '.$tablit["tekst9"].' </td>
@@ -118,12 +118,12 @@
                     </div>
                     <div class="tarify-text"> 
                         <span class="tarify-number"> 6. </span> 
-                         <? echo CFS()->get('tekst11'); ?>
+                         <?php echo CFS()->get('tekst11'); ?>
                     </div>
             </div> <!-- tarify-content / -->
             <div class="tarifnye-usloviya">
 				
-					<? $bloki = CFS()->get('blok2-loop');
+					<?php $bloki = CFS()->get('blok2-loop');
 							foreach ($bloki as $blok) {
 								echo '<div class="tarifnye-usloviya__item">
 										<a href="'.$blok["dokumenеt6"].'" download>

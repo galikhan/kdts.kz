@@ -50,7 +50,7 @@
                         </div> <!-- novosti-block / -->
                     </div> <!-- novosti-left / -->
                     <div class="novosti-right">
-					<? $post_id = get_the_ID();
+					<?php $post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 4,
 							'category'    => -$post_id,
@@ -63,7 +63,7 @@
 							'post_type'   => 'novosti',
 							'suppress_filters' => true, 
 							)); ?>
-				<? foreach( $posts as $post ){
+				<?php foreach( $posts as $post ){
 						setup_postdata($post); ?>
 							<div class="novosti-right__item">
 								<a href="<?php the_permalink(); ?>">
@@ -81,7 +81,7 @@
 									</p>
 								</a>
 							</div> <!-- novosti-item / --> 	
-       				<? } ?>
+       				<?php } ?>
 			
             
                     </div> <!-- novosti-right / -->

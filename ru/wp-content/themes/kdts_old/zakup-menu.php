@@ -1,6 +1,6 @@
  		<div class="navBar-zakupki">
     			<div class="godovoy-plan__nav">
-					<a href="<? echo home_url('/zakupki/godovoy-plan-zakupok', 'https') ?>" class="godovoy-plan__nav-text"> Годовой план закупок </a>
+					<a href="<?php echo home_url('/zakupki/godovoy-plan-zakupok', 'https') ?>" class="godovoy-plan__nav-text"> Годовой план закупок </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'plan-menu',
 						'container' => false,
@@ -9,7 +9,7 @@
 				</div>
     
 				<div class="godovoy-plan__nav">
-					<a href="<? echo home_url('/zakupki/tenders', 'https') ?>" class="godovoy-plan__nav-text"> Закупки </a>
+					<a href="<?php echo home_url('/zakupki/tenders', 'https') ?>" class="godovoy-plan__nav-text"> Закупки </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'zakupki-menu',
 						'container' => false,
@@ -18,7 +18,7 @@
 				</div>
     
 				<div class="godovoy-plan__nav">
-					<a href="<? echo home_url('/zakupki/arkhivy', 'https') ?>" class="godovoy-plan__nav-text"> Архивы </a>
+					<a href="<?php echo home_url('/zakupki/arkhivy', 'https') ?>" class="godovoy-plan__nav-text"> Архивы </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'arkhivy-menu',
 						'container' => false,

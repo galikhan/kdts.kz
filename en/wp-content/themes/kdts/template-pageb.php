@@ -73,7 +73,7 @@
 </style>
 <main class="container-rukovodstvo">
     <section class="rukovodstvo-navbar">
-        <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+        <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
             О КОМПАНИИ
         </a>
         <div class="rukovodstvo-navbar__block">

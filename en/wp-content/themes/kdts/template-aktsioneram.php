@@ -12,7 +12,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/aktsioneram/', 'https') ?>">Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/aktsioneram/', 'https') ?>">Eng </a></li>
                 <li><a href="https://www.kdts.kz/aktsionerlerge/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/aktsioneram/">Рус</a></li>
             </ul>
@@ -22,7 +22,7 @@
         <div class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
                 <div class="rukovodstvo-navbar__top">
-                    <a href="<? echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
+                    <a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
                         Shareholders
                     </a>
                     <div class="rukovodstvo-navbar__block">
@@ -40,7 +40,7 @@
                 </h1>
 				
                 <div class="aktsioneram-title">
-                    <? echo CFS()->get('text1'); ?>
+                    <?php echo CFS()->get('text1'); ?>
                 </div>
                 <div class="aktsioneram-text">
                     <?php the_post(); ?>
@@ -48,11 +48,11 @@
                 </div>
                 <div class="aktsioneram-svedeniya">
                     <div class="aktsioneram-svedeniya__title">
-                        <? echo CFS()->get('svedeniya'); ?>
+                        <?php echo CFS()->get('svedeniya'); ?>
                     </div>
                     <ul class="aktsioneram-svedeniya__text">
 						
-								<? $svedeniya = CFS()->get('svedeniya-danniy');
+								<?php $svedeniya = CFS()->get('svedeniya-danniy');
 									foreach ($svedeniya as $svedeni) {
 										echo '
 										<li> '.$svedeni["tekst"].' </li>

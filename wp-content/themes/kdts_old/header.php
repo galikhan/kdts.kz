@@ -28,7 +28,7 @@
 		 <div class="header-phone">
 				<div class="header-top__left">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel" alt="#" />
-					<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><? echo CFS()->get('telefon1',606); ?> </a>
+					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><?php echo CFS()->get('telefon1',606); ?> </a>
 				</div>
 				<div class="header-top__right">
 					<p> <?php echo do_shortcode( '[bvi text="Нашар көретіндерге арналған нұсқа"]' ); ?>  </p>
@@ -68,9 +68,9 @@
 			<div class="header-top__wrapper">
 				<div class="header-top__left">
 					Call center:
-					<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
+					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
 					<!--	<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel-img" alt="#" /> -->
-						<? echo CFS()->get('telefon1', 606); ?>
+						<?php echo CFS()->get('telefon1', 606); ?>
 					</a>
 				</div>
 				<div class="header-top__right">
@@ -82,7 +82,7 @@
 			<div class="header-menu__wrapper">
 				<div class="header-left">
 					<div class="header-logo">
-						<a href="<? echo home_url() ?>">
+						<a href="<?php echo home_url() ?>">
                             <img src="<?php echo get_template_directory_uri(); ?>/img/Group4444446666.png"/>
                         </a>
 					</div>

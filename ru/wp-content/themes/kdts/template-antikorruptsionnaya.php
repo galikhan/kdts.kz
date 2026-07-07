@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('', 'https') ?>"> Рус</a></li>
                 <li><a href="">Қаз</a></li>
                 <li><a href="">Eng</a></li>
             </ul>
@@ -19,7 +19,7 @@
     </div>
   	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                	О КОМПАНИИ
             </a>
           	<div class="rukovodstvo-navbar__block">
@@ -55,7 +55,7 @@
                         </table>
                         <table class="antiTabel1">
                             <tbody>
-                              <? $sotrudniki = CFS()->get('tablitsa');
+                              <?php $sotrudniki = CFS()->get('tablitsa');
 								foreach ($sotrudniki as $sotrudnik) {
 									echo '
 									 <tr>
@@ -82,7 +82,7 @@
                         <div class="anti-download__items">
                             
 							
-                        <? $dokumentyi = CFS()->get('blok');
+                        <?php $dokumentyi = CFS()->get('blok');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 									<div class="anti-download__item">

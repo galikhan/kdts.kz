@@ -11,7 +11,7 @@
 			</div>
 			<div class="yazyk">
 				<ul>
-					<li class="yazyk-active"><a href="<? echo home_url('/klientam/marshruty-perevozok/kitay-evropa/', 'https') ?>">Eng </a></li>
+					<li class="yazyk-active"><a href="<?php echo home_url('/klientam/marshruty-perevozok/kitay-evropa/', 'https') ?>">Eng </a></li>
 					<li><a href="https://kdts.kz/klientterge/tasymaldaulardy-marshruttary/kytai-europa/">Қаз</a></li>
 					<li><a href="https://kdts.kz/ru/klientam/marshruty-perevozok/kitay-evropa/">Рус</a></li>
 				</ul>
@@ -28,25 +28,25 @@
                 <div class="marshruty-head__right">
                     <div class="accordion"> <?php the_title(); ?> </div>
 					<div class="panel">
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-rigu', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-rigu', 'https') ?>"> 
                             Europe - Russia (via Riga) 
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-brest', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-brest', 'https') ?>"> 
                             Europe - Russia (via Brest)
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
                             Europe-The Center Asia (via Riga)
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha', 'https') ?>"> 
                            Suzhou (China) - Warsaw (Poland) 
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/yoensuu-finlyandiya-korla-kitay', 'https') ?>">
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/yoensuu-finlyandiya-korla-kitay', 'https') ?>">
                            Joensuu (Finland) - Korla (China)
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsh', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsh', 'https') ?>"> 
                             Suzhou (China) - Warsaw (Poland)
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/suchzhou-varshava-polsha', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-varshava-polsha', 'https') ?>"> 
                             Suzhou (China) - Warsaw (Poland)
                         </a>
                     </div>

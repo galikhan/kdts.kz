@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/partnery/"', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/partnery/"', 'https') ?>"> Рус</a></li>
                 <li><a href="https://kdts.kz/kompaniya-turaly/seriktester/">Қаз</a></li>
                 <li><a href="https://kdts.kz/en/o-kompanii/partnery/">Eng</a></li>
             </ul>
@@ -19,7 +19,7 @@
     </div>
  	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
              	О КОМПАНИИ
            	</a>
          	<div class="rukovodstvo-navbar__block">
@@ -36,7 +36,7 @@
        		</h1>
            	<div class="partnery-items">
 			
-				<? $dokumentyi = CFS()->get('partnery');
+				<?php $dokumentyi = CFS()->get('partnery');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 								<div class="partnery-item">

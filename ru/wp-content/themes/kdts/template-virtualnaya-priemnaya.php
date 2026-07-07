@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kontakty/virtualnaya-priemnaya/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kontakty/virtualnaya-priemnaya/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://www.kdts.kz/bailanystar/undeu/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/en/kontakty/virtualnaya-priemnaya/">Eng</a></li>
             </ul>

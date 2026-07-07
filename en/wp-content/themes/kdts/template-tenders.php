@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/zakupki/tenders/', 'https') ?>"> Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/tenders/', 'https') ?>"> Eng</a></li>
                 <li><a href="https://www.kdts.kz/satyp-alul/tender/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/zakupki/tenders/">Рус</a></li>
             </ul>
@@ -65,18 +65,18 @@
 								<?php the_title(); ?>
 							</div>
 							<div class="zakupki-body__nachalo">
-								<? echo CFS()->get('data-nachalo'); ?>
+								<?php echo CFS()->get('data-nachalo'); ?>
 							</div>
 							<div class="zakupki-body__okonchanie">
-								<? echo CFS()->get('data-okonchanie'); ?>
+								<?php echo CFS()->get('data-okonchanie'); ?>
 							</div>
 							 </a>		 
 						</div> <!-- zakupki-body / -->
-       <? } ?>
+       <?php } ?>
         
                     
                     <p class="vse-zakupki">
-						<a href="<? echo home_url('/zakupki/tenders/tsenovykh', 'https') ?>"> 
+						<a href="<?php echo home_url('/zakupki/tenders/tsenovykh', 'https') ?>"> 
 							Show all purchases
 						</a>
                     </p>
@@ -121,18 +121,18 @@
 								<?php the_title(); ?>
 							</div>
 							<div class="zakupki-body__nachalo">
-								<? echo CFS()->get('data-nachalo'); ?>
+								<?php echo CFS()->get('data-nachalo'); ?>
 							</div>
 							<div class="zakupki-body__okonchanie">
-								<? echo CFS()->get('data-okonchanie'); ?>
+								<?php echo CFS()->get('data-okonchanie'); ?>
 							</div>
 							 </a>		 
 						</div> <!-- zakupki-body / -->
-       <? } ?>
+       <?php } ?>
         
                     
                     <p class="vse-zakupki">
-						<a href="<? echo home_url('/zakupki/tenders/odnogo-istochnika', 'https') ?>"> 
+						<a href="<?php echo home_url('/zakupki/tenders/odnogo-istochnika', 'https') ?>"> 
 							Show all purchases
 						</a>
                     </p>
@@ -177,18 +177,18 @@
 								<?php the_title(); ?>
 							</div>
 							<div class="zakupki-body__nachalo">
-								<? echo CFS()->get('data-nachalo'); ?>
+								<?php echo CFS()->get('data-nachalo'); ?>
 							</div>
 							<div class="zakupki-body__okonchanie">
-								<? echo CFS()->get('data-okonchanie'); ?>
+								<?php echo CFS()->get('data-okonchanie'); ?>
 							</div>
 							 </a>		 
 						</div> <!-- zakupki-body / -->
-       <? } ?>
+       <?php } ?>
 					
 					
                     <p class="vse-zakupki">
-                       <a href="<? echo home_url('/zakupki/tenders/otkrytogo-tendera', 'https') ?>"> 
+                       <a href="<?php echo home_url('/zakupki/tenders/otkrytogo-tendera', 'https') ?>"> 
 							Show all purchases
 						</a>
                     </p>

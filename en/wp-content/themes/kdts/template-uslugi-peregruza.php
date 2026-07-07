@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol/"', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol/"', 'https') ?>">Eng</a></li>
                 <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/o-kompanii/uslugi/dostyk-i-altynkol/">Рус</a></li>
             </ul>
@@ -30,7 +30,7 @@
 		        
 		        <div class="peregruz-dostyk__block1">
 		            <img src="<?php echo get_template_directory_uri(); ?>/img/uslugBBlog.png" alt="#" class="peregruz-dostyk__block-img" />
-		            <h2 class="peregruz-dostyk__title"> <? echo CFS()->get('zagolovka1'); ?> </h2>
+		            <h2 class="peregruz-dostyk__title"> <?php echo CFS()->get('zagolovka1'); ?> </h2>
 		            <div class="peregruz-dostyk__items">
 		         
 		             <?php
@@ -40,17 +40,17 @@
 					?>
 						 		<div class="peregruz-dostyk__item">
 									<div class="peregruz-dostyk__item-photo">
-										<img src="<? echo $blokLoop["foto1"] ?>" alt="#" class="peregruz-dostyk__item-icon" />
+										<img src="<?php echo $blokLoop["foto1"] ?>" alt="#" class="peregruz-dostyk__item-icon" />
 									</div>     
 									<div class="peregruz-dostyk__item-number">
 										<span>
-											<? echo $blokLoop["tsifr"] ?>
+											<?php echo $blokLoop["tsifr"] ?>
 										</span>
 										wagons /<br/>
 										day
 									</div>
 									<p class="peregruz-dostyk__item-title">
-										<? echo $blokLoop["zagolovka2"] ?>
+										<?php echo $blokLoop["zagolovka2"] ?>
 									</p>
 										
 									<ul class="peregruz-dostyk__item-text">
@@ -58,7 +58,7 @@
 											$teksty = $blokLoop['teksty'];
 											foreach ($teksty as $tekst) {
 										?>
-											<li> <? echo $tekst["text1"] ?> </li> 
+											<li> <?php echo $tekst["text1"] ?> </li> 
 									  	<?php }; ?>
 									</ul>
 								</div> <!-- peregruz-dostyk__item / -->
@@ -80,11 +80,11 @@
 		    <div class="dell-container">
 		        <div class="uslugi-vklyuchayut__block">
 		            <h3 class="uslugi-vklyuchayut__title">
-						<? echo CFS()->get('zagolovka3'); ?>
+						<?php echo CFS()->get('zagolovka3'); ?>
 					</h3>
 		            <div class="uslugi-vklyuchayut__items">
 		            	
-		                 <? $blokloopi = CFS()->get('blok1-loop');
+		                 <?php $blokloopi = CFS()->get('blok1-loop');
 							foreach ($blokloopi as $blokloop) {
 								echo '<div class="uslugi-vklyuchayut__item">
 										<div class="uslugi-vklyuchayut__item-line">

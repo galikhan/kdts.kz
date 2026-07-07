@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/istoriya-kompanii/', 'https') ?>">Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/istoriya-kompanii/', 'https') ?>">Eng </a></li>
                 <li><a href="https://kdts.kz/kompaniya-turaly/kompaniyanyn-tarihy/">Қаз</a></li>
                 <li><a href="https://kdts.kz/ru/o-kompanii/istoriya-kompanii/">Рус</a></li>
             </ul>
@@ -20,7 +20,7 @@
  <main>
        <div class="container-rukovodstvo">
        		<section class="rukovodstvo-navbar">
-            	<a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+            	<a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                		About company
                	</a>
                     <div class="rukovodstvo-navbar__block">
@@ -54,11 +54,11 @@
 										foreach ($fields as $field) {
 							?>
 								<div class="swiper-slide" style="display:block;">
-                                    <p class="istoriya-god"> <? echo $field["god"] ?> </p>
+                                    <p class="istoriya-god"> <?php echo $field["god"] ?> </p>
                                     <span class="istoriya-elips">
                                     </span>
                                     <p class="istoriya-text">
-                                        <? echo $field["text4"] ?>
+                                        <?php echo $field["text4"] ?>
                                     </p>
                                 </div>
 							<?php 
@@ -81,7 +81,7 @@
 
                 <div class="istoriya-info">
                     <div class="istoriya-info__title">
-<? echo CFS()->get('zagolovka'); ?>
+<?php echo CFS()->get('zagolovka'); ?>
                     </div>
                     <div class="istoriya-info__text">
                      	<?php
@@ -90,7 +90,7 @@
 										foreach ($fields as $field) {
 							?>
 								<p>
-                           			<? echo $field["text1"] ?>
+                           			<?php echo $field["text1"] ?>
                         		</p>
 							<?php 
 								};
@@ -100,7 +100,7 @@
                 </div>
                 <div class="istoriya-info">
                     <div class="istoriya-info__title">
-<? echo CFS()->get('zagolovka2'); ?>
+<?php echo CFS()->get('zagolovka2'); ?>
                     </div>
                     <div class="istoriya-info__text">
 						<?php
@@ -109,7 +109,7 @@
 										foreach ($fields as $field) {
 							?>
 								<p>
-                           			<? echo $field["text2"] ?>
+                           			<?php echo $field["text2"] ?>
                         		</p>
 							<?php 
 								};
@@ -119,7 +119,7 @@
                 </div>
                 <div class="istoriya-info">
                     <div class="istoriya-info__title">
-<? echo CFS()->get('zagolovka3'); ?>
+<?php echo CFS()->get('zagolovka3'); ?>
                     </div>
                     <div class="istoriya-info__text">
                         <?php
@@ -128,7 +128,7 @@
 										foreach ($fields as $field) {
 							?>
 								<p>
-                           			<? echo $field["text3"] ?>
+                           			<?php echo $field["text3"] ?>
                         		</p>
 							<?php 
 								};

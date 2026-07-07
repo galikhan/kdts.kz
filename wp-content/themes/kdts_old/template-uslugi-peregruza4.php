@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar/', 'https') ?>"> Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar/', 'https') ?>"> Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -29,7 +29,7 @@
 		    <div class="dell-container">
 				<div class="peregruz-dostyk__content">
 					<div class="peregruz-dostyk__block">
-						<img src="<? echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
+						<img src="<?php echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
 					</div>
 					<div class="uslugi-peregruza__text">
 						<?php the_post(); ?>

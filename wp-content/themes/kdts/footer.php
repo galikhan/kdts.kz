@@ -59,7 +59,7 @@
 
                 <p class="footer-name"><a href="https://bestweb.kz/sozdaniye-saytov/" target="_blank">Создание и поддержка сайта</a> Digital агентство Bestweb.kz</p>
                 <div class="footer-adders">
-                    <? echo CFS()->get('adres1', 606); ?>
+                    <?php echo CFS()->get('adres1', 606); ?>
                     <p>"Мәскеу" БО</p>
                 </div>
             </div>

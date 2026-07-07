@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientam/park-platform-i-konteynerov/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientam/park-platform-i-konteynerov/', 'https') ?>">Eng</a></li>
                 <li><a href="https://kdts.kz/klientterge/platformalar-parki/">Қаз</a></li>
                 <li><a href="https://kdts.kz/ru/klientam/park-platform-i-konteynerov/">Рус</a></li>
             </ul>
@@ -20,7 +20,7 @@
  	<main>
         <div class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
-                <a href="<? echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
+                <a href="<?php echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
          			КЛИЕНТАМ
              	</a>
 			   <div class="rukovodstvo-navbar__block">

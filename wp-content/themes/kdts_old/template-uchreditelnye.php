@@ -11,15 +11,15 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientterge/kryltajshylyk-sharttar/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/klientam/uchreditelnye-dokumenty/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/klientam/uchreditelnye-dokumenty/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientterge/kryltajshylyk-sharttar/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/klientam/uchreditelnye-dokumenty/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/klientam/uchreditelnye-dokumenty/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
 	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
          		Клиенттерге
              </a>
            <div class="rukovodstvo-navbar__block">
@@ -36,7 +36,7 @@
             </h1>
             <article class="uchreditelnye-dokumenty__items">
 				
-				<? $dokumenty = CFS()->get('dokumenty');
+				<?php $dokumenty = CFS()->get('dokumenty');
 				foreach ($dokumenty as $dokument) {
 					echo '<div class="uchreditelnye-dokumenty__item">
 							<a href="'.$dokument["fayl"].'" download>

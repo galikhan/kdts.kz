@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientam/uchreditelnye-dokumenty/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientam/uchreditelnye-dokumenty/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://www.kdts.kz/klientterge/kryltajshylyk-sharttar/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/en/klientam/uchreditelnye-dokumenty/">Eng</a></li>
             </ul>
@@ -19,7 +19,7 @@
     </div>
 	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/klientam/stavki-i-tarify', 'https') ?>" class="rukovodstvo-navbar__title">
          		КЛИЕНТАМ
              </a>
            <div class="rukovodstvo-navbar__block">
@@ -47,7 +47,7 @@
             </style>
             <article class="uchreditelnye-dokumenty__items" style="flex-wrap:wrap;">
 				
-				<? $dokumenty = CFS()->get('dokumenty');
+				<?php $dokumenty = CFS()->get('dokumenty');
 				foreach ($dokumenty as $dokument) {
 					echo '<div class="uchreditelnye-dokumenty__item">
 							<a href="'.$dokument["fayl"].'" download>

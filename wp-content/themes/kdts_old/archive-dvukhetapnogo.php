@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/satyp-alul/tender/ashyk-eki-kezendi/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/satyp-alul/tender/ashyk-eki-kezendi/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -24,7 +24,7 @@
    	</section> <!-- rukovodstvo-navbar / -->
      <section class="zakupki-content">
     	<h1 class="partnery-title">
-                <? echo CFS()->get('zagolovka',297); ?>
+                <?php echo CFS()->get('zagolovka',297); ?>
        </h1>
 		 <p>
 			 Тендерлер жоқ

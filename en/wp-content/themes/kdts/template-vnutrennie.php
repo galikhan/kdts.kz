@@ -11,7 +11,7 @@
 			</div>
 			<div class="yazyk">
 				<ul>
-					<li class="yazyk-active"><a href="<? echo home_url('/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Eng</a></li>
+					<li class="yazyk-active"><a href="<?php echo home_url('/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Eng</a></li>
 					<li><a href="https://www.kdts.kz/aktsionerlerge/ishki-zhattar/">Қаз</a></li>
 					<li><a href="https://www.kdts.kz/ru/aktsioneram/vnutrennie-dokumenty/">Рус</a></li>
 				</ul>
@@ -20,7 +20,7 @@
 	   <main class="container-rukovodstvo">
        		<section class="rukovodstvo-navbar">
                     <div class="rukovodstvo-navbar__top">
-                        <a href="<? echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
+                        <a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
                             Shareholders
                         </a>
                         <div class="rukovodstvo-navbar__block">
@@ -43,7 +43,7 @@
                     </h1>
 
                     <div class="vnutrennie-items">			
-						<? $dokumentyi = CFS()->get('vnutrennie-dokumenty');
+						<?php $dokumentyi = CFS()->get('vnutrennie-dokumenty');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 								 <div class="vnutrennie-item">

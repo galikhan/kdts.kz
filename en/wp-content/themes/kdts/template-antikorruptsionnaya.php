@@ -7,7 +7,7 @@
 	<?php include "template-breadcrumbs.php" ?>
   	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                	About company
             </a>
           	<div class="rukovodstvo-navbar__block">
@@ -114,7 +114,7 @@
                         <div class="anti-download__items">
                             
 							
-                        <? $dokumentyi = CFS()->get('blok');
+                        <?php $dokumentyi = CFS()->get('blok');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 									<div class="anti-download__item">

@@ -12,9 +12,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/bailanystar/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/kontakty/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/kontakty/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/bailanystar/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/kontakty/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/kontakty/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -66,7 +66,7 @@
 							<span> Толық атауы: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<? echo CFS()->get('tekst1'); ?>
+							<?php echo CFS()->get('tekst1'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -74,7 +74,7 @@
 							<span> Қысқартылған атауы: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<? echo CFS()->get('tekst2'); ?>
+							<?php echo CFS()->get('tekst2'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -82,7 +82,7 @@
 							<span> Ағылшын тіліндегі атауы </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<? echo CFS()->get('tekst3'); ?>
+							<?php echo CFS()->get('tekst3'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -90,7 +90,7 @@
 							<span> Заңды мекен-жайы: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<? echo CFS()->get('tekst4'); ?>
+							<?php echo CFS()->get('tekst4'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -98,7 +98,7 @@
 							<span> Пошталық мекенжайы: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							 <? echo CFS()->get('tekst5'); ?>
+							 <?php echo CFS()->get('tekst5'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -106,7 +106,7 @@
 							<span> Үндеу: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<a href="<? echo home_url('/undeu/', 'https') ?>" class="godovoy-plan__nav-text"> Сұрақ қою, шағым немесе ұсыныс қалдыру </a>
+							<a href="<?php echo home_url('/undeu/', 'https') ?>" class="godovoy-plan__nav-text"> Сұрақ қою, шағым немесе ұсыныс қалдыру </a>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -116,7 +116,7 @@
 						<div class="kontakty-bloki1">
 							 <ul class="kontakty-tel__block">
 
-								<? $teli = CFS()->get('tel');
+								<?php $teli = CFS()->get('tel');
 									foreach ($teli as $te) {
 										echo '
 											<li>'.$te["tekst7"].'</li>
@@ -132,8 +132,8 @@
 						</div>
 						<div class="kontakty-bloki1">
 							<ul class="kontakty-tel__block">
-                                <li><? echo CFS()->get('tekst9'); ?></li>
-                                <li><? echo CFS()->get('tekst10'); ?></li>
+                                <li><?php echo CFS()->get('tekst9'); ?></li>
+                                <li><?php echo CFS()->get('tekst10'); ?></li>
                             </ul>
 						</div>
 					</div> <!-- kontakty-block / -->
@@ -142,7 +142,7 @@
 							<span> Хат жолдау сұрақтары бойынша: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<? echo CFS()->get('tekst11'); ?>
+							<?php echo CFS()->get('tekst11'); ?>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -151,8 +151,8 @@
 						</div>
 						<div class="kontakty-bloki1">
 							<ul class="kontakty-tel__block">
-                                <li><? echo CFS()->get('tekst12'); ?></li>
-                                <li><? echo CFS()->get('tekst13'); ?></li>
+                                <li><?php echo CFS()->get('tekst12'); ?></li>
+                                <li><?php echo CFS()->get('tekst13'); ?></li>
                             </ul>
 						</div>
 					</div> <!-- kontakty-block / -->

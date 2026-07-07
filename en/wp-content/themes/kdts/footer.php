@@ -57,7 +57,7 @@
                     <!--<div style=" font-size:12px; padding-top:10px;"><a href="https://bestweb.kz/sozdaniye-saytov/" target="_blank">Создание и поддержка сайта</a> Digital агентство Bestweb.kz</div>-->
                 </div>
                 <div class="footer-adders">
-                    <? echo CFS()->get('adres1', 606); ?>
+                    <?php echo CFS()->get('adres1', 606); ?>
                     <p>BC "Moscow"</p>
                 </div>
             </div>

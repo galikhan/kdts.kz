@@ -11,16 +11,16 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/direktorlar-kenesi/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/sovet-direktorov/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/sovet-direktorov/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/direktorlar-kenesi/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/sovet-direktorov/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/sovet-direktorov/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
   	<main>
         <div class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
-                <a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+                <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
                         КОМПАНИЯ ТУРАЛЫ
                     </a>
                     <div class="rukovodstvo-navbar__block">
@@ -39,7 +39,7 @@
                     <div class="swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
 
-							<? $sotrudniki = CFS()->get('sotrudniki');
+							<?php $sotrudniki = CFS()->get('sotrudniki');
 								foreach ($sotrudniki as $sotrudnik) {
 									echo '
 									 <div class="swiper-slide swiper-slide__width">
@@ -68,7 +68,7 @@
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
 							
-							<? $sotrudnikTexti = CFS()->get('sotrudniki');
+							<?php $sotrudnikTexti = CFS()->get('sotrudniki');
 								foreach ($sotrudnikTexti as $sotrudnikText) {
 									echo '
 									 <div class="swiper-slide"> 

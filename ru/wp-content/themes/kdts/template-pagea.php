@@ -12,7 +12,7 @@
     </div>
     <div class="yazyk">
        <ul>
-        <li class="yazyk-active"><a href="<? echo home_url('/ustojchivoe-razvitie/', 'https') ?>"> Рус</a></li>
+        <li class="yazyk-active"><a href="<?php echo home_url('/ustojchivoe-razvitie/', 'https') ?>"> Рус</a></li>
         <li><a href="https://www.kdts.kz/ustojchivoe-razvitie/">Қаз</a></li>
         <li><a href="https://www.kdts.kz/en/ustojchivoe-razvitie/">Eng</a></li>
     </ul>
@@ -73,7 +73,7 @@
 </style>
 <main class="container-rukovodstvo">
     <section class="rukovodstvo-navbar">
-        <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+        <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
             О КОМПАНИИ
         </a>
         <div class="rukovodstvo-navbar__block">
@@ -93,7 +93,7 @@
             <?php the_post(); ?>
             <?php the_content() ?>
 
-            <? if (strstr($_SERVER['REQUEST_URI'], '/kalendar-korporativnyh-sobytij/')){ ?>
+            <?php if (strstr($_SERVER['REQUEST_URI'], '/kalendar-korporativnyh-sobytij/')){ ?>
                 <div class="rukovodstvo-wrapper">
                     <div class="swiper-container istoriya-thumbs">
                         <div class="swiper-wrapper">
@@ -159,7 +159,7 @@
                         </div> <!-- swiper-slide / -->
                   </div>
                 </div>
-            <? } ?>
+            <?php } ?>
 
         </div>
     </section> <!-- rukovodstvo-content / -->

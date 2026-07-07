@@ -11,16 +11,16 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientterge/ulgilik-sharttar/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/klientam/tipovye-dogovora/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/klientam/tipovye-dogovora/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientterge/ulgilik-sharttar/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/klientam/tipovye-dogovora/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/klientam/tipovye-dogovora/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
 	<main>
         <div class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
-                <a href="<? echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
+                <a href="<?php echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
          			Клиенттерге
              	</a>
 			   <div class="rukovodstvo-navbar__block">
@@ -37,17 +37,17 @@
                 </h1>
                 <article class="tipovye-dogovora__head">
                     <p class="tipovye-dogovora__head-bold"> 
-                        <? echo CFS()->get('tekst4'); ?> 
+                        <?php echo CFS()->get('tekst4'); ?> 
                     </p>
                     <p class="tipovye-dogovora__head-text">
-                        <? echo CFS()->get('tekst5'); ?>
+                        <?php echo CFS()->get('tekst5'); ?>
                     </p>
 					<p class="row tipovye-dogovora__head-color" style="display: flex; justify-content: space-between">
                         <a href="https://my.kdts.kz/login" data-type="URL" data-id="https://my.kdts.kz/login">Резиденттерге арналған өтініш хат </a>
                         <!--<a href="https://my.kdts.kz/login" data-type="URL" data-id="https://my.kdts.kz/login">Письмо-заявку для нерезидентов</a>-->
                     </p>
                     <p class="tipovye-dogovora__head-italic">
-                        <? echo CFS()->get('tekst6'); ?>
+                        <?php echo CFS()->get('tekst6'); ?>
                     </p>
                 </article>
             </section> <!-- rukovodstvo-content / -->  
@@ -55,17 +55,17 @@
          
         <section class="rezidentov">
             <h1 class="rezidentov-title">
-               <? echo CFS()->get('zagolovka1'); ?>
+               <?php echo CFS()->get('zagolovka1'); ?>
             </h1>
            
             <div class="rezidentov-items">
                 <div class="rezidentov-item">
                     <div class="rezidentov-item__head">
-                        <? echo CFS()->get('zagolovka2'); ?>
+                        <?php echo CFS()->get('zagolovka2'); ?>
                     </div>
                     <div class="rezidentov-item__body">
                         
-						<? $teksty = CFS()->get('teksty1');
+						<?php $teksty = CFS()->get('teksty1');
 							foreach ($teksty as $tekst) {
 								echo '<p> '.$tekst["text1"].' </p>';
 							}
@@ -75,10 +75,10 @@
                 </div>
                 <div class="rezidentov-item">
                     <div class="rezidentov-item__head">
-                        <? echo CFS()->get('zagolovka3'); ?>
+                        <?php echo CFS()->get('zagolovka3'); ?>
                     </div>
                     <div class="rezidentov-item__body">
-                        <? $teksty = CFS()->get('teksty2');
+                        <?php $teksty = CFS()->get('teksty2');
 							foreach ($teksty as $tekst) {
 								echo '<p> '.$tekst["text2"].' </p>';
 							}
@@ -92,13 +92,13 @@
         <section class="tipovye-dogovora__zayavki">
             <div class="tipovye-dogovora__wrapper">
                 <p class="tipovye-dogovora__zayavki-color">
-                    <? echo CFS()->get('tekst7'); ?>
+                    <?php echo CFS()->get('tekst7'); ?>
                 </p>
                 <p class="tipovye-dogovora__zayavki-text">
-                    <? echo CFS()->get('tekst8'); ?>
+                    <?php echo CFS()->get('tekst8'); ?>
                 </p>
                 <p class="tipovye-dogovora__zayavki-text">
-                    <? echo CFS()->get('tekst9'); ?>
+                    <?php echo CFS()->get('tekst9'); ?>
                 </p>
               
             </div>
@@ -106,7 +106,7 @@
         <section>
             <div class="tipovye-dogovora__items">
 				
-				<? $dogovory = CFS()->get('dogovor-loop');
+				<?php $dogovory = CFS()->get('dogovor-loop');
 					foreach ($dogovory as $dogovor) {
 						echo '<div class="tipovye-dogovora__item">
 							<a href="'.$dogovor["dokument"].'" download>

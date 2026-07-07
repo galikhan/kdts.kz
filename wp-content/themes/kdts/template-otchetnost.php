@@ -12,15 +12,15 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/aktsionerlerge/zhyldy-zh-ne-arzhy-eseptiligi', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/aktsioneram/godovaya-i-finansovaya-otchetnost', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/aktsioneram/godovaya-i-finansovaya-otchetnost', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/aktsionerlerge/zhyldy-zh-ne-arzhy-eseptiligi', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/aktsioneram/godovaya-i-finansovaya-otchetnost', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/aktsioneram/godovaya-i-finansovaya-otchetnost', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
  	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/aktsionerlerge', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/aktsionerlerge', 'https') ?>" class="rukovodstvo-navbar__title">
                 Акционерлерге
             </a>
              <div class="rukovodstvo-navbar__block">
@@ -46,7 +46,7 @@
 							?>
 								<div class="swiper-slide">
 									<div class="swiper-slide__godovaya">
-										<p class="swiper-slide__godovaya-text"> <? echo $field["god"] ?> </p>
+										<p class="swiper-slide__godovaya-text"> <?php echo $field["god"] ?> </p>
 									</div> 
 								</div>
 							<?php 
@@ -81,12 +81,12 @@
 								
 								<!---------------------->
                                 <div class="godovaya-item">
-									<a href="<? echo $img["dokument"] ?>" download>
+									<a href="<?php echo $img["dokument"] ?>" download>
 										<div class="godovaya-item__photo">
 											<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#"/>
 										</div>
 										<div class="godovaya-item__text">
-											<? echo $img["tekst"] ?>
+											<?php echo $img["tekst"] ?>
 										</div>
 									</a>
                                 </div> <!-- godovaya-item / -->

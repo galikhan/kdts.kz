@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/uslugi/gruzovykh-terminalov/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/gruzovykh-terminalov/', 'https') ?>">Eng</a></li>
                 <li><a href="https://kdts.kz/kompaniya-turaly/kyzmetter/zhuk-terminaldary/">Қаз</a></li>
                 <li><a href="https://kdts.kz/ru/o-kompanii/uslugi/gruzovykh-terminalov/">Рус</a></li>
             </ul>
@@ -29,7 +29,7 @@
 		    <div class="dell-container">
 				<div class="peregruz-dostyk__content">
 					<div class="peregruz-dostyk__block">
-						<img src="<? echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
+						<img src="<?php echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
 					</div>
 					<div class="uslugi-peregruza__text">
 						<?php the_post(); ?>

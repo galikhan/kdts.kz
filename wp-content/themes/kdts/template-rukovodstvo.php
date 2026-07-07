@@ -12,16 +12,16 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/basshyly/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/rukovodstvo/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/rukovodstvo/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/basshyly/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/rukovodstvo/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/rukovodstvo/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>   
 <main>
         <div class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
-                	<a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+                	<a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
                        КОМПАНИЯ ТУРАЛЫ
                     </a>
                     <div class="rukovodstvo-navbar__block">
@@ -40,7 +40,7 @@
                     <div class="swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
 
-							<? $sotrudniki = CFS()->get('sotrudniki');
+							<?php $sotrudniki = CFS()->get('sotrudniki');
 								foreach ($sotrudniki as $sotrudnik) {
 									echo '
 									 <div class="swiper-slide swiper-slide__width">
@@ -69,7 +69,7 @@
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
 							
-							<? $sotrudnikTexti = CFS()->get('sotrudniki',17);
+							<?php $sotrudnikTexti = CFS()->get('sotrudniki',17);
 								foreach ($sotrudnikTexti as $sotrudnikText) {
 									echo '
 									 <div class="swiper-slide"> 
@@ -127,7 +127,7 @@
                         <span> Азаматтарды </span> қабылдау кестесі
                     </div>
 					
-                    <a href="<? echo CFS()->get('qwe'); ?>" download class="rukovodstvo-navbar__banner-btn">
+                    <a href="<?php echo CFS()->get('qwe'); ?>" download class="rukovodstvo-navbar__banner-btn">
                         Жүктеу        
 					</a>
                 </div>      

@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -29,25 +29,25 @@
                     <div class="accordion"> <?php the_title(); ?> </div>
                  
 					<div class="panel">
-						<a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly', 'https') ?>"> 
+						<a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly', 'https') ?>"> 
                             Еуропа-Ресей (Рига арқылы)
                         </a> 
-                        <a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly', 'https') ?>"> 
                             Еуропа-Ресей (Брест арқылы)
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
                             Еуропа-Орталық Азия (Рига арқылы)
                         </a>
-                        <a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha/', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha/', 'https') ?>"> 
                            Сучжоу (Қытай) - Варшава (Польша)
                         </a>
-                        <a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/joensuu-finlyandiya-korla-kytaj', 'https') ?>">
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/joensuu-finlyandiya-korla-kytaj', 'https') ?>">
                             Йоэнсуу (Финляндия) - Корла (Қытай)
                         </a> 
-                        <a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/kytai-europa/', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/kytai-europa/', 'https') ?>"> 
                             Қытай-Еуропа
                         </a>
-                         <a href="<? echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha-2', 'https') ?>"> 
+                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha-2', 'https') ?>"> 
                            Сучжоу (Қытай) - Варшава (Польша)
                         </a>
                     </div>

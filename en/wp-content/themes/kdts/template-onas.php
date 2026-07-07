@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/', 'https') ?>"> Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/', 'https') ?>"> Eng </a></li>
                 <li><a href="https://www.kdts.kz/kompaniya-turaly/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/o-kompanii/">Рус</a></li>
             </ul>
@@ -21,7 +21,7 @@
         <div class="container-rukovodstvo">
             <div class="rukovodstvo-top">
                 <section class="rukovodstvo-navbar">
-                    <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+                    <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                         About company
                     </a>
                     <div class="rukovodstvo-navbar__block">
@@ -45,14 +45,14 @@
                     </div>
                     <div class="onas-active">
                         <div class="onas-active__left">
-                            <span><? echo CFS()->get('tsifrff'); ?></span>
+                            <span><?php echo CFS()->get('tsifrff'); ?></span>
                             <p class="onas-active__number">
-                                <? echo CFS()->get('text10'); ?>
+                                <?php echo CFS()->get('text10'); ?>
                             </p>
                         </div>
                         <div class="onas-active__right">
                             <p class="onas-active__text">
-                               <? echo CFS()->get('text11'); ?>
+                               <?php echo CFS()->get('text11'); ?>
                             </p>
                         </div>
                     </div>  
@@ -63,7 +63,7 @@
 			<img src="<?php echo get_template_directory_uri(); ?>/img/map2.png" alt="#" class="abount-missiya__map1" style="position: absolute; z-index: 5; width:40%; margin-letf: 111px;"/>
 			<div class="abount-map__container">
 				<div class="abount-map__text">
-					 <? echo CFS()->get('tekst1'); ?> 
+					 <?php echo CFS()->get('tekst1'); ?> 
 				</div>
 			</div>
 			<div class="abount-missiya__container" style="margin-top:300px">
@@ -127,7 +127,7 @@ We are a leading company providing terminal infrastructure services that are bas
 									</div>
 				<div class="abount-missiya__bottom">
 					<p class="abount-missiya__bottom-text">
-						<? echo CFS()->get('text4'); ?>
+						<?php echo CFS()->get('text4'); ?>
 					</p>
 				</div>
 			</div>
@@ -139,26 +139,26 @@ We are a leading company providing terminal infrastructure services that are bas
 				<div class="abount-missiya__left">
 					<div class="abount-missiya__p">
 						<p class="abount-missiya__title">
-							<? echo CFS()->get('zagolovok3'); ?>
+							<?php echo CFS()->get('zagolovok3'); ?>
 						</p>
 						<p class="abount-missiya__number">
-							<? echo CFS()->get('tsifr1'); ?>
+							<?php echo CFS()->get('tsifr1'); ?>
 						</p>
 						<p class="abount-missiya__textare">
-							<? echo CFS()->get('tekst5'); ?>
+							<?php echo CFS()->get('tekst5'); ?>
 						</p>
 					</div>
 				</div>
 				<div class="abount-missiya__right">
 					<div class="abount-missiya__p">
 						<p class="abount-missiya__title">
-							<? echo CFS()->get('zagolovok4'); ?>
+							<?php echo CFS()->get('zagolovok4'); ?>
 						</p>
 						<p class="abount-missiya__number">
-							<? echo CFS()->get('tsifr2'); ?>
+							<?php echo CFS()->get('tsifr2'); ?>
 						</p>
 						<p class="abount-missiya__textare">
-							<? echo CFS()->get('tekst6'); ?>
+							<?php echo CFS()->get('tekst6'); ?>
 						</p>
 					</div>
 				</div>
@@ -166,7 +166,7 @@ We are a leading company providing terminal infrastructure services that are bas
 
 			<div class="abount-otnosheniya__text">
 				
-				<? $teksty = CFS()->get('teksty');
+				<?php $teksty = CFS()->get('teksty');
 				foreach ($teksty as $tekst) {
 					echo '<p class="abount-otnosheniya__p">
 							'.$tekst["text7"].'
@@ -177,7 +177,7 @@ We are a leading company providing terminal infrastructure services that are bas
 			</div>
 
 			<div class="abount-otnosheniya__text-color">
-				<? echo CFS()->get('textBold1'); ?>
+				<?php echo CFS()->get('textBold1'); ?>
 			</div>
 
 		</div>

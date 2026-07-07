@@ -51,7 +51,7 @@
             <div class="footer-items">
                 <p class="footer-name">1997- 2021, АО «Кедентранссервис»</p>
                 <div class="footer-adders">
-                    <? echo CFS()->get('adres1',606); ?>
+                    <?php echo CFS()->get('adres1',606); ?>
 					<p>БЦ «Москва»</p>
                 </div>
             </div>

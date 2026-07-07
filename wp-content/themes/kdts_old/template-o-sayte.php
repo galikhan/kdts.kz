@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/sajt-turaly', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-sajte/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-sajte/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/sajt-turaly', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-sajte/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-sajte/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     	</div>

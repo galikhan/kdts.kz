@@ -12,9 +12,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/satyp-alul/tender/baga-usynystary/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/zakupki/tenders/tsenovykh/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/zakupki/tenders/tsenovykh/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/satyp-alul/tender/baga-usynystary/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/zakupki/tenders/tsenovykh/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/zakupki/tenders/tsenovykh/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -24,7 +24,7 @@
 		</section> <!-- rukovodstvo-navbar / -->
 		 <section class="zakupki-content">
 				<h1 class="partnery-title">
-					<? echo CFS()->get('zagolovka',291); ?>
+					<?php echo CFS()->get('zagolovka',291); ?>
 				</h1>
 				<div class="zakupki-items">
 
@@ -48,10 +48,10 @@
 								<?php the_title(); ?>
 							</div>
 							<div class="zakupki-body__nachalo">
-								<? echo CFS()->get('data-nachalo'); ?>
+								<?php echo CFS()->get('data-nachalo'); ?>
 							</div>
 							<div class="zakupki-body__okonchanie">
-								<? echo CFS()->get('data-okonchanie'); ?>
+								<?php echo CFS()->get('data-okonchanie'); ?>
 							</div>
 							 </a>		 
 						</div> <!-- zakupki-body / -->

@@ -12,9 +12,9 @@
     </div>
     <div class="yazyk">
      <ul>
-        <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/bos-zhumys-oryndary/', 'https') ?>">Қаз</a></li>
-        <li><a href="<? echo home_url('/ru/o-kompanii/vakansii/', 'https') ?>">Рус</a></li>
-        <li><a href="<? echo home_url('/en/o-kompanii/vakansii/', 'https') ?>">Eng</a></li>
+        <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/bos-zhumys-oryndary/', 'https') ?>">Қаз</a></li>
+        <li><a href="<?php echo home_url('/ru/o-kompanii/vakansii/', 'https') ?>">Рус</a></li>
+        <li><a href="<?php echo home_url('/en/o-kompanii/vakansii/', 'https') ?>">Eng</a></li>
     </ul>
 </div>
 </div>
@@ -68,7 +68,7 @@
 </style>
 <main class="container-rukovodstvo">
     <section class="rukovodstvo-navbar">
-        <a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+        <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
             КОМПАНИЯ ТУРАЛЫ
         </a>
         <div class="rukovodstvo-navbar__block">

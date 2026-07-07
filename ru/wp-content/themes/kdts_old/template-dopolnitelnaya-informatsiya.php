@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/zakupki/dopolnitelnaya-informatsiya/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/dopolnitelnaya-informatsiya/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://kdts.kz/satyp-alul/dopolnitelnaya-informatsiya/">Қаз</a></li>
                 <li><a href="https://kdts.kz/en/zakupki/dopolnitelnaya-informatsiya/">Eng</a></li>
             </ul>
@@ -27,7 +27,7 @@
                     </h1>
 
                     <div class="vnutrennie-items">			
-						<? $dokumentyi = CFS()->get('vnutrennie-dokumenty');
+						<?php $dokumentyi = CFS()->get('vnutrennie-dokumenty');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 								 <div class="vnutrennie-item">

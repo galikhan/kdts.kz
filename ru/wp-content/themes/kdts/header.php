@@ -28,7 +28,7 @@
 		<noscript><div><img src="https://mc.yandex.ru/watch/79124866" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 		<!-- /Yandex.Metrika counter -->
 
-		<? if (strstr($_SERVER["REQUEST_URI"], '/klientam123/')){ ?>
+		<?php if (strstr($_SERVER["REQUEST_URI"], '/klientam123/')){ ?>
 
 		<style type="text/css">
 		.visit-img{
@@ -121,12 +121,12 @@
 	
 
 	</script>
-<? } ?>
+<?php } ?>
 	<header class="header">
 		<div class="header-phone">
 			<div class="header-top__left" style="flex-wrap:wrap">
 				<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel" alt="#" />
-				<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><? echo CFS()->get('telefon1',606); ?>,</a>
+				<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><?php echo CFS()->get('telefon1',606); ?>,</a>
                     <a href="tel:+7 778 097 91 87" class="header-top__tel-text">+7 778 097 91 87,</a>
 					<a href="tel:+7 778 097 91 80" class="header-top__tel-text">+7 778 097 91 80 </a>
 
@@ -170,9 +170,9 @@
 			<div class="header-top__wrapper">
 				<div class="header-top__left">
 					Call center:
-					<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
+					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
 							<!--	<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel-img" alt="#" /> -->
-							<? echo CFS()->get('telefon1', 606); ?>
+							<?php echo CFS()->get('telefon1', 606); ?>
 						</a>
 						<!--<a href="tel:+7 778 097 91 87" class="header-top__tel-text">
 							 +7 778 097 91 87
@@ -199,7 +199,7 @@
 				<div class="header-menu__wrapper">
 					<div class="header-left">
 						<div class="header-logo">
-							<a href="<? echo home_url() ?>">
+							<a href="<?php echo home_url() ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/Group444444.png"/>
 							</a>
 						</div>

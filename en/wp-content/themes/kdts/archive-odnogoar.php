@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/zakupki/arkhivy/odnogo-istochnika/', 'https') ?>">Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/arkhivy/odnogo-istochnika/', 'https') ?>">Eng </a></li>
                 <li><a href="https://www.kdts.kz/satyp-alul/muragat/bir-kozden-alu/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/zakupki/arkhivy/odnogo-istochnika/">Рус</a></li>
             </ul>
@@ -23,7 +23,7 @@
    	</section> <!-- rukovodstvo-navbar / -->
      <section class="zakupki-content">
             <h1 class="partnery-title">
-                <? echo CFS()->get('zagolovka',309); ?>
+                <?php echo CFS()->get('zagolovka',309); ?>
             </h1>
             <div class="zakupki-items">
               
@@ -47,10 +47,10 @@
                             <?php the_title(); ?>
                         </div>
                         <div class="zakupki-body__nachalo">
-                            <? echo CFS()->get('data-nachalo'); ?>
+                            <?php echo CFS()->get('data-nachalo'); ?>
                         </div>
                         <div class="zakupki-body__okonchanie">
-                            <? echo CFS()->get('data-okonchanie'); ?>
+                            <?php echo CFS()->get('data-okonchanie'); ?>
                         </div>
 						 </a>		 
                     </div> <!-- zakupki-body / -->

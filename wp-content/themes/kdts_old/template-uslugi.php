@@ -11,15 +11,15 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/kyzmetter/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/uslugi', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/uslugi', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     	</div>
  	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-             <a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+             <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
                  КОМПАНИЯ ТУРАЛЫ
              </a>
                     <div class="rukovodstvo-navbar__block">
@@ -36,7 +36,7 @@
            </h1>
                     <div class="uslugiPage-items">
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar', 'https') ?>">
+							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/19.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">
@@ -50,7 +50,7 @@
                         </div> <!-- uslugiPage-item / -->
 
                         <div class="uslugiPage-item">
-                            <a href="<? echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol', 'https') ?>">
+                            <a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol', 'https') ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/img/34.png" alt="#" class="uslugiPage-item__img" />
                                 <div class="uslugiPage-block">
                                     <div class="uslugiPage-item__photo">
@@ -64,7 +64,7 @@
                         </div> <!-- uslugiPage-item / -->
 
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/kompaniya-turaly/kyzmetter/zhuk-terminaldary', 'https') ?>">
+							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/zhuk-terminaldary', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/8.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">
@@ -78,7 +78,7 @@
                         </div> <!-- uslugiPage-item / -->
 
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/kompaniya-turaly/kyzmetter/temir-zhol-tasymaly', 'https') ?>">
+							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/temir-zhol-tasymaly', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/66.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">

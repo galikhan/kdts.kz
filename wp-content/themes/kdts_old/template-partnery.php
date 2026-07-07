@@ -11,15 +11,15 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/seriktester/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/partnery', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/partnery/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/seriktester/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/partnery', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/partnery/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
  	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
              	КОМПАНИЯ ТУРАЛЫ
            	</a>
          	<div class="rukovodstvo-navbar__block">
@@ -36,7 +36,7 @@
        		</h1>
            	<div class="partnery-items">
 			
-				<? $dokumentyi = CFS()->get('partnery');
+				<?php $dokumentyi = CFS()->get('partnery');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 								<div class="partnery-item">

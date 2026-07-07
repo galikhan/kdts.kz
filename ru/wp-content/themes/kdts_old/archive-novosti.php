@@ -12,7 +12,7 @@
 			</div>
 			<div class="yazyk">
 				<ul>
-					<li class="yazyk-active"><a href="<? echo home_url('/novosti/', 'https') ?>">Рус</a></li>
+					<li class="yazyk-active"><a href="<?php echo home_url('/novosti/', 'https') ?>">Рус</a></li>
 					<li><a href="https://kdts.kz/zhanalyktar/"> Қаз</a></li>
 					<li><a href="https://kdts.kz/en/novosti/">Eng</a></li>
 				</ul>

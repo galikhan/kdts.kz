@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
                 <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/fitingtik-platformalar/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/o-kompanii/uslugi/fitingovykh-platform/">Рус</a></li>
             </ul>
@@ -29,7 +29,7 @@
 		    <div class="dell-container">
 				<div class="peregruz-dostyk__content">
 					<div class="peregruz-dostyk__block">
-						<img src="<? echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
+						<img src="<?php echo CFS()->get('foto'); ?>" alt="#" class="peregruz-dostyk__block-img" />		        
 					</div>
 					<div class="uslugi-peregruza__text">
 						<?php the_post(); ?>

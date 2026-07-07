@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -31,7 +31,7 @@
 		        
 		        <div class="peregruz-dostyk__block1">
 		            <img src="<?php echo get_template_directory_uri(); ?>/img/uslugBBlog.png" alt="#" class="peregruz-dostyk__block-img" />
-		            <h2 class="peregruz-dostyk__title"> <? echo CFS()->get('zagolovka1'); ?> </h2>
+		            <h2 class="peregruz-dostyk__title"> <?php echo CFS()->get('zagolovka1'); ?> </h2>
 		            <div class="peregruz-dostyk__items">
 		         
 		             <?php
@@ -41,17 +41,17 @@
 					?>
 						 		<div class="peregruz-dostyk__item">
 									<div class="peregruz-dostyk__item-photo">
-										<img src="<? echo $blokLoop["foto1"] ?>" alt="#" class="peregruz-dostyk__item-icon" />
+										<img src="<?php echo $blokLoop["foto1"] ?>" alt="#" class="peregruz-dostyk__item-icon" />
 									</div>     
 									<div class="peregruz-dostyk__item-number">
 										<span>
-											<? echo $blokLoop["tsifr"] ?>
+											<?php echo $blokLoop["tsifr"] ?>
 										</span>
 										Вагон /
 										тәулігіне
 									</div>
 									<p class="peregruz-dostyk__item-title">
-										<? echo $blokLoop["zagolovka2"] ?>
+										<?php echo $blokLoop["zagolovka2"] ?>
 									</p>
 										
 									<ul class="peregruz-dostyk__item-text">
@@ -59,7 +59,7 @@
 											$teksty = $blokLoop['teksty'];
 											foreach ($teksty as $tekst) {
 										?>
-											<li> <? echo $tekst["text1"] ?> </li> 
+											<li> <?php echo $tekst["text1"] ?> </li> 
 									  	<?php }; ?>
 									</ul>
 								</div> <!-- peregruz-dostyk__item / -->

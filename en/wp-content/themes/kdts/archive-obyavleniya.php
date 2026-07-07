@@ -11,7 +11,7 @@
 			</div>
 			<div class="yazyk">
 				<ul>
-					<li class="yazyk-active"><a href="<? echo home_url('/obyavleniya/', 'https') ?>">Eng</a></li>
+					<li class="yazyk-active"><a href="<?php echo home_url('/obyavleniya/', 'https') ?>">Eng</a></li>
 					<li><a href="https://www.kdts.kz/obyavleniya/"> Қаз</a></li>
 					<li><a href="https://www.kdts.kz/ru/obyavleniya/">Рус</a></li>
 				</ul>

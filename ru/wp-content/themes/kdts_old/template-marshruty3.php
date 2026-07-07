@@ -11,7 +11,7 @@
 			</div>
 			<div class="yazyk">
 				<ul>
-					<li class="yazyk-active"><a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Рус</a></li>
+					<li class="yazyk-active"><a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Рус</a></li>
 					<li><a href="https://kdts.kz//klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly"> Қаз</a></li>
 					<li><a href="https://kdts.kz/en/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/">Eng</a></li>
 				</ul>
@@ -28,25 +28,25 @@
                 <div class="marshruty-head__right">
                     <div class="accordion"> <?php the_title(); ?> </div>
 					<div class="panel">
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-rigu', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-rigu', 'https') ?>"> 
                             Европа - Россия (через Ригу) 
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha', 'https') ?>"> 
                             Сучжоу (Китай) - Варшава (Польша)
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
                             Европа - Центральная Азия (через Ригу) 
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest', 'https') ?>"> 
                             Европа - Центральная Азия (через Брест)
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/yoensuu-finlyandiya-korla-kitay', 'https') ?>">
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/yoensuu-finlyandiya-korla-kitay', 'https') ?>">
                              Йоэнсуу (Финляндия) - Корла (Китай) 
                         </a> 
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/kitay-evropa', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/kitay-evropa', 'https') ?>"> 
                             Китай - Европа 
                         </a>
-                        <a href="<? echo home_url('/klientam/marshruty-perevozok/suchzhou-varshava-polsha', 'https') ?>"> 
+                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-varshava-polsha', 'https') ?>"> 
                             Сучжоу (Китай) - Варшава (Польша)
                         </a>
                     </div>

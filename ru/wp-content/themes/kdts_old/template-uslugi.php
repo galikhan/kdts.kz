@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/uslugi/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://kdts.kz/kompaniya-turaly/kyzmetter/">Қаз</a></li>
                 <li><a href="https://kdts.kz/en/o-kompanii/uslugi/">Eng</a></li>
             </ul>
@@ -19,7 +19,7 @@
     </div>
  	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-             <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+             <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                  О КОМПАНИИ
              </a>
                     <div class="rukovodstvo-navbar__block">
@@ -36,7 +36,7 @@
            </h1>
                     <div class="uslugiPage-items">
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/o-kompanii/uslugi/fitingovykh-platform', 'https') ?>">
+							<a href="<?php echo home_url('/o-kompanii/uslugi/fitingovykh-platform', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/19.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">
@@ -51,7 +51,7 @@
 						
 
                         <div class="uslugiPage-item">
-                            <a href="<? echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol', 'https') ?>">
+                            <a href="<?php echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol', 'https') ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/img/34.png" alt="#" class="uslugiPage-item__img" />
                                 <div class="uslugiPage-block">
                                     <div class="uslugiPage-item__photo">
@@ -65,7 +65,7 @@
                         </div> <!-- uslugiPage-item / -->
 
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/o-kompanii/uslugi/gruzovykh-terminalov', 'https') ?>">
+							<a href="<?php echo home_url('/o-kompanii/uslugi/gruzovykh-terminalov', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/8.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">
@@ -79,7 +79,7 @@
                         </div> <!-- uslugiPage-item / -->
 
                         <div class="uslugiPage-item">
-							<a href="<? echo home_url('/o-kompanii/uslugi/zheleznodorozhnyh-perevozok', 'https') ?>">
+							<a href="<?php echo home_url('/o-kompanii/uslugi/zheleznodorozhnyh-perevozok', 'https') ?>">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/66.png" alt="#" class="uslugiPage-item__img" />
 								<div class="uslugiPage-block">
 									<div class="uslugiPage-item__photo">

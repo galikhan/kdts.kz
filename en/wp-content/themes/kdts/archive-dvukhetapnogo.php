@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Eng </a></li>
                 <li><a href="https://www.kdts.kz/satyp-alul/tender/ashyk-eki-kezendi/"> Қаз</a></li>
                 <li><a href="https://www.kdts.kz/ru/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/">Рус</a></li>
             </ul>

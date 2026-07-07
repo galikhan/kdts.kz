@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/kompaniya-turaly', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('ru/o-kompanii/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('en/o-kompanii/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('ru/o-kompanii/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('en/o-kompanii/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -21,7 +21,7 @@
         <div class="container-rukovodstvo">
             <div class="rukovodstvo-top">
                 <section class="rukovodstvo-navbar">
-                    <a href="<? echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+                    <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
                         КОМПАНИЯ ТУРАЛЫ
                     </a>
                     <div class="rukovodstvo-navbar__block">
@@ -45,14 +45,14 @@
                     </div>
                     <div class="onas-active">
                         <div class="onas-active__left">
-                            <span><? echo CFS()->get('tsifrff'); ?></span>
+                            <span><?php echo CFS()->get('tsifrff'); ?></span>
                             <p class="onas-active__number">
-                                <? echo CFS()->get('text10'); ?>
+                                <?php echo CFS()->get('text10'); ?>
                             </p>
                         </div>
                         <div class="onas-active__right">
                             <p class="onas-active__text">
-                               <? echo CFS()->get('text11'); ?>
+                               <?php echo CFS()->get('text11'); ?>
                             </p>
                         </div>
                     </div>    
@@ -63,7 +63,7 @@
 			<img src="<?php echo get_template_directory_uri(); ?>/img/map2.png" alt="#" class="abount-missiya__map" />
 			<div class="abount-map__container">
 				<div class="abount-map__text">
-					 <? echo CFS()->get('tekst1'); ?> 
+					 <?php echo CFS()->get('tekst1'); ?> 
 				</div>
 			</div>
 			<div class="abount-missiya__container">
@@ -71,27 +71,27 @@
 					<div class="abount-missiya__left">
 						<div class="abount-missiya__p">
 							<p class="abount-missiya__title">
-								<? echo CFS()->get('zagolovok1'); ?>
+								<?php echo CFS()->get('zagolovok1'); ?>
 							</p>
 							<p class="abount-missiya__text">
-								<? echo CFS()->get('text2'); ?>
+								<?php echo CFS()->get('text2'); ?>
 							</p>
 						</div>
 					</div>
 					<div class="abount-missiya__right">
 						<div class="abount-missiya__p">
 							<p class="abount-missiya__title">
-								<? echo CFS()->get('zagolovok2'); ?>
+								<?php echo CFS()->get('zagolovok2'); ?>
 							</p>
 							<p class="abount-missiya__text">
-								<? echo CFS()->get('text3'); ?>
+								<?php echo CFS()->get('text3'); ?>
 							</p>
 						</div>
 					</div>
 				</div>
 				<div class="abount-missiya__bottom">
 					<p class="abount-missiya__bottom-text">
-						<? echo CFS()->get('text4'); ?>
+						<?php echo CFS()->get('text4'); ?>
 					</p>
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 					</div>
 					<div class="abount-predstavitelstva__block_items">
 						
-						<? $predstavitelstva = CFS()->get('predstavitelstva-loop');
+						<?php $predstavitelstva = CFS()->get('predstavitelstva-loop');
 							foreach ($predstavitelstva as $predstavitelstv) {
 								echo '<div class="abount-predstavitelstva__block-item">
 										<div class="abount-predstavitelstva__block-photo">
@@ -121,10 +121,10 @@
 					</div>
 				</div> <!-- abount-predstavitelstva__block / -->
 				<p class="abount-missiya__bottom-text">
-					<? echo CFS()->get('text8'); ?>
+					<?php echo CFS()->get('text8'); ?>
 				</p>
 				<p class="abount-predstavitelstva__bottom">
-					<? echo CFS()->get('text9'); ?>
+					<?php echo CFS()->get('text9'); ?>
 				</p>
 			</div>
 		</section>
@@ -134,26 +134,26 @@
 				<div class="abount-missiya__left">
 					<div class="abount-missiya__p">
 						<p class="abount-missiya__title">
-							<? echo CFS()->get('zagolovok3'); ?>
+							<?php echo CFS()->get('zagolovok3'); ?>
 						</p>
 						<p class="abount-missiya__number">
-							<? echo CFS()->get('tsifr1'); ?>
+							<?php echo CFS()->get('tsifr1'); ?>
 						</p>
 						<p class="abount-missiya__textare">
-							<? echo CFS()->get('tekst5'); ?>
+							<?php echo CFS()->get('tekst5'); ?>
 						</p>
 					</div>
 				</div>
 				<div class="abount-missiya__right">
 					<div class="abount-missiya__p">
 						<p class="abount-missiya__title">
-							<? echo CFS()->get('zagolovok4'); ?>
+							<?php echo CFS()->get('zagolovok4'); ?>
 						</p>
 						<p class="abount-missiya__number">
-							<? echo CFS()->get('tsifr2'); ?>
+							<?php echo CFS()->get('tsifr2'); ?>
 						</p>
 						<p class="abount-missiya__textare">
-							<? echo CFS()->get('tekst6'); ?>
+							<?php echo CFS()->get('tekst6'); ?>
 						</p>
 					</div>
 				</div>
@@ -161,7 +161,7 @@
 
 			<div class="abount-otnosheniya__text">
 				
-				<? $teksty = CFS()->get('teksty');
+				<?php $teksty = CFS()->get('teksty');
 				foreach ($teksty as $tekst) {
 					echo '<p class="abount-otnosheniya__p">
 							'.$tekst["text7"].'
@@ -172,7 +172,7 @@
 			</div>
 
 			<div class="abount-otnosheniya__text-color">
-				<? echo CFS()->get('textBold1'); ?>
+				<?php echo CFS()->get('textBold1'); ?>
 			</div>
 
 		</div>

@@ -39,7 +39,7 @@
 		 <div class="header-phone">
 				<div class="header-top__left">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel" alt="#" />
-					<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><? echo CFS()->get('telefon1',606); ?> </a>
+					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><?php echo CFS()->get('telefon1',606); ?> </a>
 				</div>
 				<div class="header-top__right">
 					<p> <?php echo do_shortcode( '[bvi text="Version for the visually impaired"]' ); ?>  </p>
@@ -79,9 +79,9 @@
 			<div class="header-top__wrapper">
 				<div class="header-top__left">
 					Call center:
-					<a href="tel:<? echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
+					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
 					<!--	<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel-img" alt="#" /> -->
-						<? echo CFS()->get('telefon1', 606); ?>
+						<?php echo CFS()->get('telefon1', 606); ?>
 					</a>
 				</div>
 				<div class="header-top__right">
@@ -93,7 +93,7 @@
 			<div class="header-menu__wrapper">
 				<div class="header-left">
 					<div class="header-logo">
-						<a href="<? echo home_url() ?>">
+						<a href="<?php echo home_url() ?>">
                             <img src="<?php echo get_template_directory_uri(); ?>/img/Group4444446666.png"/>
                         </a>
 					</div>
@@ -134,7 +134,7 @@
         <div class="insert-slider">
              <div class="insert-block">
                <div class="swiper-wrapper">
-                  <? $slaydery = CFS()->get('slayder-loop');
+                  <?php $slaydery = CFS()->get('slayder-loop');
 									foreach ($slaydery as $slayder) {
 										echo '
 										<div class="swiper-slide" style="width: 100% !important;">
@@ -199,12 +199,12 @@
 
 						<div class="about-content">
 							<p class="abount-title">
-								<? echo CFS()->get('zagolovka'); ?>
+								<?php echo CFS()->get('zagolovka'); ?>
 							</p>
 							<p class="abount-text">
-							   <? echo CFS()->get('tekst1'); ?>
+							   <?php echo CFS()->get('tekst1'); ?>
 							</p>
-							<a href="<? echo home_url('/o-kompanii', 'https') ?>" class="abount-btn">
+							<a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="abount-btn">
 								READ MORE
 							</a>
 						</div>
@@ -219,7 +219,7 @@
 					</div>
 					<div class="statistika-items">
 
-							<? $stblocki = CFS()->get('stblock');
+							<?php $stblocki = CFS()->get('stblock');
 									foreach ($stblocki as $stblock) {
 										echo '
 										<div class="statistika-item">
@@ -243,13 +243,13 @@
 					<div class="statistika-buttom__right">
 						<div class="statistika-buttom__one">
 							<div class="statistika-buttom__one-block">
-								<? echo CFS()->get('tekst711'); ?>
+								<?php echo CFS()->get('tekst711'); ?>
 							</div>
 						</div>
 						<div class="statistika-buttom__two">
 							<div class="statistika-buttom__two-block">
 								<div class="statistika-buttom__two-left">
-									<? echo CFS()->get('tekst8'); ?>
+									<?php echo CFS()->get('tekst8'); ?>
 								</div>
 								<div class="statistika-buttom__two-right">
 								</div>
@@ -285,11 +285,11 @@
 				<div class="uslug">
 					<div class="uslug-block">
 						<div class="title">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPP.svg" alt="#" class="title-icon"/>  <? echo CFS()->get('zagolovka1'); ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPP.svg" alt="#" class="title-icon"/>  <?php echo CFS()->get('zagolovka1'); ?>
 						</div>
 						<div class="uslug-items">
 
-							<? $uslugi = CFS()->get('blok-usluga');
+							<?php $uslugi = CFS()->get('blok-usluga');
 									foreach ($uslugi as $uslug) {
 										echo '
 										<div class="uslug-item">
@@ -343,7 +343,7 @@
 										</div>
 										 <div class="tarif-right__item-text">
 											<p>
-												<? echo CFS()->get('tekst7'); ?>
+												<?php echo CFS()->get('tekst7'); ?>
 											</p>
 										</div>
 									</div>
@@ -375,12 +375,12 @@
        			<div class="partnery">
 					<div class="partnery-container">
 						<div class="title">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPP.svg" alt="#" class="title-icon"/> <? echo CFS()->get('zagolovka2'); ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPP.svg" alt="#" class="title-icon"/> <?php echo CFS()->get('zagolovka2'); ?>
 						</div>
 						<div class="production-slider">
 							<div class="mySlider">
 
-								<? $partnery = CFS()->get('partnery-blok');
+								<?php $partnery = CFS()->get('partnery-blok');
 											foreach ($partnery as $partner) {
 												echo '
 												<div class="mySlider__item">
@@ -458,7 +458,7 @@
 							<div class="footer-items">
 								<p class="footer-name">1997-2021, JSC "Kedentransservice"</p>
 								<div class="footer-adders">
-									<? echo CFS()->get('adres1',606); ?>
+									<?php echo CFS()->get('adres1',606); ?>
 									<p>BC "Moscow"</p>
 								</div>
 							</div>

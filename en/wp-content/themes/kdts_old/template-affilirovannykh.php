@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/aktsioneram/spisok-affilirovannykh-lits/', 'https') ?>">Eng </a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/aktsioneram/spisok-affilirovannykh-lits/', 'https') ?>">Eng </a></li>
                 <li><a href="https://kdts.kz/aktsionerlerge/kosylma-tylgalar-tizimi/">Қаз</a></li>
                 <li><a href="https://kdts.kz/ru/aktsioneram/spisok-affilirovannykh-lits/">Рус</a></li>
             </ul>
@@ -20,7 +20,7 @@
 
  <main class="container-rukovodstvo">
             <section class="rukovodstvo-navbar">
-                <a href="<? echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
+                <a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
                     Shareholders 
                 </a>
                 <div class="rukovodstvo-navbar__block">
@@ -47,7 +47,7 @@
 							?>
 								<div class="swiper-slide">
 									<div class="swiper-slide__godovaya">
-										<p class="swiper-slide__godovaya-text"> <? echo $field["god"] ?> </p>
+										<p class="swiper-slide__godovaya-text"> <?php echo $field["god"] ?> </p>
 									</div> 
 								</div>
 							<?php 
@@ -81,12 +81,12 @@
 								
 								<!---------------------->
                                 <div class="godovaya-item">
-									<a href="<? echo $img["dokument"] ?>" download>
+									<a href="<?php echo $img["dokument"] ?>" download>
 										<div class="godovaya-item__photo">
 											<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#"/>
 										</div>
 										<div class="godovaya-item__text">
-											<? echo $img["tekst"] ?>
+											<?php echo $img["tekst"] ?>
 										</div>
 									</a>
                                 </div> <!-- godovaya-item / -->

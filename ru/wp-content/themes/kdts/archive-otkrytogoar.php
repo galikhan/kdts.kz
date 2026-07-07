@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/zakupki/arkhivy/otkrytogo-tendera/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/arkhivy/otkrytogo-tendera/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://www.kdts.kz/satyp-alul/muragat/ashyk-tender-tasilimen/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/en/zakupki/arkhivy/otkrytogo-tendera/">Eng</a></li>
             </ul>
@@ -25,7 +25,7 @@
    	</section> <!-- rukovodstvo-navbar / -->
      <section class="zakupki-content">
             <h1 class="partnery-title">
-            	<? echo CFS()->get('zagolovka',307); ?>
+            	<?php echo CFS()->get('zagolovka',307); ?>
             </h1>
             <div class="zakupki-items">
               
@@ -49,10 +49,10 @@
                             <?php the_title(); ?>
                         </div>
                         <div class="zakupki-body__nachalo">
-                            <? echo CFS()->get('data-nachalo'); ?>
+                            <?php echo CFS()->get('data-nachalo'); ?>
                         </div>
                         <div class="zakupki-body__okonchanie">
-                            <? echo CFS()->get('data-okonchanie'); ?>
+                            <?php echo CFS()->get('data-okonchanie'); ?>
                         </div>
 						 </a>		 
                     </div> <!-- zakupki-body / -->

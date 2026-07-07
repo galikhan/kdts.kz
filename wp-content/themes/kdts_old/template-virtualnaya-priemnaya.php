@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/bailanystar/undeu/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('ru/kontakty/virtualnaya-priemnaya/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('en/kontakty/virtualnaya-priemnaya/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/bailanystar/undeu/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('ru/kontakty/virtualnaya-priemnaya/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('en/kontakty/virtualnaya-priemnaya/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     	</div>

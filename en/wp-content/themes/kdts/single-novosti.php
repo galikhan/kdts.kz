@@ -52,7 +52,7 @@
                         </div> <!-- novosti-block / -->
                     </div> <!-- novosti-left / -->
                     <div class="novosti-right">
-					<? $post_id = get_the_ID();
+					<?php $post_id = get_the_ID();
                                $posts = get_posts( array(
                                 'numberposts' => 5,
                                  'category'    => -$post_id,
@@ -65,9 +65,9 @@
                                  'post_type'   => 'novosti',
                                  'suppress_filters' => true,
                              )); ?>
-                               <? foreach( $posts as $post ){
+                               <?php foreach( $posts as $post ){
                                   setup_postdata($post); ?>
-                                  <? if (get_the_ID()!=$post_id){ ?>
+                                  <?php if (get_the_ID()!=$post_id){ ?>
                                      <div class="novosti-right__item">
                                         <a href="<?php the_permalink(); ?>">
                                            <div class="novosti-right__photo">
@@ -84,8 +84,8 @@
                                           </p>
                                       </a>
                                   </div> <!-- novosti-item / -->
-                              <? } ?>
-                          <? } ?>
+                              <?php } ?>
+                          <?php } ?>
 
 
                     </div> <!-- novosti-right / -->

@@ -27,8 +27,8 @@
             <div class="zakupki-list__org">
                 <p><span>Организатор:</span>  АО "Кедентранссервис" </p>
                 <p><span>Способ:</span> Способом открытого тендера </p>
-                <p class="zakupki-list__start"><span>Начало:</span> <? echo CFS()->get('data-nachalo'); ?> </p>
-                <p class="zakupki-list__end"><span>Окончание:</span> <? echo CFS()->get('data-okonchanie'); ?> </p>
+                <p class="zakupki-list__start"><span>Начало:</span> <?php echo CFS()->get('data-nachalo'); ?> </p>
+                <p class="zakupki-list__end"><span>Окончание:</span> <?php echo CFS()->get('data-okonchanie'); ?> </p>
             </div>
             <div class="zakupki-list__text">
                 <?php the_post(); ?>
@@ -42,12 +42,12 @@
 					<div class="skachivaniya-download__items">
 						<?php foreach ($fields as $field) { ?>
 							<div class="anti-download__item">
-								<a href="<? echo $field["dokument"] ?>" download>
+								<a href="<?php echo $field["dokument"] ?>" download>
 									<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 								</a>
 								<div class="anti-download__item-text">
-									<p> <? echo $field["text1"] ?> </p>
-									<p> (Выставлен: <? echo $field["data1"] ?>) </p>
+									<p> <?php echo $field["text1"] ?> </p>
+									<p> (Выставлен: <?php echo $field["data1"] ?>) </p>
 								</div>
 							</div>
 						<?php }; ?>
@@ -63,12 +63,12 @@
 					<div class="skachivaniya-download__items">
 						<?php foreach ($fields as $field) { ?>
 							<div class="anti-download__item">
-								<a href="<? echo $field["dokument1"] ?>" download>
+								<a href="<?php echo $field["dokument1"] ?>" download>
 									<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 								</a>
 								<div class="anti-download__item-text">
-									<p> <? echo $field["text2"] ?> </p>
-									<p> (Выставлен: <? echo $field["data2"] ?>) </p>
+									<p> <?php echo $field["text2"] ?> </p>
+									<p> (Выставлен: <?php echo $field["data2"] ?>) </p>
 								</div>
 							</div>
 						<?php }; ?>
@@ -84,12 +84,12 @@
 					<div class="skachivaniya-download__items">
 						<?php foreach ($fields as $field) { ?>
 							<div class="anti-download__item">
-								<a href="<? echo $field["dokument3"] ?>" download>
+								<a href="<?php echo $field["dokument3"] ?>" download>
 									<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 								</a>
 								<div class="anti-download__item-text">
-									<p> <? echo $field["text3"] ?> </p>
-									<p> (Выставлен: <? echo $field["data3"] ?>) </p>
+									<p> <?php echo $field["text3"] ?> </p>
+									<p> (Выставлен: <?php echo $field["data3"] ?>) </p>
 								</div>
 							</div>
 						<?php }; ?>

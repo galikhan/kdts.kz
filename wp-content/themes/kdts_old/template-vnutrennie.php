@@ -11,9 +11,9 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/aktsionerlerge/ishki-zhattar/', 'https') ?>">Қаз</a></li>
-                <li><a href="<? echo home_url('/ru/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Рус</a></li>
-                <li><a href="<? echo home_url('/en/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/aktsionerlerge/ishki-zhattar/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/aktsioneram/vnutrennie-dokumenty/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -21,7 +21,7 @@
 	   <main class="container-rukovodstvo">
        		<section class="rukovodstvo-navbar">
                     <div class="rukovodstvo-navbar__top">
-                        <a href="<? echo home_url('/aktsionerlerge', 'https') ?>" class="rukovodstvo-navbar__title">
+                        <a href="<?php echo home_url('/aktsionerlerge', 'https') ?>" class="rukovodstvo-navbar__title">
                             Акционерлерге
                         </a>
                         <div class="rukovodstvo-navbar__block">
@@ -44,7 +44,7 @@
                     </h1>
 
                     <div class="vnutrennie-items">			
-						<? $dokumentyi = CFS()->get('vnutrennie-dokumenty');
+						<?php $dokumentyi = CFS()->get('vnutrennie-dokumenty');
 							foreach ($dokumentyi as $dokumenty) {
 								echo '
 								 <div class="vnutrennie-item">

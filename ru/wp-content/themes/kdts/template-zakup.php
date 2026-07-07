@@ -11,7 +11,7 @@
     </div>
     <div class="yazyk">
         <ul>
-            <li class="yazyk-active"><a href="<? echo home_url('/zakupki/tenders/', 'https') ?>">Рус</a></li>
+            <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/tenders/', 'https') ?>">Рус</a></li>
             <li><a href="https://www.kdts.kz/satyp-alul/tender/">Қаз</a></li>
             <li><a href="https://www.kdts.kz/en/zakupki/tenders/">Eng</a></li>
         </ul>
@@ -83,7 +83,7 @@
             <?php the_post(); ?>
             <?php the_content() ?>
 
-            <? if (strstr($_SERVER['REQUEST_URI'], '/zakupki-po-realizatsii-investitsionnyh-proektov/')) { ?>
+            <?php if (strstr($_SERVER['REQUEST_URI'], '/zakupki-po-realizatsii-investitsionnyh-proektov/')) { ?>
                 <div class="rukovodstvo-wrapper">
                     <div class="swiper-container istoriya-thumbs">
                         <div class="swiper-wrapper">
@@ -127,8 +127,8 @@
                         </div>
 
                     </div>
-                <? } ?>
-                <? if (strstr($_SERVER['REQUEST_URI'], '/poryadok-osushhestvleniya-zakupok/')) { ?>
+                <?php } ?>
+                <?php if (strstr($_SERVER['REQUEST_URI'], '/poryadok-osushhestvleniya-zakupok/')) { ?>
                     <div class="rukovodstvo-wrapper">
                         <div class="swiper-container istoriya-thumbs">
                             <div class="swiper-wrapper">
@@ -173,7 +173,7 @@
                             </div>
 
                         </div>
-                    <? } ?>
+                    <?php } ?>
 
                     </div>
     </section> <!-- rukovodstvo-content / -->

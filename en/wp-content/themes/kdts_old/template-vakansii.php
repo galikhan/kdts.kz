@@ -12,7 +12,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/o-kompanii/vakansii/', 'https') ?>"> Eng</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/vakansii/', 'https') ?>"> Eng</a></li>
                 <li><a href="https://kdts.kz/kompaniya-turaly/bos-zhumys-oryndary/">Қаз</a></li>
                 <li><a href="https://kdts.kz/ru/o-kompanii/vakansii/"> Рус</a></li>
             </ul>
@@ -20,7 +20,7 @@
     </div>
 	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<? echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
+            <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
                	About company
             </a>
                     <div class="rukovodstvo-navbar__block">

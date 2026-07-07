@@ -11,7 +11,7 @@
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<? echo home_url('/aktsioneram/informatsiya-o-korporativnykh-sobytiyakh/', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/aktsioneram/informatsiya-o-korporativnykh-sobytiyakh/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://kdts.kz/aktsionerlerge/korporativtik-origalar-turaly-akparat/">Қаз</a></li>
                 <li><a href="https://kdts.kz/en/aktsioneram/informatsiya-o-korporativnykh-sobytiyakh/">Eng</a></li>
             </ul>
@@ -20,7 +20,7 @@
  <main>
        <div class="container-rukovodstvo">
        		<section class="rukovodstvo-navbar">
-           		<a href="<? echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
+           		<a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
                     АКЦИОНЕРАМ
                 </a>
                         <div class="rukovodstvo-navbar__block">
@@ -47,7 +47,7 @@
 							?>
 								<div class="swiper-slide">
 									<div class="swiper-slide__godovaya">
-										<p class="swiper-slide__godovaya-text"> <? echo $field["god"] ?> </p>
+										<p class="swiper-slide__godovaya-text"> <?php echo $field["god"] ?> </p>
 									</div> 
 								</div>
 							<?php 
@@ -83,10 +83,10 @@
                                
 								 <div class="istoriya-items">
 									<div class="istoriya-godovaya">
-											<? echo $img["kontent-god"] ?>
+											<?php echo $img["kontent-god"] ?>
 									</div>  
 									<div class="istoriya-content">
-											<? echo $img["kontent-text"] ?>
+											<?php echo $img["kontent-text"] ?>
 									</div>
 								</div>
                                 
