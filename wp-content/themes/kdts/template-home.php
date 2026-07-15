@@ -28,6 +28,12 @@ wp_enqueue_script( 'kdts-maskedinput', '/ru/js/jquery.maskedinput-1.2.2.js', arr
 					<span class="badge-mini">Алдын ала бағалау</span>
 				</div>
 
+				<div class="calc-type-switch">
+					<button type="button" class="calc-type active" data-type="container" onclick="setCalcType(this)">Контейнер</button>
+					<button type="button" class="calc-type" data-type="wagon" onclick="setCalcType(this)">Вагон</button>
+					<button type="button" class="calc-type" data-type="bulk" onclick="setCalcType(this)">Себілмелі жүк</button>
+				</div>
+
 				<div class="calc-row">
 					<div class="calc-field">
 						<label>Қайдан</label>

@@ -39,11 +39,15 @@
         </nav>
 
         <div class="header-actions">
-            <?php $phone = CFS()->get('telefon1', 606); if ($phone): ?>
-            <a class="phone-link" href="tel:<?php echo esc_attr( preg_replace('/\s+/', '', $phone) ); ?>">
+            <?php $phone = CFS()->get('telefon1', 606); if ($phone): $phones = array_map('trim', explode(',', $phone)); ?>
+            <div class="phone-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 005 5L13 14l5 2v4a2 2 0 01-2 2A16 16 0 013 7a2 2 0 012-2"/></svg>
-                <?php echo esc_html($phone); ?>
-            </a>
+                <span class="phone-numbers">
+                    <?php foreach ($phones as $p): if (!$p) continue; ?>
+                    <a href="tel:<?php echo esc_attr( preg_replace('/\s+/', '', $p) ); ?>"><?php echo esc_html($p); ?></a>
+                    <?php endforeach; ?>
+                </span>
+            </div>
             <?php endif; ?>
 
             <div class="lang-switch">

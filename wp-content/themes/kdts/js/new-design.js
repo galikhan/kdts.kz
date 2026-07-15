@@ -16,6 +16,40 @@ function toggleNav() {
     }, { passive: true });
 })();
 
+/* Nav dropdowns rely on CSS :hover, which touch devices fake unreliably —
+   a tap opens the submenu but a follow-up tap can register as "outside"
+   and close it before a submenu link is reached. On touch, require a
+   first tap to open, then let the next tap (parent link or submenu item)
+   navigate normally. */
+(function() {
+    var dropbtns = document.querySelectorAll('.nav > ul > li.dropbtn');
+    if (!dropbtns.length) return;
+
+    dropbtns.forEach(function(li) {
+        var link = li.querySelector(':scope > a');
+        var content = li.querySelector(':scope > .dropdown-content');
+        if (!link || !content) return;
+
+        link.addEventListener('click', function(e) {
+            if (!window.matchMedia('(hover: none)').matches) return;
+            if (getComputedStyle(content).position === 'static') return;
+            if (!li.classList.contains('open')) {
+                e.preventDefault();
+                dropbtns.forEach(function(other) {
+                    if (other !== li) other.classList.remove('open');
+                });
+                li.classList.add('open');
+            }
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        dropbtns.forEach(function(li) {
+            if (!li.contains(e.target)) li.classList.remove('open');
+        });
+    });
+})();
+
 /* Homepage hero calculator — illustrative estimate only, not a real tariff lookup */
 function showCalcResult() {
     var result = document.getElementById('calcResult');
@@ -33,6 +67,13 @@ function showCalcResult() {
     var priceEl = result.querySelector('.res-price');
     if (priceEl) priceEl.textContent = formatted;
     result.classList.add('show');
+}
+
+function setCalcType(btn) {
+    var group = btn.closest('.calc-type-switch');
+    if (!group) return;
+    group.querySelectorAll('.calc-type').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
 }
 
 function swapCalcFields() {
