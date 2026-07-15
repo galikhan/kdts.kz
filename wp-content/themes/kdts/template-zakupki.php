@@ -41,7 +41,7 @@
                             Аяқталуы
                         </div>
                     </div> <!-- zakupki-head / -->
-                        <?
+                        <?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -55,7 +55,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
@@ -97,7 +97,7 @@
                         </div>
                     </div> <!-- zakupki-head / -->
 		
-                   <?
+                   <?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -111,7 +111,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
@@ -153,7 +153,7 @@
                         </div>
                     </div> <!-- zakupki-head / -->
                    
-					<?
+					<?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -167,7 +167,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
