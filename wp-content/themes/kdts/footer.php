@@ -33,8 +33,8 @@
             <div class="footer-col">
                 <h4>Байланыс</h4>
                 <ul>
-                    <li><a href="tel:+77172648888">+7 (7172) 648 888</a></li>
-                    <li><a href="tel:+77780979797">+7 778 097 97 97</a></li>
+                    <li><a href="tel:+77172648888">+7 (717) 264 88 88</a></li>
+                    <li><a href="tel:+77780979797">+7 (778) 097 97 97</a></li>
                     <li><a href="mailto:kense@kdts.kz">kense@kdts.kz</a></li>
                     <li style="margin-top:8px;opacity:0.7;"><?php echo CFS()->get('adres1', 606); ?><br>«Мәскеу» БО</li>
                 </ul>
