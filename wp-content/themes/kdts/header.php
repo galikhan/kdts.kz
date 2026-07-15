@@ -12,6 +12,8 @@
 
 <body <?php body_class(); ?>>
 
+<?php include get_template_directory() . '/icons/sprite.svg'; ?>
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -41,7 +43,7 @@
         <div class="header-actions">
             <?php $phone = CFS()->get('telefon1', 606); if ($phone): $phones = array_map('trim', explode(',', $phone)); ?>
             <div class="phone-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 005 5L13 14l5 2v4a2 2 0 01-2 2A16 16 0 013 7a2 2 0 012-2"/></svg>
+                <svg class="icon"><use href="#icon-phone"></use></svg>
                 <span class="phone-numbers">
                     <?php foreach ($phones as $p): if (!$p) continue; ?>
                     <a href="tel:<?php echo esc_attr( preg_replace('/\s+/', '', $p) ); ?>"><?php echo esc_html($p); ?></a>
@@ -50,6 +52,7 @@
             </div>
             <?php endif; ?>
 
+            <?php if ( is_front_page() ) : ?>
             <div class="lang-switch">
                 <?php wp_nav_menu(array(
                     'theme_location' => 'yazyk-menu',
@@ -57,9 +60,10 @@
                     'menu_class'     => '',
                 )); ?>
             </div>
+            <?php endif; ?>
 
             <a href="https://my.kdts.kz/" class="btn-cabinet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg class="icon"><use href="#icon-user"></use></svg>
                 Кабинет
             </a>
 

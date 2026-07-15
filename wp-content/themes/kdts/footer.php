@@ -32,11 +32,23 @@
 
             <div class="footer-col">
                 <h4>Байланыс</h4>
-                <ul>
-                    <li><a href="tel:+77172648888">+7 (717) 264 88 88</a></li>
-                    <li><a href="tel:+77780979797">+7 (778) 097 97 97</a></li>
-                    <li><a href="mailto:kense@kdts.kz">kense@kdts.kz</a></li>
-                    <li style="margin-top:8px;opacity:0.7;"><?php echo CFS()->get('adres1', 606); ?><br>«Мәскеу» БО</li>
+                <ul class="footer-contact">
+                    <li>
+                        <svg class="icon"><use href="#icon-phone"></use></svg>
+                        <a href="tel:+77172648888">+7 (717) 264 88 88</a>
+                    </li>
+                    <li>
+                        <svg class="icon"><use href="#icon-phone"></use></svg>
+                        <a href="tel:+77780979797">+7 (778) 097 97 97</a>
+                    </li>
+                    <li>
+                        <svg class="icon"><use href="#icon-mail"></use></svg>
+                        <a href="mailto:kense@kdts.kz">kense@kdts.kz</a>
+                    </li>
+                    <li style="margin-top:8px;opacity:0.7;">
+                        <svg class="icon"><use href="#icon-map-pin"></use></svg>
+                        <span><?php echo CFS()->get('adres1', 606); ?><br>«Мәскеу» БО</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -45,10 +57,10 @@
             <div>1997–<?php echo date('Y'); ?>, АҚ «Кедентранссервис»</div>
             <div class="footer-socials">
                 <a href="https://www.facebook.com/Kedentransservice.kz" target="_blank" rel="noopener" title="Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v8h3v-8h3l1-3h-4V9z"/></svg>
+                    <svg class="icon"><use href="#icon-facebook"></use></svg>
                 </a>
                 <a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" title="Telegram">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg>
+                    <svg class="icon"><use href="#icon-telegram"></use></svg>
                 </a>
             </div>
         </div>
@@ -57,8 +69,11 @@
 
 <div class="float-actions">
     <a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" class="float-btn tg" title="Telegram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4 2 12l6 2 2 6 4-4 6 4 2-16zM10 14l8-6-6 7-2-1z"/></svg>
+        <svg class="icon"><use href="#icon-telegram"></use></svg>
     </a>
+	<a href="#" class="BtnModal float-btn" data-path="arPortfolioItemPhone" aria-label="Қоңырау шалуды сұрау" style="background:var(--c-dark);">
+		<svg class="icon"><use href="#icon-phone"></use></svg>
+	</a>
 </div>
 
 <?php wp_footer(); ?>

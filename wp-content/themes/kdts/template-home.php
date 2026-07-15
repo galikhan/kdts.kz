@@ -9,11 +9,11 @@ wp_enqueue_script( 'kdts-maskedinput', '/ru/js/jquery.maskedinput-1.2.2.js', arr
 ?>
 <?php get_header(); ?>
 
+
 <section class="hero">
 	<div class="container">
 		<div class="hero-grid">
 			<div>
-				<div class="hero-badge"><span class="dot"></span> 1997 жылдан бері нарықта</div>
 				<h1>Қазақстандағы жетекші <span class="highlight">кеден-қоймалық логистика</span> операторы</h1>
 				<p class="lead"><?php echo esc_html( trim( CFS()->get( 'tekst1' ) ) ); ?></p>
 				<div class="hero-cta">
@@ -22,6 +22,8 @@ wp_enqueue_script( 'kdts-maskedinput', '/ru/js/jquery.maskedinput-1.2.2.js', arr
 				</div>
 			</div>
 
+			<div>
+								<div class="hero-badge"><span class="dot"></span> 1997 жылдан бері нарықта</div>
 			<div class="calc-widget">
 				<div class="calc-header">
 					<h3>Жеткізу құнын есептеу</h3>
@@ -70,6 +72,7 @@ wp_enqueue_script( 'kdts-maskedinput', '/ru/js/jquery.maskedinput-1.2.2.js', arr
 					</span>
 					<a href="#" class="BtnModal" data-path="arPortfolioItem1" style="font-weight:600;">Нақты құнын сұрату →</a>
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>
