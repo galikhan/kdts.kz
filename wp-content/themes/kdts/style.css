@@ -295,6 +295,18 @@ h1 {
 }
 
 /* ----------------------------------------------------------------
+   404 PAGE
+   ---------------------------------------------------------------- */
+.error-404 { max-width: 640px; margin: 0 auto; padding: 80px 24px 120px; }
+.error-404__body p { font-size: 16px; line-height: 1.6; color: var(--c-grey); margin: 0 0 14px; }
+.error-404__body ul { list-style: none; padding: 0; margin: 20px 0 36px; display: flex; flex-direction: column; gap: 10px; }
+.error-404__body li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.6; color: var(--c-grey); }
+.error-404__body li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--c-dark); }
+@media (max-width: 640px) {
+  .error-404 { padding: 48px 16px 80px; }
+}
+
+/* ----------------------------------------------------------------
    FOOTER
    ---------------------------------------------------------------- */
 .footer { background: var(--c-dark); color: rgba(255,255,255,0.85); padding-top: 60px; font-family: 'Inter', -apple-system, sans-serif; }
