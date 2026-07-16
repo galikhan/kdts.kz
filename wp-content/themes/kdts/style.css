@@ -307,6 +307,33 @@ h1 {
 }
 
 /* ----------------------------------------------------------------
+   SUSTAINABLE DEVELOPMENT DOCUMENT LIST ("Тұрақты даму", page-id-1383)
+   Scoped to this page only — .aktsioneram-text is shared by other
+   pages for plain paragraph content, not just link lists.
+   ---------------------------------------------------------------- */
+.page-id-1383 .aktsioneram-text { text-indent: 0; }
+.page-id-1383 .aktsioneram-text br { display: none; }
+.page-id-1383 .aktsioneram-text a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; margin-bottom: 8px;
+  background: var(--c-white); border: 1px solid var(--c-line); border-radius: 10px;
+  color: var(--c-dark); text-decoration: none; font-weight: 500; font-size: 15px;
+  transition: all var(--tr);
+}
+.page-id-1383 .aktsioneram-text a::before {
+  content: '';
+  flex-shrink: 0; width: 16px; height: 16px;
+  background-color: var(--c-dark);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain;
+  transition: transform var(--tr);
+}
+.page-id-1383 .aktsioneram-text a:hover {
+  background: var(--c-bg-soft); border-color: var(--c-dark); color: var(--c-dark);
+}
+.page-id-1383 .aktsioneram-text a:hover::before { transform: translateX(3px); }
+
+/* ----------------------------------------------------------------
    FOOTER
    ---------------------------------------------------------------- */
 .footer { background: var(--c-dark); color: rgba(255,255,255,0.85); padding-top: 60px; font-family: 'Inter', -apple-system, sans-serif; }
