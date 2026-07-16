@@ -1824,7 +1824,7 @@ p {
 	padding: 10px 20px;
 	border: none;
 	color: #fff;
-	background-color: #5F6366
+	background-color: var(--c-dark)
 }
 
 .modal-overlay--visible {
@@ -2130,7 +2130,7 @@ p {
 
 .headerV-top {
 	display: none;
-	background-color: #5F6366
+	background-color: var(--c-dark)
 }
 
 .headerV-top .header-top__tel {
@@ -2187,7 +2187,7 @@ p {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 21px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-top: 10px
 }
 
@@ -2233,7 +2233,7 @@ p {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 45px;
-	color: #9c9c9c
+	color: var(--c-dark)
 }
 
 .yazyk ul li {
@@ -2322,7 +2322,7 @@ p {
 }
 
 .footer-block__bottom {
-	background-color: #5F6366
+	background-color: var(--c-dark)
 }
 
 .footer-block__bg {
@@ -2613,7 +2613,7 @@ p {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 32px;
-	color: #5F6366;
+	color: var(--c-dark);
 	margin-top: 18px;
 	text-align: justify;
 }
@@ -2642,7 +2642,7 @@ p {
 }
 
 .abount-otnosheniya .abount-missiya__left {
-	background-color: #5F6366
+	background-color: var(--c-dark)
 }
 
 .abount-otnosheniya .abount-missiya__right {
@@ -2906,7 +2906,7 @@ p {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 25px;
-	color: #676767;
+	color: var(--c-dark);
 	width: 185px;
 	margin: 13px auto auto
 }
@@ -3024,7 +3024,7 @@ p {
 	font-size: 18px;
 	line-height: 24.3px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .filialy-item__icon {
@@ -3053,7 +3053,7 @@ p {
 	font-size: 22px;
 	line-height: 30px;
 	text-indent: 25px;
-	color: #676767;
+	color: var(--c-dark);
 	margin-bottom: 18px
 }
 
@@ -3089,7 +3089,7 @@ table.antiTabel1 th {
 	border: 1px solid #828282;
 	padding: 10px 12px;
 	width: 30px;
-	color: #676767;
+	color: var(--c-dark);
 	font-weight: 400;
 	vertical-align: top
 }
@@ -3113,7 +3113,7 @@ table.antiTabel1 th {
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 22px;
-	color: #676767;
+	color: var(--c-dark);
 	width: 300px;
 	padding-left: 15px
 }
@@ -3279,7 +3279,7 @@ table.antiTabel1 th {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	color: #5F6366
+	color: #5F6366;
 }
 
 .swiper-slide-thumb-active,
@@ -3339,13 +3339,13 @@ table.antiTabel1 th {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 45px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .informatsiya-godi__item-active {
 	font-size: 64px;
 	line-height: 45px;
-	color: #5F6366
+	color: var(--c-dark)
 }
 
 .informatsiya-korporativnykh {
@@ -3471,7 +3471,7 @@ table.tarify-tabel,
 table.tarify-tabel td {
 	border: 1px solid #828282;
 	background-color: #fff;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .tarify-tabel {
@@ -3484,7 +3484,7 @@ table.tarify-tabel td {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 25px;
-	color: #676767;
+	color: var(--c-dark);
 	padding: 9px 12px !important
 }
 
@@ -3608,7 +3608,7 @@ table.tarify-tabel td {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 24.2px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .news-number {
@@ -3621,7 +3621,7 @@ table.tarify-tabel td {
 	font-size: 24px;
 	line-height: 32.4px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .news-number span {
@@ -3683,7 +3683,7 @@ table.tarify-tabel td {
 	font-size: 18px;
 	line-height: 24.3px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .novosti-block__info {
@@ -3848,7 +3848,7 @@ table.marshruty-table {
 	width: 100%;
 	font-size: 18px;
 	line-height: 27px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 table.marshruty-table .marshruty-table__header {
@@ -3869,7 +3869,7 @@ table.marshruty-table .marshruty-table__header1 {
 table.marshruty-table td {
 	line-height: 22px;
 	font-size: 16px;
-	color: #676767;
+	color: var(--c-dark);
 	white-space: pre-wrap;
 	padding: 7px 0;
 	vertical-align: middle;
@@ -4010,7 +4010,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 .kitay-evropa__p {
 	font-size: 18px;
 	line-height: 135%;
-	color: #676767;
+	color: var(--c-dark);
 	text-indent: 25px;
 	margin-bottom: 20px
 }
@@ -4041,7 +4041,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	line-height: 24.3px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767;
+	color: var(--c-dark);
 	padding: 20px 10px
 }
 
@@ -4106,7 +4106,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	text-indent: 25px;
 	line-height: 28.4px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-top: 20px
 }
 
@@ -4198,7 +4198,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	padding: 14px 0;
 	font-size: 14px;
 	line-height: 16.8px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .zakupki-body a {
@@ -4222,7 +4222,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	width: 180px;
 	max-width: 180px;
 	text-align: center;
-	color: #5F6366
+	color: var(--c-dark)
 }
 
 .vse-zakupki {
@@ -4251,7 +4251,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 14px;
 	line-height: 18.9px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .zakupki-number__icon {
@@ -4274,7 +4274,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 14px;
 	line-height: 32.4px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767;
+	color: var(--c-dark);
 	margin-top: 20px
 }
 
@@ -4369,7 +4369,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	line-height: 19.8px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .godovoy-plan__nav {
@@ -4379,7 +4379,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	line-height: 19.8px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .godovoy-plan__nav li {
@@ -4414,7 +4414,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 .avtorizatsiya-checkbox {
 	margin: 0 0 40px;
 	font-size: 18px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-left: 15px
 }
 
@@ -4957,7 +4957,7 @@ table.incoterms tr td.incoterms-item__text {
 
 .gallery-top-thumbs .swiper-slide {
 	height: 100%;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .gallery-top-thumbs .swiper-slide-thumb-active {
@@ -5047,7 +5047,7 @@ table.incoterms tr td.incoterms-item__text {
 
 .gallery-thumbs .swiper-slide {
 	height: 100%;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .rukovodstvo-pagination .swiper-pagination-progressbar-fill {
@@ -5125,7 +5125,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 32.4px;
-	color: #5F6366
+	color: var(--c-dark)
 }
 
 .rukovodstvo-navbar__block {
@@ -5133,7 +5133,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-style: normal;
 	font-weight: 500;
 	font-size: 20px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .rukovodstvo-navbar__block li {
@@ -5159,7 +5159,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-style: normal;
 	font-size: 20px;
 	line-height: 26px;
-	color: #676767;
+	color: var(--c-dark);
 	margin-bottom: 25px;
 	width: 100%;
 	max-width: 100%;
@@ -5223,7 +5223,7 @@ table.incoterms tr td.incoterms-item__text {
 .user-dolzhnost {
 	font-size: 20px;
 	line-height: 26px;
-	color: #676767;
+	color: var(--c-dark);
 	padding: 13px 0 11px
 }
 
@@ -5344,7 +5344,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 47.7px;
-	color: #676767;
+	color: var(--c-dark);
 	margin-bottom: 31px;
 	padding: 0 16px
 }
@@ -5353,7 +5353,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 47.7px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-left: 10px
 }
 
@@ -5361,7 +5361,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 47.7px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-left: 10px
 }
 
@@ -5370,7 +5370,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 47.7px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-left: 10px
 }
 
@@ -5378,7 +5378,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 47.7px;
-	color: #676767;
+	color: var(--c-dark);
 	padding-left: 10px
 }
 
@@ -5411,7 +5411,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-style: normal;
 	font-weight: 500;
 	font-size: 13px;
-	color: #676767;
+	color: var(--c-dark);
 	text-transform: uppercase;
 	position: relative
 }
@@ -5423,53 +5423,11 @@ table.incoterms tr td.incoterms-item__text {
 }
 
 .menu li a:hover {
-	color: #5F6366
+	color: var(--c-dark)
 }
 
 .navMenu {
 	display: flex
-}
-
-.dropdown-content {
-	display: block !important;
-	position: absolute;
-	left: 0;
-	top: 40px;
-	background: #fff;
-	z-index: 1;
-	max-width: 254px;
-	width: 254px;
-	opacity: 0;
-	transform: scaleY(0);
-	transform-origin: 0 0;
-	transition: .5s ease-in-out
-}
-
-.dropdown-content li {
-	cursor: pointer;
-	display: block;
-	width: 100%;
-	max-width: 100%;
-	border-bottom: 1px solid #5F6366;
-	font-size: 14px
-}
-
-.dropdown-content li a {
-	padding: 7px 15px;
-	width: 100%
-}
-
-.dropdown-content li:last-child {
-	border-bottom: none
-}
-
-.menu li:hover .dropdown-content {
-	opacity: 1;
-	transform: scaleY(1)
-}
-
-.dropdown-content a:hover {
-	color: #54b2ff
 }
 
 .dropbtn .current_page_item {
@@ -7410,7 +7368,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		justify-content: space-between;
 		align-items: center;
 		padding: 10px;
-		background-color: #5F6366
+		background-color: var(--c-dark)
 	}
 
 	.header-phone__logo {
@@ -7514,17 +7472,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	.phone-menu__img {
 		width: 35px;
 		height: 35px
-	}
-
-	.menu li:hover .dropdown-content {
-		position: static;
-		width: 100%;
-		max-width: 100%
-	}
-
-	.dropdown-content li {
-		border-bottom: none;
-		line-height: 24px
 	}
 
 	.uslug-item:nth-child(2) {
@@ -9371,7 +9318,7 @@ body {
 	font-size: 30px;
 	line-height: 135%;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #5F6366
+	color: var(--c-dark)
 }
 
 .istoriya-elips {
@@ -9411,7 +9358,7 @@ body {
 	text-align: justify;
 	font-size: 18px;
 	line-height: 26px;
-	color: #676767
+	color: var(--c-dark)
 }
 
 .istoriya-info__text p {
@@ -9803,7 +9750,7 @@ body {
 
 .insert-content__btn {
 	display: inline-block;
-	background-color: #5F6366;
+	background-color: var(--c-dark);
 	padding: 10px 30px;
 	color: #fff;
 	border-radius: 5px;

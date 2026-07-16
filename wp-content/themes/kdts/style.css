@@ -175,14 +175,13 @@ h1 {
 .nav > ul > li.current-menu-ancestor > a { background: var(--c-dark); color: var(--c-white); }
 
 .nav .dropdown-content {
-  display: none !important; position: absolute; top: calc(100%); left: 0;
+  display: none; position: absolute; top: calc(100%); left: 0;
   background: var(--c-white); border: 1px solid var(--c-line);
   border-radius: 10px; box-shadow: var(--shadow-md);
   min-width: 220px; z-index: 200; list-style: none; padding: 6px; margin: 0;
-  opacity: 1; transform: none;
 }
 .nav > ul > li:hover > .dropdown-content,
-.nav > ul > li.open > .dropdown-content { display: block !important; }
+.nav > ul > li.open > .dropdown-content { display: block; }
 .nav .dropdown-content li a { display: block; padding: 9px 14px; font-size: 13px; color: var(--c-dark); border-radius: 6px; transition: background var(--tr); }
 .nav .dropdown-content li a:hover { background: var(--c-bg-soft); }
 
