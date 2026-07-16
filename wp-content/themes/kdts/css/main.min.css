@@ -4090,7 +4090,9 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 21.6px;
-	color: #fff
+	color: #fff;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden
 }
 
 .zakupki-name {
@@ -4113,16 +4115,31 @@ table.marshruty-table tr.marshruty-table__item1 {
 	display: flex;
 	justify-content: space-between;
 	max-width: 850px;
-	border-bottom: 1px solid #d9dada;
-	padding: 14px 0;
+	border-bottom: 1px solid var(--c-line);
+	border-left: 1px solid var(--c-line);
+	border-right: 1px solid var(--c-line);
+	padding: 4px 0;
 	font-size: 14px;
 	line-height: 16.8px;
-	color: var(--c-dark)
+	color: var(--c-dark);
+	transition: background var(--tr)
+}
+
+.zakupki-body:last-of-type {
+	border-radius: 0 0 10px 10px
+}
+
+.zakupki-body:hover {
+	background: var(--c-bg-soft)
 }
 
 .zakupki-body a {
 	display: flex;
-	justify-content: space-between
+	justify-content: space-between;
+	width: 100%;
+	padding: 10px 0;
+	text-decoration: none;
+	color: inherit
 }
 
 .zakupki-body__name {
@@ -4146,9 +4163,31 @@ table.marshruty-table tr.marshruty-table__item1 {
 
 .vse-zakupki {
 	margin-top: 15px;
-	font-size: 18px;
+	font-size: 14px;
 	line-height: 120%;
-	color: #0B2335
+	color: var(--c-dark)
+}
+
+.vse-zakupki a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--c-dark);
+	font-weight: 600;
+	text-decoration: none;
+	transition: gap var(--tr)
+}
+
+.vse-zakupki a::after {
+	content: '';
+	width: 14px; height: 14px;
+	background-color: var(--c-dark);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain
+}
+
+.vse-zakupki a:hover {
+	gap: 10px
 }
 
 .zakupki-number__text {
@@ -9220,25 +9259,87 @@ body {
 	align-items: center;
 }
 
+.kontakty {
+	background: var(--c-white);
+	border: 1px solid var(--c-line);
+	border-radius: 14px;
+	box-shadow: var(--shadow-sm);
+	padding: 8px 32px;
+}
+
 .kontakty-block {
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid #d39c00;
-	padding: 10px 0;
-	margin-bottom: 30px;
-	font-size: 18px;
+	align-items: baseline;
+	gap: 24px;
+	border-bottom: 1px solid var(--c-line);
+	padding: 20px 0;
+	margin-bottom: 0;
+	font-size: 15px;
+}
+
+.kontakty-block:last-child {
+	border-bottom: none;
 }
 
 .kontakty-bloki {
-	width: 29%;
+	width: 32%;
+	flex-shrink: 0;
 }
 
 .kontakty-bloki1 {
-	width: 69%;
+	width: 68%;
+	color: var(--c-grey);
 }
 
 .kontakty-bloki span {
-	font-weight: 700
+	font-weight: 700;
+	color: var(--c-dark);
+}
+
+.kontakty-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--c-dark);
+	font-weight: 600;
+	text-decoration: none;
+	transition: gap var(--tr);
+}
+
+.kontakty-link .icon {
+	width: 14px;
+	height: 14px;
+}
+
+.kontakty-link:hover {
+	gap: 10px;
+}
+
+.kontakty-hotline {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.kontakty-hotline li {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.kontakty-hotline .icon {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	color: var(--c-dark);
+}
+
+.kontakty-hotline__plain {
+	padding-left: 28px;
 }
 
 .kontakty-tel__block li {

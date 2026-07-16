@@ -105,8 +105,10 @@
 							<span> «Кедентранссервис» АҚ филиалдарының&nbsp;байланыстары: </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<a href="<?php echo home_url('/kompaniya-turaly/filialdar-zh-ne-kildikter/', 'https') ?>" class="godovoy-plan__nav-text"> Филиалдар және өкілдіктер </a>
-
+							<a href="<?php echo home_url('/kompaniya-turaly/filialdar-zh-ne-kildikter/', 'https') ?>" class="kontakty-link">
+								Филиалдар және өкілдіктер
+								<svg class="icon"><use href="#icon-chevron-right"></use></svg>
+							</a>
 						</div>
 					</div> <!-- kontakty-block / -->
 					<div class="kontakty-block">
@@ -162,12 +164,12 @@
 							<span> &nbsp; </span>
 						</div>
 						<div class="kontakty-bloki1">
-							<ul class="kontakty-tel__block">
-								<li style="margin-bottom:1rem"><img src="<?php echo get_template_directory_uri(); ?>/img/phone-call123.png" class="goryaschaya-leniya__icon" style="display:inline-block; vertical-align:middle">- Жедел байланыс желісі: 8-800-080-47-47</li>
-								<li style="margin-bottom:1rem"><img src="<?php echo get_template_directory_uri(); ?>/img/whatsapp.png" class="goryaschaya-leniya__icon" style="display:inline-block; vertical-align:middle">- WhatsApp мобильді қосыша: 8-771-191-88-16</li>
-								<li style="margin-bottom:1rem"><img src="<?php echo get_template_directory_uri(); ?>/img/internet.png" class="goryaschaya-leniya__icon" style="display:inline-block; vertical-align:middle">- Интернет-портал: www.sk-hotline.kz </li>
-								<li style="margin-bottom:1rem"><img src="<?php echo get_template_directory_uri(); ?>/img/email123.png" class="goryaschaya-leniya__icon" style="display:inline-block; vertical-align:middle">- Электрондық пошта: mail@sk-hotline.kz</li>
-								<li>Мобильдік қосымша: KTZ HSE</li>
+							<ul class="kontakty-hotline">
+								<li><svg class="icon"><use href="#icon-phone"></use></svg> Жедел байланыс желісі: 8-800-080-47-47</li>
+								<li><svg class="icon"><use href="#icon-whatsapp"></use></svg> WhatsApp мобильді қосыша: 8-771-191-88-16</li>
+								<li><svg class="icon"><use href="#icon-globe"></use></svg> Интернет-портал: www.sk-hotline.kz</li>
+								<li><svg class="icon"><use href="#icon-mail"></use></svg> Электрондық пошта: mail@sk-hotline.kz</li>
+								<li class="kontakty-hotline__plain">Мобильдік қосымша: KTZ HSE</li>
 								<!--<li>- көпарналы телефон 8-800-080-30-30</li>
 								<li>- WhatssApp 8-702-075-30-30</li>
 								<li>- Веб-сайт nysana.cscc.kz </li>
