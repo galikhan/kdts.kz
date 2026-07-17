@@ -33,10 +33,11 @@
 
             <section class="rukovodstvo-content">
                 <h1 class="partnery-title">
-                    <?php the_post(); ?>
-                    <?php the_content() ?>
+                    <?php the_title(); ?>
                 </h1>
-                
+                <?php the_post(); ?>
+                <div class="istoriya-lead"><?php the_content() ?></div>
+
                   <div class="rukovodstvo-container">
                     <div class="istoriya-lain">
     
@@ -70,10 +71,10 @@
                        
                     </div>
                     <div class="godovaya-next" style="top: 135px; transform: translateY(-100px); left: 0;">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
+                        <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
                     </div>
                     <div class="godovaya-prev" style="top: 135px; transform: translateY(-100px); right: 0;">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
+                        <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
                     </div>
                 </div>
              

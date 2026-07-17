@@ -322,9 +322,10 @@ existing hand-drawn stroke-style icons already in `header.php`/
   `icon-mail`, `icon-map-pin`, `icon-user`, `icon-swap`, `icon-check`,
   `icon-chevron-right`, `icon-clock`, `icon-file`, `icon-edit`,
   `icon-list`, `icon-facebook`, `icon-telegram`, `icon-whatsapp`,
-  `icon-connect-hr` (envelope + person, for an HR-contact use case).
-  Stroke-based ones follow the existing style: `viewBox="0 0 24 24"
-  fill="none" stroke="currentColor" stroke-width="2"
+  `icon-connect-hr` (envelope + person, for an HR-contact use case),
+  `icon-globe` (added in section 16, for a "website/portal" contact
+  line). Stroke-based ones follow the existing style: `viewBox="0 0 24
+  24" fill="none" stroke="currentColor" stroke-width="2"
   stroke-linecap="round" stroke-linejoin="round"`; brand marks
   (facebook/telegram/whatsapp) are filled, `fill="currentColor"`.
 - **`wp-content/themes/kdts/icons/preview.html`** — a standalone page
@@ -341,11 +342,14 @@ existing hand-drawn stroke-style icons already in `header.php`/
   height:14px }` etc.) needed **no changes** — it targets the `svg`
   element itself regardless of whether it contains raw paths or a
   `<use>`.
-- Currently wired up in `header.php` (phone, cabinet/user icons) and
-  `footer.php` (phone ×2, mail, map-pin, facebook, telegram). Plenty of
-  inline SVGs elsewhere (`template-home.php` calc swap/check, services
-  arrow, cabinet feature icons) were **not** migrated yet — same
-  pattern applies whenever it's worth consolidating them.
+- Currently wired up in `header.php` (phone, cabinet/user icons),
+  `footer.php` (phone ×2, mail, map-pin, facebook, telegram),
+  `template-filialy.php` (72 icons across 18 branch cards — see
+  section 15), and `template-kontakty.php` (branch-directory link +
+  hotline list — see section 16). Plenty of inline SVGs elsewhere
+  (`template-home.php` calc swap/check, services arrow, cabinet
+  feature icons) were **not** migrated yet — same pattern applies
+  whenever it's worth consolidating them.
 - WhatsApp icon exists in the pack but is **not wired to a real link
   anywhere** — the only WhatsApp number found in the codebase
   (`template-kontakty.php`, `8 702 075 30 30`) turned out to be a
@@ -468,3 +472,423 @@ In addition to the original section-5 checklist:
    audit it the same way as section 8 for classes reused by the new
    design (`.dropdown-content`, `.header`, `color: #676767`-style flat
    colors, etc.) rather than assuming it's a clean, unrelated file.
+
+## 13. 404 page
+
+`404.php` used the same shared, unstyled legacy classes as many other
+pages (`.dell-container`, `.uslugi-peregruza__h1`, `.uslugi-peregruza__text`
+— also used by real "uslugi-peregruza" content pages). Rather than
+restyle those shared classes, gave the 404 page its own markup/class
+(`.error-404`, `.error-404__body`) so nothing else is affected:
+
+- Reused the existing `.partnery-title` heading treatment (the small
+  yellow "\\" accent mark) for consistency with every other content
+  page's `<h1>`, instead of inventing a new heading style.
+- Constrained body copy to `max-width:640px` for readability (was
+  spanning the full page width before).
+- Replaced the default `<ul>` bullets with a small dot-marker style.
+- Added a real "Басты бетке оралу" (return home) button
+  (`.btn.btn-primary`) — there wasn't one before.
+- Verified the real `404` HTTP status still fires (`curl -o /dev/null
+  -w "%{http_code}"`) — a template redesign like this doesn't touch
+  WordPress's own 404 detection, but worth confirming since a wrong
+  template hierarchy match could silently turn it into a 200.
+
+## 14. Generic "simplepage" content pages (`template-page.php` /
+    `.aktsioneram-text`)
+
+`template-page.php` (`Template name: simplepage`) is a shared template
+used by an unknown number of plain content pages — some just prose
+(e.g. the mission/vision paragraph on `template-onas.php` reuses the
+same `.aktsioneram-text` wrapper class), others structured lists like
+the "Тұрақты даму" (sustainable development) page, whose content is a
+flat run of real document links separated by `<br>`:
+```html
+<a href="https://drive.google.com/.../view">1. Тұрақты даму саласындағы саясат</a><br>
+<a href="/wp-content/uploads/.../file.pdf" target="_blank">2. Стейкхолдер ережелері мен картасы</a><br>
+...
+```
+(this is raw post_content typed into the editor — not a repeater
+field, don't go looking for one).
+
+Because `.aktsioneram-text` is shared, **do not restyle it broadly** —
+a link-list treatment would look wrong on pages that just have plain
+paragraphs. Instead scope new rules to the specific page via
+`body_class()`'s automatic `page-id-{N}` class (`page-id-1383` for
+"Тұрақты даму" locally — **will be a different ID on another WP
+install/DB, look it up again, don't hardcode 1383 elsewhere**):
+- `.page-id-1383 .aktsioneram-text a` — turned each link into a
+  card-style row (white bg, border, radius, padding) with a small
+  left-side arrow icon (CSS `mask-image` of the chevron shape, colored
+  `var(--c-dark)` — not the sprite `<use>`, since `content:` can't
+  reference it) that nudges right on hover.
+- `.page-id-1383 .aktsioneram-text br { display:none }` — hides the
+  manual line breaks now that each link is its own block row (kept
+  scoped to this page; `<br>` is far too generic a selector to touch
+  globally).
+- **Gotcha:** `template-page.php` has an inline `<style>` block placed
+  in the document body with `.aktsioneram-text a:hover{color:#54b2ff}`
+  (old bright blue). Because it's equally-specific to a same-specificity
+  external rule and comes later in the DOM, it wins on equal
+  specificity — the new `:hover` rule must **explicitly set `color`**
+  (not just background/border) with a same-or-higher-specificity
+  selector, or the old blue leaks through only on hover, which is easy
+  to miss in a static screenshot and only shows up when you actually
+  hover the element.
+
+## 15. Branches / representative offices (`template-filialy.php`)
+
+18 repeated `.filialy-item` blocks (office name, address, phone(s),
+email, station code), each icon a raw `<img>` pointing at old asset
+files (`img/filialyAddress.svg`, `img/filialyTel.svg`,
+`img/filialyEmail.svg`, `img/filialycode.png`) with the icon's blue
+circle baked into the image itself (not CSS-controlled). Replaced all
+72 `<img>` tags (scripted regex substitution, `php -l` verified after)
+with sprite icons: `icon-map-pin`, `icon-phone`, `icon-mail`,
+`icon-file` (used for the station-code row — no dedicated "code" icon
+existed or was worth adding for one field). Recolored the badge from
+the old baked-in blue to `var(--c-dark)` on a `var(--c-bg-soft)` circle
+for consistency with the rest of the icon system (see section 9)
+rather than preserving old brand-less blue.
+
+CSS (`main.min.css`, in place, same selectors):
+- `.filialy-items`: was `display:flex` with per-side borders
+  (`border-top`/`border-right` on the item, a `.filialy-item__rigth`
+  modifier stripping the right border, a `.filialy-item__bottom`
+  modifier for the bottom one) — a hand-rolled way of faking a table
+  grid with flex-wrap. Replaced with `display:grid;
+  grid-template-columns:repeat(2,1fr)` and gave each `.filialy-item` a
+  full white card (border all sides, radius, shadow) instead — the
+  `__rigth`/`__bottom` modifier classes are still in the markup (18
+  items alternate them) so they were neutralized to match the new full
+  border rather than removed, to avoid a bigger markup edit.
+- **Found a pre-existing, unrelated container bug while doing this**:
+  the shared `.dell-container` class (used by several other page
+  sections too — `abount-map__container`, `marshruty-container`,
+  `novosti-container`) has `width:100%; padding:0 15px` with **no
+  max-width at all** outside its own responsive breakpoints — meaning
+  at typical desktop widths it's genuinely full-viewport, just with a
+  15px gutter. This made the branch cards sit almost flush against the
+  browser edges while everything else on the page (header, sidebar)
+  used the real `.container`'s 1280px/24px rhythm. Fixed by adding
+  `max-width:1280px; margin:0 auto` to `.filialy-items` itself (my own
+  grid container) rather than touching the shared `.dell-container` —
+  if another page rendered via `.dell-container` looks flush-to-edge
+  the same way, this is why; same fix (scope a max-width to that
+  page's own inner wrapper) applies.
+- Two mobile breakpoints (`max-width:768px`, `max-width:576px`) still
+  had the old `border:2px solid #5F6366` per item and a `justify-content:
+  center` on `.filialy-items` with **no** `grid-template-columns`
+  override — meaning after switching the base rule to CSS Grid, mobile
+  would have kept a 2-column *track* structure with narrow centered
+  items inside each column instead of collapsing to one column (a flex
+  container would have naturally wrapped; a grid container does not,
+  since the column count is explicit). Both breakpoints needed
+  `grid-template-columns:1fr` added explicitly, plus the old grey
+  borders swapped for `var(--c-line)`/removed.
+
+## 16. Contacts page (`template-kontakty.php`, `.kontakty`) and
+    procurement tables (`.zakupki-*`)
+
+- **`.kontakty`** (label/value contact info list): had an odd
+  alternating grey/orange `border-bottom` per row (`#d39c00`, the same
+  gold used in the `.partnery-title` accent mark elsewhere, next to
+  plain `--c-line`-ish grey — inconsistent, looked accidental).
+  Wrapped the whole thing in one white card and normalized every row
+  to a single `--c-line` divider.
+  - The "Филиалдар және өкілдіктер" (branches) link was reusing
+    `.godovoy-plan__nav-text` — the procurement-sidebar **section
+    heading** class from section 10/an earlier pass — which is why it
+    rendered as a small bold uppercase grey label instead of looking
+    like a clickable link. Gave it its own `.kontakty-link` class:
+    inline-flex, `icon-chevron-right`, hover-gap animation, matching
+    the pattern used in sections 10/14.
+  - The real hotline/complaints list at the bottom (`8-800-080-47-47`,
+    WhatsApp `8-771-191-88-16`, `www.sk-hotline.kz`,
+    `mail@sk-hotline.kz`, "Мобильдік қосымша: KTZ HSE") is a **second,
+    different** third-party anonymous-complaints channel from the one
+    found in section 9 (`sk-hotline.kz` here vs. `nysana@cscc.kz`/
+    `cscc.kz` in the other spot) — both are real, both are *not*
+    KDTS's own support channel. Swapped the old `<img>` icons
+    (`phone-call123.png`, `whatsapp.png`, `internet.png`,
+    `email123.png`) for sprite icons (`icon-phone`, `icon-whatsapp`,
+    the new `icon-globe`, `icon-mail`), recolored navy. Left the actual
+    numbers/domains/copy completely untouched — only the icon
+    presentation changed.
+  - There's a second, *entirely separate* hotline block at the top of
+    this same template (`<section class="kontakty-navbar" style="display:
+    none;">`, mentioning `nysana@cscc.kz` again) that's already
+    `display:none` inline — genuinely dead/invisible, left alone.
+- **`.zakupki-head` / `.zakupki-body`** (procurement tables — dark
+  header row + white body rows): added rounded corners top (`.zakupki-
+  head`) and bottom (`.zakupki-body:last-of-type`), side borders so
+  the whole thing reads as one contained card instead of a bare row
+  list, and a `:hover` background on each `.zakupki-body` row (the row
+  is a single big `<a>` already, so `:hover` on the row wrapper is
+  enough — no JS needed).
+- **`.vse-zakupki`** ("Барлық сатып алуларды көрсету" / show-all link):
+  was plain 18px text with no visual indication it's a link. Same
+  chevron-icon-via-CSS-mask + hover-gap pattern as sections 10/14.
+
+## 17. Full site audit + remaining-templates pass (all 55 static pages)
+
+Sections 1–16 had only covered the homepage, header/footer/nav,
+breadcrumb+sidebar chrome, 404, one `simplepage` instance, filialy,
+and kontakty. This pass audited **every** static page on the site
+(enumerated from `wp_posts` — 55 published `page` rows, full
+parent/child URL tree built from `post_parent`, not guessed) and
+redesigned whichever ones were still on old markup.
+
+### 17.1 Audit method
+
+Per-page template comes from `_wp_page_template` in `wp_postmeta`, not
+the visible URL — query it directly rather than guessing from the
+slug:
+```sql
+SELECT p.ID, p.post_title, p.post_name, m.meta_value
+FROM wp_posts p
+LEFT JOIN wp_postmeta m ON m.post_id = p.ID AND m.meta_key = '_wp_page_template'
+WHERE p.post_status='publish' AND p.post_type='page';
+```
+"Already redesigned" was **not** reliably detectable by grepping for
+class names in `style.css` (old classes are just as findable in
+`main.min.css`, which is loaded on every page — see section 8). The
+real signal was cross-referencing `git log --oneline -- <file>`
+against which commits were known redesign passes; a template only
+touched by the section-10 breadcrumb/sidebar script (11-line diffs
+across ~53 files) still had **unstyled body content**, even though it
+looked "touched" in git blame.
+
+Confirmed already done before this pass (skip list): `template-home.php`,
+`template-filialy.php`, `template-kontakty.php` (section 16),
+`template-page.php` **only for page-id-1383** (section 14), and the
+entire tender/procurement family (`template-zakupki.php`,
+`template-tenders.php`, `template-arkhivy.php`, and all 8
+`archive-{odnogo,otkrytogo,tsenovykh,dvukhetapnogo}[ar].php` listing
+templates) — these all share the already-redesigned `.zakupki-head`
+`.zakupki-body` `.zakupki-navbar` component (section 16), so nothing
+further was needed there beyond the bugs noted in 17.3.
+
+Two pages (`klientterge`, `tasymaldaulardy-marshruttary`) turned out to
+be pure `<meta http-equiv="refresh">` redirect stubs with no real body
+— nothing to redesign, not a gap.
+
+Everything else (~26 pages, ~30 unique template files) got a redesign
+pass: `template-onas.php`, `template-rukovodstvo.php`,
+`template-direktorov.php`, `template-istoriya-kompanii.php`,
+`template-vakansii.php`, `template-partnery.php`, `template-uslugi.php`,
+`template-uslugi-peregruza.php` (+2/3/4), `template-aktsioneram.php`,
+`template-vnutrennie.php`, `template-otchetnost.php`,
+`template-informatsiya.php`, `template-affilirovannykh.php`,
+`template-stavki.php`, `template-park.php`, `template-marshruty1-8.php`,
+`marshruty-text.php`, `template-uchreditelnye.php`,
+`template-tipovye-dogovora.php`, `template-godovoy-plan.php`,
+`template-grafik-provedeniya.php`, `template-dopolnitelnaya-informatsiya.php`,
+`template-plan-dolgosrochnykh-zakupok.php`, `zakup-menu.php`,
+`template-virtualnaya-priemnaya.php`, `archive-novosti.php`,
+`archive-obyavleniya.php`, `template-o-sayte.php`, `template-page.php`
+(the shared, un-scoped parts), `template-pageb.php`.
+
+### 17.2 Approach: in-place polish, not per-page rebuilds
+
+Given the volume (~30 files), most of these were **not** rebuilt from
+scratch like `template-home.php` was. Reading the actual old CSS
+showed it was usually already on-brand (`#0B2335` **is** `var(--c-dark)`
+— the palette never changed, just the finish), so the pass was a
+consistent "polish" applied per component family rather than novel
+layouts:
+
+- Card-ify flat/bare lists and grids: white/`--c-bg-card` background,
+  `1px solid var(--c-line)` border, `border-radius` (14–20px),
+  `var(--shadow-sm)` at rest / `var(--shadow-md)` + `translateY(-2px)`
+  on hover. Applied to: `.vnutrennie-item` (shared by 4 templates —
+  `vnutrennie`, `grafik-provedeniya`, `dopolnitelnaya-informatsiya`,
+  `plan-dolgosrochnykh-zakupok`), `.godovaya-item` (shared by
+  `otchetnost`, `affilirovannykh`, `godovoy-plan`, `pageb`),
+  `.uchreditelnye-dokumenty__item`, `.tarify-item`,
+  `.tipovye-dogovora__item`, `.rezidentov-item`, `.partnery-item__photo`,
+  `.novosti-item` (grid on `archive-novosti.php`, row layout scoped
+  under a new `.obyavleniya-page` wrapper on `archive-obyavleniya.php`
+  since the two pages want different shapes from the same shared
+  classes), `.virtualnaya-wrapper`/`.virtualnaya-input` (Contact Form 7
+  page), `.cert-block` (new, `template-onas.php` certificate row).
+- Swapped raster prev/next arrow PNGs (`ArrowNext.png`/`ArrowPrev.png`,
+  `nextPartnery.png`/`prevPartnery.png`) for the existing icon sprite's
+  `icon-chevron-right` (rotated 180° for "prev") across
+  `template-rukovodstvo.php`, `template-direktorov.php` (shared CSS),
+  `template-istoriya-kompanii.php`, `template-otchetnost.php`,
+  `template-affilirovannykh.php`, `template-godovoy-plan.php`,
+  `archive-obyavleniya.php` — same reasoning as section 9, one less
+  external asset dependency per swap.
+- All new/appended CSS went into `css/main.min.css` (appended at file
+  end under a banner comment), **not** `style.css` — confirmed via
+  `functions.php`'s `wp_enqueue_style()` call order that `kdts-style`
+  (`style.css`) is enqueued **before** `mtk-normalize`
+  (`main.min.css`), i.e. `main.min.css` wins the cascade on equal
+  specificity. This is the opposite of what section 8 might suggest at
+  a glance — rules added to `style.css` for these older templates were
+  silently losing to `main.min.css` until this was checked. One
+  exception: `.simplepage-container` (new, page-level container,
+  see 17.4) went in `style.css` since nothing in `main.min.css` uses
+  that class name to conflict with it; its full-width sibling rule
+  `.rukovodstvo-content--full` still had to go in `main.min.css`
+  because it overrides `.rukovodstvo-content`'s width, which **is**
+  defined there.
+
+### 17.3 Real bugs found and fixed (not just styling)
+
+- **8 route pages (`tasymaldaulardy-marshruttary/*`) showed no real
+  content at all.** The shared include `marshruty-text.php` (used by
+  all of `template-marshruty1-8.php`) hardcoded a Russian
+  "Раздел на реконструкции" ("section under reconstruction") message
+  with the real `the_post()`/`the_content()` calls commented out.
+  Checked `wp_posts.post_content` for all 8 route post IDs first —
+  each had 1.3–1.5KB of real, real Kazakh route copy already using the
+  existing `.marshruty-text__color` class (styled, unused). Uncommented
+  the real calls, deleted the placeholder. Also added
+  `.marshruty-text__wrapper ul/li` styling (dot-free bordered rows)
+  since the real content's `<ul><li>` items already have a manual
+  "- " text prefix — default bullets would have doubled up.
+- **`/obyavleniya/` rendered a blank generic page.** Post 1500 has
+  `_wp_page_template` unset (falls back to the theme's default
+  `page.php`, which is unmodified `_s`/underscores boilerplate —
+  no breadcrumb, no sidebar, no styling at all, and `post_content` is
+  empty). The theme already has a fully-built, working listing
+  template for this, `archive-obyavleniya.php` (`Template name:
+  obyavleniya`, queries the real `obyavleniya` CPT, buckets 8 real
+  posts into year-tab swiper slides by **hardcoded post-ID ranges** —
+  fragile but functional and pre-existing, not something to rebuild) —
+  it was simply never assigned. Fixed by inserting the
+  `_wp_page_template` postmeta row for post 1500 pointing at it,
+  confirmed via `curl` that real announcement content now renders
+  where before there was none. (The CPT is registered with
+  `has_archive => true` and default rewrite, which is why
+  `archive-obyavleniya.php` exists as a file at all — but a static
+  page at the same slug pre-empts the CPT archive URL in WP's routing,
+  so the file was effectively orphaned until explicitly assigned.)
+- **Wrong-domain hotlinked icons**, 8 occurrences across
+  `template-grafik-provedeniya.php`, `template-antikorruptsionnaya.php`
+  (unused by any live page, fixed anyway), `template-stavki.php` (×2),
+  `template-dopolnitelnaya-informatsiya.php`, `template-vnutrennie.php`,
+  `template-plan-dolgosrochnykh-zakupok.php`,
+  `template-tipovye-dogovora.php`, plus 2 more in
+  `template-uchreditelnye.php` and `template-pageb.php` — all pointed
+  at `https://work.almazvoda.kz/...` or `https://www.kdts.kz/ru/...`
+  (a different company's domain, and the removed `/ru/` install
+  respectively) instead of `get_template_directory_uri()`. Fixed to
+  local paths.
+  - **Gotcha hit while fixing this via `sed` across files:** several of
+    these `<img>` tags sit inside a single-quoted PHP `echo '...'`
+    block (`echo '<img src="'.$var.'">'` string-concatenation style).
+    A regex substitution that blindly inserts `<?php echo
+    get_template_directory_uri(); ?>` works for tags in normal
+    top-level HTML context, but **inside a single-quoted string that
+    text is never parsed as PHP** — it prints literally, producing a
+    permanently broken `<img>` src. Caught by checking 2–3 lines of
+    context above every match for the `'.$var.'` concatenation pattern
+    before deciding the fix form; the string-context occurrences
+    needed `'.get_template_directory_uri().'` instead. One
+    plain-HTML-context occurrence (`template-stavki.php`'s
+    `tarifyBg.png`) got wrongly rewritten to the string-concat form by
+    the same blind sed pass and had to be reverted to the `<?php echo
+    ?>` form. Lesson: never blanket-regex a fix across files without
+    checking, per match, whether it's landing inside a PHP string
+    literal or real template HTML — the two need opposite syntax.
+- **Broken link**: `template-informatsiya.php`'s sidebar linked
+  `home_url('/aktsioneram')` (typo, 404) instead of
+  `/aktsionerlerge/`. Confirmed the 404 with `curl` before and the fix
+  after.
+- **Nav label typo**: `zakup-menu.php`'s shared tender sidebar (used by
+  11 pages) had "Сатып алуар" (missing "л") instead of "Сатып алулар".
+- **Mislabeled cross-links in the route-switcher panel**
+  (`template-marshruty2.php`/`3.php`): entries whose `href` didn't
+  match their visible label — e.g. a link to
+  `europa-resej-riga-arkyly` (the real "Europe–Russia via Riga" page)
+  labeled "Еуропа-Орталық Азия (Рига арқылы)" ("Europe–Central Asia via
+  Riga", a different real page). `marshruty3.php` had this **twice**
+  plus a broken/mixed-language label "Сучжоу (Китай - Варшава (Польша)"
+  (Russian "Китай" instead of Kazakh "Қытай", unbalanced parens) — same
+  Russian-word typo also found and fixed in `marshruty4.php`/`6.php`.
+  Fixed by matching each link's `href` against the real page
+  slugs/titles from `wp_posts` and correcting whichever side (label or
+  href) was wrong for that entry — verified against the DB, not
+  guessed.
+- **Wrong hardcoded sidebar on the shared "simplepage" family**:
+  `template-page.php` (section 14) and `template-pageb.php` both
+  unconditionally rendered a "Компания туралы" / "О КОМПАНИИ" sidebar
+  box linking to the dead `/o-kompanii` slug (real slug is
+  `/kompaniya-turaly/`), regardless of which unrelated standalone page
+  used the template (confirmed live on `/ustojchivoe-razvitie/` via
+  `curl` before touching anything). Since both templates are meant for
+  **standalone, sectionless** pages (that's the whole point of a
+  generic "simplepage"), the fix was to remove the two-column
+  sidebar layout entirely rather than pick a "more correct" section
+  for it — new `.simplepage-container` (plain `.container`-width
+  wrapper, `style.css`) + `.rukovodstvo-content--full` (width:100%
+  override, `main.min.css` — see 17.2 for why it had to live there)
+  replace `.container-rukovodstvo` on both templates. Also removed
+  both templates' near-identical inline `<style>` blocks (dead `.card`
+  rules copy-pasted from `template-vakansii.php`'s own inline block,
+  plus a `.aktsioneram-text a:hover{color:#54b2ff}` override already
+  correctly beaten by the scoped `.page-id-1383` rule from section 14
+  — see that section's "Gotcha" note, still valid, just no longer
+  needs the workaround since the inline rule is gone). `template-pageb.php`
+  additionally had a single-slide swiper "year" carousel showing "2023"
+  next to its one real (2022) survey link — a carousel of one is
+  functionally pointless and the year didn't match its own content, so
+  it was replaced with a plain `.godovaya-item` card holding the exact
+  same real link/text, unchanged.
+- **`template-vakansii.php`**: its inline `<style>` block redefined
+  `.card .btn-primary` (flat, `height:45px`, no radius) with **higher
+  specificity than** the real `.btn.btn-primary` component from
+  `style.css` that the same link already had both classes of — so the
+  new pill-button design was silently losing to the old flat one on
+  this page only. Removed the conflicting override so the real
+  component wins; modernized the surrounding `.card` (border→
+  `var(--c-line)`, added radius/shadow) instead of deleting it, since
+  it's this template's only styling.
+- Removed several blocks of genuinely dead, fully-superseded markup
+  found along the way (not content decisions — verified each was an
+  exact functional duplicate of live code immediately following it, or
+  commented out with `<!-- -->`/`//` and never referenced): a
+  duplicate certificate-download block in `template-onas.php`, an old
+  pagination widget in `archive-novosti.php`, and the inline `<style>`
+  + duplicate commented header block in `archive-obyavleniya.php`.
+  Left one commented-out block in `template-onas.php` **alone**
+  (a second `abount-missiya`-style section with its own real CFS
+  fields `zagolovok1`/`text2`/`zagolovok2`/`text3`) since it was
+  deliberately disabled rather than superseded by identical content —
+  not this pass's call to silently resurrect or delete real,
+  intentionally-hidden content.
+
+### 17.4 Verification
+
+Every touched template: `php -l` after editing, and every touched
+**page URL** re-fetched with `curl -o /dev/null -w "%{http_code}"`
+after its template's edits landed (not just once at the end) — same
+discipline as sections 11/13. Final pass: all 55 page URLs curled in
+one sweep with zero regressions (`glavnaya-stranitsa` alone 301s,
+expected — WP redirects the front page's own slug to `/`).
+
+### 17.5 Not touched / flagged, same spirit as section 6
+
+- Contact Form 7 form **762** ("virtualnaya", the `/bailanystar/undeu/`
+  appeal form) is invoked via shortcode `id="925"` in
+  `template-virtualnaya-priemnaya.php` — doesn't match, but CF7 falls
+  back to matching by slug/title and renders correctly anyway
+  (confirmed via `curl`); left as-is rather than "fixing" a mismatch
+  that isn't actually broken.
+- That same CF7 form's own field markup (edited in wp-admin, not in
+  theme files) has a few stray unmatched `</p>` tags — an HTML
+  validity issue, but it's form-builder content in the DB, not
+  template code, and out of scope for a template redesign pass.
+- `.marshruty-table__header` / `.put` / `.accordion` /
+  `.panel` on the route pages use a one-off blue (`#107bc3`) that
+  isn't one of the `--c-*` design tokens. It appears 27 times and reads
+  as a deliberate "route/map" accent rather than a mistake — left
+  alone rather than bulk-replaced without visual confirmation.
+- The inline `padding-top:210px/150px` fudge values next to the
+  certificate images in `template-onas.php` (a manual alignment hack
+  for the old `width:250%` image) were left alone even after removing
+  that hack, since the correct new value can't be verified without a
+  browser and a wrong guess would be worse than the old hack.

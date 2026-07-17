@@ -307,6 +307,18 @@ h1 {
 }
 
 /* ----------------------------------------------------------------
+   GENERIC "simplepage" TEMPLATE (template-page.php)
+   Standalone top-level content pages with no section sidebar
+   (previously showed a hardcoded, wrong "Компания туралы" sidebar
+   with a dead /o-kompanii link regardless of which page used it).
+   .rukovodstvo-content--full's width override lives in main.min.css
+   (appended at the end), since that file loads after this one and
+   would otherwise stomp this rule — see HOMEPAGE-REDESIGN-NOTES.md
+   section 8.
+   ---------------------------------------------------------------- */
+.simplepage-container { max-width: 1280px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ----------------------------------------------------------------
    SUSTAINABLE DEVELOPMENT DOCUMENT LIST ("Тұрақты даму", page-id-1383)
    Scoped to this page only — .aktsioneram-text is shared by other
    pages for plain paragraph content, not just link lists.

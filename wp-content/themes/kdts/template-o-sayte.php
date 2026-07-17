@@ -24,9 +24,9 @@
                     <?php the_title(); ?>
                 </h1>
             </div>
-			<section class="uslugi-peregruza__text">
+			<section class="uslugi-peregruza__text uslugi-peregruza__text--full">
 			   <?php the_post(); ?>
-				<?php the_content() ?>      
+				<?php the_content() ?>
 			</section>
         </div>
     </main>

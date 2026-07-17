@@ -49,7 +49,7 @@
 								 <div class="vnutrennie-item">
 									<a href="'.$dokumenty["dokumenty"].'" download>
 										<div class="vnutrennie-item__photo">
-											<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tipovye-dogovora__icon.png" alt="#" class="vnutrennie-item__img" />
+											<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="#" class="vnutrennie-item__img" />
 										</div>
 										<div class="vnutrennie-item__text">
 											'.$dokumenty["tekst"].'

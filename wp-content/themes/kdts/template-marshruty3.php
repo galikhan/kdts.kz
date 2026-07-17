@@ -31,14 +31,14 @@
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly/', 'https') ?>"> 
                             Еуропа-Ресей (Рига арқылы) 
                         </a> 
-                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha/', 'https') ?>"> 
-                            Сучжоу (Китай - Варшава (Польша)
-                        </a> 
-                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly/', 'https') ?>"> 
-                            Еуропа-Орталық Азия (Рига арқылы) 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha/', 'https') ?>">
+                            Сучжоу (Қытай) - Варшава (Польша)
                         </a>
-                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly/', 'https') ?>"> 
-                            Еуропа-Орталық Азия (Брест арқылы) 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-riga-arkyly/', 'https') ?>">
+                            Еуропа-Орталық Азия (Рига арқылы)
+                        </a>
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly/', 'https') ?>">
+                            Еуропа-Орталық Азия (Брест арқылы)
                         </a>
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/joensuu-finlyandiya-korla-kytaj/', 'https') ?>">
                            Йоэнсуу (Финляндия) - Корла (Қытай)

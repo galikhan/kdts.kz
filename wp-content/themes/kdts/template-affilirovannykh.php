@@ -56,10 +56,10 @@
 						</div>
                		</div> <!-- gallery-otchetnost1 / -->
                         <div class="godovaya-next">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
+                            <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
                         </div>
                         <div class="godovaya-prev">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
+                            <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
                         </div>
                 </div> <!-- rukovodstvo-wrapper / -->
 				

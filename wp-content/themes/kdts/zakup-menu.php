@@ -9,7 +9,7 @@
 				</div>
     
 				<div class="godovoy-plan__nav">
-					<a href="<?php echo home_url('satyp-alul/tender', 'https') ?>" class="godovoy-plan__nav-text"> Сатып алуар </a>
+					<a href="<?php echo home_url('satyp-alul/tender', 'https') ?>" class="godovoy-plan__nav-text"> Сатып алулар </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'zakupki-menu',
 						'container' => false,

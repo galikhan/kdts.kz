@@ -77,7 +77,7 @@
 								echo '<div class="tarify-item">
 										<a href="'.$blok["dokumenеt3"].'" download>
 											<div class="tarify-item__photo">
-												<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tipovye-dogovora__icon.png"/>
+												<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png"/>
 												<p>'.$blok["tekst5"].'</p>
 											</div>
 											<div class="tarify-item__text">
@@ -131,7 +131,7 @@
 								echo '<div class="tarifnye-usloviya__item">
 										<a href="'.$blok["dokumenеt6"].'" download>
 											<div class="tarifnye-usloviya__photo">
-												<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tarifnye-usloviya__icon.png" alt="#"/>
+												<img src="'.get_template_directory_uri().'/img/tarifnye-usloviya__icon.png" alt="#"/>
 											</div>
 											<div class="tarifnye-usloviya__text">
 												'.$blok["tekst12"].'

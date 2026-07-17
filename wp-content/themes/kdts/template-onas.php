@@ -60,17 +60,17 @@
         </div>
 		
 		<section class="abount-missiya">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/map2.png" alt="#" class="abount-missiya__map" style="position: absolute; z-index: 5; /* max-width: 100%; */ margin-letf:111px;"/>
+			<img src="<?php echo get_template_directory_uri(); ?>/img/map2.png" alt="#" class="abount-missiya__map"/>
 			<div class="abount-map__container">
 				<div class="abount-map__text">
-					 <?php echo CFS()->get('tekst1'); ?> 
+					 <?php echo CFS()->get('tekst1'); ?>
 				</div>
 			</div>
-			<div class="abount-missiya__container" style="margin-top:300px">
+			<div class="abount-missiya__container abount-missiya__container--goals">
 				<div class="abount-missiya__block">
 					<div class="aktsioneram-text" style="text-indent: 0px;">
-					
-						
+
+
 						<p class="abount-otnosheniya__p"><strong> Біздің мақсат: </strong></p>
 												<p class="abount-otnosheniya__p">«Қазақстанның жүйе құраушы көлік компаниясы ретінде біз Ұлттық экономика мен қоғамның терминалдық инфрақұрылымды басқарудағы қажеттіліктерін қанағаттандырамыз».</p>
 						<!-- <img src="https://www.kdts.kz/ru/wp-content/uploads/2024/05/GS3A1618-1-1.jpg" width="100%" >-->
@@ -88,40 +88,18 @@
 																		<p class="abount-otnosheniya__p">5)	ESG принциптерін енгізу;</p>
 																		<p class="abount-otnosheniya__p">6)	өндірістік қызметтің қауіпсіздігіне кепілдік беру.</p>
 						<br><br>
-						<!--<div class="container" style="display: flex; background:#e4e4e4; border-radius: 5px;">
+						<div class="cert-block">
 							<div class="certificate" >
-						  	<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-9001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/9001kaz.png" alt="Сертификат" style="width:250%; max-width:none;"></a>
+						  	<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-9001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/9001kaz.png" alt="Сертификат ISO 9001"></a>
+								<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-14001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/14001.png" alt="Сертификат ISO 14001"></a>
+								<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-45001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/45001.png" alt="Сертификат ISO 45001"></a>
 							</div>
-							<div class="text" style="padding:10px 15px 15px 131px;">
-						 		<p style="font-size:20px;">Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
-								<p style="font-size:20px;">2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), Денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
-								<p style="font-size:20px;">2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды. Басқару жүйелерінің нәтижелілігін сыртқы аудиторлар жыл сайын міндетті түрде Компанияның орталық аппаратында және өндірістік алаңдарының бірінде іріктеп тексереді.</p>
+							<div class="text">
+						 		<p>Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
+								<p>2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), Денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
+								<p>2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды. Басқару жүйелерінің нәтижелілігін сыртқы аудиторлар жыл сайын міндетті түрде Компанияның орталық аппаратында және өндірістік алаңдарының бірінде іріктеп тексереді.</p>
 							</div>
 					  	</div>
-						<hr>
-						<div class="container" style="display: flex; background:#e4e4e4; border-radius: 5px;">
-							<div class="certificate" >
-						  		<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-14001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/14001.png" alt="Сертификат" style="width:250%; max-width:none;"></a>
-							</div>
-							<div class="text" style="padding:10px 15px 15px 131px;">
-						 		<p style="font-size:20px;">Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
-								<p style="font-size:20px;">2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), Денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
-								<p style="font-size:20px;">2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды. Басқару жүйелерінің нәтижелілігін сыртқы аудиторлар жыл сайын міндетті түрде Компанияның орталық аппаратында және өндірістік алаңдарының бірінде іріктеп тексереді.</p>
-							</div>
-					  	</div> -->
-						<hr>
-						<div class="container" style="display: flex; background:#e4e4e4; border-radius: 5px;">
-							<div class="certificate" >
-						  	<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-9001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/9001kaz.png" alt="Сертификат" style="width:250%; max-width:none;"></a><br>
-								<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-14001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/14001.png" alt="Сертификат" style="width:250%; max-width:none;"></a><br>
-								<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-45001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/45001.png" alt="Сертификат"  style="width:250%; max-width:none;"></a>
-							</div>
-							<div class="text" style="padding:10px 15px 15px 131px;">
-						 		<p style="font-size:20px;">Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
-								<p style="font-size:20px; padding-top:210px;">2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), Денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
-								<p style="font-size:20px; padding-top:150px;">2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды. Басқару жүйелерінің нәтижелілігін сыртқы аудиторлар жыл сайын міндетті түрде Компанияның орталық аппаратында және өндірістік алаңдарының бірінде іріктеп тексереді.</p>
-							</div>
-					  	</div>				
 				</div>
 									</div>
 				<div class="abount-missiya__bottom">

@@ -19,21 +19,26 @@
 </div>
 <style type="text/css">
     .card{
-        border: 1px solid #717171;
-        padding: 25px;
+        border: 1px solid var(--c-line);
+        border-radius: 16px;
+        padding: 32px;
+        background: var(--c-bg-card);
+        box-shadow: var(--shadow-sm);
     }
 
     .card h2{
         font-size: 26px;
         margin-bottom: 1rem;
         text-align: left;
+        color: var(--c-dark);
     }
 
     .card .row{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 3rem
+        gap: 24px;
+        margin-bottom: 0;
     }
 
     @media screen and (max-width: 767px){
@@ -47,21 +52,9 @@
         }
     }
 
-    .card .btn-primary{
-        display: block;
-        width: 100%;
-        height: 45px;
-        line-height: 45px;
-        color: #fff;
-        text-decoration: none;
-        background: #0B2335;
-        text-align: center;
-        min-width: 200px;
-    }
-
     .card .info{
-            color: #000;
-            margin-bottom: 1.5rem
+            color: var(--c-grey);
+            margin-bottom: 0;
         }
 
 </style>

@@ -33,18 +33,7 @@
 		<h1 class="partnery-title">
 			<?php the_title(); ?>
 		</h1>
-		<style>
-		.uchreditelnye-dokumenty__item {
-			max-width: 300px;
-			text-align: center;
-			margin-bottom: 3rem;
-			padding: 0px 10px;
-		}
-		.uchreditelnye-dokumenty__text{
-			width: 100%;
-		}
-	</style>
-	<article class="uchreditelnye-dokumenty__items" style="flex-wrap:wrap;">
+	<article class="uchreditelnye-dokumenty__items">
 
 
 		<?php $dokumenty = CFS()->get('dokumenty');
@@ -52,7 +41,7 @@
 			echo '<div class="uchreditelnye-dokumenty__item">
 			<a href="'.$dokument["fayl"].'" download>
 			<div class="uchreditelnye-dokumenty__photo">
-			<img src="https://www.kdts.kz/ru/wp-content/themes/kdts/img/tipovye-dogovora__icon.png" alt="'.$dokument["tekst"].'" />
+			<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="'.$dokument["tekst"].'" />
 			</div>
 			<div class="uchreditelnye-dokumenty__text">
 			'.$dokument["tekst"].'

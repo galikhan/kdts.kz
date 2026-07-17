@@ -17,60 +17,7 @@
     </div>
 </div>
 
-<style>
-    .novosti-item {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 30px;
-    }
-
-    .novosti-item .novosti-data {
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 24.2px;
-        color: #0B2335;
-        margin-top: 10px;
-        margin-right: 2rem;
-        margin-bottom: 25px;
-        min-width: 120px;
-    }
-
-    .novosti-item .novosti-data p{
-        white-space: nowrap;
-        text-align: right;
-    }
-
-    .novosti-item .novosti-head {
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 24.2px;
-        color: #0B2335;
-        margin-top: 10px;
-        margin-bottom: 25px;
-
-    }
-
-    @media screen and (min-width: 768px) {
-        .novosti-item {
-            display: flex;
-        }
-
-
-    }
-
-    .novosti-items {
-        padding-top: 3rem;
-    }
-</style>
-<!-- <main class="novosti">
-    <div class="novosti-container">
-        <h1 class="novosti-title">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/tLine.svg" class="novosti-title__line" alt="#" />
-            Хабарландырулар
-        </h1>-->
-
-
- 		<main class="novosti">
+ 		<main class="novosti obyavleniya-page">
             <div class="novosti-container">
                 <h1 class="novosti-title">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/tLine.svg" class="novosti-title__line" alt="#" /> 
@@ -98,10 +45,10 @@
                 </div>
             </div>
             <div class="godovaya-next">
-                <img src="https://www.kdts.kz/ru/wp-content/themes/kdts/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
+                <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
             </div>
             <div class="godovaya-prev">
-                <img src="https://www.kdts.kz/ru/wp-content/themes/kdts/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
+                <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
             </div>
         </div>
 				

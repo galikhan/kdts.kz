@@ -44,7 +44,7 @@
                             Йоэнсуу (Финляндия) - Корла (Қытай)
                         </a> 
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha', 'https') ?>"> 
-                            Сучжоу (Китай) - Варшава (Польша)
+                            Сучжоу (Қытай) - Варшава (Польша)
                         </a>
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha-2', 'https') ?>"> 
                            Сучжоу (Қытай) - Варшава (Польша)

@@ -3338,12 +3338,19 @@ table.antiTabel1 th {
 
 .tarify-item {
 	background: #fff;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
-	border-radius: 30px;
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--c-line);
+	border-radius: 20px;
 	width: 32%;
 	text-align: center;
 	padding: 30px 20px;
-	margin-bottom: 20px
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.tarify-item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
 }
 
 .tarify-item__photo {
@@ -3382,7 +3389,7 @@ table.tarify-tabel {
 
 table.tarify-tabel,
 table.tarify-tabel td {
-	border: 1px solid #828282;
+	border: 1px solid var(--c-line);
 	background-color: #fff;
 	color: var(--c-dark)
 }
@@ -3419,7 +3426,8 @@ table.tarify-tabel td {
 	background: #0B2335;
 	border: 2px solid #0B2335;
 	box-sizing: border-box;
-	border-radius: 30px;
+	border-radius: 20px;
+	box-shadow: var(--shadow-md);
 	padding: 20px 20px 30px;
 	margin-bottom: 20px
 }
@@ -3475,21 +3483,52 @@ table.tarify-tabel td {
 
 .novosti-items {
 	display: flex;
-	justify-content: space-evenly;
 	flex-wrap: wrap;
+	gap: 32px;
 	margin-top: 13px
 }
 
 .novosti-item {
-	width: 400px;
-	max-width: 400px;
-	margin-bottom: 100px
+	width: calc(33.333% - 22px);
+	max-width: calc(33.333% - 22px);
+	margin-bottom: 0;
+	background: var(--c-white);
+	border: 1px solid var(--c-line);
+	border-radius: 14px;
+	overflow: hidden;
+	transition: all var(--tr);
+}
+
+.novosti-item:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
+	border-color: var(--c-dark);
+}
+
+.novosti-item a {
+	display: block;
+	padding-bottom: 20px;
 }
 
 .novosti-photo {
 	width: 100%;
 	max-width: 100%;
-	height: 232px
+	height: 232px;
+	position: relative;
+}
+
+.novosti-photo::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--c-dark);
+	mix-blend-mode: color;
+	opacity: .55;
+	transition: opacity var(--tr);
+}
+
+.novosti-item:hover .novosti-photo::after {
+	opacity: 0;
 }
 
 .novosti-photo img {
@@ -3502,26 +3541,29 @@ table.tarify-tabel td {
 
 .novosti-head {
 	font-weight: 700;
-	font-size: 22px;
-	line-height: 24.2px;
+	font-size: 20px;
+	line-height: 1.3;
 	color: #4a4a4a;
-	margin-top: 10px
+	margin: 14px 20px 0;
 }
 
 .novosti-open {
-	font-weight: 400;
-	font-size: 22px;
-	line-height: 24.2px;
+	font-weight: 500;
+	font-size: 14px;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	line-height: 1;
 	color: #0B2335;
-	margin-top: 10px;
-	margin-bottom: 20px
+	margin: 12px 20px 16px
 }
 
 .novosti-data {
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 24.2px;
-	color: var(--c-dark)
+	font-size: 13px;
+	line-height: 1;
+	color: var(--c-grey);
+	margin: 0 20px;
 }
 
 .news-number {
@@ -3891,6 +3933,81 @@ table.marshruty-table tr.marshruty-table__item1 {
 	margin-bottom: 20px
 }
 
+.marshruty-text__wrapper ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 20px;
+}
+.marshruty-text__wrapper li {
+	padding: 6px 0;
+	border-bottom: 1px solid var(--c-line);
+}
+.marshruty-text__wrapper li:last-child {
+	border-bottom: none;
+}
+
+/* template-page.php ("simplepage") — full-width variant, no sidebar */
+.rukovodstvo-content--full {
+	width: 100%;
+	max-width: 100%;
+}
+
+/* archive-obyavleniya.php ("Хабарландырулар" announcements list) —
+   row layout instead of archive-novosti.php's card grid, since each
+   entry pairs a date column with a text column. Scoped to this page
+   only; .novosti-item/.novosti-data/.novosti-head are shared. */
+.obyavleniya-page .novosti-items {
+	padding-top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.obyavleniya-page .novosti-item {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 0;
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 14px;
+	padding: 20px 24px;
+	box-sizing: border-box;
+}
+@media screen and (min-width: 768px) {
+	.obyavleniya-page .novosti-item {
+		display: flex;
+		gap: 24px;
+	}
+}
+.obyavleniya-page .novosti-item .novosti-data {
+	font-weight: 600;
+	font-size: 15px;
+	color: var(--c-dark);
+	margin: 0;
+	min-width: 120px;
+}
+.obyavleniya-page .novosti-item .novosti-data p {
+	white-space: nowrap;
+	text-align: right;
+	margin: 0;
+}
+.obyavleniya-page .novosti-item .novosti-head {
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 1.35;
+	color: var(--c-dark);
+	margin: 0 0 8px;
+}
+
+/* template-o-sayte.php ("Сайт туралы" / "Тілдерді дамыту") —
+   .uslugi-peregruza__text is normally one column of a two-column
+   image+text layout (50% width); this template has no image
+   sibling, so the default 50% left it with a broken half-empty page. */
+.uslugi-peregruza__text--full {
+	width: 100%;
+	max-width: 760px;
+	margin: 0 auto;
+}
+
 .marshruty-text__p-color {
 	color: #107bc3
 }
@@ -3982,12 +4099,13 @@ table.marshruty-table tr.marshruty-table__item1 {
 
 .konteynerov-items {
 	display: flex;
-	justify-content: space-between
+	justify-content: space-between;
+	gap: 40px;
 }
 
 .konteynerov-item {
-	width: 50%;
-	max-width: 50%
+	width: calc(50% - 20px);
+	max-width: calc(50% - 20px)
 }
 
 .konteynerov-item__header {
@@ -4509,11 +4627,18 @@ table.marshruty-table tr.marshruty-table__item1 {
 	padding: 20px 0;
 	width: 32%;
 	max-width: 32%;
+	box-sizing: border-box;
 	text-align: center;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
-	border-radius: 30px;
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--c-line);
+	border-radius: 20px;
 	margin-bottom: 65px;
-	background-color: #fff
+	background-color: #fff;
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.tipovye-dogovora__item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
 }
 
 .tipovye-dogovora__text {
@@ -4574,14 +4699,22 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .rezidentov-item {
-	width: 50%;
-	max-width: 50%
+	width: calc(50% - 12px);
+	max-width: calc(50% - 12px);
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: var(--shadow-sm);
+}
+
+.rezidentov-items {
+	gap: 24px;
 }
 
 .rezidentov-item__head {
 	background: #0B2335;
-	border: 1px solid #fff;
-	padding: 20px 0;
+	padding: 20px 24px;
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 18px;
@@ -4591,7 +4724,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .rezidentov-item__body {
-	padding: 12px;
+	padding: 24px;
 	font-size: 18px;
 	line-height: 25px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
@@ -4606,17 +4739,30 @@ table.marshruty-table tr.marshruty-table__item1 {
 
 .uchreditelnye-dokumenty__items {
 	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
 	margin-top: 65px
 }
 
 .uchreditelnye-dokumenty__item {
-	max-width: 370px;
-	text-align: center
+	width: 220px;
+	max-width: 220px;
+	text-align: center;
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	padding: 24px 12px;
+	box-sizing: border-box;
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.uchreditelnye-dokumenty__item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
 }
 
 .uchreditelnye-dokumenty__text {
-	width: 324px;
-	max-width: 324px;
+	width: 100%;
+	max-width: 100%;
 	margin: 10px auto auto;
 	font-size: 18px;
 	line-height: 25px;
@@ -4893,6 +5039,7 @@ table.incoterms tr td.incoterms-item__text {
 .accordion {
 	cursor: pointer;
 	border: 1px solid #107bc3;
+	border-radius: 10px;
 	box-sizing: border-box;
 	max-width: 490px;
 	transition: .5s;
@@ -4927,7 +5074,8 @@ table.incoterms tr td.incoterms-item__text {
 	z-index: 2;
 	width: 490px;
 	max-width: 490px;
-	box-shadow: 0 1px 2px 0 #107bc3
+	border-radius: 10px;
+	box-shadow: var(--shadow-md);
 }
 
 .panel a {
@@ -9571,19 +9719,29 @@ body {
 .virtualnaya-wrapper {
 	background-color: #fff;
 	max-width: 800px;
-	padding: 20px 30px;
-	box-shadow: -1px 0 4px 1px #9c9c9c38
+	margin: 0 auto;
+	padding: 32px;
+	box-sizing: border-box;
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	box-shadow: var(--shadow-sm);
 }
 
 .virtualnaya-forms {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px
+	gap: 16px;
+	margin-bottom: 16px
 }
 
 .virtualnaya-label {
-	padding: 5px 0;
-	display: inline-block
+	padding: 0 0 6px;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--c-grey);
+	text-transform: uppercase;
+	letter-spacing: .04em;
 }
 
 .virtualnaya-form {
@@ -9597,16 +9755,34 @@ body {
 
 .virtualnaya-input {
 	width: 100%;
-	padding: 10px;
-	border: 1px solid #d9dbdf;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border: 1px solid var(--c-line);
+	border-radius: 8px;
+	font-family: inherit;
+	transition: border-color var(--tr);
 	outline: 0
+}
+
+.virtualnaya-input:focus {
+	border-color: var(--c-dark);
 }
 
 .virtualnaya-textarea {
 	width: 100%;
 	height: 100px;
-	border: 1px solid #d9dbdf;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border: 1px solid var(--c-line);
+	border-radius: 8px;
+	font-family: inherit;
+	resize: vertical;
+	transition: border-color var(--tr);
 	outline: 0
+}
+
+.virtualnaya-textarea:focus {
+	border-color: var(--c-dark);
 }
 
 .virtualnaya-form__width {
@@ -9615,18 +9791,22 @@ body {
 
 .virtualnaya-file {
 	width: 100%;
+	box-sizing: border-box;
 	padding: 10px;
-	border: 1px solid #d9dbdf;
+	border: 1px solid var(--c-line);
+	border-radius: 8px;
 	outline: 0
 }
 
 .virtualnaya-btn {
-	padding: 10px 30px;
+	padding: 14px 28px;
 	outline: 0;
 	border: none;
+	border-radius: 10px;
 	cursor: pointer;
-	margin-top: 30px;
-	background-color: #d39c00;
+	margin-top: 16px;
+	transition: all var(--tr);
+	background-color: var(--c-dark);
 	color: #fff
 }
 
@@ -10365,5 +10545,245 @@ table {
     max-width: 136px;
 	}
 	*/
+
+/* ============================================================
+   Redesign polish pass — legacy content-page components
+   Appended (not edited in place) so cascade order (this file
+   loads after style.css) applies these on top of the old rules
+   above without touching them. See HOMEPAGE-REDESIGN-NOTES.md.
+   ============================================================ */
+
+/* template-onas.php ("Компания туралы" hub) */
+.abount-missiya__block {
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: var(--shadow-md);
+}
+.abount-missiya__title::after {
+	background-image: none;
+	background: #ffbc00;
+	border-radius: 50%;
+}
+.onas-active {
+	background: var(--c-bg-soft);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	padding: 32px;
+}
+.cert-block {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	box-shadow: var(--shadow-sm);
+	padding: 32px;
+}
+.cert-block .certificate {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	flex-shrink: 0;
+}
+.cert-block .certificate img {
+	width: 140px;
+	max-width: 140px;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: var(--shadow-sm);
+	transition: transform var(--tr);
+}
+.cert-block .certificate img:hover {
+	transform: translateY(-2px);
+}
+.cert-block .text {
+	flex: 1;
+}
+.cert-block .text p {
+	font-size: 16px !important;
+	line-height: 1.6;
+	color: var(--c-grey);
+	padding-top: 12px !important;
+}
+
+/* template-rukovodstvo.php ("Басшылық" leadership gallery) —
+   swap the raster prev/next arrow PNGs for CSS-drawn chevrons,
+   same rotated-border trick as .breadcrumbs__link separators */
+.rukovodstvo-next,
+.rukovodstvo-prev {
+	background-image: none;
+	background: var(--c-white);
+	border: 1px solid var(--c-line);
+	border-radius: 50%;
+	box-shadow: var(--shadow-sm);
+	transition: all var(--tr);
+}
+.rukovodstvo-next::after,
+.rukovodstvo-prev::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 8px;
+	height: 8px;
+	border-top: 2px solid var(--c-dark);
+	border-right: 2px solid var(--c-dark);
+}
+.rukovodstvo-next::after {
+	transform: translate(-65%, -50%) rotate(45deg);
+}
+.rukovodstvo-prev::after {
+	transform: translate(-35%, -50%) rotate(-135deg);
+}
+.rukovodstvo-next:hover,
+.rukovodstvo-prev:hover {
+	background: var(--c-dark);
+	border-color: var(--c-dark);
+}
+.rukovodstvo-next:hover::after,
+.rukovodstvo-prev:hover::after {
+	border-color: var(--c-white);
+}
+
+/* template-istoriya-kompanii.php ("Компанияның тарихы") */
+.istoriya-lead {
+	font-size: 18px;
+	line-height: 1.6;
+	color: var(--c-grey);
+	margin-bottom: 32px;
+	max-width: 760px;
+}
+.istoriya-lain {
+	border-bottom: 2px solid var(--c-line);
+}
+.istoriya-info {
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	padding: 28px 32px;
+}
+
+/* template-partnery.php ("Серіктестер" partner logo grid) */
+.partnery-item__photo {
+	border: 1px solid var(--c-line);
+	box-shadow: var(--shadow-sm);
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.partnery-item__photo:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
+}
+.partnery-items {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px);
+	gap: 24px 32px;
+	max-width: none;
+}
+.partnery-item {
+	width: auto;
+	margin-bottom: 0;
+}
+
+/* template-uslugi.php ("Қызметтер" services grid) */
+.uslugiPage-items {
+	gap: 24px;
+}
+.uslugiPage-item {
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: var(--shadow-sm);
+}
+.uslugiPage-item:hover {
+	box-shadow: var(--shadow-md);
+}
+
+/* template-uslugi-peregruza(2/3/4).php (cargo-service sub-pages) */
+.peregruz-dostyk__items {
+	gap: 24px;
+	flex-wrap: wrap;
+}
+.peregruz-dostyk__item {
+	border-radius: 16px;
+	box-shadow: var(--shadow-md);
+	transition: transform var(--tr);
+}
+.peregruz-dostyk__item:hover {
+	transform: translateY(-4px);
+}
+
+/* template-aktsioneram.php ("Акционерлерге" hub) —
+   dot-marker list, same pattern as .error-404__body li */
+.aktsioneram-svedeniya__text {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.aktsioneram-svedeniya__text li {
+	position: relative;
+	padding-left: 22px;
+	text-indent: 0;
+}
+.aktsioneram-svedeniya__text li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 10px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--c-dark);
+}
+
+/* shared document-download grid: template-vnutrennie.php,
+   template-grafik-provedeniya.php, template-dopolnitelnaya-informatsiya.php,
+   template-plan-dolgosrochnykh-zakupok.php */
+.vnutrennie-items {
+	gap: 16px;
+}
+.vnutrennie-item {
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	padding: 24px 12px;
+	box-sizing: border-box;
+	width: calc(33.333% - 11px);
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.vnutrennie-item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
+}
+
+/* template-otchetnost.php ("Жылдық және қаржы есептілігі" reports archive) */
+.godovaya-items {
+	gap: 16px;
+}
+.godovaya-item {
+	background: var(--c-bg-card);
+	border: 1px solid var(--c-line);
+	border-radius: 16px;
+	padding: 24px 12px;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	transition: box-shadow var(--tr), transform var(--tr);
+}
+.godovaya-item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
+}
+
+/* template-informatsiya.php ("Корпоративтік оқиғалар туралы ақпарат") */
+.godovaya-items .istoriya-items {
+	padding: 20px 0;
+	border-bottom: 1px solid var(--c-line);
+	gap: 24px;
+}
+.godovaya-items .istoriya-items:last-child {
+	border-bottom: none;
+}
+
 /*# sourceMappingURL=zhhh.min.css.map */
 /*# sourceMappingURL=main.min.css.map */

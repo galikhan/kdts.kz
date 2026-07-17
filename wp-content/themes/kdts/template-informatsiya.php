@@ -19,7 +19,7 @@
  <main>
        <div class="container-rukovodstvo">
        		<section class="rukovodstvo-navbar">
-           		<a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
+           		<a href="<?php echo home_url('/aktsionerlerge', 'https') ?>" class="rukovodstvo-navbar__title">
                     Акционерлерге
                 </a>
                         <div class="rukovodstvo-navbar__block">
@@ -57,10 +57,10 @@
                         </div>
                  	</div> <!-- istoriya-thumbs / -->
                         <div class="godovaya-next">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
+                            <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
                         </div>
                         <div class="godovaya-prev">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
+                            <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
                         </div>
                 	</div> <!-- rukovodstvo-wrapper / -->
 				<div class="swiper-container istoriya-top">

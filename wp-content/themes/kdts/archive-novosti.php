@@ -35,7 +35,7 @@
                                 <?php the_title(); ?>
                             </p>
                             <p class="novosti-open">
-                                >>>
+                                Толығырақ <svg class="icon" style="width:12px;height:12px;"><use href="#icon-chevron-right"></use></svg>
                             </p>
                             <p class="novosti-data">
                                 <?php echo get_the_date(); ?>
@@ -65,25 +65,7 @@
                         </div>
                         <?php else: ?>
                         <?php endif; ?>
-                  </div>  
-                
-<!--
-  <div class="news-number">
-                    <span>
-                        страница
-                    </span>
-                    <img src="./img/newsNext.png" class="news-number__icon" alt=""/> 
-                    <ul class="news-number__list">
-                        <li class="news-number__list-active">1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                    </ul>
-                    <img src="./img/newsPrev.png" class="news-number__icon" alt=""/> 
-                </div>
--->
-              
+                  </div>
             </div>
         </main>
 <?php get_footer(); ?>
