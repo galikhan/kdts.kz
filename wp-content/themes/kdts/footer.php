@@ -68,6 +68,12 @@
 </footer>
 
 <div class="float-actions">
+    <a href="https://sk-hotline.kz" target="_blank" rel="noopener" class="float-btn hotline" title="Жедел желі">
+        <img src="<?php echo get_template_directory_uri(); ?>/img/hot.jpg" alt="Самрұқ-Қазына" />
+    </a>
+    <a href="https://eotinish.kz/kk" target="_blank" rel="noopener" class="float-btn eotinish" title="e-Otinish">
+        <img src="https://www.kdts.kz/ru/wp-content/uploads/2024/02/logo-light.png" alt="e-Otinish" />
+    </a>
     <a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" class="float-btn tg" title="Telegram">
         <svg class="icon"><use href="#icon-telegram"></use></svg>
     </a>

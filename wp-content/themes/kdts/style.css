@@ -235,6 +235,43 @@ h1 {
 .btn-cabinet:hover { background: var(--c-dark-2); transform: translateY(-1px); box-shadow: var(--shadow-md); color: var(--c-white); }
 .btn-cabinet svg { width: 14px; height: 14px; }
 
+/* ----------------------------------------------------------------
+   HEADER UTILITY LINKS (Жедел желі / Samruk-Kazyna hotline,
+   e-Otinish, BVI "version for the visually impaired" toggle)
+   Restored from the live production header, which showed these
+   in a separate thin bar above the main header (an old 3-row
+   layout); folded into header-actions here since the redesign
+   uses a single-row header.
+   ---------------------------------------------------------------- */
+.utility-links { display: flex; align-items: center; gap: 12px; }
+.utility-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--c-grey); transition: color var(--tr); }
+.utility-link:hover { color: var(--c-dark); }
+.utility-link img { width: auto; height: 20px; display: block; }
+.utility-links .bvi-link-shortcode,
+.utility-links .bvi-link-widget {
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: 34px !important; height: 34px !important; padding: 0 !important;
+  border-radius: 50% !important; background: var(--c-bg-soft) !important; color: var(--c-grey) !important;
+}
+.utility-links .bvi-link-shortcode:hover,
+.utility-links .bvi-link-widget:hover { background: var(--c-line) !important; color: var(--c-dark) !important; }
+/* the plugin's own CSS ships ".bvi-svg-eye { display: none }" — it never
+   renders the icon standalone, relying on the visible text label instead.
+   Force it visible now that the text is sr-only. */
+.utility-links .bvi-svg-eye,
+html body .utility-links a.bvi-link-shortcode .bvi-svg-eye,
+html body .utility-links a.bvi-link-widget .bvi-svg-eye {
+  display: inline-block !important; width: 16px !important; height: 16px !important; font-size: 16px !important;
+}
+.utility-links .bvi-svg-eye path { fill: currentColor !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+@media (max-width: 1024px) {
+  .utility-links { display: none; }
+}
+
 .burger { display: none; background: transparent; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 4px; }
 .burger span { width: 22px; height: 2px; background: var(--c-dark); transition: all var(--tr); display: block; }
 
@@ -400,6 +437,10 @@ h1 {
 .float-btn:hover { transform: scale(1.05); }
 .float-btn.tg { background: #229ED9; }
 .float-btn svg { width: 22px; height: 22px; }
+.float-btn.hotline,
+.float-btn.eotinish { background: var(--c-white); border: 1px solid var(--c-line); }
+.float-btn.hotline img { width: 26px; height: 26px; object-fit: contain; border-radius: 50%; }
+.float-btn.eotinish img { width: 30px; height: auto; object-fit: contain; }
 @media (max-width: 640px) {
   .float-btn { width: 42px; height: 42px; }
 }

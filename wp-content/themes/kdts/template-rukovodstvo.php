@@ -119,7 +119,7 @@
             </section> <!-- rukovodstvo-content / -->
         </div>
         <section class="container-rukovodstvo__two">
-            <article class="rukovodstvo-navbar">
+            <article>
                 <div class="rukovodstvo-navbar__banner">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/banner.png" class="rukovodstvo-navbar__banner-photo" alt="#"/>
                     <div class="rukovodstvo-navbar__banner-text">

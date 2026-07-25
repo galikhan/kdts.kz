@@ -62,6 +62,10 @@
             </div>
             <?php endif; ?>
 
+            <div class="utility-links">
+                <?php echo do_shortcode( '[bvi text="<span class=\'sr-only\'>Нашар көретіндерге арналған нұсқа</span>"]' ); ?>
+            </div>
+
             <a href="https://my.kdts.kz/" class="btn-cabinet">
                 <svg class="icon"><use href="#icon-user"></use></svg>
                 Кабинет
