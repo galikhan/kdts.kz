@@ -91,7 +91,7 @@
 												<p class="user-path" style="margin-top: 30px;">
 													Кәсіби тәжірибе:
 												</p>
-												<p class="user-text" style="font-size:20px; color:#000000; margin-top:-30px;">
+												<p class="user-text" style="font-size:16px; color:#000000; margin-top:-30px;">
 													'.$sotrudnikText["text"].'
 												</p>
 											</div>
@@ -99,7 +99,7 @@
 												<p class="user-path" style="margin-top: 30px;">
 													Марапаттар:
 												</p>
-												<p class="user-text" style="font-size:20px; color:#000000; margin-top:-30px;">
+												<p class="user-text" style="font-size:16px; color:#000000; margin-top:-30px;">
 													'.$sotrudnikText["text777"].'
 												</p>
 											</div>

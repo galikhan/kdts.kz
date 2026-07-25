@@ -2647,6 +2647,12 @@ p {
 	text-align: justify;
 }
 
+/* template-o-sayte.php ("Тілдерді дамыту") — .uslugi-peregruza__text is shared with other
+   templates, so scope the 16px default to this page only */
+.page-id-2077 .uslugi-peregruza__text {
+	font-size: 16px
+}
+
 .uslugi-peregruza__text p {
 	padding-bottom: 20px;
 	text-indent: 25px
@@ -2928,7 +2934,7 @@ p {
 
 .filialy-item__p {
 	padding-left: 0;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.6;
 	font-feature-settings: 'pnum' on, 'lnum' on;
 	color: var(--c-grey)
@@ -3063,6 +3069,12 @@ table.antiTabel1 th {
 	line-height: 25px;
 	text-indent: 25px;
 	color: #4a4a4a
+}
+
+/* template-vakansii.php ("Бос жұмыс орындары") — .aktsioneram-text is shared with other
+   templates, so scope the 16px default to this page only */
+.page-id-133 .aktsioneram-text {
+	font-size: 16px
 }
 
 .aktsioneram-text p {
@@ -5292,7 +5304,7 @@ table.incoterms tr td.incoterms-item__text {
 	margin-top: 8px;
 	font-style: normal;
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 16px;
 	color: var(--c-dark)
 }
 
@@ -5393,7 +5405,7 @@ table.incoterms tr td.incoterms-item__text {
 }
 
 .user-p {
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 28px;
 	color: #4a4a4a;
 	padding-top: 16px;
@@ -5401,7 +5413,7 @@ table.incoterms tr td.incoterms-item__text {
 }
 
 .user-dolzhnost {
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 26px;
 	color: var(--c-dark);
 	padding: 13px 0 11px
@@ -5409,7 +5421,7 @@ table.incoterms tr td.incoterms-item__text {
 
 .user-info {
 	text-align: justify;
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 28px;
 	color: #000
 }
@@ -5421,7 +5433,7 @@ table.incoterms tr td.incoterms-item__text {
 
 .user-text {
 	text-indent: 25px;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 30px;
 	color: #4a4a4a
 }
@@ -8741,7 +8753,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.filialy-item__p {
 		padding-left: 0;
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 1.6
 	}
 
@@ -9519,7 +9531,7 @@ body {
 }
 
 .istoriya-text {
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 20px;
 	padding-right: 20px;
 }
@@ -9537,7 +9549,7 @@ body {
 
 .istoriya-info__text {
 	text-align: justify;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 26px;
 	color: var(--c-dark)
 }
@@ -10648,7 +10660,7 @@ table {
 
 /* template-istoriya-kompanii.php ("Компанияның тарихы") */
 .istoriya-lead {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.6;
 	color: var(--c-grey);
 	margin-bottom: 32px;

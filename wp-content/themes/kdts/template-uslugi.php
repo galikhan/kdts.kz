@@ -92,5 +92,5 @@
                     </div>
                 </section> <!-- rukovodstvo-content / -->
 </main>
-  <img src="<?php echo get_template_directory_uri(); ?>/img/uslugBg.png" alt="#" class="uslug-bg" />
+  <!-- <img src="<?php echo get_template_directory_uri(); ?>/img/uslugBg.png" alt="#" class="uslug-bg" /> -->
 <?php get_footer(); ?>
