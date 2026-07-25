@@ -3923,7 +3923,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 .marshruty-text {
 	padding-top: 56px;
 	padding-bottom: 8px;
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 28px;
 	text-indent: 25px
 }
@@ -9453,7 +9453,7 @@ body {
 
 .kontakty-bloki1 {
 	width: 68%;
-	color: var(--c-grey);
+	color: var(--c-dark);
 }
 
 .kontakty-bloki span {
