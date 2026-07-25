@@ -817,15 +817,6 @@ p {
 	padding: 0
 }
 
-.header-menu__wrapper,
-.header-top__wrapper,
-.pagination-block {
-	width: 100%;
-	margin-right: auto;
-	margin-left: auto;
-	/* padding: 0 15px */
-}
-
 .insert-content__items {
 	width: 100%;
 	margin-right: auto;
@@ -908,19 +899,15 @@ p {
 		padding-left: 10px;
 		padding-right: 10px
 	}
-
-	.abount-map__container,
-	.abount-missiya__container,
-	.container-abount__statistika,
-	.container-fluid,
-	.container-footer,
-	.container-rukovodstvo,
-	.container-rukovodstvo__two,
-	.footer-info__container,
-	.header-menu__wrapper,
-	.header-top__wrapper,
-	.insert-content__items,
-	.pagination-block {
+.abount-map__container,
+.abount-missiya__container,
+.container-abount__statistika,
+.container-fluid,
+.container-footer,
+.container-rukovodstvo,
+.container-rukovodstvo__two,
+.footer-info__container,
+.insert-content__items {
 		max-width: 540px
 	}
 
@@ -1080,36 +1067,29 @@ p {
 		padding-left: 10px;
 		padding-right: 10px
 	}
-
-	.abount-map__container,
-	.abount-missiya__container,
-	.container-abount__statistika,
-	.container-fluid,
-	.container-footer,
-	.container-rukovodstvo,
-	.container-rukovodstvo__two,
-	.dell-container,
-	.footer-info__container,
-	.header-menu__wrapper,
-	.header-top__wrapper,
-	.insert-content__items,
-	.marshruty-container,
-	.novosti-container,
-	.pagination-block {
+.abount-map__container,
+.abount-missiya__container,
+.container-abount__statistika,
+.container-fluid,
+.container-footer,
+.container-rukovodstvo,
+.container-rukovodstvo__two,
+.dell-container,
+.footer-info__container,
+.insert-content__items,
+.marshruty-container,
+.novosti-container {
 		max-width: 720px
 	}
 }
 
-@media (max-width:992px) {
-
-	.container-abount__statistika,
-	.container-fluid,
-	.container-footer,
-	.container-rukovodstvo,
-	.container-rukovodstvo__two,
-	.footer-info__container,
-	.insert-content__items,
-	.pagination-block {
+@media (max-width:992px) {.container-abount__statistika,
+.container-fluid,
+.container-footer,
+.container-rukovodstvo,
+.container-rukovodstvo__two,
+.footer-info__container,
+.insert-content__items {
 		max-width: 960px
 	}
 
@@ -1122,12 +1102,9 @@ p {
 	}
 }
 
-@media (min-width:1200px) {
-
-	.container-abount__statistika,
-	.insert-content__items,
-	.novosti-container,
-	.pagination-block {
+@media (min-width:1200px) {.container-abount__statistika,
+.insert-content__items,
+.novosti-container {
 		max-width: 1280px;
 	}
 
@@ -1180,13 +1157,6 @@ p {
 	background-color: #f5f7f9
 }
 
-.header-top__wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 15px 0
-}
-
 .header-top__left {
 	display: flex;
 	align-items: center
@@ -1196,13 +1166,6 @@ p {
 	font-size: 16px;
 	line-height: 11.75px;
 	color: #fff
-}
-
-.header-menu__wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	position: relative
 }
 
 .header-left,
@@ -2137,13 +2100,6 @@ p {
 	padding-right: 10px
 }
 
-.header-logo1 {
-	position: relative;
-	width: 130px;
-	max-width: 130px;
-	height: 0 !important
-}
-
 .header-phone1 {
 	display: none;
 	position: relative
@@ -2176,68 +2132,6 @@ p {
 	width: 100%;
 	max-width: 100%;
 	height: 100%
-}
-
-.sdfsdfjsdf {
-	/* display: flex */
-}
-
-.pagination ul {
-	display: flex;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 21px;
-	color: var(--c-dark);
-	padding-top: 10px
-}
-
-.pagination ul li {
-	position: relative;
-	padding-right: 20px;
-	margin-left: 10px
-}
-
-.pagination ul li::after {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
-	width: 10px;
-	height: 10px;
-	background-image: url(https://kdts.kz/wp-content/themes/kdts/img/paginationLine.svg);
-	background-position: center;
-	background-repeat: no-repeat
-}
-
-.pagination-block {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1280px;
-}
-
-.pagination-last::after {
-	content: "";
-	display: none !important
-}
-
-.pagination li:first-child {
-	margin-left: 14px
-}
-
-.yazyk ul {
-	display: flex;
-	font-style: normal;
-	text-transform: uppercase;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 45px;
-	color: var(--c-dark)
-}
-
-.yazyk ul li {
-	padding-left: 10px
 }
 
 .partnery-title {
@@ -5079,7 +4973,14 @@ table.incoterms tr td.incoterms-item__text {
 
 .rukovodstvo-navbar {
 	width: 295px;
-	max-width: 295px
+	max-width: 295px;
+	box-sizing: border-box;
+	background: var(--c-white);
+	border: 1px solid var(--c-line);
+	border-radius: 14px;
+	padding: 24px;
+	box-shadow: var(--shadow-sm);
+	margin-bottom: 30px;
 }
 
 .rukovodstvo-content {
@@ -5123,21 +5024,52 @@ table.incoterms tr td.incoterms-item__text {
 
 .rukovodstvo-navbar__title {
 	font-weight: 700;
-	font-size: 24px;
-	line-height: 32.4px;
-	color: var(--c-dark)
+	font-size: 16px;
+	line-height: 1.3;
+	letter-spacing: 0.02em;
+	color: var(--c-dark);
+	display: block;
+	text-decoration: none;
+	padding-bottom: 16px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid var(--c-line);
+	transition: color var(--tr)
+}
+
+.rukovodstvo-navbar__title:hover {
+	color: var(--c-dark-2)
 }
 
 .rukovodstvo-navbar__block {
-	margin-top: 24px;
+	margin-top: 8px;
 	font-style: normal;
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 14px;
 	color: var(--c-dark)
 }
 
 .rukovodstvo-navbar__block li {
-	padding-bottom: 30px
+	padding-bottom: 4px
+}
+
+.rukovodstvo-navbar__block li a {
+	display: block;
+	padding: 10px 12px;
+	border-radius: 8px;
+	color: var(--c-grey);
+	text-decoration: none;
+	transition: all var(--tr)
+}
+
+.rukovodstvo-navbar__block li a:hover {
+	background: var(--c-bg-soft);
+	color: var(--c-dark)
+}
+
+.rukovodstvo-navbar__block li.current-menu-item a,
+.rukovodstvo-navbar__block li.current_page_item a {
+	background: var(--c-dark);
+	color: var(--c-white)
 }
 
 .rukovodstvo .rukovodstvo-navbar__block ul li:last-child {
@@ -5196,7 +5128,7 @@ table.incoterms tr td.incoterms-item__text {
 .container-rukovodstvo {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 50px
+	/* margin-top: 50px */
 }
 
 .container-rukovodstvo__two {
@@ -5979,10 +5911,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		padding-bottom: 0;
 	}
 
-	.header-top__wrapper {
-		padding: 15px 30px
-	}
-
 	.novosti-title {
 		font-size: 35px;
 		line-height: 50px
@@ -6251,16 +6179,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		margin-bottom: 50px
 	}
 
-	.pagination-block {
-		padding: 0 25px
-	}
-
-	.header-logo1 {
-		width: 130px;
-		max-width: 130px;
-		height: 81px
-	}
-
 	.header-logo {
 		width: 110px;
 		max-width: 110px;
@@ -6270,14 +6188,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.header-menu {
 		padding-top: 0
-	}
-
-	.header-menu__wrapper {
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		padding: 10px 20px;
-		padding-bottom: 0;
 	}
 
 	.header-left {
@@ -6871,11 +6781,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		order: -1
 	}
 
-	.header-menu__wrapper {
-		flex-wrap: wrap;
-		padding: 10px 10px 0
-	}
-
 	.rukovodstvo-navbar {
 		width: 200px;
 		max-width: 200px
@@ -7371,11 +7276,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		background-color: var(--c-dark)
 	}
 
-	.header-phone__logo {
-		width: 60px;
-		height: 60px
-	}
-
 	.header-phone1 {
 		display: flex;
 		justify-content: space-between;
@@ -7412,20 +7312,9 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 		position: absolute
 	}
 
-	.header-menu__wrapper {
-		width: 100%;
-		max-width: 100%;
-		padding: 10px 0 20px
-	}
-
 	.header-right {
 		order: 1;
 		display: block
-	}
-
-	.header-logo1,
-	.header-phone__logo {
-		display: none
 	}
 
 	.headerV-top {
@@ -7591,19 +7480,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	.novostiItem-text p {
 		padding-bottom: 10px
 	}
-
-	.pagination ul {
-		flex-wrap: wrap;
-		line-height: 30px
-	}
-
-	.pagination-block {
-		flex-wrap: wrap;
-		margin-top: 20px
-	}
-
-	.rukovodstvo-navbar,
-	.yazyk {
+.rukovodstvo-navbar {
 		display: none
 	}
 
@@ -8457,11 +8334,6 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.novosti-block__date {
 		display: none
-	}
-
-	.pagination-block {
-		margin-top: 10px;
-		padding: 0
 	}
 
 	.uslug-items {

@@ -6,7 +6,7 @@
 <?php get_header(); ?>
     <?php include "template-breadcrumbs.php" ?>
 	 <main>
-        <div class="filialy-container">
+        <div class="rukovodstvo-container">
             <div class="rukovodstvo-top">
                 <section class="rukovodstvo-navbar">
                     <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">

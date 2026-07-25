@@ -264,6 +264,37 @@ h1 {
 }
 
 /* ----------------------------------------------------------------
+   BREADCRUMB BAR (legacy page templates: .pagination-block)
+   ---------------------------------------------------------------- */
+.pagination-block {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1280px; margin: 0 auto; padding: 24px 24px;
+  /* background: var(--c-bg-soft); 
+  border-bottom: 1px solid var(--c-line); */
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+.sdfsdfjsdf { display: flex; align-items: center; }
+.pagination ul {
+  display: flex; align-items: center; flex-wrap: wrap;
+  list-style: none; padding: 0; margin: 0;
+  font-size: 13px; color: var(--c-grey);
+}
+.pagination ul li { position: relative; display: flex; align-items: center; padding-right: 18px; margin-left: 0; }
+.pagination ul li::after {
+  content: ''; position: absolute; top: 50%; right: 5px;
+  width: 5px; height: 5px; transform: translateY(-60%) rotate(45deg);
+  border-right: 1.5px solid var(--c-grey-3); border-top: 1.5px solid var(--c-grey-3);
+  background: none;
+}
+.pagination .breadcrumbs__link { color: var(--c-grey); transition: color var(--tr); }
+.pagination .breadcrumbs__link:hover { color: var(--c-dark); }
+.pagination .pagination-last { color: var(--c-dark); font-weight: 600; padding-right: 0; }
+.pagination .pagination-last::after { display: none; }
+@media (max-width: 640px) {
+  .pagination-block { padding: 12px 16px; }
+}
+
+/* ----------------------------------------------------------------
    FOOTER
    ---------------------------------------------------------------- */
 .footer { background: var(--c-dark); color: rgba(255,255,255,0.85); padding-top: 60px; font-family: 'Inter', -apple-system, sans-serif; }
