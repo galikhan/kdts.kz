@@ -6,7 +6,7 @@
 			<?php wp_nav_menu ( array (
 						'theme_location' => 'yazyk-menu',
 						'container' => false,
-						'menu_class'      => '', 
+						'menu_class'      => '222',
 					)) ?>
 		</div>
     </div>

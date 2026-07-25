@@ -4,7 +4,19 @@
  */
 ?>
 <?php get_header(); ?>
-<?php include "template-breadcrumbs.php" ?>
+	<div class="pagination-block">
+
+<div>
+<?php get_template_part('breadcrumbs') ?>
+</div>
+<div class="yazyk">
+    <ul>
+        <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/filialdar-zh-ne-kildikter/', 'https') ?>">Қаз</a></li>
+        <li><a href="<?php echo home_url('/ru/o-kompanii/filialy-i-predstavitelstv', 'https') ?>">Рус</a></li>
+        <li><a href="<?php echo home_url('/en/o-kompanii/filialy-i-predstavitelstv/', 'https') ?>">Eng</a></li>
+    </ul>
+</div>
+</div>
 <main>
     <div class="container-rukovodstvo">
         <div class="rukovodstvo-top">
