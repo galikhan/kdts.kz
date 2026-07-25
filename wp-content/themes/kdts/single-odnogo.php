@@ -1,4 +1,10 @@
 <?php get_header(); ?>
+	<div class="pagination-block">
+  		<div class="sdfsdfjsdf">
+<?php get_template_part('breadcrumbs') ?>
+        </div>
+
+    </div>
 <main class="container-rukovodstvo">
 	<section class="zakupki-navbar">
    		<?php include "zakup-menu.php" ?>

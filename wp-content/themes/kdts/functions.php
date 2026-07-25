@@ -516,6 +516,18 @@ add_action('init', 'Dvukhetapnogoar_tendera_create_post_type');
 
 	
 /*
+ * Truncates the current-page breadcrumb label so very long post/page
+ * titles don't blow out the breadcrumb bar.
+*/
+function dimox_bc_trim( $text, $length = 30 ) {
+	$text = wp_strip_all_tags( $text );
+	if ( mb_strlen( $text ) > $length ) {
+		$text = mb_substr( $text, 0, $length ) . '…';
+	}
+	return $text;
+}
+
+/*
  * "Хлебные крошки" для WordPress
  * лицензия: MIT
 */
@@ -626,7 +638,7 @@ function dimox_breadcrumbs() {
 				$post_type = get_post_type_object( get_post_type() );
 				if ( $position > 1 ) echo $sep;
 				echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->labels->name, $position );
-				if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+				if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 				elseif ( $show_last_sep ) echo $sep;
 			} else {
 				$cat = get_the_category(); $catID = $cat[0]->cat_ID;
@@ -643,7 +655,7 @@ function dimox_breadcrumbs() {
 					echo $sep . sprintf( $link, get_permalink(), get_the_title(), $position );
 					echo $sep . $before . sprintf( $text['cpage'], get_query_var( 'cpage' ) ) . $after;
 				} else {
-					if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+					if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 					elseif ( $show_last_sep ) echo $sep;
 				}
 			}
@@ -674,12 +686,12 @@ function dimox_breadcrumbs() {
 			}
 			$position += 1;
 			echo $sep . sprintf( $link, get_permalink( $parent ), $parent->post_title, $position );
-			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_last_sep ) echo $sep;
 
 		} elseif ( is_page() && ! $parent_id ) {
 			if ( $show_home_link && $show_current ) echo $sep;
-			if ( $show_current ) echo $before . get_the_title() . $after;
+			if ( $show_current ) echo $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_home_link && $show_last_sep ) echo $sep;
 
 		} elseif ( is_page() && $parent_id ) {
@@ -689,7 +701,7 @@ function dimox_breadcrumbs() {
 				if ( $position > 1 ) echo $sep;
 				echo sprintf( $link, get_page_link( $pageID ), get_the_title( $pageID ), $position );
 			}
-			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_last_sep ) echo $sep;
 
 		} elseif ( is_tag() ) {

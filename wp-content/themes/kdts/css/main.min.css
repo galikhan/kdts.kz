@@ -2182,7 +2182,7 @@ p {
 	color: #0B2335
 }
 
-.partnery-title::after {
+/* .partnery-title::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -2194,7 +2194,7 @@ p {
 	top: 50%;
 	transform: translateY(-50%);
 	left: -40px
-}
+} */
 
 .partneryPage .rukovodstvo-top {
 	margin-bottom: 0
@@ -2347,7 +2347,7 @@ p {
 	font-weight: 400;
 	font-size: 22px;
 	line-height: 30px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .abount-missiya {
@@ -2407,7 +2407,7 @@ p {
 	text-align: justify;
 	font-size: 20px;
 	line-height: 28px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .abount-missiya__number {
@@ -2519,7 +2519,7 @@ p {
 	text-align: justify;
 	font-size: 24px;
 	line-height: 32.4px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding-top: 22px
 }
 
@@ -2544,7 +2544,7 @@ p {
 .vakansii-text {
 	font-size: 22px;
 	line-height: 29.7px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .uslugiPage {
@@ -2643,7 +2643,7 @@ p {
 	margin-bottom: 0;
 	font-size: 18px;
 	line-height: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	text-align: justify;
 }
 
@@ -3059,7 +3059,7 @@ table.antiTabel1 th {
 	font-size: 22px;
 	line-height: 30px;
 	text-indent: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding-bottom: 15px
 }
 
@@ -3068,7 +3068,7 @@ table.antiTabel1 th {
 	font-size: 18px;
 	line-height: 25px;
 	text-indent: 25px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 /* template-vakansii.php ("Бос жұмыс орындары") — .aktsioneram-text is shared with other
@@ -3091,13 +3091,13 @@ table.antiTabel1 th {
 	font-size: 18px;
 	line-height: 25px;
 	text-indent: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding-bottom: 10px
 }
 
 .aktsioneram-svedeniya__text {
 	font-size: 18px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .aktsioneram-svedeniya__text li {
@@ -3231,7 +3231,7 @@ table.antiTabel1 th {
 .vnutrennie-item__text {
 	width: 190px;
 	margin: 14px auto auto;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 16.8px;
 	color: #0B2335
 }
@@ -3291,10 +3291,10 @@ table.antiTabel1 th {
 
 .stavki-text {
 	margin-top: 50px;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	text-indent: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	text-align: justify;
 }
 
@@ -3316,9 +3316,9 @@ table.antiTabel1 th {
 
 .tarify-text {
 	text-align: justify;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-bottom: 15px;
 	position: relative;
 	padding-left: 30px
@@ -3380,7 +3380,7 @@ table.antiTabel1 th {
 	font-size: 18px;
 	line-height: 25px;
 	text-align: center;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 10px
 }
 
@@ -3414,7 +3414,7 @@ table.tarify-tabel td {
 .tarify-tabel__left {
 	width: 70%;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	color: var(--c-dark);
 	padding: 9px 12px !important
@@ -3555,7 +3555,7 @@ table.tarify-tabel td {
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 1.3;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin: 14px 20px 0;
 }
 
@@ -3707,7 +3707,7 @@ table.tarify-tabel td {
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 24px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 10px
 }
 
@@ -3721,7 +3721,7 @@ table.tarify-tabel td {
 	font-size: 16px;
 	line-height: 24.3px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 13px
 }
 
@@ -3729,7 +3729,7 @@ table.tarify-tabel td {
 	text-indent: 25px;
 	font-size: 18px;
 	line-height: 25px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 20px;
 	text-align: justify;
 }
@@ -3916,7 +3916,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 16px;
 	line-height: 24.3px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding: 7px 16px
 }
 
@@ -4146,7 +4146,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 .konteynerov-item__footer {
 	text-align: justify;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 16px;
 	text-indent: 25px;
 	line-height: 28.4px;
 	color: var(--c-dark);
@@ -4216,7 +4216,6 @@ table.marshruty-table tr.marshruty-table__item1 {
 	background-color: #0B2335;
 	display: flex;
 	justify-content: space-between;
-	max-width: 850px;
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 21.6px;
@@ -4226,17 +4225,15 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .zakupki-name {
-	width: 490px;
-	max-width: 490px;
-	border: 1px solid #fff;
+	width: 50%;
+	border: 1px solid var(--c-dark);
 	padding: 8px 12px
 }
 
 .zakupki-nachalo,
 .zakupki-okonchanie {
-	width: 180px;
-	max-width: 180px;
-	border: 1px solid #fff;
+	width: 25%;
+	border: 1px solid var(--c-dark);
 	text-align: center;
 	padding: 8px 0
 }
@@ -4244,15 +4241,20 @@ table.marshruty-table tr.marshruty-table__item1 {
 .zakupki-body {
 	display: flex;
 	justify-content: space-between;
-	max-width: 850px;
-	border-bottom: 1px solid var(--c-line);
-	border-left: 1px solid var(--c-line);
-	border-right: 1px solid var(--c-line);
+	border-bottom: 1px solid var(--c-dark);
+	border-left: 1px solid var(--c-dark);
+	border-right: 1px solid var(--c-dark);
 	padding: 4px 0;
-	font-size: 14px;
 	line-height: 16.8px;
 	color: var(--c-dark);
-	transition: background var(--tr)
+	transition: background var(--tr);
+	background: var(--c-white);
+}
+
+/* template-tenders.php ("Сатып алулар" / tender) — .zakupki-body is shared with other
+   procurement archive templates, so scope the 16px default to this page only */
+.page-id-263 .zakupki-body {
+	font-size: 16px
 }
 
 .zakupki-body:last-of-type {
@@ -4273,20 +4275,19 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .zakupki-body__name {
-	width: 490px;
-	max-width: 490px
+	width: 50%;
 }
 
 .zakupki-body__nachalo {
-	width: 180px;
-	max-width: 180px;
+	width: 25%;
+	/* max-width: 180px; */
 	text-align: center;
 	color: #0B2335
 }
 
 .zakupki-body__okonchanie {
-	width: 180px;
-	max-width: 180px;
+	width: 25%;
+	/* max-width: 180px; */
 	text-align: center;
 	color: var(--c-dark)
 }
@@ -4395,12 +4396,12 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .zakupki-list__title {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px
 }
 
 .zakupki-list__org {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	margin: 20px 0
 }
@@ -4414,7 +4415,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .zakupki-list__text {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px
 }
 
@@ -4465,7 +4466,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	margin-bottom: 28px;
 	width: 100%;
 	max-width: 100%;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.4;
 	font-feature-settings: 'pnum' on, 'lnum' on;
 	color: var(--c-dark)
@@ -4485,7 +4486,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 13px;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
-	color: var(--c-grey);
+	color: var(--c-dark);
 	text-decoration: none;
 	margin-bottom: 12px;
 	transition: color var(--tr)
@@ -4505,7 +4506,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	border-radius: 8px;
 	color: var(--c-dark);
 	text-decoration: none;
-	font-size: 14px;
+	font-size: 16px;
 	transition: all var(--tr)
 }
 
@@ -4581,20 +4582,20 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 32.4px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-bottom: 25px
 }
 
 .tipovye-dogovora__head-text {
 	text-align: justify;
-	font-size: 22px;
+	font-size: 16px;
 	line-height: 30px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-bottom: 25px
 }
 
 .tipovye-dogovora__head-color {
-	font-size: 24px;
+	font-size: 16px;
 	line-height: 32.4px;
 	color: #0B2335;
 	margin-bottom: 25px
@@ -4603,9 +4604,9 @@ table.marshruty-table tr.marshruty-table__item1 {
 .tipovye-dogovora__head-italic {
 	text-align: justify;
 	font-style: italic;
-	font-size: 22px;
+	font-size: 16px;
 	line-height: 28px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-bottom: 60px
 }
 
@@ -4658,7 +4659,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	line-height: 24px;
 	text-align: center;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding: 0 29px
 }
 
@@ -4677,9 +4678,9 @@ table.marshruty-table tr.marshruty-table__item1 {
 }
 
 .tipovye-dogovora__zayavki-text {
-	font-size: 22px;
+	font-size: 16px;
 	line-height: 28px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .tipovye-dogovora__zayavki-text span {
@@ -4690,7 +4691,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 32.4px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 100px;
 	margin-bottom: 30px
 }
@@ -4699,7 +4700,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 135%;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	text-align: center
 }
 
@@ -4737,10 +4738,10 @@ table.marshruty-table tr.marshruty-table__item1 {
 
 .rezidentov-item__body {
 	padding: 24px;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	text-align: left
 }
 
@@ -4779,7 +4780,7 @@ table.marshruty-table tr.marshruty-table__item1 {
 	font-size: 18px;
 	line-height: 25px;
 	text-align: center;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .uchreditelnye-dokumenty__photo img {
@@ -4817,7 +4818,7 @@ table.ediniy-perechen .ediniy-perechen2 {
 	font-size: 24px;
 	line-height: 28.8px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 table.ediniy-perechen .ediniy-perechen__left-color {
@@ -4841,7 +4842,7 @@ table.ediniy-perechen .ediniy-perechen__right-color {
 	font-size: 24px;
 	line-height: 28.8px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	background: #d9dada;
 	border: 1px solid #fff;
 	box-sizing: border-box
@@ -4976,7 +4977,7 @@ table.incoterms tr td.incoterms-item__text {
 	font-size: 24px;
 	line-height: 32.4px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-top: 60px
 }
 
@@ -5024,9 +5025,9 @@ table.incoterms tr td.incoterms-item__text {
 
 .istoriya-content {
 	text-align: justify;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 26px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	width: calc(100% - 196px)
 }
 
@@ -5316,7 +5317,6 @@ table.incoterms tr td.incoterms-item__text {
 	display: block;
 	padding: 10px 12px;
 	border-radius: 8px;
-	color: var(--c-grey);
 	text-decoration: none;
 	transition: all var(--tr)
 }
@@ -5407,7 +5407,7 @@ table.incoterms tr td.incoterms-item__text {
 .user-p {
 	font-size: 16px;
 	line-height: 28px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	padding-top: 16px;
 	padding-bottom: 25px
 }
@@ -5435,7 +5435,7 @@ table.incoterms tr td.incoterms-item__text {
 	text-indent: 25px;
 	font-size: 16px;
 	line-height: 30px;
-	color: #4a4a4a
+	color: var(--c-dark)
 }
 
 .gallery-thumbs .swiper-slide-thumb-active {
@@ -6041,7 +6041,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.stavki-text {
 		margin-top: 50px;
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 25px;
 		text-indent: 25px
 	}
@@ -6062,7 +6062,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	}
 
 	.tarify-text {
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 25px;
 		padding-left: 25px;
 		margin-bottom: 15px
@@ -6074,9 +6074,13 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	}
 
 	.tarify-item__photo,
-	.tarify-item__text,
-	.tarify-tabel__left {
+	.tarify-item__text {
 		font-size: 18px;
+		line-height: 25px
+	}
+
+	.tarify-tabel__left {
+		font-size: 16px;
 		line-height: 25px
 	}
 
@@ -7405,7 +7409,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.konteynerov-item__footer {
 		font-weight: 400;
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 20px
 	}
 
@@ -8698,7 +8702,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	}
 
 	.istoriya-content {
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 24px;
 		padding-top: 5px
 	}
@@ -8853,7 +8857,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 
 	.konteynerov-item__footer {
 		font-weight: 400;
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 26px
 	}
 
@@ -8882,19 +8886,19 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	}
 
 	.tipovye-dogovora__head-text {
-		font-size: 20px;
+		font-size: 16px;
 		line-height: 27px;
 		text-indent: 25px
 	}
 
 	.tipovye-dogovora__head-color {
-		font-size: 20px;
+		font-size: 16px;
 		line-height: 27px;
 		margin-bottom: 15px
 	}
 
 	.tipovye-dogovora__head-italic {
-		font-size: 20px;
+		font-size: 16px;
 		line-height: 27px;
 		text-indent: 25px;
 		margin-bottom: 50px
@@ -8908,7 +8912,7 @@ rgba(16, 123, 195, .7) @media (max-width:1520px) {
 	}
 
 	.tipovye-dogovora__zayavki-text {
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 25px;
 		text-indent: 25px
 	}
@@ -9435,7 +9439,7 @@ body {
 	border-bottom: 1px solid var(--c-line);
 	padding: 20px 0;
 	margin-bottom: 0;
-	font-size: 15px;
+	font-size: 16px;
 }
 
 .kontakty-block:last-child {
@@ -9882,7 +9886,7 @@ body {
 	margin: 40px auto auto;
 	font-size: 20px;
 	line-height: 28px;
-	color: #4a4a4a;
+	color: var(--c-dark);
 	margin-bottom: 300px;
 }
 

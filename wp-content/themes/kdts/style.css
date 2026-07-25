@@ -329,7 +329,7 @@ h1 {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 18px; margin-bottom: 8px;
   background: var(--c-white); border: 1px solid var(--c-line); border-radius: 10px;
-  color: var(--c-dark); text-decoration: none; font-weight: 500; font-size: 15px;
+  color: var(--c-dark); text-decoration: none; font-weight: 500; font-size: 16px;
   transition: all var(--tr);
 }
 .page-id-1383 .aktsioneram-text a::before {
