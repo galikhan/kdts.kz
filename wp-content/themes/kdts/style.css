@@ -279,8 +279,11 @@ html body .utility-links a.bvi-link-widget .bvi-svg-eye {
   .nav {
     display: none; position: absolute; top: 100%; left: 0; right: 0;
     background: var(--c-white); flex-direction: column;
+    justify-content: flex-start; align-items: stretch;
     padding: 16px 24px; box-shadow: var(--shadow-md);
     border-top: 1px solid var(--c-line);
+    max-height: calc(100dvh - 70px); overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav.open { display: flex; }
   .nav > ul { flex-direction: column; align-items: stretch; width: 100%; gap: 2px; }
@@ -327,6 +330,32 @@ html body .utility-links a.bvi-link-widget .bvi-svg-eye {
 .pagination .breadcrumbs__link:hover { color: var(--c-dark); }
 .pagination .pagination-last { color: var(--c-dark); font-weight: 600; padding-right: 0; }
 .pagination .pagination-last::after { display: none; }
+
+/* language switcher next to the breadcrumb trail — hardcoded Қаз/Рус/Eng
+   links, sibling of .sdfsdfjsdf inside .pagination-block, present on
+   nearly every inner-page template. No display/spacing was ever set, so
+   it rendered as a plain stacked <ul> (block-level li's, no gap). */
+.yazyk ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+.yazyk ul li {
+  padding: 5px;
+}
+.yazyk ul li a {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-grey);
+  text-decoration: none;
+  transition: color var(--tr);
+}
+.yazyk ul li a:hover { color: var(--c-dark); }
+.yazyk ul li.yazyk-active a { color: var(--c-dark); }
+
 @media (max-width: 640px) {
   .pagination-block { padding: 12px 16px; }
 }
@@ -490,13 +519,13 @@ html body .utility-links a.bvi-link-widget .bvi-svg-eye {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--c-bg-soft); border: 1px solid var(--c-line);
   padding: 6px 12px; border-radius: 100px;
-  font-size: 12px; font-weight: 500; color: var(--c-grey);
+  font-size: 12px; font-weight: 500; color: var(--c-dark-3);
   margin-bottom: 24px; position: relative;
 }
 .hero-badge .dot { width: 6px; height: 6px; background: var(--c-success); border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
 @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.4} }
 .hero h1 { font-size: clamp(36px,4.8vw,50px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; color: var(--c-dark); }
-.hero p.lead { font-size: 17px; color: var(--c-grey); line-height: 1.6; margin-bottom: 32px; max-width: 540px; }
+.hero p.lead { font-size: 17px; color: var(--c-dark); line-height: 1.6; margin-bottom: 32px; max-width: 540px; }
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
 .calc-widget { background: var(--c-white); border: 1px solid var(--c-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-lg); position: relative; }

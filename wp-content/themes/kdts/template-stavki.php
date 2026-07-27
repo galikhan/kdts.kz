@@ -39,7 +39,7 @@
                         <?php the_post(); ?>
 						<?php the_content() ?>  <br>
 						<p>"Кедентрассервис" АҚ Қазақстан - Қытай экспорттық қатынасында контейнерлік пойыздардың сервисін көрсетеді. 
-							<a style="color:blue" target="_blank" href="https://www.kdts.kz/wp-content/uploads/2026/06/KP-Klientam-KAZ-iyul-2026-selh-produ.pdf"  >(жүктеу)</a>
+							<a style="color:blue" target="_blank" href="https://www.kdts.kz/wp-content/uploads/2026/07/KP-Klientam-KAZ-iyul-2026-selh-produ-1.pdf"  >(жүктеу)</a>
 						
 							<br><br>
 						<p>Алматы-1 – нод-2/түйінді-1 – ҚХР бағыты бойынша контейнерлік платформаларды пайдалана отырып, экспорттық астық тасымалдауды ұйымдастыру<a style="color:blue" target="_blank" href="https://www.kdts.kz/wp-content/uploads/2026/02/K-FTG-Almaty-NOD-GP-12-SAUIR.pdf"  >(жүктеу)</a>
