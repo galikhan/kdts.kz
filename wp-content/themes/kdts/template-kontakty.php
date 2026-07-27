@@ -20,7 +20,7 @@
 	<main class="container-rukovodstvo">
             <section class="kontakty-navbar" style="display: none;">
             	<div class="goryaschaya-leniya">
-					<center><p class="goryaschaya-leniya__head"> Жедел желі </p></center>
+					<p class="goryaschaya-leniya__head"> Жедел желі </p>
 					<ul>
 						<li class="goryaschaya-leniya__item">
 							<img src="<?php echo get_template_directory_uri(); ?>/img/phone-call.png" class="goryaschaya-leniya__icon">
@@ -55,7 +55,7 @@
 					</ul>
 				</div>
             </section> <!-- rukovodstvo-navbar / -->
-            <section class="novosti-container">
+            <section class="kontakty-container">
                 <h1 class="partnery-title">
                     <?php the_title(); ?>
                 </h1>

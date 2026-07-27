@@ -127,13 +127,28 @@ now lives in `style.css` under `BREADCRUMB BAR (legacy page templates:
 .pagination-block)`: flex row, `/`-less arrow-style separators, grey link
 color, bold dark "current page" crumb.
 
-### 3d. Language switcher in the breadcrumb bar — explored, not applied
-There was back-and-forth on restoring a `.yazyk` language-switcher block
-next to the breadcrumbs on inner pages (matching the old theme's
-`pagination-block` layout, which had breadcrumbs + `.yazyk` as siblings).
-**Current state: not present** — `breadcrumbs.php` only contains the plain
-`.pagination` block. If this is wanted on ru/en, decide fresh rather than
-porting an in-between state.
+### 3d. Language switcher next to the breadcrumb bar — restored, styled
+`.yazyk` (hardcoded Қаз/Рус/Eng links, **not** the dynamic `yazyk-menu` nav
+menu) is a sibling of `.sdfsdfjsdf` inside `.pagination-block`, hardcoded
+into nearly every inner-page template (`grep -rl 'class="yazyk"'` matches
+~50 files) — it was never removed, just never styled, so it rendered as a
+default stacked bullet list. Added to `style.css` right after the
+`.pagination` rules:
+```css
+.yazyk ul { display: flex; list-style: none; margin: 0; padding: 0; flex-shrink: 0; }
+.yazyk ul li { padding: 5px; }
+.yazyk ul li a { font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--c-grey); text-decoration: none; transition: color var(--tr); }
+.yazyk ul li a:hover { color: var(--c-dark); }
+.yazyk ul li.yazyk-active a { color: var(--c-dark); }
+```
+Since it's a fixed 3-word row (~111px wide), no mobile-specific override
+was needed — fits fine down to 375px viewports. Note: an *earlier* attempt
+to also add a language switcher **inside `breadcrumbs.php` itself** (as a
+`.lang-switch` + dynamic `yazyk-menu` `wp_nav_menu()` call) was tried and
+reverted — `breadcrumbs.php` stayed as just the plain `.pagination` block.
+The `.yazyk` component described here is the separate, already-existing,
+per-template one — don't reintroduce the breadcrumbs.php version on top of
+it, that would duplicate the switcher.
 
 ---
 
@@ -221,13 +236,108 @@ above the Telegram/call buttons:
 
 ---
 
+## 6. "Компания туралы" page (`template-onas.php`) redesign
+
+Fixed three real bugs, not just a visual refresh — all content (CFS calls,
+hardcoded KZ mission/vision/strategy wording) preserved exactly, only
+markup/CSS changed:
+
+1. **Map/text overlap.** `.abount-missiya__map` was `position: absolute`
+   with no width/containment, so it rendered directly on top of the
+   mission-statement text instead of beside it. Rebuilt `.abount-map__container`
+   as a normal flex row (map `position: static`, capped width) — map and
+   text now sit side by side, wrapping to a stacked column under 900px.
+2. **Stats box rendering as an empty box.** `.onas-active`'s CFS fields
+   (`tsifrff`/`text10`/`text11`) are blank on this page — the block still
+   rendered its border/card shell with nothing inside. Now conditionally
+   rendered in PHP (`if ($onas_stat_num || $onas_stat_text): ... endif;`).
+   Same treatment for `.abount-missiya__bottom` (`text4` is also blank
+   here) — wrapped in `if ($onas_missiya_bottom): ... endif;`. **If porting
+   to ru/en: check whether their CFS fields for this page are actually
+   filled in — if so, the content will show automatically; if also blank,
+   this conditional prevents the empty-box artifact.**
+3. **Off-brand styling.** The years-in-business badge and the
+   mission/vision/strategy text were using an orange accent (`#d39c00`,
+   not part of the `--c-*` palette) and a wall of `<strong>`+`<p>` tags.
+   Restyled: `.onas-years` (pill badge with clock icon), `.onas-goals`
+   (3-card grid: Мақсат / Көз-қарас / Стратегиялық мақсат, the 6 strategic
+   goals as a real checklist instead of manually-numbered paragraphs).
+4. Deleted a dead, fully HTML-commented-out duplicate `<section
+   class="abount-missiya">` block (zagolovok1/zagolovok2/text2/text3 —
+   superseded by the live mission/vision text, was never rendering).
+
+Left alone (already fine): the certificate block (`.cert-block`) and the
+two dark partnership-stat cards (`.abount-otnosheniya`) — just added
+`border-radius: 20px` to the latter for consistency.
+
+All new CSS in `css/main.min.css` (in-place edit of the old `.years`,
+`.onas-active`, `.abount-missiya*` rules — same file/pattern as the rest of
+this page's pre-existing styling, not `style.css`).
+
+---
+
+## 7. Mobile nav menu — bottom items unreachable
+
+**Symptom:** opening the hamburger menu on mobile, the list was taller
+than the screen and there was no way to scroll down to the last items
+(Сатып алулар and its children, Тұрақты даму, Байланыстар).
+
+**Two compounding bugs**, both in `style.css`, `@media (max-width: 1024px)
+{ .nav { ... } }`:
+1. No `max-height`/`overflow` on `.nav` at all — it just grew past the
+   viewport with nothing to scroll it.
+2. The actual cause of "can't reach the bottom": `.nav` silently inherited
+   `justify-content: center` from the **desktop** rule (used to center the
+   horizontal top-level menu), never reset on mobile. With
+   `flex-direction: column` and content taller than the box, that centered
+   the oversized menu — pushing the first items up **off-screen above the
+   header** while the last ones spilled off the bottom. There was no
+   scroll position that could show both ends.
+
+**Fix** — added to the mobile `.nav` rule:
+```css
+max-height: calc(100dvh - 70px);
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+justify-content: flex-start;
+align-items: stretch;
+```
+Verified with a real 375×667 viewport (Playwright): menu now starts flush
+at the top and scrolls to every item. **This bug will resurface on ru/en
+too** since it's the same base `.nav` desktop rule (`justify-content:
+center`) being silently inherited — check their mobile nav the same way.
+
+---
+
+## 8. `.kontakty-container` width not applying — media-query lesson
+
+Not a redesign item, but worth keeping as a reference: a `width: 1280px`
+rule was added for `.kontakty-container` but nested inside an *existing*
+`@media (max-width: 576px) { ... }` block in `main.min.css` — so on normal
+desktop screens it never applied, and on an actual small phone it would
+have forced 1280px width (horizontal overflow), the opposite of intent.
+
+**Fix:** moved it to a plain top-level rule (next to the other
+`.kontakty-*` selectors) and changed `width: 1280px` to `max-width: 1280px;
+width: 100%; margin: 0 auto;` so it shrinks gracefully instead of
+overflowing on narrower screens.
+
+**Takeaway for editing `main.min.css` on any language version:** anything
+meant to apply on normal desktop screens must sit **outside** any `@media
+(max-width: ...) { }` block. This file has scattered `@media` blocks
+throughout (not batched at the end), so always check whether the insertion
+point is already inside an unclosed one before adding a rule.
+
+---
+
 ## Files touched this session
-- `wp-content/themes/kdts/css/main.min.css` — height-bug fix, font-size rollout, `.godovoy-plan__nav*`, scoped page-id overrides
-- `wp-content/themes/kdts/style.css` — breadcrumb bar styling, `.utility-links`/`.sr-only`, `.float-btn.hotline`/`.eotinish`
+- `wp-content/themes/kdts/css/main.min.css` — height-bug fix, font-size rollout, `.godovoy-plan__nav*`, scoped page-id overrides, `template-onas.php` redesign (`.onas-*`, `.abount-missiya*`), `.kontakty-container`
+- `wp-content/themes/kdts/style.css` — breadcrumb bar styling, `.yazyk` styling, `.utility-links`/`.sr-only`, `.float-btn.hotline`/`.eotinish`, mobile `.nav` scroll/centering fix
 - `wp-content/themes/kdts/functions.php` — `dimox_bc_trim()` + 5 call sites in `dimox_breadcrumbs()`
-- `wp-content/themes/kdts/breadcrumbs.php` — no net change (explored a `.yazyk` addition, reverted)
+- `wp-content/themes/kdts/breadcrumbs.php` — no net change (explored a `.lang-switch` addition, reverted; see §3d — the separate pre-existing `.yazyk` component is what actually got styled)
 - `wp-content/themes/kdts/header.php` — `.utility-links` (BVI only)
 - `wp-content/themes/kdts/footer.php` — `.float-actions` gained `.hotline`/`.eotinish` buttons
 - `wp-content/themes/kdts/single-odnogo.php`, `single-otkrytogo.php`, `single-tsenovykh.php` — breadcrumbs restored
+- `wp-content/themes/kdts/template-onas.php` — hero stat + map/mission section restructured, dead commented section removed (see §6)
 - `wp-content/themes/kdts/img/hot.jpg` — new asset, copied from production
 - WordPress admin (DB content, not files): 3 new children under the "Сатып алулар" header menu item
