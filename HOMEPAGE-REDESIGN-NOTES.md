@@ -892,3 +892,213 @@ expected — WP redirects the front page's own slug to `/`).
   for the old `width:250%` image) were left alone even after removing
   that hack, since the correct new value can't be verified without a
   browser and a wrong guess would be worse than the old hack.
+
+## 18. `ru` redesign complete — what it found, and the checklist for `en`
+
+Sections 1–17 covered `kz` only. `ru` has since gone through the entire
+pass (global chrome → homepage → every template) and is done as of
+2026-07-29. `en` has **not been started at all**. This section records
+what actually happened doing `ru` (new bug patterns, methodology that
+worked) so `en` goes faster and doesn't repeat mistakes.
+
+### 18.1 Structural facts, confirmed by direct inspection
+
+- `en/` and `ru/` are **separate WordPress installs**, not a plugin/i18n
+  layer — own `wp-config.php`, own DB (`en` → `p-319092_en`, `ru` →
+  `p-319092_rus`, `kz` → `p-319092_kaz`), own copy of the `kdts` theme.
+  Table prefix is `ZKN5mzvzJ_` on all three (confirmed), but don't assume
+  that generalizes — check each install's own `wp-config.php`.
+- `git diff`/patch-apply from the pre-redesign baseline (commit
+  `18b2f35~1`) does **not** cleanly apply to `en` or `ru` — their theme
+  copies drifted from what `kz` looked like at that point (still had bare
+  `<?` short tags site-wide, different indentation). Confirmed
+  independently for `ru`; `en`'s theme file listing is much closer to
+  `kz`'s than `ru`'s was (no extra template files like `ru`'s
+  `template-pagea.php`/`template-zakup.php`/`osobomu` family — `en`'s
+  `diff <(ls en-theme) <(ls kz-theme)` shows **zero** extra/missing
+  template files), but it still needs the full pass — file-list parity
+  doesn't mean content parity.
+- `en` **also** has the site-crippling short-tag bug: 67 files with bare
+  `<?` under `short_open_tag=Off` (same shape as `ru`'s 72). Confirmed via
+  `grep -rlE '<\?[^p=x]' en/wp-content/themes/kdts/*.php | wc -l`. Fix
+  exactly like section 11/12 describes — do this **first**, before
+  anything else, since half the "is this page broken" questions later
+  are unanswerable until short tags are fixed.
+- `en`'s `style.css` is still untouched `_s` boilerplate (same as `ru`
+  was) — safe to replace wholesale with `kz`'s redesigned `style.css`,
+  same as section 5 step 1 describes.
+- `en`'s `functions.php` enqueues `mtk-normalize` (`main.min.css`)
+  **unconditionally on every page including the homepage** (no
+  `if (!is_front_page())` guard) — same gap `ru` had before the fix.
+  Wrap it in the same conditional when porting `functions.php`'s
+  `kdts_scripts()`, matching `kz`'s original logic.
+- MAMP's MySQL only accepts `root`/`root` over the **Unix socket**, not
+  TCP — `-h 127.0.0.1 -P 3306` gets "access denied" even with correct
+  credentials. Use:
+  `/Applications/MAMP/Library/bin/mysql80/bin/mysql -uroot -proot -S /Applications/MAMP/tmp/mysql/mysql.sock <dbname>`
+  (no `-h`/`-P`). Needed constantly for DB audits (`_wp_page_template`
+  queries) and pulling real CFS content.
+
+### 18.2 New bug patterns found during the `ru` pass (check for these on `en` too)
+
+These are **in addition to** the bug patterns in sections 8/11/17.3 above
+— all confirmed present on `ru`, likely present on `en` too since it's
+the same theme lineage:
+
+1. **PHP tag typed literally inside a single-quoted `echo '...'` string.**
+   Broader than the section 17.3 "wrong-domain icon" case — sometimes the
+   `<?php echo get_template_directory_uri(); ?>` tag itself never
+   executes at all (not just wrong URL), because it sits inside a
+   single-quoted PHP string being built up via concatenation. Renders as
+   **literally that text** as the `src=`, i.e. a fully broken image, not
+   just a wrong one. Found in `template-uchreditelnye.php`,
+   `template-stavki.php` (×2, inside `blok1-loop`/`blok2-loop` CFS
+   repeater `echo '...'` blocks). Fix: `'.get_template_directory_uri().'`
+   (string-concat form), not `<?php echo ?>`. **Check every CFS-repeater
+   `foreach ($x as $y) { echo '...'; }` block for this**, not just the
+   ones flagged by the wrong-domain grep from section 17.3 — a
+   *same-domain* correct-looking `<?php echo get_template_directory_uri(); ?>`
+   can still be silently broken if it's inside the wrong quote context.
+2. **Stray literal `"` character inside a `home_url('...')` call**,
+   breaking that one link (e.g. `home_url('/o-kompanii/partnery/"', 'https')`
+   producing a URL-encoded quote in the href). Found twice on `ru`
+   (`template-partnery.php`, `template-uslugi-peregruza.php`), both in
+   the language-switcher block, both looked like a copy-paste slip.
+   `grep -rn "home_url('[^']*/\"',"` across the theme catches this
+   pattern.
+3. **A component's CSS gets ported for one class in the family but not
+   its siblings.** Porting `.foo-item` card styling isn't enough if
+   `.foo-items` (the flex/grid container) or `.foo-text` (a child) still
+   carry old fixed-width values sized for the *old* layout — the new
+   narrower/wider card can overflow or leave gaps. Concretely:
+   `.uchreditelnye-dokumenty__item` got the new 220px card treatment but
+   `.uchreditelnye-dokumenty__text` still had `width:324px` (wider than
+   the new card), causing a real 4-up grid overflow that wasn't visible
+   until actually screenshotted at the right viewport — a `php -l` +
+   curl-200 check would never catch this. **When porting one card
+   component's CSS from `kz`'s `main.min.css`, grep for the *entire*
+   selector family (`__items`, `__item`, `__title`, `__text`, `__photo`,
+   `__icon`, hover states) and port the base rules for all of them, not
+   just the one matching the bug report.**
+4. **A wrapper element has a class that belongs to a different, wider-use
+   component**, forcing that component's layout rules onto content that
+   was never meant to receive them. Found in `template-rukovodstvo.php`:
+   the citizen-reception banner `<article>` had a stray
+   `class="rukovodstvo-navbar"` (the 295px white-card *sidebar*
+   component) instead of being unclassed — this broke a **different**
+   component (`.rukovodstvo-navbar__banner`, meant to be 373px with an
+   absolute-positioned photo) nested inside it. Confirmed by md5-diffing
+   the actual image file against `kz`'s copy first (identical) to rule
+   out a missing-asset explanation before looking at markup. **This class
+   of bug returns a clean 200 and passes every automated check — it is
+   only visible by screenshotting the page and comparing against `kz`'s
+   live equivalent.** This is likely the single best argument for why the
+   diff-then-screenshot method (18.3) matters more than lint/curl alone.
+5. **The "simplepage" template family**
+   (`template-page.php`/`template-pageb.php`/`template-pagea.php` —
+   `Template name: simplepage`/`simplepageb`/`simplepagea`) had the exact
+   wrong-hardcoded-sidebar bug section 17.3 already documented for
+   `template-page.php`/`template-pageb.php` on `kz` — but it was **still
+   present, unfixed, on `ru`** for all three files (confirmed via
+   `_wp_page_template` DB query that each is used by exactly one real
+   standalone page, same as `kz`'s justification for removing the
+   sidebar). Fix: `.simplepage-container` + `.rukovodstvo-content--full`
+   wrapper (both already exist in `kz`'s `style.css`/`main.min.css` if
+   ported per section 5), remove the two-column sidebar section, remove
+   the conflicting inline `<style>` block (old `.card`/`.btn-primary`/
+   `.aktsioneram-text a:hover` overrides — same shape as bug #6 below).
+   **`en` almost certainly has this too** — check `template-page.php`/
+   `template-pageb.php` first, they're guaranteed to exist; also check
+   whether `en` has its own `template-pagea.php`-equivalent (it may not,
+   since `en`'s file listing otherwise matches `kz` 1:1).
+6. **Inline `<style>` blocks in individual templates that redeclare a
+   shared component** (`.card .btn-primary`, `.card .info`, etc.) with
+   *old* flat colors and higher-or-equal specificity than the real
+   redesigned component, silently winning the cascade. This is the same
+   root cause as the `template-vakansii.php` bug `kz`'s own section 17.3
+   already documents, but it recurred **independently** in
+   `template-page.php`, `template-pageb.php`, `template-pagea.php`, and
+   `template-zakup.php` on `ru` — i.e. it looks like a copy-pasted
+   boilerplate block that got pasted into many templates, not a one-off.
+   **Grep the whole `en` theme for `.card .btn-primary` and
+   `.card{border:1px solid #717171` up front** rather than waiting to
+   trip over each occurrence individually — every match is this same bug.
+7. **A shared component class is missing a width modifier for one
+   specific template's layout context.** `template-o-sayte.php` uses
+   `.uslugi-peregruza__text`, which is *normally* one column of a
+   two-column image+text layout (50% width) — but this template has no
+   image sibling, so without a `--full` modifier the real content column
+   was stuck at half width. `kz`'s `main.min.css` already has
+   `.uslugi-peregruza__text--full` with a comment explaining exactly this
+   — the bug on `ru` was simply that the template's markup never got the
+   modifier class added. Check `en`'s `template-o-sayte.php` for the same
+   gap.
+8. **`post_status` gaps are a real, separate thing to check for** — not
+   a design bug, but worth doing the same DB audit for on `en`. `ru` has
+   7 of its 8 `template-marshruty1-8.php` route pages sitting as
+   `draft` (confirmed via direct `wp_posts` query) while `kz` has all 8
+   `publish`ed. **Do not auto-publish drafts found on `en`** — flag them,
+   same as was done for `ru`, since publishing is a content decision
+   outside a redesign pass's scope and the draft content's accuracy can't
+   be verified from a template-focused pass.
+
+### 18.3 Methodology that worked for the `ru` pass — reuse it verbatim for `en`
+
+1. Fix short tags site-wide first (section 18.1), then `style.css` swap,
+   then `header.php`/`footer.php`/icon-sprite/`new-design.js` port
+   (section 7/9/12), then the `main.min.css` legacy-conflict audit
+   (section 8 — the `.dropdown-content` forced-open-but-invisible bug is
+   near-guaranteed to exist on `en` too, same mechanism), **then and only
+   then** the homepage rebuild, **then** the per-template pass. Doing
+   template-level polish before the global chrome is solid wastes work —
+   every template inherits header/footer/nav.
+2. For the homepage rebuild: pull real content via a temporary
+   `var_export(CFS()->get('field', $front_page_id))` debug script placed
+   at install root (e.g. `en/cfs-debug-temp.php`), `curl` it once, **then
+   delete the file immediately** — never leave it in place. Cross-check
+   the real front-page post ID via
+   `SELECT option_value FROM wp_options WHERE option_name='page_on_front'`
+   — don't assume it matches `kz`'s or `ru`'s post ID even though both of
+   those happened to both be `7`.
+3. Before wiring up the homepage's quote-request modal
+   (`<select name="typecalc">`/`<select name="type">`/`<select
+   name="vagon">`/`country[]` checkboxes), **read that install's own
+   `send.php`** and use its own `$type`/`$sended`/`$chei`/`$area` array
+   keys as the `<option value="...">` strings — never copy another
+   site's labels. Confirmed `en/send.php` has its own English-labeled
+   arrays (`'Forwarding' => 'EXPEDITING'`, `'Single' => 'SINGLE'`,
+   `'Own' => 'OWN'`, and a **mixed-language** `$area` array — some
+   country names are already in English (`Kazakhstan`, `Russia`,
+   `China`...) but others are still Cyrillic (`Азербайджан`,
+   `Белоруссия`, `Латвия`, `Литва`, `Молдова`, `Украина`, `Эстония`) —
+   **copy those exact strings verbatim into the checkbox `value=`
+   attributes, do not translate them**, since `$area[$_POST['country'][]]`
+   does an exact-string lookup and a translated value would silently fail
+   to match, breaking that country's code in the CRM submission with no
+   visible error). Same lesson as `ru`, but the concrete gotcha differs
+   per install — always re-derive it from that install's own file, never
+   assume.
+4. For every template: `diff kz/theme/file.php en/theme/file.php` first.
+   Real content differences (language, real URLs) and real bugs (stray
+   classes, leftover raster icons, typos, wrong-domain links, dead divs)
+   show up in the same diff — the diff output itself usually makes which
+   is which obvious (a `home_url()` call with a stray `"` is never a
+   content difference). Cross-reference the DB (`_wp_page_template`
+   query, matching section 17.1's method) to build the full template
+   list and confirm real page counts before assuming a diff's context
+   (e.g. two files mapping to *different* real sub-pages between sites,
+   as happened with `ru`'s `template-uslugi-peregruza2-4.php`, is not a
+   bug — verify via the DB, don't guess from the diff alone).
+5. **Follow every fix with an in-browser screenshot compared against
+   `kz`'s live equivalent page — not just `php -l` and a curl status
+   check.** Bug patterns #3 and #4 in section 18.2 both return a clean
+   200 with no PHP errors and are only visible as a rendered mismatch.
+   This turned out to be exactly what "the design doesn't match kz"
+   feedback was pointing at during the `ru` pass — several real,
+   user-visible bugs were otherwise invisible to every automated check
+   used.
+6. After each batch of fixes, re-run the full page sweep: `php -l` across
+   the whole theme + `curl -L` every published page's URL (pull the list
+   fresh from `wp_posts` each time, don't hardcode it) and confirm all
+   200s before moving to the next batch. Catches regressions immediately
+   instead of at the end.
