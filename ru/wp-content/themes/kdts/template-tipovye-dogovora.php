@@ -112,7 +112,7 @@
 						echo '<div class="tipovye-dogovora__item">
 							<a href="'.$dogovor["dokument"].'" download>
 								<div class="tipovye-dogovora__photo">
-									<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#"/>
+									<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="#"/>
 								</div>
 								<div class="tipovye-dogovora__text">
 									'.$dogovor["tekst3"].'

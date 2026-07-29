@@ -86,7 +86,7 @@
 								echo '
 									<div class="anti-download__item">
 										<a href="'.$dokumenty["dokument"].'" download>
-											<img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
+											<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 										</a>
 										<p class="anti-download__item-text">
 											'.$dokumenty["tekst"].'

@@ -951,14 +951,59 @@ the same theme lineage:
    executes at all (not just wrong URL), because it sits inside a
    single-quoted PHP string being built up via concatenation. Renders as
    **literally that text** as the `src=`, i.e. a fully broken image, not
-   just a wrong one. Found in `template-uchreditelnye.php`,
-   `template-stavki.php` (×2, inside `blok1-loop`/`blok2-loop` CFS
-   repeater `echo '...'` blocks). Fix: `'.get_template_directory_uri().'`
-   (string-concat form), not `<?php echo ?>`. **Check every CFS-repeater
-   `foreach ($x as $y) { echo '...'; }` block for this**, not just the
-   ones flagged by the wrong-domain grep from section 17.3 — a
-   *same-domain* correct-looking `<?php echo get_template_directory_uri(); ?>`
-   can still be silently broken if it's inside the wrong quote context.
+   just a wrong one. Fix: `'.get_template_directory_uri().'` (string-
+   concat form), not `<?php echo ?>`.
+
+   **This one was under-caught the first time through `ru`.** The first
+   pass only fixed occurrences the section-17.3 wrong-*domain* grep
+   surfaced (`template-uchreditelnye.php`, `template-stavki.php` ×2) and
+   incorrectly assumed every *other* `<?php echo
+   get_template_directory_uri(); ?>` occurrence — same domain, "looks
+   fine" — was safe. It wasn't: the exact same broken-string bug was still
+   live in `template-vnutrennie.php`, `template-dopolnitelnaya-
+   informatsiya.php`, `template-plan-dolgosrochnykh-zakupok.php`,
+   `template-grafik-provedeniya.php` (all four share one repeated
+   `.vnutrennie-item` CFS-repeater block), `template-antikorruptsionnaya.php`,
+   and `template-tipovye-dogovora.php` — 4 of these were pointed out by
+   the user comparing rendered DOM output side-by-side with `kz` (the
+   `<img src="<?php echo get_template_directory_uri(); ?>/img/...">` was
+   visibly rendering as *literal text* in the browser's element inspector,
+   not as a resolved path) before they were caught here. **Checking the
+   domain string is not sufficient** — a same-domain, correctly-spelled
+   `get_template_directory_uri()` call can still be completely inert if
+   it's sitting inside a string literal.
+
+   **Do this instead — don't trust regex/grep for this check, use PHP's
+   own tokenizer**, since only the language itself can reliably say
+   whether a given span of text is "real code" or "string data":
+
+   ```php
+   <?php
+   // find_broken_echo.php <theme-dir> — flags every <?php ...?> tag that
+   // is actually string *data* (T_CONSTANT_ENCAPSED_STRING /
+   // T_ENCAPSED_AND_WHITESPACE), not executable code.
+   $dir = $argv[1];
+   $files = array_merge(glob("$dir/*.php"), glob("$dir/template-parts/*.php"));
+   foreach ($files as $file) {
+       $tokens = @token_get_all(file_get_contents($file));
+       if ($tokens === false) continue;
+       foreach ($tokens as $tok) {
+           if (!is_array($tok)) continue;
+           [$id, $text, $line] = $tok;
+           if (($id === T_CONSTANT_ENCAPSED_STRING || $id === T_ENCAPSED_AND_WHITESPACE)
+               && strpos($text, '<?php') !== false) {
+               echo "$file:$line: BROKEN — PHP tag is string data, not code\n";
+           }
+       }
+   }
+   ```
+   Run with `php find_broken_echo.php path/to/theme` — it prints every
+   real hit with zero false positives (confirmed: after fixing all 6
+   files above, re-running it against the `ru` theme returned nothing).
+   **Run this on `en`'s theme directory before starting the per-template
+   pass**, fix every hit up front, and re-run it once more after the pass
+   to confirm zero remain — don't rely on spotting these by reading diffs
+   or grepping for domain strings, both already missed real instances.
 2. **Stray literal `"` character inside a `home_url('...')` call**,
    breaking that one link (e.g. `home_url('/o-kompanii/partnery/"', 'https')`
    producing a URL-encoded quote in the href). Found twice on `ru`
