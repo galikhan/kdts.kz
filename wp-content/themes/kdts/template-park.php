@@ -4,54 +4,60 @@
  */
 ?>
 <?php get_header(); ?>
-	 <div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/klientterge/platformalar-parki/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/klientam/park-platform-i-konteynerov/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/klientam/park-platform-i-konteynerov/', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Платформалар паркі</span>
 		</div>
-    </div>
- 	<main>
-        <div class="container-rukovodstvo">
-            <section class="rukovodstvo-navbar">
-                <a href="<?php echo home_url('/klientterge/molsherlemeler-zhane-tarifter', 'https') ?>" class="rukovodstvo-navbar__title">
-         			Клиенттерге
-             	</a>
-			   <div class="rukovodstvo-navbar__block">
-					<?php wp_nav_menu ( array (
-						'theme_location' => 'klientam-menu',
-						'container' => false,
-						'menu_class'      => '', 
-					)) ?>
-				</div> 
-            </section> <!-- rukovodstvo-navbar / -->
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-                    <?php the_title(); ?>
-                </h1>
-			  <article class="konteynerov-items">
-				  	<div class="konteynerov-item">
-						<div class="konteynerov-item__footer">
-							<?php the_post(); ?>
-							<?php the_content() ?>  
-							
-						</div>
-					</div>
-					<div class="konteynerov-item">
-                         <img src="<?php echo get_template_directory_uri(); ?>/img/konteynerov3.png" alt="#" class="konteynerov-item__icon" />
-					</div>
-				  
-                </article>
-			
-            </section> <!-- rukovodstvo-content / --> 
-        </div>
-        <div class="konteynerov-photo">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/konteynerovBg.png"  class="konteynerov-photo__icon" />
-        </div> 
-    </main>	
+		<h1>Платформалар паркі</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/obyavleniya' ) ); ?>">Хабарландырулар</a>
+			<a href="<?php echo esc_url( home_url( '/molsherlemeler-zhane-tarifter' ) ); ?>">Мөлшерлемелер және тарифтер</a>
+			<a href="<?php echo esc_url( home_url( '/platformalar-parki' ) ); ?>" class="is-active">Платформалар паркі</a>
+			<a href="<?php echo esc_url( home_url( '/ulgilik-sharttar' ) ); ?>">Үлгілік шарттар</a>
+			<a href="<?php echo esc_url( home_url( '/kryltajshylyk-sharttar' ) ); ?>">Құрылтайшылық шарттар</a>
+		</div>
+	</div>
+</section>
+
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">Фитингтік платформа — ірі тоннажды контейнерлерді тасымалдауға арналған және оларды бекіту үшін арнайы тораптармен жабдықталған мамандандырылған платформа.</p>
+
+		<div class="page-section">
+			<h2>Пайдаланылатын контейнер түрлері</h2>
+			<p>«Кедентранссервис» АҚ фитингтік платформаларын тасымалдау үшін 1А, 1АА, 1АХ, 1ААА ISO типті 40 фут және 1С, 1СС, 1СХ ISO типті 20 фут ірі тоннажды контейнерлерді пайдаланады.</p>
+			<div class="info-grid">
+				<div class="info-card">
+					<h3>40 фут контейнерлер</h3>
+					<p class="info-role">ISO типтері</p>
+					<p>1А, 1АА, 1АХ, 1ААА</p>
+				</div>
+				<div class="info-card">
+					<h3>20 фут контейнерлер</h3>
+					<p class="info-role">ISO типтері</p>
+					<p>1С, 1СС, 1СХ</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

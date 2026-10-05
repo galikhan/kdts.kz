@@ -4,36 +4,45 @@
  */
 ?>
 <?php get_header(); ?>
-    <div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-sajte/', 'https') ?>"> Рус</a></li>
-                <li><a href="https://www.kdts.kz/sajt-turaly/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/en/o-sajte/">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Развитие языков</span>
 		</div>
-    </div>
-	<main>
-        <div class="dell-container">
-            <div class="uslugi-peregruza__h1">
-                <h1>
-                    <?php the_title(); ?>
-                </h1>
-            </div>
-			 <section class="uslugi-peregruza__text uslugi-peregruza__text--full">
-			  	<?php the_post(); ?>
-				<?php the_content() ?>      
-			</section>
-        </div>
-    </main>
+		<h1>Развитие языков</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<a href="<?php echo esc_url( home_url( '/rukovodstvo' ) ); ?>">Руководство</a>
+			<a href="<?php echo esc_url( home_url( '/istoriya-kompanii' ) ); ?>">История компании</a>
+			<a href="<?php echo esc_url( home_url( '/sovet-direktorov' ) ); ?>">Совет директоров</a>
+			<a href="<?php echo esc_url( home_url( '/filialy-i-predstavitelstv' ) ); ?>">Филиалы и представительства</a>
+			<a href="<?php echo esc_url( home_url( '/vakansii' ) ); ?>">Вакансии</a>
+			<a href="<?php echo esc_url( home_url( '/razvitie-yazykov' ) ); ?>" class="is-active">Развитие языков</a>
+		</div>
+	</div>
+</section>
+
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">Раздел о развитии языков в АО «Кедентранссервис».</p>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>
-
-
-
-
-
-
-

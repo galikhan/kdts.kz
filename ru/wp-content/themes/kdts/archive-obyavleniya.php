@@ -1,193 +1,113 @@
 <?php
-/*
+ /*
  * Template name: obyavleniya
  */
 ?>
 <?php get_header(); ?>
-<div class="pagination-block">
-    <div class="sdfsdfjsdf">
-        <?php get_template_part('breadcrumbs') ?>
-    </div>
-    <div class="yazyk">
-        <ul>
-            <li class="yazyk-active"><a href="<?php echo home_url('/obyavleniya/', 'https') ?>">Рус</a></li>
-            <li><a href="https://www.kdts.kz/obyavleniya/"> Қаз</a></li>
-            <li><a href="https://www.kdts.kz/en/obyavleniya/">Eng</a></li>
-        </ul>
-    </div>
-</div>
+<?php
+$announcements = get_posts( array(
+	'post_type'      => 'obyavleniya',
+	'post_status'    => 'publish',
+	'posts_per_page' => -1,
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+) );
+$ann_years = array();
+foreach ( $announcements as $a ) {
+	$ann_years[ get_the_date( 'Y', $a ) ] = true;
+}
+$ann_years = array_keys( $ann_years );
+?>
 
-<style>
-    .novosti-item {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 30px;
-    }
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Объявления</span>
+		</div>
+		<h1>Объявления</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/obyavleniya' ) ); ?>" class="is-active">Объявления</a>
+			<a href="<?php echo esc_url( home_url( '/stavki-i-tarify' ) ); ?>">Ставки и тарифы</a>
+			<a href="<?php echo esc_url( home_url( '/park-platform-i-konteynerov' ) ); ?>">Парк платформ</a>
+			<a href="<?php echo esc_url( home_url( '/tipovye-dogovora' ) ); ?>">Типовые договора</a>
+			<a href="<?php echo esc_url( home_url( '/uchreditelnye-dokumenty' ) ); ?>">Учредительные документы</a>
+		</div>
+	</div>
+</section>
 
-    .novosti-item .novosti-data {
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 24.2px;
-        color: #0B2335;
-        margin-top: 10px;
-        margin-right: 2rem;
-        margin-bottom: 25px;
-        min-width: 120px;
-    }
+<section class="page-content">
+	<div class="container">
+		<?php if ( $announcements ) : ?>
+			<div class="ann-filter" role="tablist">
+				<button type="button" class="ann-filter-btn is-active" data-year="all">Все</button>
+				<?php foreach ( $ann_years as $y ) : ?>
+					<button type="button" class="ann-filter-btn" data-year="<?php echo esc_attr( $y ); ?>"><?php echo esc_html( $y ); ?></button>
+				<?php endforeach; ?>
+			</div>
 
-    .novosti-item .novosti-data p{
-        white-space: nowrap;
-        text-align: right;
-    }
+			<div class="ann-list" id="annList">
+				<?php foreach ( $announcements as $a ) : ?>
+					<article class="ann-item" data-year="<?php echo esc_attr( get_the_date( 'Y', $a ) ); ?>">
+						<div class="ann-date">
+							<span class="ann-date-day"><?php echo esc_html( get_the_date( 'd.m', $a ) ); ?></span>
+							<span class="ann-date-year"><?php echo esc_html( get_the_date( 'Y', $a ) ); ?></span>
+						</div>
+						<div class="ann-body">
+							<h3><?php echo esc_html( get_the_title( $a ) ); ?></h3>
+							<?php echo apply_filters( 'the_content', $a->post_content ); ?>
+						</div>
+					</article>
+				<?php endforeach; ?>
+			</div>
 
-    .novosti-item .novosti-head {
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 24.2px;
-        color: #0B2335;
-        margin-top: 10px;
-        margin-bottom: 25px;
+			<div class="ann-more">
+				<button type="button" class="btn btn-outline" id="annMore" hidden>Показать ещё</button>
+			</div>
+		<?php else : ?>
+			<p class="page-lead">Объявлений нет.</p>
+		<?php endif; ?>
+	</div>
+</section>
 
-    }
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
 
-    @media screen and (min-width: 768px) {
-        .novosti-item {
-            display: flex;
-        }
-
-
-    }
-
-    .novosti-items {
-        padding-top: 3rem;
-    }
-</style>
-<main class="novosti">
-    <div class="novosti-container">
-        <h1 class="novosti-title">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/tLine.svg" class="novosti-title__line" alt="#" />
-            Объявления
-        </h1>
-
-
-        <div class="rukovodstvo-wrapper">
-            <div class="swiper-container gallery-otchetnost1">
-				       
-				<div class="swiper-wrapper">
-
-  <div class="swiper-slide">
-    <div class="swiper-slide__godovaya">
-      <p class="swiper-slide__godovaya-text">2026</p>
-    </div>
-  </div>
-
-  <div class="swiper-slide">
-    <div class="swiper-slide__godovaya">
-      <p class="swiper-slide__godovaya-text">2025</p>
-    </div>
-  </div>
-
-  <div class="swiper-slide">
-    <div class="swiper-slide__godovaya">
-      <p class="swiper-slide__godovaya-text">2024</p>
-    </div>
-  </div>
-
-  <div class="swiper-slide">
-    <div class="swiper-slide__godovaya">
-      <p class="swiper-slide__godovaya-text">2023</p>
-    </div>
-  </div>
-
-</div>
-
-            <div class="godovaya-next">
-                <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
-            </div>
-            <div class="godovaya-prev">
-                <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
-            </div>
-
-
-        </div>
-        <div class="swiper-container gallery-otchetnost2">
-            <div class="swiper-wrapper" style="height: auto;">
-			<div class="swiper-slide" style="display:block">
-                    <div class="tarify-content novosti-items">
-                        <?php if (have_posts()) : while (have_posts()) : the_post();  ?>
-                        <?php if (get_the_id() >= 3100){ ?>
-                                <div class="novosti-item">
-                                    <div class="data">
-                                        <div class="novosti-data">
-                                            <?php echo the_excerpt(); ?>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="novosti-head">
-                                       
-                                            <?php the_title(); ?>
-                                        </p>
-                                        <?php the_content() ?>
-
-
-                                    </div>
-                                </div> <!-- novosti-item / -->
-                                <?php } ?>
-                            <?php endwhile; ?>
-
-                        <?php else : ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="display:block">
-                    <div class="tarify-content novosti-items">
-                        <?php if (have_posts()) : while (have_posts()) : the_post();  ?>
-                        <?php if (get_the_id()>2720 && get_the_id() < 3100){ ?>
-                                <div class="novosti-item">
-                                    <div class="data">
-                                        <div class="novosti-data">
-                                            <?php echo the_excerpt(); ?>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="novosti-head">                                       
-                                            <?php the_title(); ?>
-                                        </p>
-                                        <?php the_content() ?>
-                                    </div>
-                                </div> <!-- novosti-item / -->
-                                <?php } ?>
-                            <?php endwhile; ?>
-                        <?php else : ?>
-                        <?php endif; ?>
-                    </div>
-                </div> <!-- swiper-slide / -->
-                <div class="swiper-slide" style="display:block">
-                    <div class="tarify-content novosti-items">
-                        <?php if (have_posts()) : while (have_posts()) : the_post();  ?>
-                        <?php if (get_the_id()<=2720){ ?>
-                                <div class="novosti-item">
-                                    <div class="data">
-                                        <div class="novosti-data">
-                                            <?php echo the_excerpt(); ?>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="novosti-head">
-                                            <?php the_title(); ?>
-                                        </p>
-                                        <?php the_content() ?>
-                                    </div>
-                                </div> <!-- novosti-item / -->
-                                <?php } ?>
-                            <?php endwhile; ?>
-                        <?php else : ?>
-                        <?php endif; ?>
-                    </div>
-                </div> <!-- swiper-slide / -->
-            </div>
-        </div>
-    </div>
-</main>
+<script>
+(function () {
+	var STEP = 10;
+	var items = Array.prototype.slice.call(document.querySelectorAll('#annList .ann-item'));
+	var buttons = document.querySelectorAll('.ann-filter-btn');
+	var more = document.getElementById('annMore');
+	if (!items.length || !more) return;
+	var year = 'all', shown = STEP;
+	function render() {
+		var matching = items.filter(function (el) { return year === 'all' || el.getAttribute('data-year') === year; });
+		items.forEach(function (el) { el.hidden = true; });
+		matching.forEach(function (el, i) { el.hidden = i >= shown; });
+		more.hidden = matching.length <= shown;
+	}
+	Array.prototype.forEach.call(buttons, function (b) {
+		b.addEventListener('click', function () {
+			Array.prototype.forEach.call(buttons, function (x) { x.classList.toggle('is-active', x === b); });
+			year = b.getAttribute('data-year'); shown = STEP; render();
+		});
+	});
+	more.addEventListener('click', function () { shown += STEP; render(); });
+	render();
+})();
+</script>
 
 <?php get_footer(); ?>

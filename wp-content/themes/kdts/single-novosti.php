@@ -1,88 +1,68 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package created
- *
- */
-
-
+/* Single news article */
+get_header();
+the_post();
+$months = array( '', 'ҚАҢТАР', 'АҚПАН', 'НАУРЫЗ', 'СӘУІР', 'МАМЫР', 'МАУСЫМ', 'ШІЛДЕ', 'ТАМЫЗ', 'ҚЫРКҮЙЕК', 'ҚАЗАН', 'ҚАРАША', 'ЖЕЛТОҚСАН' );
+$archive_url = get_post_type_archive_link( 'novosti' ) ?: home_url( '/zhanalyktar/' );
+$others = get_posts( array(
+	'post_type'        => 'novosti',
+	'post_status'      => 'publish',
+	'numberposts'      => 5,
+	'exclude'          => array( get_the_ID() ),
+	'orderby'          => 'date',
+	'order'            => 'DESC',
+	'suppress_filters' => true,
+) );
+$thumb = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 ?>
-<?php get_header(); ?>
-		<main class="novosti">
-            <div class="novosti-container">
-                <p class="novosti-title">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/tLine.svg" class="novosti-title__line" alt="#" /> Жаңалықтар
-                </p>
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( $archive_url ); ?>">Жаңалықтар</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php echo esc_html( get_the_date( 'd.m.Y' ) ); ?></span>
+		</div>
+		<h1>Жаңалықтар</h1>
+	</div>
+</section>
 
-                <div class="novosti-wrapper">
-                    <div class="novosti-left" style="background-color: #fff;">
-                        <div class="novosti-block">
-                            <div class="novosti-block__photo">
-                                 <?php the_post_thumbnail() ?>
-                            </div> <!-- novosti-block__photo / -->
-                            <div class="novosti-block__info">
-                                <h1 class="novosti-block__title">
-                                    <?php the_title(); ?>
-                                </h1>
-                                <div class="novosti-block__date">
-                                    <?php echo get_the_date(); ?>
-                                </div>
-                                <div class="novostiItem-text">
-                                    <?php the_post(); ?>
-          							<?php the_content() ?>
-                                </div>
-                            </div> <!-- novosti-block__info / -->
-                        </div> <!-- novosti-block / -->
-                    </div> <!-- novosti-left / -->
-                    <div class="novosti-right">
-					<?php $post_id = get_the_ID();
-                               $posts = get_posts( array(
-                                'numberposts' => 5,
-                                 'category'    => -$post_id,
-                                 'orderby'     => 'date',
-                                 'order'       => 'DESC',
-                                 'include'     => array(),
-                                 'exclude'     => array(),
-                                 'meta_key'    => '',
-                                 'meta_value'  =>'',
-                                 'post_type'   => 'novosti',
-                                 'suppress_filters' => true,
-                             )); ?>
-                               <?php foreach( $posts as $post ){
-                                  setup_postdata($post); ?>
-                                  <?php if (get_the_ID()!=$post_id){ ?>
-                                     <div class="novosti-right__item">
-                                        <a href="<?php the_permalink(); ?>">
-                                           <div class="novosti-right__photo">
-                                              <?php the_post_thumbnail() ?>
-                                          </div>
-                                          <p class="novosti-right__head">
-                                              <?php the_title(); ?>
-                                          </p>
-                                          <p class="novosti-right__open">
-                                              >>>
-                                          </p>
-                                          <p class="novosti-right__data">
-                                              <?php echo get_the_date(); ?>
-                                          </p>
-                                      </a>
-                                  </div> <!-- novosti-item / -->
-                              <?php } ?>
-                          <?php } ?>
+<section class="page-content is-wide">
+	<div class="container">
+		<div class="news-article-layout">
+			<article class="news-article">
+				<div class="news-article-date">
+					<span class="d"><?php echo esc_html( get_the_date( 'd' ) ); ?></span>
+					<span class="m"><?php echo esc_html( $months[ (int) get_the_date( 'n' ) ] ); ?></span>
+					<span class="y"><?php echo esc_html( get_the_date( 'Y' ) ); ?></span>
+				</div>
+				<h2 class="news-article-title"><?php echo esc_html( html_entity_decode( get_the_title(), ENT_QUOTES ) ); ?></h2>
+				<?php if ( $thumb ) : ?>
+					<img class="news-article-img" src="<?php echo esc_url( $thumb ); ?>" alt="">
+				<?php endif; ?>
+				<div class="news-article-body">
+					<?php the_content(); ?>
+				</div>
+				<p><a class="tariff-form-link" href="<?php echo esc_url( $archive_url ); ?>">‹ Барлық жаңалықтар</a></p>
+			</article>
 
-
-                    </div> <!-- novosti-right / -->
-                </div> <!-- novosti-wrapper / -->
-
-
-
-
-            </div> <!-- novosti-container / -->
-        </main>
+			<?php if ( $others ) : ?>
+				<aside class="news-aside">
+					<h3>Басқа жаңалықтар</h3>
+					<?php foreach ( $others as $o ) :
+						$ot = get_the_post_thumbnail_url( $o->ID, 'medium' );
+						?>
+						<a class="news-aside-item" href="<?php echo esc_url( get_permalink( $o ) ); ?>">
+							<?php if ( $ot ) : ?><img src="<?php echo esc_url( $ot ); ?>" alt=""><?php endif; ?>
+							<span class="t"><?php echo esc_html( html_entity_decode( get_the_title( $o ), ENT_QUOTES ) ); ?></span>
+							<span class="dt"><?php echo esc_html( get_the_date( 'd.m.Y', $o ) ); ?></span>
+						</a>
+					<?php endforeach; ?>
+				</aside>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>
-
-

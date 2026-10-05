@@ -1,186 +1,99 @@
-﻿
 <?php
  /*
  * Template name: kontakty
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/bailanystar/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/kontakty/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/kontakty/', 'https') ?>">Eng</a></li>
-            </ul>
+<?php
+$cfs = function ( $key ) { return trim( (string) CFS()->get( $key ) ); };
+$phones = array();
+foreach ( (array) CFS()->get( 'tel' ) as $row ) {
+	if ( ! empty( $row['tekst7'] ) ) { $phones[] = trim( $row['tekst7'] ); }
+}
+$phones[] = '+7 778 097 91 87';
+$email   = $cfs( 'tekst11' );
+$address = $cfs( 'adres1' ) ?: $cfs( 'tekst4' );
+$hours   = array_filter( array( $cfs( 'tekst12' ), $cfs( 'tekst13' ) ) );
+$media   = array_filter( array( $cfs( 'tekst9' ), $cfs( 'tekst10' ) ) );
+?>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
 		</div>
-    </div>
-	<main class="container-rukovodstvo">
-            <section class="kontakty-navbar" style="display: none;">
-            	<div class="goryaschaya-leniya">
-					<p class="goryaschaya-leniya__head"> Жедел желі </p>
-					<ul>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/phone-call.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title"> Еңбек, жемқорлық және басқа да құқық бұзүшылық фактілері туралы сіз ұсынылған төрт байланыс арнасы арқылы хабарлай аласыз </p>
-						</li>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/warranty1.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title"> Құпиялылық және анонимдік </p>
-						</li>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/warranty.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title"> Өтініштер 100% қаралады </p>
-						</li>
-					</ul>
-					<ul class="goryaschaya-leniya__call">
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/phone-call123.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title1"> 8 800 080 30 30</p>
-						</li>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/whatsapp.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title1"> 8 702 075 30 30</p>
-						</li>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/email123.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title1">nysana@cscc.kz</p>
-						</li>
-						<li class="goryaschaya-leniya__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/internet.png" class="goryaschaya-leniya__icon">
-							<p class="goryaschaya-leniya__title1"> nysana.cscc.kz </p>
-						</li>
-					</ul>
-				</div>
-            </section> <!-- rukovodstvo-navbar / -->
-            <section class="kontakty-container">
-                <h1 class="partnery-title">
-                    <?php the_title(); ?>
-                </h1>
-                <div class="kontakty">
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Толық атауы: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<?php echo CFS()->get('tekst1'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Қысқартылған атауы: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<?php echo CFS()->get('tekst2'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Ағылшын тіліндегі атауы </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<?php echo CFS()->get('tekst3'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Заңды мекен-жайы: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<?php echo CFS()->get('tekst4'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Пошталық мекенжайы: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							 <?php echo CFS()->get('tekst5'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> «Кедентранссервис» АҚ филиалдарының&nbsp;байланыстары: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<a href="<?php echo home_url('/kompaniya-turaly/filialdar-zh-ne-kildikter/', 'https') ?>" class="kontakty-link">
-								Филиалдар және өкілдіктер
-								<svg class="icon"><use href="#icon-chevron-right"></use></svg>
-							</a>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Call center: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							 <ul class="kontakty-tel__block">
+		<h1><?php the_title(); ?></h1>
+	</div>
+</section>
 
-								<?php $teli = CFS()->get('tel');
-									foreach ($teli as $te) {
-										echo '
-											<li>'.$te["tekst7"].'</li>
-										';
-									 }
-								?>
-								<li>+7 778 097 91 87</li>
-                            </ul>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> БАҚ мәселелері бойынша: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<ul class="kontakty-tel__block">
-                                <li><?php echo CFS()->get('tekst9'); ?></li>
-                                <li><?php echo CFS()->get('tekst10'); ?></li>
-                            </ul>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Хат жолдау сұрақтары бойынша: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<?php echo CFS()->get('tekst11'); ?>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> Жұмыс уақыты: </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<ul class="kontakty-tel__block">
-                                <li><?php echo CFS()->get('tekst12'); ?></li>
-                                <li><?php echo CFS()->get('tekst13'); ?></li>
-                            </ul>
-						</div>
-					</div> <!-- kontakty-block / -->
-					<div class="kontakty-block">
-						<div class="kontakty-bloki">
-							<span> &nbsp; </span>
-						</div>
-						<div class="kontakty-bloki1">
-							<ul class="kontakty-hotline">
-								<li><svg class="icon"><use href="#icon-phone"></use></svg> Жедел байланыс желісі: 8-800-080-47-47</li>
-								<li><svg class="icon"><use href="#icon-whatsapp"></use></svg> WhatsApp мобильді қосыша: 8-771-191-88-16</li>
-								<li><svg class="icon"><use href="#icon-globe"></use></svg> Интернет-портал: www.sk-hotline.kz</li>
-								<li><svg class="icon"><use href="#icon-mail"></use></svg> Электрондық пошта: mail@sk-hotline.kz</li>
-								<li class="kontakty-hotline__plain">Мобильдік қосымша: KTZ HSE</li>
-								<!--<li>- көпарналы телефон 8-800-080-30-30</li>
-								<li>- WhatssApp 8-702-075-30-30</li>
-								<li>- Веб-сайт nysana.cscc.kz </li>
-								<li>- Электрондық пошта  nysana@cscc.kz</li>
-								<li>"Нысана" Колл-орталығы 24/7 бойы барлық әлеуметтік-еңбек бұзушылықтар бойынша тегін қоңыраулар қабылдайды.</li>
-								<li>&nbsp;</li>-->
+<section class="page-content is-wide">
+	<div class="container">
 
-							</ul>
-						</div>
-					</div> <!-- kontakty-block / -->
-                </div> <!-- kontakty / -->
-            </section> <!-- rukovodstvo-content / -->
-    </main>
+		<div class="contact-cards">
+			<div class="contact-card">
+				<span class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h4l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 013-2z"/></svg></span>
+				<h3>Call center</h3>
+				<?php foreach ( $phones as $p ) : ?>
+					<a href="tel:<?php echo esc_attr( preg_replace( '/[^+\d]/', '', $p ) ); ?>"><?php echo esc_html( $p ); ?></a>
+				<?php endforeach; ?>
+			</div>
+			<div class="contact-card">
+				<span class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+				<h3>Электрондық пошта</h3>
+				<?php if ( $email ) : ?><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a><?php endif; ?>
+			</div>
+			<div class="contact-card">
+				<span class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+				<h3>Мекенжай</h3>
+				<p><?php echo esc_html( $address ); ?></p>
+			</div>
+			<div class="contact-card">
+				<span class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+				<h3>Жұмыс уақыты</h3>
+				<?php foreach ( $hours as $h ) : ?><p><?php echo esc_html( $h ); ?></p><?php endforeach; ?>
+			</div>
+		</div>
+
+		<div class="page-section">
+			<h2>Деректемелер</h2>
+			<dl class="req-table">
+				<?php
+				$rows = array(
+					array( 'Толық атауы', $cfs( 'tekst1' ) ),
+					array( 'Қысқартылған атауы', $cfs( 'tekst2' ) ),
+					array( 'Ағылшын тіліндегі атауы', $cfs( 'tekst3' ) ),
+					array( 'Заңды мекенжайы', $cfs( 'tekst4' ) ),
+					array( 'Пошталық мекенжайы', $cfs( 'tekst5' ) ),
+				);
+				foreach ( $rows as $row ) :
+					if ( '' === $row[1] ) { continue; }
+					?>
+					<div class="req-row"><dt><?php echo esc_html( $row[0] ); ?></dt><dd><?php echo esc_html( $row[1] ); ?></dd></div>
+				<?php endforeach; ?>
+				<div class="req-row"><dt>«Кедентранссервис» АҚ филиалдарының байланыстары</dt><dd><a class="tariff-form-link" href="<?php echo esc_url( home_url( '/kompaniya-turaly/filialdar-zh-ne-kildikter/' ) ); ?>">Филиалдар және өкілдіктер &rsaquo;</a></dd></div>
+				<?php if ( $media ) : ?>
+					<div class="req-row"><dt>БАҚ мәселелері бойынша</dt><dd><?php foreach ( $media as $m ) : ?><span><?php echo esc_html( $m ); ?></span><?php endforeach; ?></dd></div>
+				<?php endif; ?>
+				<?php if ( $email ) : ?>
+					<div class="req-row"><dt>Хат жолдау сұрақтары бойынша</dt><dd><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></dd></div>
+				<?php endif; ?>
+			</dl>
+		</div>
+
+		<div class="hotline-card">
+			<h2>Жедел байланыс желісі</h2>
+			<ul>
+				<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h4l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 013-2z"/></svg><span>Жедел байланыс желісі: 8-800-080-47-47</span></li>
+				<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4.2A8 8 0 1112 20a8 8 0 01-3.9-1z"/><path d="M9 9c0 3 3 6 6 6l1-2-2-1-1 .8c-1-.4-1.8-1.2-2.2-2.2L11 9.800 10 8z"/></svg><span>WhatsApp мобильді қосымша: 8-771-191-88-16</span></li>
+				<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg><span>Интернет-портал: www.sk-hotline.kz</span></li>
+				<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>Электрондық пошта: mail@sk-hotline.kz</span></li>
+				<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg><span>Мобильдік қосымша: KTZ HSE</span></li>
+			</ul>
+		</div>
+
+	</div>
+</section>
+
 <?php get_footer(); ?>

@@ -4,109 +4,156 @@
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/sovet-direktorov/', 'https') ?>"> Рус</a></li>
-                <li><a href="https://www.kdts.kz/kompaniya-turaly/direktorlar-kenesi/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/en/o-kompanii/sovet-direktorov/">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Совет директоров</span>
 		</div>
-    </div>
-  	<main>
-        <div class="container-rukovodstvo">
-            <section class="rukovodstvo-navbar">
-                <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
-                        О КОМПАНИИ
-                    </a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '', 
-							  )) ?>
-                    </div>    
-            </section>
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-					<?php the_title(); ?>
-                </h1>
-                <div class="rukovodstvo-wrapper">
-                    <div class="swiper-container gallery-thumbs">
-                        <div class="swiper-wrapper">
+		<h1>Совет директоров</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<a href="<?php echo esc_url( home_url( '/rukovodstvo' ) ); ?>">Руководство</a>
+			<a href="<?php echo esc_url( home_url( '/istoriya-kompanii' ) ); ?>">История компании</a>
+			<a href="<?php echo esc_url( home_url( '/sovet-direktorov' ) ); ?>" class="is-active">Совет директоров</a>
+			<a href="<?php echo esc_url( home_url( '/filialy-i-predstavitelstv' ) ); ?>">Филиалы и представительства</a>
+			<a href="<?php echo esc_url( home_url( '/vakansii' ) ); ?>">Вакансии</a>
+			<a href="<?php echo esc_url( home_url( '/razvitie-yazykov' ) ); ?>">Развитие языков</a>
+		</div>
+	</div>
+</section>
 
-							<?php $sotrudniki = CFS()->get('sotrudniki');
-								foreach ($sotrudniki as $sotrudnik) {
-									echo '
-									 <div class="swiper-slide swiper-slide__width">
-										<div class="rukovodstvo-block__top">
-											<div class="rukovodstvo-photo">
-												<img src="'.$sotrudnik["foto-sotrudnik"].'" class="rukovodstvo-img" alt="#" />
-											</div>
-											<div class="rukovodstvo-name">
-												<p class="rukovodstvo-im">'.$sotrudnik["imya-sotrudnik"].'</p>
-												<p class="rukovodstvo-fam">'.$sotrudnik["familiya-sotrudnik"].'</p>
-											</div>
-										</div>
-									</div>
-									';
-								 }
-							?>
-					
-                        </div>
-                        <div class="rukovodstvo-pagination"></div>
-                       
-                    </div>
-                     <div class="rukovodstvo-next"></div>
-                    <div class="rukovodstvo-prev"></div>
-                </div> <!-- rukovodstvo-wrapper / -->
-                <div class="rukovodstvo-wrapper__bottom">
-                    <div class="swiper-container gallery-top">
-                        <div class="swiper-wrapper">
-							
-							<?php $sotrudnikTexti = CFS()->get('sotrudniki');
-								foreach ($sotrudnikTexti as $sotrudnikText) {
-									echo '
-									 <div class="swiper-slide"> 
-										<div class="rukovodstvo-block__bottom">
-											<div class="user-name">
-											'.$sotrudnikText["imya-sotrudnik"].' '.$sotrudnikText["familiya-sotrudnik"].'
-											</div>
-											<div class="user-dolzhnost">
-												'.$sotrudnikText["dolzhnost-sotrudnik"].'
-											</div>
-											<div class="user-info">
-												<p class="user-path__rukovodstvo">
-													'.$sotrudnikText["text955"].'
-												</p>
-												<p class="user-text__rukovodstvo" style="margin-top:-25px;">
-													'.$sotrudnikText["text999"].'
-												</p>
-											</div>
-											<div class="user-info">
-												<p class="user-path__rukovodstvo">
-													Профессиональный опыт:
-												</p>
-												<p class="user-text__rukovodstvo" style="margin-top:-25px;">
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">Информация о составе Совета директоров АО «Кедентранссервис».</p>
 
-													'.$sotrudnikText["text"].'
-													</p>
-											</div>
-										</div>
-									</div>
-									';
-								 }
-							?>
-							
+		<?php
+		$board = array(
+			array(
+				'photo' => 'koishibayev.jpg',
+				'name'  => 'Койшибаев Ерлан Хамардинович',
+				'role'  => 'Председатель Совета директоров',
+				'intro' => 'Председатель Совета директоров. С 2023 года — заместитель Председателя Правления АО «НК «Қазақстан темір жолы» по логистике.',
+				'full'  => array(
+					'В 2002–2007 гг. получил степень бакалавра по специальности «Финансы и банковское дело» в American University in Dubai, в 2015–2017 гг. — степень магистра по специальности «Логистика» в Казахской академии транспорта и коммуникаций, в 2016–2018 гг. — степень MBA в Российской академии народного хозяйства и государственной службы при Президенте РФ.',
+					'Трудовую деятельность начал в 2007 году помощником Министра финансов РК, в 2010–2019 гг. занимал руководящие должности в ТОО «Самрук-Казына Инвест», АО «Национальный центр развития транспортной логистики», АО «Центр транспортных услуг», АО «KTZ Express» и АО «Казахстанский институт развития индустрии». В 2019–2021 гг. — заместитель акима Костанайской области, в 2021–2023 гг. — управляющий директор по логистике АО «НК «Қазақстан темір жолы», с 2023 года — заместитель Председателя Правления по логистике.',
+				),
+			),
+			array(
+				'photo' => 'kusherov.jpg',
+				'name'  => 'Кушеров Даир Адильбекович',
+				'role'  => 'Член Совета директоров',
+				'intro' => 'Член Совета директоров. С декабря 2018 года — управляющий директор по финансам АО «НК «Қазақстан темір жолы».',
+				'full'  => array(
+					'В 1998 году получил степень бакалавра финансов в Университете Индианы, в 2001 году окончил Казахскую государственную академию управления по специальности «международная экономика».',
+					'В 1998–2012 гг. занимал руководящие должности в области бухгалтерского учёта, риск-менеджмента и корпоративного финансирования в КУПА «Ак-ниет», «ABN AMRO Asset Management», АО «Интергаз Центральная Азия», АО «КазТрансГаз» и АО «КазТрансОйл». В 2012–2018 гг. — заместитель Генерального директора АО «КазТрансГаз» по экономике и финансам, с декабря 2018 года — Управляющий директор по финансам АО «НК «Қазақстан темір жолы».',
+				),
+			),
+			array(
+				'photo' => 'smolina.jpg',
+				'name'  => 'Смолина Александра Александровна',
+				'role'  => 'Член Совета директоров',
+				'intro' => 'Член Совета директоров. С 13 февраля 2024 года — член Правления, руководитель юридической службы АО «НК «ҚТЖ».',
+				'full'  => array(
+					'В 2008 году окончила Казахский гуманитарно-юридический университет по специальности «международное право», в 2018 году получила степени Executive MBA в Казахстанско-Британском техническом университете и Российском государственном университете нефти и газа имени И.М. Губкина.',
+					'В 2008–2019 гг. занимала должности в юридическом и договорном блоке АО «НК «КазМунайГаз», в 2019–2020 гг. — Исполнительный директор – директор юридического департамента АО «Пассажирские перевозки». В 2020–2022 гг. — директор Департамента международных контрактов АО «НК «Қазақстан темір жолы», с 2022 года — Руководитель юридической службы – директор Департамента правового обеспечения, а с 13 февраля 2024 года — член Правления АО «НК «ҚТЖ».',
+				),
+			),
+			array(
+				'photo' => 'mukhamedrakhimova.jpg',
+				'name'  => 'Мухамедрахимова Айгерим Шахтыбаевна',
+				'role'  => 'Член Совета директоров',
+				'intro' => 'Член Совета директоров. Директор департамента маркетинга и транзитной политики АО «НК «ҚТЖ», в компании с 2005 года.',
+				'full'  => array(
+					'Окончила Таразский государственный университет им. М.Х. Дулати и Гуманитарный университет транспорта и права имени Д.А. Кунаева.',
+					'Трудовую деятельность начала в 2005 году главным специалистом управления маркетинга департамента корпоративного развития АО «НК «ҚТЖ», в разные годы работала начальником отдела и управления в Департаменте маркетинга и логистики. В настоящее время занимает должность директора Департамента маркетинга и транзитной политики АО «НК «ҚТЖ».',
+				),
+			),
+			array(
+				'photo' => 'urazbekov.jpg',
+				'name'  => 'Уразбеков Марат Жанабергенович',
+				'role'  => 'Независимый член Совета директоров',
+				'intro' => 'Независимый член Совета директоров. Более 35 лет опыта в транспортной отрасли, руководящие должности в «Самрук-Қазына» и проекте LRT.',
+				'full'  => array(
+					'В 1986 году окончил Алматинский институт инженеров железнодорожного транспорта по специальности «инженер-электромеханик», в 2000 году — Академию государственной службы при Президенте РК по специальности «Государственное и муниципальное управление».',
+					'В 1986–1999 гг. работал на руководящих должностях в локомотивном депо города Арысь и в Министерстве транспорта и коммуникаций РК, в 2006–2008 гг. — председатель Комитета железнодорожного транспорта и путей сообщения министерства. В 2008–2017 гг. — директор по управлению транспортными активами АО «Холдинг «Самрук-Казына», одновременно являлся членом советов директоров АО «НК «КТЖ» и АО «Эйр Астана». В 2017–2022 гг. — заместитель Генерального директора ТОО «Дирекция по строительству LRT».',
+				),
+			),
+			array(
+				'photo' => 'akhanzaripov.jpg',
+				'name'  => 'Аханзарипов Нурлан Заманбекович',
+				'role'  => 'Независимый член Совета директоров',
+				'intro' => 'Независимый член Совета директоров. Более 22 лет опыта в нефтегазовом секторе, из них 12 лет в должности финансового директора, сертифицированный независимый директор (Cert IoD).',
+				'full'  => array(
+					'Окончил Семипалатинский технологический университет по специальности «бухгалтер-экономист», Казахский национальный технический университет имени К.И. Сатпаева по специальности «геофизика», получил степень MBA в Казахстанском институте менеджмента, экономики и прогнозирования, сертифицированный независимый директор (Cert IoD) Institute of Directors, UK.',
+					'Более 22 лет работал на руководящих позициях в нефтегазовом секторе, включая более 12 лет финансовым директором в ТОО «Казахойл-Коммерция», АО «Интергаз Центральная Азия», АО «КазТрансГаз», АО «НК «КазМунайГаз» и ТОО «Газопровод Бейнеу-Шымкент», а также два года международного опыта в компании Shell в Султанате Оман. Имеет опыт работы в листинговых компаниях: АО «Альфа-Банк Казахстан», АО «НК «Казахстан Инжиниринг», АО «Интергаз Центральная Азия», АО «КЕГОК», АО «НК «QazaqGaz».',
+				),
+			),
+		);
+		$photo_base = home_url( '/wp-content/uploads/leadership/' );
+		?>
 
-                        </div> <!-- swiper-wrapper / -->
-                        
-                    </div>
-                </div> <!-- rukovodstvo-wrapper__bottom / -->
-            </section> <!-- rukovodstvo-content / -->
-        </div>
-    </main>
+		<div class="people-grid">
+			<div class="people-row">
+				<?php foreach ( array_slice( $board, 0, 3 ) as $p ) : ?>
+				<div class="people-card">
+					<div class="people-card-photo-wrap">
+						<img class="people-card-photo" src="<?php echo esc_url( $photo_base . $p['photo'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" loading="lazy">
+					</div>
+					<div class="people-card-body">
+						<h3><?php echo esc_html( $p['name'] ); ?></h3>
+						<p class="info-role"><?php echo esc_html( $p['role'] ); ?></p>
+						<p><?php echo esc_html( $p['intro'] ); ?></p>
+						<button type="button" class="people-more">Подробнее<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+						<div class="people-full" hidden>
+							<?php foreach ( $p['full'] as $para ) : ?>
+							<p><?php echo esc_html( $para ); ?></p>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+			<div class="people-row">
+				<?php foreach ( array_slice( $board, 3, 3 ) as $p ) : ?>
+				<div class="people-card">
+					<div class="people-card-photo-wrap">
+						<img class="people-card-photo" src="<?php echo esc_url( $photo_base . $p['photo'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" loading="lazy">
+					</div>
+					<div class="people-card-body">
+						<h3><?php echo esc_html( $p['name'] ); ?></h3>
+						<p class="info-role"><?php echo esc_html( $p['role'] ); ?></p>
+						<p><?php echo esc_html( $p['intro'] ); ?></p>
+						<button type="button" class="people-more">Подробнее<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+						<div class="people-full" hidden>
+							<?php foreach ( $p['full'] as $para ) : ?>
+							<p><?php echo esc_html( $para ); ?></p>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

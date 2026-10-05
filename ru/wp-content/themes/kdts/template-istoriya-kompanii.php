@@ -1,147 +1,88 @@
-﻿<?php
+<?php
  /*
  * Template name: istoriya-kompanii
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/istoriya-kompanii/', 'https') ?>"> Рус</a></li>
-                <li><a href="https://www.kdts.kz/kompaniya-turaly/kompaniyanyn-tarihy/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/en/o-kompanii/istoriya-kompanii/">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">История компании</span>
 		</div>
-    </div>
- <main>
-       <div class="container-rukovodstvo">
-       		<section class="rukovodstvo-navbar">
-            	<a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
-               		О КОМПАНИИ
-               	</a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '', 
-							  )) ?>
-                    </div>      
-            </section> <!-- rukovodstvo-navbar / -->
+		<h1>История компании</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<a href="<?php echo esc_url( home_url( '/rukovodstvo' ) ); ?>">Руководство</a>
+			<a href="<?php echo esc_url( home_url( '/istoriya-kompanii' ) ); ?>" class="is-active">История компании</a>
+			<a href="<?php echo esc_url( home_url( '/sovet-direktorov' ) ); ?>">Совет директоров</a>
+			<a href="<?php echo esc_url( home_url( '/filialy-i-predstavitelstv' ) ); ?>">Филиалы и представительства</a>
+			<a href="<?php echo esc_url( home_url( '/vakansii' ) ); ?>">Вакансии</a>
+			<a href="<?php echo esc_url( home_url( '/razvitie-yazykov' ) ); ?>">Развитие языков</a>
+		</div>
+	</div>
+</section>
 
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-                    <?php the_post(); ?>
-                    <?php the_content() ?>
-                </h1>
-                
-                  <div class="rukovodstvo-container">
-                    <div class="istoriya-lain">
-    
-                    </div>
-                    <div class="rukovodstvo-wrapper" >
-                       
-                        <div class="swiper-container istoriya">
-                            <div class="swiper-wrapper">
-                              
-								
-							<?php
-								$fields = CFS()->get('gody');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<div class="swiper-slide" style="display:block;">
-                                    <p class="istoriya-god"> <?php echo $field["god"] ?> </p>
-                                    <span class="istoriya-elips">
-                                    </span>
-                                    <p class="istoriya-text">
-                                        <?php echo $field["text4"] ?>
-                                    </p>
-                                </div>
-							<?php 
-								};
-								endif; 
-        					?>
-								
-                            </div>
-                        </div>
-                       
-                    </div>
-                    <div class="godovaya-next" style="top: 135px; transform: translateY(-100px); left: 0;">
-                        <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
-                    </div>
-                    <div class="godovaya-prev" style="top: 135px; transform: translateY(-100px); right: 0;">
-                        <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
-                    </div>
-                </div>
-             
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">История становления и развития АО «Кедентранссервис».</p>
 
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-                     	<?php
-								$fields = CFS()->get('teksti1');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text1"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka2'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-						<?php
-								$fields = CFS()->get('teksti2');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text2"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka3'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-                        <?php
-								$fields = CFS()->get('teksti3');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text3"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
+		<div class="timeline">
+			<div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-text">Введён в эксплуатацию транспортно-логистический центр в г. Сиань</div></div>
+			<div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-text">В городе Сиань (КНР) зарегистрировано совместное предприятие ООО «Китайско-казахстанская торгово-логистическая компания»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-text">АО «Кедентранссервис» совместно с ЗАО «Бакинский международный морской торговый порт» развивает транзитный потенциал и транспортную логистику в рамках проекта транскаспийского транспортного маршрута</div></div>
+			<div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text">АО «Кедентранссервис» подтвердило соответствие систем управления требованиям международных стандартов ISO 9001:2015, 14001:2015, ISO 45001:2018</div></div>
+			<div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-text">Единственным акционером АО «Кедентранссервис» стало АО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2019</div><div class="timeline-text">50% пакета акций АО «Кедентранссервис» выкупило АО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-text">Из города Сиань (КНР) транзитом через Казахстан отправлен контейнерный поезд в г. Будапешт</div></div>
+			<div class="timeline-item"><div class="timeline-year">2017</div><div class="timeline-text">Запущен новый контейнерный маршрут «Китай-СНГ-Китай» силами АО «Кедентранссервис»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2016</div><div class="timeline-text">Единственным акционером АО «Кедентранссервис» стала компания «Logistic System Management»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2015</div><div class="timeline-text">Общий годовой объём маршрута «Китай-Европа-КНР» составил 577 контейнерных поездов или 49 тыс. ДФЭ</div></div>
+			<div class="timeline-item"><div class="timeline-year">2014</div><div class="timeline-text">Организовано регулярное курсирование контейнерных поездов Китай-Европа</div></div>
+			<div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-text">50% пакета акций у ПАО «ТрансКонтейнер», 50% пакета акций у АО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2011</div><div class="timeline-text">67% пакета акций выкупило ПАО «ТрансКонтейнер», 33% пакета осталось у АО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2007</div><div class="timeline-text">33% пакета акций АО «Кедентранссервис» принадлежит АО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2004</div><div class="timeline-text">Перерегистрация в АО «Кедентранссервис»</div></div>
+			<div class="timeline-item"><div class="timeline-year">2002</div><div class="timeline-text">Государственный пакет акций ЗАО «Кедентранссервис» передан в ЗАО НК «КТЖ»</div></div>
+			<div class="timeline-item"><div class="timeline-year">1999</div><div class="timeline-text">Преобразование в ЗАО «Кедентранссервис»</div></div>
+			<div class="timeline-item"><div class="timeline-year">1997</div><div class="timeline-text">Создание РГП «Кедентранссервис»</div></div>
+		</div>
 
-            </section> <!-- rukovodstvo-content / -->
-        </div>
+		<div class="page-section">
+			<h2>История становления</h2>
+			<p>В соответствии с постановлением Правительства Республики Казахстан от 11 декабря 1997 года № 1750 «О создании Республиканского государственного предприятия «Кедентранссервис», создано РГП «Кедентранссервис» на праве хозяйственного ведения для осуществления таможенного сопровождения товаров и транспортных средств. Органом государственного управления РГП «Кедентранссервис», а также органом, осуществляющим по отношению к нему функции субъекта права государственной собственности, был определён Таможенный комитет Министерства финансов Республики Казахстан.</p>
+			<p>В соответствии с Приказом Министерства транспорта, коммуникаций и туризма Республики Казахстан от 26 мая 1999 года №2461 «О передаче имущества РГП «Қазақстан темір жолы» в РГП «Кедентранссервис», РГП «Кедентранссервис» переданы грузовые дворы в количестве – 21 ед. В связи с реорганизацией Министерства финансов Республики Казахстан согласно Указу Президента Республики Казахстан от 12 октября 1998 года № 4114, Таможенный комитет был переведён в состав вновь создаваемого Министерства государственных доходов Республики Казахстан.</p>
+			<p>Согласно постановлению Правительства Республики Казахстан от 26 июня 1999 года № 864 «О преобразовании Республиканского государственного предприятия «Кедентранссервис», РГП «Кедентранссервис» было преобразовано в ЗАО «Кедентранссервис».</p>
+			<p>Учитывая требования Закона Республики Казахстан от 13 мая 2003 года №415 «Об акционерных обществах», ЗАО «Кедентранссервис» 15 июня 2004 года было перерегистрировано в АО «Кедентранссервис».</p>
+		</div>
 
-        <div class="istoriya-photo__bg">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/istoriya-stanovleniya1.png" class="istoriya-photo__img" alt="#" />
-        </div>
-                    
-    </main>
+		<div class="page-section">
+			<h2>История развития</h2>
+			<p>В марте 2011 года в истории АО «Кедентранссервис» произошло важное событие – в соответствии с Соглашением между АО «Национальная компания «Қазақстан темір жолы» и ПАО «ТрансКонтейнер» о сотрудничестве на основе совместного предприятия от 17 марта 2011 года № 80-АО (далее – Соглашение), акционером 67% акций АО «Кедентранссервис» стало ПАО «ТрансКонтейнер» – ведущий контейнерный оператор российских железных дорог, остальные 33% акций сохранила за собой АО «Национальная компания «Қазақстан темір жолы». 23 декабря 2013 года в рамках Соглашения между ПАО «ТрансКонтейнер» и АО «Национальная компания «Қазақстан темір жолы» завершены мероприятия по приобретению 17% акций компании «Logistic System Management B.V.»</p>
+			<p>28 октября 2016 года единственным акционером АО «Кедентранссервис» стала компания «Logistic System Management B.V.» Состав акционеров компании «Logistic System Management B.V.» сложился следующим образом: — ПАО «ТрансКонтейнер» — 50%; — АО «Национальная компания «Қазақстан темір жолы» — 50%.</p>
+			<p>В 2017 году была проведена реорганизация организационной структуры филиальной сети. Задачи реорганизации организационной структуры филиальной сети были направлены на повышение клиентоориентированности, что впоследствии должно было улучшить качество обслуживания клиентов, централизовать отдельные функции и сформировать систему тарифных льгот.</p>
+			<p>В 2018 году были достигнуты договорённости о выкупе 50% акций компании Logistic System Management B.V., ранее принадлежавших ПАО «ТрансКонтейнер». 26 ноября 2019 года заключён договор купли-продажи 50% уставного капитала компании «Logistic System Management B.V.» между ПАО «ТрансКонтейнер» и АО «Национальная компания «Қазақстан темір жолы». 22 мая 2020 года осуществлена перерегистрация акций компании «Logistic System Management B.V.», в результате которой АО «Национальная компания «Қазақстан темір жолы» стало единственным акционером АО «Кедентранссервис».</p>
+			<p>Сегодня АО «Кедентранссервис» является ведущим оператором логистических терминалов в Республике Казахстан, который присутствует на рынке транспортно-логистических услуг. Общество обладает активами и компетенциями в области терминальной обработки грузов, а также осуществляет услуги по перегрузу ввозимых из КНР грузов на пограничных станциях «Достык» и «Алтынколь». АО «Кедентранссервис» имеет разветвлённую географическую сеть в Казахстане: 11 филиалов, 1 дочернюю компанию ТОО «Транспортный холдинг Казахстана» и 1 внешний терминал в г. Сиань.</p>
+		</div>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

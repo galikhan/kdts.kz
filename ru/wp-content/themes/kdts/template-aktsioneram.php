@@ -1,71 +1,74 @@
-﻿
 <?php
  /*
  * Template name: aktsioneram
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/aktsioneram/', 'https') ?>"> Рус</a></li>
-                <li><a href="https://www.kdts.kz/aktsionerlerge/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/en/aktsioneram/">Eng</a></li>
-            </ul>
+<?php
+// Sub-pages of the "Shareholders" section come from the admin-editable menu.
+$sub_pages = array();
+$locations = get_nav_menu_locations();
+if ( ! empty( $locations['aktsioneram-menu'] ) ) {
+	$sub_pages = wp_get_nav_menu_items( $locations['aktsioneram-menu'] ) ?: array();
+}
+$registrar_title = CFS()->get( 'svedeniya' );
+$registrar_items = CFS()->get( 'svedeniya-danniy' );
+?>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
 		</div>
-    </div>
-	 <main>
-        <div class="container-rukovodstvo">
-            <section class="rukovodstvo-navbar">
-                <div class="rukovodstvo-navbar__top">
-                    <a href="<?php echo home_url('/aktsioneram', 'https') ?>" class="rukovodstvo-navbar__title">
-                        АКЦИОНЕРАМ
-                    </a>
-                    <div class="rukovodstvo-navbar__block">
-						<?php wp_nav_menu ( array (
-							'theme_location' => 'aktsioneram-menu',
-							'container' => false,
-							'menu_class'      => '', 
-						  )) ?>
-					</div>
-                </div>
-            </section> <!-- rukovodstvo-navbar / -->
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-                    <?php the_title(); ?>
-                </h1>
-				
-                <div class="aktsioneram-title">
-                    <?php echo CFS()->get('text1'); ?>
-                </div>
-                <div class="aktsioneram-text">
-                    <?php the_post(); ?>
-					<?php the_content() ?>   
-                </div>
-                <div class="aktsioneram-svedeniya">
-                    <div class="aktsioneram-svedeniya__title">
-                        <?php echo CFS()->get('svedeniya'); ?>
-                    </div>
-                    <ul class="aktsioneram-svedeniya__text">
-						
-								<?php $svedeniya = CFS()->get('svedeniya-danniy');
-									foreach ($svedeniya as $svedeni) {
-										echo '
-										<li> '.$svedeni["tekst"].' </li>
-										';
-									}
-								?>
-						
-                    </ul>
-                </div>       
-            </section> <!-- rukovodstvo-content / -->
-        </div>
-        <div class="konteynerov-photo">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/aktsioneramBg.png"  class="konteynerov-photo__icon" />
-        </div> 
-    </main>
-   
+		<h1><?php the_title(); ?></h1>
+		<?php if ( $sub_pages ) : ?>
+			<div class="subnav-pills">
+				<?php foreach ( $sub_pages as $sub ) : ?>
+					<a href="<?php echo esc_url( $sub->url ); ?>"><?php echo esc_html( $sub->title ); ?></a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</section>
+
+<section class="page-content">
+	<div class="container">
+		<?php the_post(); ?>
+		<div class="page-section">
+			<?php the_content(); ?>
+		</div>
+
+		<?php if ( $registrar_title || $registrar_items ) : ?>
+			<div class="info-grid cols-1">
+				<div class="info-card">
+					<?php if ( $registrar_title ) : ?><h3><?php echo esc_html( trim( $registrar_title ) ); ?></h3><?php endif; ?>
+					<?php if ( $registrar_items ) : ?>
+						<ul class="service-detail-list">
+							<?php foreach ( $registrar_items as $item ) : ?>
+								<li><?php echo esc_html( trim( $item['tekst'] ) ); ?></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</div>
+			</div>
+		<?php endif; ?>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>
