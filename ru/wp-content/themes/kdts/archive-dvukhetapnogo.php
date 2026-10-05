@@ -1,31 +1,6 @@
 <?php
- /*
- * Template name: dvukhetapnogo
- */
-?>
-<?php get_header(); ?>
-  	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/', 'https') ?>">Рус</a></li>
-                <li><a href="https://www.kdts.kz/satyp-alul/tender/ashyk-eki-kezendi/"> Қаз</a></li>
-                <li><a href="https://www.kdts.kz/en/zakupki/tenders/sposobom-otkrytogo-dvuhetapnogo-tendera/">Eng</a></li>
-            </ul>
-		</div>
-    </div>
-<main class="container-rukovodstvo">
-	<section class="zakupki-navbar">
-   		<?php include "zakup-menu.php" ?>
-   	</section> <!-- rukovodstvo-navbar / -->
-     <section class="zakupki-content">
-    	<h1 class="partnery-title">
-        	<?php the_title(); ?>
-       </h1>
-		 <p>
-			 Тендеры не найдены
-		 </p>
-     </section> <!-- rukovodstvo-content / -->     
-</main>
+/* Procurement list: dvukhetapnogo */
+get_header();
+$tl = array( 'pills' => array( 291, 293, 295, 297, 2394 ), 'title_id' => 297, 'archive' => false );
+include locate_template( 'template-parts/tender-list.php' );
+get_footer();

@@ -4,37 +4,45 @@
  */
 ?>
 <?php get_header(); ?>
-    <div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/sajt-turaly', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/o-sajte/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/o-sajte/', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Тілдерді дамыту</span>
 		</div>
-    	</div>
+		<h1>Тілдерді дамыту</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<a href="<?php echo esc_url( home_url( '/basshyly' ) ); ?>">Басшылық</a>
+			<a href="<?php echo esc_url( home_url( '/kompaniyanyn-tarihy' ) ); ?>">Компанияның тарихы</a>
+			<a href="<?php echo esc_url( home_url( '/direktorlar-kenesi' ) ); ?>">Директорлар кеңесі</a>
+			<a href="<?php echo esc_url( home_url( '/filialdar-zh-ne-kildikter' ) ); ?>">Филиалдар және өкілдіктер</a>
+			<a href="<?php echo esc_url( home_url( '/bos-zhumys-oryndary' ) ); ?>">Бос жұмыс орындары</a>
+			<a href="<?php echo esc_url( home_url( '/tilderdi-damytu' ) ); ?>" class="is-active">Тілдерді дамыту</a>
+		</div>
+	</div>
+</section>
 
-	<main>
-        <div class="dell-container">
-            <div class="uslugi-peregruza__h1">
-                <h1>
-                    <?php the_title(); ?>
-                </h1>
-            </div>
-			<section class="uslugi-peregruza__text uslugi-peregruza__text--full">
-			   <?php the_post(); ?>
-				<?php the_content() ?>
-			</section>
-        </div>
-    </main>
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">«Кедентранссервис» АҚ-ның тілдерді дамыту бөлімі.</p>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>
-
-
-
-
-
-
-

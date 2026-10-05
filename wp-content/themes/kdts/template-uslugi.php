@@ -1,96 +1,45 @@
 <?php
- /*
+/*
  * Template name: uslugi
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
 		</div>
-    	</div>
- 	<main class="container-rukovodstvo">
-        <section class="rukovodstvo-navbar">
-             <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-                 КОМПАНИЯ ТУРАЛЫ
-             </a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '',
-							  )) ?>
-                    </div>
-        </section> <!-- rukovodstvo-navbar / -->
-       	<section class="rukovodstvo-content">
-           <h1 class="partnery-title">
-        		<?php the_title(); ?>
-           </h1>
-                    <div class="uslugiPage-items">
-                        <!-- <div class="uslugiPage-item">
-							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar', 'https') ?>">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/19.png" alt="#" class="uslugiPage-item__img" />
-								<div class="uslugiPage-block">
-									<div class="uslugiPage-item__photo">
-										<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPage1.png" />
-									</div>
-									<p class="uslugiPage-item__text">
-										Фитингтік платформаларды ұсыну
-									</p>
-								</div>
-							</a>
-                        </div> uslugiPage-item / -->
+		<h1><?php the_title(); ?></h1>
+	</div>
+</section>
 
-                        <div class="uslugiPage-item">
-                            <a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol', 'https') ?>">
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/34.png" alt="#" class="uslugiPage-item__img" />
-                                <div class="uslugiPage-block">
-                                    <div class="uslugiPage-item__photo">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPage2.png" />
-                                    </div>
-                                    <p class="uslugiPage-item__text">
-                                        Ауыстырып тиеу қызметтері (достық және Алтынкөл)
-                                    </p>
-                                </div>
-                            </a>
-                        </div> <!-- uslugiPage-item / -->
+<section class="page-content is-wide">
+	<div class="container">
+		<?php get_template_part( 'template-parts/service-cards' ); ?>
 
-                        <div class="uslugiPage-item">
-							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/zhuk-terminaldary', 'https') ?>">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/8.png" alt="#" class="uslugiPage-item__img" />
-								<div class="uslugiPage-block">
-									<div class="uslugiPage-item__photo">
-										<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPage3.png" />
-									</div>
-									<p class="uslugiPage-item__text">
-										Жүк терминалдарының қызметтері
-									</p>
-								</div>
-							</a>
-                        </div> <!-- uslugiPage-item / -->
+		<div class="eco-block">
+			<h2>КДТС-тың бірыңғай логистикалық экожүйесі</h2>
+			<p>«Кедентранссервис» АҚ терминалдық өңдеуді, шекаралық өткелдерде ауыстырып тиеуді, көлік-экспедиторлық алып жүруді және автомобиль тасымалдарын кешенді логистикалық шешімдер аясында біріктіреді. Бұл клиенттерге қажетті қызметтер жиынтығын бірыңғай тізбекте — жүкті қабылдау мен өңдеуден бастап оны соңғы алушыға жеткізуге дейін алуға мүмкіндік береді.</p>
+			<p class="eco-quote">Кедентранссервис — терминалдық, темір жол, автомобиль және мультимодальды логистика үшін бірыңғай серіктес.</p>
+		</div>
+	</div>
+</section>
 
-                        <div class="uslugiPage-item">
-							<a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/temir-zhol-tasymaly', 'https') ?>">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/66.png" alt="#" class="uslugiPage-item__img" />
-								<div class="uslugiPage-block">
-									<div class="uslugiPage-item__photo">
-										<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPage4.png" />
-									</div>
-									<p class="uslugiPage-item__text">
-										Контейнерлік тасымалдау сервисі (экспедициялау)
-									</p>
-								</div>
-							</a>
-                        </div> <!-- uslugiPage-item / -->
-                    </div>
-                </section> <!-- rukovodstvo-content / -->
-</main>
-  <!-- <img src="<?php echo get_template_directory_uri(); ?>/img/uslugBg.png" alt="#" class="uslug-bg" /> -->
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

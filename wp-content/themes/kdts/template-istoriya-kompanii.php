@@ -1,148 +1,88 @@
-﻿<?php
+<?php
  /*
  * Template name: istoriya-kompanii
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kompaniyanyn-tarihy/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/o-kompanii/istoriya-kompanii/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/o-kompanii/istoriya-kompanii/', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Компанияның тарихы</span>
 		</div>
-    </div>
- 	<main>
-       <div class="container-rukovodstvo">
-       		<section class="rukovodstvo-navbar">
-            	<a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-               		КОМПАНИЯ ТУРАЛЫ
-               	</a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '', 
-							  )) ?>
-                    </div>      
-            </section> <!-- rukovodstvo-navbar / -->
+		<h1>Компанияның тарихы</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<a href="<?php echo esc_url( home_url( '/basshyly' ) ); ?>">Басшылық</a>
+			<a href="<?php echo esc_url( home_url( '/kompaniyanyn-tarihy' ) ); ?>" class="is-active">Компанияның тарихы</a>
+			<a href="<?php echo esc_url( home_url( '/direktorlar-kenesi' ) ); ?>">Директорлар кеңесі</a>
+			<a href="<?php echo esc_url( home_url( '/filialdar-zh-ne-kildikter' ) ); ?>">Филиалдар және өкілдіктер</a>
+			<a href="<?php echo esc_url( home_url( '/bos-zhumys-oryndary' ) ); ?>">Бос жұмыс орындары</a>
+			<a href="<?php echo esc_url( home_url( '/tilderdi-damytu' ) ); ?>">Тілдерді дамыту</a>
+		</div>
+	</div>
+</section>
 
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-                    <?php the_title(); ?>
-                </h1>
-                <?php the_post(); ?>
-                <div class="istoriya-lead"><?php the_content() ?></div>
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">«Кедентранссервис» АҚ-ның қалыптасу және даму тарихы.</p>
 
-                  <div class="rukovodstvo-container">
-                    <div class="istoriya-lain">
-    
-                    </div>
-                    <div class="rukovodstvo-wrapper" >
-                       
-                        <div class="swiper-container istoriya">
-                            <div class="swiper-wrapper">
-                              
-								
-							<?php
-								$fields = CFS()->get('gody');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<div class="swiper-slide" style="display:block;">
-                                    <p class="istoriya-god"> <?php echo $field["god"] ?> </p>
-                                    <span class="istoriya-elips">
-                                    </span>
-                                    <p class="istoriya-text">
-                                        <?php echo $field["text4"] ?>
-                                    </p>
-                                </div>
-							<?php 
-								};
-								endif; 
-        					?>
-								
-                            </div>
-                        </div>
-                       
-                    </div>
-                    <div class="godovaya-next" style="top: 135px; transform: translateY(-100px); left: 0;">
-                        <svg class="icon" style="width:12px;height:12px;color:#fff;"><use href="#icon-chevron-right"></use></svg>
-                    </div>
-                    <div class="godovaya-prev" style="top: 135px; transform: translateY(-100px); right: 0;">
-                        <svg class="icon" style="width:12px;height:12px;color:#fff;transform:rotate(180deg);"><use href="#icon-chevron-right"></use></svg>
-                    </div>
-                </div>
-             
+		<div class="timeline">
+			<div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-text">Сиань қаласында көлік-логистикалық орталық пайдалануға берілді</div></div>
+			<div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-text">Сиань қаласында (ҚХР) «Қытай-Қазақстан Сауда-логистикалық компаниясы» ЖШҚ бірлескен кәсіпорны тіркелген</div></div>
+			<div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-text">«Кедентранссервис» АҚ «Баку халықаралық теңіз сауда порты» ЖАҚ-мен бірлесіп Транскаспий көлік бағыты жобасы шеңберінде транзиттік әлеуетті және көліктік логистиканы дамытады</div></div>
+			<div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text">«Кедентранссервис» АҚ басқару жүйелерінің ISO 9001:2015, 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігін растады</div></div>
+			<div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-text">«Кедентранссервис» АҚ-ның жалғыз акционері «ҚТЖ» ҰҚ» АҚ болды</div></div>
+			<div class="timeline-item"><div class="timeline-year">2019</div><div class="timeline-text">«Кедентранссервис» АҚ акциялар пакетінің 50%-ын «ҚТЖ» ҰҚ» АҚ сатып алды</div></div>
+			<div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-text">Сиань қаласынан (ҚХР) Қазақстан арқылы транзитпен Будапешт қаласына контейнерлік пойыз жөнелтілді</div></div>
+			<div class="timeline-item"><div class="timeline-year">2017</div><div class="timeline-text">«Кедентранссервис» АҚ күшімен «Қытай-ТМД-ҚХР» жаңа контейнерлік маршруты іске қосылды</div></div>
+			<div class="timeline-item"><div class="timeline-year">2016</div><div class="timeline-text">«Logistic System Management» компаниясы «Кедентранссервис» АҚ-ның жалғыз акционері болды</div></div>
+			<div class="timeline-item"><div class="timeline-year">2015</div><div class="timeline-text">«Қытай-Еуропа-ҚХР» бағдарының жалпы жылдық көлемі 577 контейнерлік пойызды немесе 49 мың ЖФЗ құрады</div></div>
+			<div class="timeline-item"><div class="timeline-year">2014</div><div class="timeline-text">Қытай-Еуропа контейнерлік пойыздарының тұрақты қозғалысы ұйымдастырылды</div></div>
+			<div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-text">«ТрансКонтейнер» ЖАҚ-на акциялар пакетінің 50%, «ҚТЖ» ҰҚ» АҚ-на акциялар пакетінің 50%-ы тиесілі</div></div>
+			<div class="timeline-item"><div class="timeline-year">2011</div><div class="timeline-text">Акциялар пакетінің 67%-ын «ТрансКонтейнер» ЖАҚ сатып алды, «ҚТЖ» ҰҚ» АҚ-на пакеттің 33%-ы тиесілі</div></div>
+			<div class="timeline-item"><div class="timeline-year">2007</div><div class="timeline-text">«Кедентранссервис» АҚ акциялар пакетінің 33%-ы «ҚТЖ» ҰҚ» АҚ-на тиесілі</div></div>
+			<div class="timeline-item"><div class="timeline-year">2004</div><div class="timeline-text">«Кедентранссервис» АҚ болып қайта тіркелді</div></div>
+			<div class="timeline-item"><div class="timeline-year">2002</div><div class="timeline-text">«Кедентранссервис» ЖАҚ акцияларының мемлекеттік пакеті «ҚТЖ» ҰҚ» ЖАҚ-на берілді</div></div>
+			<div class="timeline-item"><div class="timeline-year">1999</div><div class="timeline-text">«Кедентранссервис» ЖАҚ-на қайта құрылды</div></div>
+			<div class="timeline-item"><div class="timeline-year">1997</div><div class="timeline-text">«Кедентранссервис» РМК құрылды</div></div>
+		</div>
 
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-                     	<?php
-								$fields = CFS()->get('teksti1');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text1"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka2'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-						<?php
-								$fields = CFS()->get('teksti2');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text2"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
-                <div class="istoriya-info">
-                    <div class="istoriya-info__title">
-<?php echo CFS()->get('zagolovka3'); ?>
-                    </div>
-                    <div class="istoriya-info__text">
-                        <?php
-								$fields = CFS()->get('teksti3');
-									if (!empty($fields)):
-										foreach ($fields as $field) {
-							?>
-								<p>
-                           			<?php echo $field["text3"] ?>
-                        		</p>
-							<?php 
-								};
-								endif; 
-        					?>
-                    </div>
-                </div>
+		<div class="page-section">
+			<h2>Қалыптасу тарихы</h2>
+			<p>«Кедентранссервис» Республикалық мемлекеттік кәсіпорнын құру туралы» Қазақстан Республикасы Үкіметінің 1997 жылғы 11 желтоқсандағы №1750 қаулысына сәйкес тауарлар мен көлік құралдарын кедендік сүйемелдеуді жүзеге асыру үшін шаруашылық жүргізу құқығымен «Кедентранссервис» РМК құрылды. «Кедентранссервис» РМК-ны мемлекеттік басқару органы және оған қатысты мемлекеттік меншік субъектісі функциясын жүзеге асырушы орган ретінде Қазақстан Республикасы Қаржы министрлігінің Кеден комитеті анықталды.</p>
+			<p>«Қазақстан темір жолы» РМК мүлкін «Кедентранссервис» РМК-ға беру туралы» Қазақстан Республикасы көлік, коммуникация және туризм министрлігінің 1999 жылғы 26 мамырдағы №2461 бұйрығына сәйкес «Кедентранссервис» РМК-ға 21 бірлік көлеміндегі жүк қоймалары берілді. Қазақстан Республикасы Қаржы министрлігінің қайта құрылуына байланысты Қазақстан Республикасы Президентінің 1998 жылғы 12 қазандағы №4114 Қаулысына сәйкес Кеден комитеті жаңа құрылған Қазақстан Республикасы Мемлекеттік кіріс министрлігінің құрамына ауыстырылды.</p>
+			<p>«Кедентранссервис» Республикалық мемлекеттік кәсіпорнын қайта құру туралы» Қазақстан Республикасы Үкіметінің 1999 жылғы 26 маусымдағы №864 қаулысына сәйкес «Кедентранссервис» РМК «Кедентранссервис» жабық акционерлік қоғамы болып қайта құрылды.</p>
+			<p>«Акционерлік қоғам туралы» 2003 жылғы 13 мамырдағы №415 Қазақстан Республикасы Заңының талаптарын ескере отырып, «Кедентранссервис» ЖАҚ 2004 жылы 15 маусымда «Кедентранссервис» АҚ болып қайта тіркелді.</p>
+		</div>
 
-            </section> <!-- rukovodstvo-content / -->
-        </div>
+		<div class="page-section">
+			<h2>Даму тарихы</h2>
+			<p>2011 жылы наурыз айында «Кедентранссервис» АҚ тарихында маңызды оқиға орын алды – «Қазақстан темір жолы» Ұлттық компаниясы» АҚ мен «ТрансКонтейнер» ЖАҚ арасындағы бірлескен кәсіпорын негізіндегі ынтымақтастық туралы 2011 жылғы 17 наурыздағы №80-АҚ келісімге (бұдан әрі — Келісім) сәйкес «Кедентранссервис» АҚ-ның 67% акциясының акционері ретінде «ТрансКонтейнер» ЖАҚ болды – Ресей темір жолының жетекші контейнерлік операторы, ал акцияның қалған 33%-ы «Қазақстан темір жолы» Ұлттық компаниясы» АҚ-ның өзінде қалды. 2013 жылғы 23 желтоқсанда «ТрансКонтейнер» ЖАҚ мен «Қазақстан темір жолы» Ұлттық компаниясы» АҚ арасындағы Келісім аясында «Logistic System Management B.V.» компаниясының 17% акциясын сатып алу бойынша шаралар аяқталды.</p>
+			<p>28 қазан 2016 жылы «Кедентранссервис» АҚ-ның жалғыз акционері «Logistic System Management B.V.» компаниясы болды. «Logistic System Management B.V.» компаниясының акционерлерінің құрамы келесідей болды: — «ТрансКонтейнер» ЖАҚ — 50%; — «Қазақстан темір жолы» Ұлттық компаниясы» АҚ — 50%.</p>
+			<p>2017 жылы филиалдық желінің ұйымдастырушылық құрылымын қайта құру жүргізілді. Филиалдық желінің ұйымдастырушылық құрылымын қайта құрудың міндеті клиентке бағдарланушылықты жетілдіруге, сол арқылы клиенттерге көрсетілетін қызметті арттыруға, жекелеген функцияларды орталықтандыруға және тарифтік жеңілдіктер жүйесін қалыптастыруға бағытталған болатын.</p>
+			<p>2018 жылы бұрын «ТрансКонтейнер» ЖАҚ-ға тиесілі «Logistic System Management B.V.» компаниясының 50% акциясын сатып алу туралы келісімге қолжеткізілді. 2019 жылы 26 қарашада «Logistic System Management B.V.» компаниясының жарғылық капиталының 50% сатып алу туралы «ТрансКонтейнер» ЖАҚ мен «Қазақстан темір жолы» Ұлттық компаниясы» АҚ арасында сатып алу-сату шарты жасалды. 2020 жылғы 22 мамырда «Logistic System Management B.V.» компаниясының акцияларын қайта тіркеу жүзеге асырылды, соның нәтижесінде «Қазақстан темір жолы» Ұлттық компаниясы» АҚ «Кедентранссервис» АҚ-ның жалғыз акционері болды.</p>
+			<p>Бүгінде «Кедентранссервис» АҚ көлік-логистикалық қызметтер нарығында қызмет көрсететін, Қазақстан Республикасындағы логистикалық терминалдардың жетекші операторы болып табылады. Қоғам жүктерді терминалдық өңдеу саласындағы активтер мен құзыреттілікке ие, сондай-ақ ҚХР-дан әкелінетін жүктерді «Достық» және «Алтынкөл» станцияларында тиеу бойынша қызметтерді жүзеге асырады. «Кедентранссервис» АҚ-ның кең географиялық желісі бар, оның ішінде Үрімші қаласындағы (ҚХР) өкілдігі, 11 филиалы және «Қазақстанның көлік холдингі» ЖШС атты 1 еншілес компаниясы бар.</p>
+		</div>
+	</div>
+</section>
 
-        <div class="istoriya-photo__bg">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/istoriya-stanovleniya1.png" class="istoriya-photo__img" alt="#" />
-        </div>
-                    
-    </main>
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

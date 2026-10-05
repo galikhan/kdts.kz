@@ -4,111 +4,156 @@
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/direktorlar-kenesi/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/o-kompanii/sovet-direktorov/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/o-kompanii/sovet-direktorov/', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Директорлар кеңесі</span>
 		</div>
-    </div>
-  	<main>
-        <div class="container-rukovodstvo">
-            <section class="rukovodstvo-navbar">
-                <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-                        КОМПАНИЯ ТУРАЛЫ
-                    </a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '', 
-							  )) ?>
-                    </div>    
-            </section>
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-					<?php the_title(); ?>
-                </h1>
-                <div class="rukovodstvo-wrapper">
-                    <div class="swiper-container gallery-thumbs">
-                        <div class="swiper-wrapper">
+		<h1>Директорлар кеңесі</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<a href="<?php echo esc_url( home_url( '/basshyly' ) ); ?>">Басшылық</a>
+			<a href="<?php echo esc_url( home_url( '/kompaniyanyn-tarihy' ) ); ?>">Компанияның тарихы</a>
+			<a href="<?php echo esc_url( home_url( '/direktorlar-kenesi' ) ); ?>" class="is-active">Директорлар кеңесі</a>
+			<a href="<?php echo esc_url( home_url( '/filialdar-zh-ne-kildikter' ) ); ?>">Филиалдар және өкілдіктер</a>
+			<a href="<?php echo esc_url( home_url( '/bos-zhumys-oryndary' ) ); ?>">Бос жұмыс орындары</a>
+			<a href="<?php echo esc_url( home_url( '/tilderdi-damytu' ) ); ?>">Тілдерді дамыту</a>
+		</div>
+	</div>
+</section>
 
-							<?php $sotrudniki = CFS()->get('sotrudniki');
-								foreach ($sotrudniki as $sotrudnik) {
-									echo '
-									 <div class="swiper-slide swiper-slide__width">
-										<div class="rukovodstvo-block__top">
-											<div class="rukovodstvo-photo">
-												<img src="'.$sotrudnik["foto-sotrudnik"].'" class="rukovodstvo-img" alt="#" />
-											</div>
-											<div class="rukovodstvo-name">
-												<p class="rukovodstvo-im">'.$sotrudnik["imya-sotrudnik"].'</p>
-												<p class="rukovodstvo-fam">'.$sotrudnik["familiya-sotrudnik"].'</p>
-											</div>
-										</div>
-									</div>
-									';
-								 }
-							?>
-					
-                        </div>
-                        <div class="rukovodstvo-pagination"></div>
-                       
-                    </div>
-                     <div class="rukovodstvo-next"></div>
-                    <div class="rukovodstvo-prev"></div>
-                </div> <!-- rukovodstvo-wrapper / -->
-                <div class="rukovodstvo-wrapper__bottom">
-                    <div class="swiper-container gallery-top">
-                        <div class="swiper-wrapper">
-							
-							<?php $sotrudnikTexti = CFS()->get('sotrudniki');
-								foreach ($sotrudnikTexti as $sotrudnikText) {
-									echo '
-									 <div class="swiper-slide"> 
-										<div class="rukovodstvo-block__bottom">
-											<div class="user-name">
-											'.$sotrudnikText["imya-sotrudnik"].' '.$sotrudnikText["familiya-sotrudnik"].'
-											</div>
-											
-										
-											
-											<div class="user-dolzhnost">
-												'.$sotrudnikText["dolzhnost-sotrudnik"].'
-											</div>
-											<div class="user-info">
-												<p class="user-path__rukovodstvo">
-													'.$sotrudnikText["text955"].'
-												</p>
-												<p class="user-text__rukovodstvo" style="margin-top:-25px;">
-													'.$sotrudnikText["text999"].'
-												</p>
-											</div>
-											<div class="user-info">
-												<p class="user-path__rukovodstvo">
-													Кәсіби тәжірибе:
-												</p>
-												<p class="user-text__rukovodstvo" style="margin-top:-25px;">
-													'.$sotrudnikText["text"].'
-												</p>
-											</div>
-										</div>
-									</div>
-									';
-								 }
-							?>
-							
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">«Кедентранссервис» АҚ Директорлар кеңесінің құрамы туралы ақпарат.</p>
 
-                        </div> <!-- swiper-wrapper / -->
-                        
-                    </div>
-                </div> <!-- rukovodstvo-wrapper__bottom / -->
-            </section> <!-- rukovodstvo-content / -->
-        </div>
-    </main>
+		<?php
+		$board = array(
+			array(
+				'photo' => 'koishibayev.jpg',
+				'name'  => 'Қойшыбаев Ерлан Хамардинұлы',
+				'role'  => 'Директорлар кеңесінің төрағасы',
+				'intro' => 'Директорлар кеңесінің төрағасы. 2023 жылдан бастап «Қазақстан темір жолы» ҰК» АҚ Басқарма төрағасының логистика жөніндегі орынбасары.',
+				'full'  => array(
+					'2002-2007 жж. Дубайдағы Америка университетінде «Қаржы және банк ісі» мамандығы бойынша бакалавр дәрежесін, 2015-2017 жж. Қазақ көлік және коммуникациялар академиясында «Логистика» мамандығы бойынша магистр дәрежесін, 2016-2018 жж. Ресей халық шаруашылығы және мемлекеттік қызмет академиясында іскерлік басқару магистрін алған.',
+					'2007 жылы Қазақстан Республикасы Қаржы министрінің көмекшісі болып еңбек жолын бастаған, 2010-2019 жж. «Самұрық-Қазына Инвест», «Көлік логистикасын дамыту ұлттық орталығы», «Көлік қызметтері орталығы», «KTZ Express» және «Қазақстандық индустриялық даму институты» АҚ-тарында басшылық қызметтер атқарған. 2019-2021 жж. Қостанай облысы әкімінің орынбасары болған, 2021-2023 жж. «Қазақстан темір жолы» ҰК» АҚ логистика жөніндегі басқарушы директоры, ал 2023 жылдан бастап басқарма төрағасының логистика жөніндегі орынбасары қызметін атқарады.',
+				),
+			),
+			array(
+				'photo' => 'kusherov.jpg',
+				'name'  => 'Көшеров Даир Адилбекұлы',
+				'role'  => 'Директорлар кеңесінің мүшесі',
+				'intro' => 'Директорлар кеңесінің мүшесі. 2018 жылдың желтоқсанынан бастап «Қазақстан темір жолы» ҰК» АҚ қаржы жөніндегі басқарушы директоры.',
+				'full'  => array(
+					'1998 жылы Индиана университетінде қаржы бакалавры дәрежесін, 2001 жылы Қазақ мемлекеттік басқару академиясын «Халықаралық экономика» мамандығы бойынша бітірген.',
+					'1998-2012 жж. «Ак-ниет» ПАБК, «ABN AMRO Asset Management», «Интергаз Орталық Азия», «ҚазТрансГаз» және «ҚазТрансОйл» АҚ-тарында бухгалтерлік есеп, тәуекел-менеджмент және корпоративтік қаржы бағыттарында басшылық қызметтер атқарған. 2012-2018 жж. «ҚазТрансГаз» АҚ бас директорының экономика және қаржы жөніндегі орынбасары болған, 2018 жылғы желтоқсаннан бастап «Қазақстан темір жолы» ҰК» АҚ қаржы жөніндегі басқарушы директоры.',
+				),
+			),
+			array(
+				'photo' => 'smolina.jpg',
+				'name'  => 'Смолина Александра Александровна',
+				'role'  => 'Директорлар кеңесінің мүшесі',
+				'intro' => 'Директорлар кеңесінің мүшесі. 2024 жылғы 13 ақпаннан бастап «ҚТЖ» ҰК» АҚ Басқарма мүшесі, заң қызметінің басшысы.',
+				'full'  => array(
+					'2008 жылы Қазақ гуманитарлық-заң университетін халықаралық құқық мамандығы бойынша, 2018 жылы Қазақ-Британ техникалық университетінде және И.М.Губкин атындағы Ресей мемлекеттік мұнай және газ университетінде Executive MBA дәрежелерін алған.',
+					'2008-2019 жж. «ҚазМұнайГаз» ҰК» АҚ-та заңгерлік және халықаралық шарттар бағытында басшылық қызметтер, 2019-2020 жж. «Жолаушылар тасымалы» АҚ Атқарушы директоры - Заң департаментінің директоры болған. 2020-2022 жж. «Қазақстан темір жолы» ҰК» АҚ Халықаралық шарттар департаментінің директоры, 2022 жылдан бастап Заң қызметінің басшысы - Құқықтық қамтамасыз ету департаментінің директоры, ал 2024 жылғы 13 ақпаннан бастап «ҚТЖ» ҰК» АҚ Басқарма мүшесі.',
+				),
+			),
+			array(
+				'photo' => 'mukhamedrakhimova.jpg',
+				'name'  => 'Мұхамедрахимова Әйгерім Шахтыбайқызы',
+				'role'  => 'Директорлар кеңесінің мүшесі',
+				'intro' => 'Директорлар кеңесінің мүшесі. «ҚТЖ» ҰК» АҚ маркетинг және транзиттік саясат департаментінің директоры, 2005 жылдан бері компанияда.',
+				'full'  => array(
+					'М.Х.Дулати атындағы Тараз мемлекеттік университетін және Д.А.Қонаев атындағы Гуманитарлық транспорт және құқық университетін бітірген.',
+					'2005 жылы «ҚТЖ» ҰК» АҚ корпоративтік даму департаментінің маркетинг бөлімінде бас маман болып еңбек жолын бастап, жылдар бойы Маркетинг және логистика департаментінде бөлім бастығы және басшылық қызметтерін атқарды. Қазіргі уақытта «ҚТЖ» ҰК» АҚ маркетинг және транзиттік саясат департаментінің директоры.',
+				),
+			),
+			array(
+				'photo' => 'urazbekov.jpg',
+				'name'  => 'Оразбеков Марат Жаңабергенұлы',
+				'role'  => 'Директорлар кеңесінің тәуелсіз мүшесі',
+				'intro' => 'Директорлар кеңесінің тәуелсіз мүшесі. Көлік саласында 35 жылдан астам тәжірибесі бар, «Самұрық-Қазына» мен LRT жобаларында басшылық қызмет атқарған.',
+				'full'  => array(
+					'1986 жылы Алматы темір жол көлігі инженерлері институтын инженер-электрик мамандығы бойынша, 2000 жылы Қазақстан Республикасы Президентінің жанындағы Мемлекеттік басқару академиясын «Мемлекеттік және муниципалдық басқару» мамандығы бойынша бітірген.',
+					'1986-1999 жж. Арыс қаласының локомотив депосында және Көлік және коммуникация министрлігінде басшылық қызметтер, 2006-2008 жж. министрліктің теміржол көлігі және байланыс жолдары комитетінің төрағасы қызметін атқарған. 2008-2017 жж. «Самұрық-Қазына» холдингі» АҚ көліктік активтерді басқару жөніндегі директоры болып, қатар «ҚТЖ» ҰК» АҚ мен «Эйр Астана» АҚ директорлар кеңестерінің мүшесі болған. 2017-2022 жж. LRT құрылыс дирекциясы бас директорының орынбасары қызметін атқарды.',
+				),
+			),
+			array(
+				'photo' => 'akhanzaripov.jpg',
+				'name'  => 'Аханзарипов Нұрлан Заманбекұлы',
+				'role'  => 'Директорлар кеңесінің тәуелсіз мүшесі',
+				'intro' => 'Директорлар кеңесінің тәуелсіз мүшесі. Мұнай-газ секторында 22 жылдан астам тәжірибесі бар, оның 12 жылы қаржы директоры лауазымында, сертификатталған тәуелсіз директор (Cert IoD).',
+				'full'  => array(
+					'Семей технологиялық университетін бухгалтер-экономист мамандығы бойынша, Қ.И.Сәтбаев атындағы Қазақ ұлттық техникалық университетін геофизика мамандығы бойынша бітірген, Қазақстан менеджмент, экономика және болжау институтында MBA дәрежесін алған, Ұлыбританияның Директорлар институтында сертификатталған тәуелсіз директор (Cert IoD) атанды.',
+					'Мұнай-газ секторында 22 жылдан астам, оның ішінде 12 жылдан астам қаржы директоры лауазымында «Қазахойл-Коммерция», «Интергаз Орталық Азия», «ҚазТрансГаз», «ҚазМұнайГаз» ҰК» АҚ және «Газопровод Бейнеу-Шымкент» ЖШС-де жұмыс істеген, сондай-ақ Оман Сұлтандығында Shell компаниясында екі жылдық халықаралық тәжірибесі бар. «Альфа-Банк Қазақстан», «Қазақстан инжиниринг» ҰК», «Интергаз Орталық Азия», «KEGOC» және «QazaqGaz» ҰК» АҚ-тарында жұмыс тәжірибесі бар.',
+				),
+			),
+		);
+		$photo_base = home_url( '/wp-content/uploads/leadership/' );
+		?>
+
+		<div class="people-grid">
+			<div class="people-row">
+				<?php foreach ( array_slice( $board, 0, 3 ) as $p ) : ?>
+				<div class="people-card">
+					<div class="people-card-photo-wrap">
+						<img class="people-card-photo" src="<?php echo esc_url( $photo_base . $p['photo'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" loading="lazy">
+					</div>
+					<div class="people-card-body">
+						<h3><?php echo esc_html( $p['name'] ); ?></h3>
+						<p class="info-role"><?php echo esc_html( $p['role'] ); ?></p>
+						<p><?php echo esc_html( $p['intro'] ); ?></p>
+						<button type="button" class="people-more">Толығырақ<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+						<div class="people-full" hidden>
+							<?php foreach ( $p['full'] as $para ) : ?>
+							<p><?php echo esc_html( $para ); ?></p>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+			<div class="people-row">
+				<?php foreach ( array_slice( $board, 3, 3 ) as $p ) : ?>
+				<div class="people-card">
+					<div class="people-card-photo-wrap">
+						<img class="people-card-photo" src="<?php echo esc_url( $photo_base . $p['photo'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" loading="lazy">
+					</div>
+					<div class="people-card-body">
+						<h3><?php echo esc_html( $p['name'] ); ?></h3>
+						<p class="info-role"><?php echo esc_html( $p['role'] ); ?></p>
+						<p><?php echo esc_html( $p['intro'] ); ?></p>
+						<button type="button" class="people-more">Толығырақ<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+						<div class="people-full" hidden>
+							<?php foreach ( $p['full'] as $para ) : ?>
+							<p><?php echo esc_html( $para ); ?></p>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

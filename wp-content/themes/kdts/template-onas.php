@@ -1,175 +1,91 @@
-﻿<?php
+<?php
  /*
  * Template name: o-kompanii
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('ru/o-kompanii/', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('en/o-kompanii/', 'https') ?>">Eng</a></li>
-            </ul>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Компания туралы</span>
 		</div>
-    </div>
-    <main>
-        <div class="container-rukovodstvo">
-            <div class="rukovodstvo-top">
-                <section class="rukovodstvo-navbar">
-                    <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-                        КОМПАНИЯ ТУРАЛЫ
-                    </a>
-                    <div class="rukovodstvo-navbar__block">
-                        <?php wp_nav_menu ( array (
-								'theme_location' => 'okompanii-menu',
-								'container' => false,
-								'menu_class'      => '', 
-							  )) ?>
-                    </div>  
-                </section>
-                <section class="rukovodstvo-content" style="width: auto;">
-                    <h1 class="partnery-title">
-                        <?php the_title(); ?>
-                    </h1>
-                    <div class="onas-years">
-                        <svg class="icon"><use href="#icon-clock"></use></svg>
-                        <span class="onas-years__text">Нарықта <strong class="onas-years__number">25</strong> жылдан астам</span>
-                    </div>
-                    <div class="onas-lead">
-                        <?php the_post(); ?>
-						<?php the_content() ?>
-                    </div>
-                    <?php
-                        $onas_stat_num   = CFS()->get('tsifrff');
-                        $onas_stat_label = CFS()->get('text10');
-                        $onas_stat_text  = CFS()->get('text11');
-                        if ( $onas_stat_num || $onas_stat_text ):
-                    ?>
-                    <div class="onas-active">
-                        <div class="onas-active__left">
-                            <span><?php echo $onas_stat_num; ?></span>
-                            <p class="onas-active__number">
-                                <?php echo $onas_stat_label; ?>
-                            </p>
-                        </div>
-                        <div class="onas-active__right">
-                            <p class="onas-active__text">
-                               <?php echo $onas_stat_text; ?>
-                            </p>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-                </section>
-            </div>
-        </div>
-		
-		<section class="abount-missiya">
-			<div class="abount-map__container">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/map2.png" alt="#" class="abount-missiya__map"/>
-				<div class="abount-map__text">
-					 <?php echo CFS()->get('tekst1'); ?>
-				</div>
-			</div>
-			<div class="abount-missiya__container abount-missiya__container--goals">
-
-				<div class="onas-goals">
-					<div class="onas-goals__item">
-						<h3>Біздің мақсат</h3>
-						<p>«Қазақстанның жүйе құраушы көлік компаниясы ретінде біз Ұлттық экономика мен қоғамның терминалдық инфрақұрылымды басқарудағы қажеттіліктерін қанағаттандырамыз».</p>
-					</div>
-					<div class="onas-goals__item">
-						<h3>Біздің көз-қарас</h3>
-						<p>Біз экономикалық тиімділік, қауіпсіздік, Әлеуметтік және экологиялық жауапкершілік қағидаттарына негізделген терминалдық инфрақұрылым қызметтерін ұсынатын жетекші компаниямыз.</p>
-						<p>Стратегиялық мақсат – «Бизнес ауқымын ұлғайту және қызмет тиімділігін арттыру есебінен капиталдандыруды ұлғайту».</p>
-					</div>
-					<div class="onas-goals__item">
-						<h3>Біздің стратегиялық мақсат</h3>
-						<ul class="onas-goals__list">
-							<li>терминалдық инфрақұрылымды басқару тиімділігін арттыру</li>
-							<li>транзиттік тасымалдарды дамытуға жәрдемдесу</li>
-							<li>клиенттердің қанағаттануын арттыру</li>
-							<li>цифрландыру</li>
-							<li>ESG принциптерін енгізу</li>
-							<li>өндірістік қызметтің қауіпсіздігіне кепілдік беру</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="cert-block">
-					<div class="certificate" >
-					  	<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-9001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/9001kaz.png" alt="Сертификат ISO 9001"></a>
-						<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-14001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/14001.png" alt="Сертификат ISO 14001"></a>
-						<a href="https://www.kdts.kz/wp-content/uploads/2024/11/Sertifikat-ISO-45001-KAZyaz.pdf"><img src="https://www.kdts.kz/wp-content/uploads/2024/11/45001.png" alt="Сертификат ISO 45001"></a>
-					</div>
-					<div class="text">
-				 		<p>Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
-						<p>2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), Денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
-						<p>2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды. Басқару жүйелерінің нәтижелілігін сыртқы аудиторлар жыл сайын міндетті түрде Компанияның орталық аппаратында және өндірістік алаңдарының бірінде іріктеп тексереді.</p>
-					</div>
-				</div>
-
-			</div>
-			<?php $onas_missiya_bottom = CFS()->get('text4'); if ( $onas_missiya_bottom ): ?>
-			<div class="abount-missiya__bottom">
-				<p class="abount-missiya__bottom-text">
-					<?php echo $onas_missiya_bottom; ?>
-				</p>
-			</div>
-			<?php endif; ?>
-		</section>
-        
-	<section class="abount-otnosheniya">
-		<div class="abount-missiya__container">
-			<div class="abount-missiya__block">
-				<div class="abount-missiya__left">
-					<div class="abount-missiya__p">
-						<p class="abount-missiya__title">
-							<?php echo CFS()->get('zagolovok3'); ?>
-						</p>
-						<p class="abount-missiya__number">
-							<?php echo CFS()->get('tsifr1'); ?>
-						</p>
-						<p class="abount-missiya__textare">
-							<?php echo CFS()->get('tekst5'); ?>
-						</p>
-					</div>
-				</div>
-				<div class="abount-missiya__right">
-					<div class="abount-missiya__p">
-						<p class="abount-missiya__title">
-							<?php echo CFS()->get('zagolovok4'); ?>
-						</p>
-						<p class="abount-missiya__number">
-							<?php echo CFS()->get('tsifr2'); ?>
-						</p>
-						<p class="abount-missiya__textare">
-							<?php echo CFS()->get('tekst6'); ?>
-						</p>
-					</div>
-				</div>
-			</div> <!-- abount-missiya__block / -->
-
-			<div class="abount-otnosheniya__text">
-				
-				<?php $teksty = CFS()->get('teksty');
-				foreach ($teksty as $tekst) {
-					echo '<p class="abount-otnosheniya__p">
-							'.$tekst["text7"].'
-						</p>';
-					}
-				?>
-				
-			</div>
-
-			<div class="abount-otnosheniya__text-color">
-				<?php echo CFS()->get('textBold1'); ?>
-			</div>
-
+		<h1>Компания туралы</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>" class="is-active">Компания туралы</a>
+			<a href="<?php echo esc_url( home_url( '/basshyly' ) ); ?>">Басшылық</a>
+			<a href="<?php echo esc_url( home_url( '/kompaniyanyn-tarihy' ) ); ?>">Компанияның тарихы</a>
+			<a href="<?php echo esc_url( home_url( '/direktorlar-kenesi' ) ); ?>">Директорлар кеңесі</a>
+			<a href="<?php echo esc_url( home_url( '/filialdar-zh-ne-kildikter' ) ); ?>">Филиалдар және өкілдіктер</a>
+			<a href="<?php echo esc_url( home_url( '/bos-zhumys-oryndary' ) ); ?>">Бос жұмыс орындары</a>
+			<a href="<?php echo esc_url( home_url( '/tilderdi-damytu' ) ); ?>">Тілдерді дамыту</a>
 		</div>
-	</section>
- </main>
+	</div>
+</section>
+
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead"><?php echo esc_html( wp_strip_all_tags( CFS()->get( 'tekst1' ) ?: 'Бүгінгі таңда біздің компания Қазақстанда ғана емес, сонымен қатар одан тыс жерлерде де көлік-логистикалық қызметтер көрсететін толыққанды оператор болып табылады.' ) ); ?></p>
+
+		<div class="page-section">
+			<h2>Біздің мақсат</h2>
+			<p class="pull-quote">«Қазақстанның жүйе құраушы көлік компаниясы ретінде біз Ұлттық экономика мен қоғамның терминалдық инфрақұрылымды басқарудағы қажеттіліктерін қанағаттандырамыз».</p>
+
+			<h2>Біздің көзқарас</h2>
+			<p>Біз экономикалық тиімділік, қауіпсіздік, әлеуметтік және экологиялық жауапкершілік қағидаттарына негізделген терминалдық инфрақұрылым қызметтерін ұсынатын жетекші компаниямыз.</p>
+			<p>Стратегиялық мақсат – «Бизнес ауқымын ұлғайту және қызмет тиімділігін арттыру есебінен капиталдандыруды ұлғайту».</p>
+		</div>
+
+		<div class="page-section">
+			<h2>Біздің стратегиялық мақсаттар</h2>
+			<ul class="goal-list">
+				<li><span class="goal-num">1</span><span>Терминалдық инфрақұрылымды басқару тиімділігін арттыру</span></li>
+				<li><span class="goal-num">2</span><span>Транзиттік тасымалдарды дамытуға жәрдемдесу</span></li>
+				<li><span class="goal-num">3</span><span>Клиенттердің қанағаттануын арттыру</span></li>
+				<li><span class="goal-num">4</span><span>Цифрландыру</span></li>
+				<li><span class="goal-num">5</span><span>ESG принциптерін енгізу</span></li>
+				<li><span class="goal-num">6</span><span>Өндірістік қызметтің қауіпсіздігіне кепілдік беру</span></li>
+			</ul>
+			<p>Біз қызметтерімізді ұдайы дамытуға және қызмет көрсету барысында сапа, экология, денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету саласындағы жоғары стандарттарға сай болуға бағытталғанбыз.</p>
+		</div>
+
+		<div class="page-section">
+			<h2>Сапа менеджменті сертификаттары</h2>
+			<p>2021 жылы сертификаттық аудит нәтижелері бойынша Компания басқару жүйелерінің (сапа менеджменті жүйесі (СМЖ), қоршаған ортаны қорғау менеджменті жүйесі (ҚҚМЖ), денсаулық сақтау және еңбек қауіпсіздігін қамтамасыз ету менеджмент жүйесі (ДСЕҚМЖ)) халықаралық стандарттар талаптарына сәйкестігін растады.</p>
+			<p>2024 жылы Компания Еуразиялық экономикалық одақ елдеріндегі TÜV Rheinland эксклюзивті өкілі болып табылатын TÜV Rheinland Kazakhstan ЖШС өткізген кезекті бақылау аудитінен сәтті өтті. Аудит нәтижелері бойынша Компанияның интеграцияланған басқару жүйесінің ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 халықаралық стандарттарының талаптарына сәйкестігі расталды.</p>
+		</div>
+
+		<div class="page-section">
+			<h2>Серіктестік қарым-қатынастар</h2>
+			<div class="stat-grid">
+				<div class="stat-item">
+					<div class="stat-num"><?php echo esc_html( CFS()->get( 'tsifr1' ) ?: '50' ); ?></div>
+					<p>Орта және Оңтүстік-Шығыс Азия, ҚХР мен Еуропаның көліктік-логистикалық және операторлық компаниялары</p>
+				</div>
+				<div class="stat-item">
+					<div class="stat-num">150+</div>
+					<p>Көліктік-экспедиторлық компания — біздің клиенттеріміз</p>
+				</div>
+			</div>
+			<p>Бүгінгі таңда «Кедентранссервис» АҚ Орта және Оңтүстік-Шығыс Азия, ҚХР және Еуропаның 50 көліктік-логистикалық және операторлық компанияларымен серіктестік қарым-қатынастарды орнатып отыр. Бұған қоса, клиенттеріміздің қатарында 150-ден астам көліктік-экспедиторлық компания бар. Біздің серіктестерімізбен қызметтестікте Еуропа мен Азия аралығындағы көпір бола отырып, біз көліктік құзыреттілік пен әмбебап логистиканы құрастырудың орталығы атануға ұмтыламыз.</p>
+		</div>
+	</div>
+</section>
+
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>

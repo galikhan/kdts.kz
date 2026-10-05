@@ -1,0 +1,40 @@
+<?php
+ /*
+ * Template name: o-sayte
+ */
+?>
+<?php get_header(); ?>
+    <div class="pagination-block">
+  		<div class="sdfsdfjsdf">
+<?php get_template_part('breadcrumbs') ?>
+        </div>
+		<div class="yazyk">
+			<ul>
+                <li class="yazyk-active"><a href="<?php echo home_url('/sajt-turaly', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-sajte/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-sajte/', 'https') ?>">Eng</a></li>
+            </ul>
+		</div>
+    	</div>
+
+	<main>
+        <div class="dell-container">
+            <div class="uslugi-peregruza__h1">
+                <h1>
+                    <?php the_title(); ?>
+                </h1>
+            </div>
+			<section class="uslugi-peregruza__text uslugi-peregruza__text--full">
+			   <?php the_post(); ?>
+				<?php the_content() ?>
+			</section>
+        </div>
+    </main>
+<?php get_footer(); ?>
+
+
+
+
+
+
+

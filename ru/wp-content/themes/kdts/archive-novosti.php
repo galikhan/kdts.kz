@@ -1,73 +1,60 @@
-
 <?php
  /*
  * Template name: novosti
  */
 ?>
 <?php get_header(); ?>
-    	<div class="pagination-block">
-			<div class="sdfsdfjsdf">
-				<?php get_template_part('breadcrumbs') ?>
+<?php $months = array( '', 'ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ' ); ?>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Новости</span>
+		</div>
+		<h1>Новости</h1>
+	</div>
+</section>
+
+<section class="page-content is-wide">
+	<div class="container">
+		<?php if ( have_posts() ) : ?>
+			<div class="news-grid cols-3">
+				<?php while ( have_posts() ) : the_post();
+					$thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+					?>
+					<a class="news-card" href="<?php the_permalink(); ?>">
+						<img class="news-img" src="<?php echo esc_url( $thumb ? $thumb : get_template_directory_uri() . '/img/hero-railyard.jpg' ); ?>" alt="">
+						<div class="news-body">
+							<p><?php echo esc_html( html_entity_decode( get_the_title(), ENT_QUOTES ) ); ?></p>
+							<div class="news-date">
+								<span class="d"><?php echo esc_html( get_the_date( 'd' ) ); ?></span>
+								<span class="m"><?php echo esc_html( $months[ (int) get_the_date( 'n' ) ] ); ?></span>
+								<span class="y"><?php echo esc_html( get_the_date( 'Y' ) ); ?></span>
+							</div>
+						</div>
+					</a>
+				<?php endwhile; ?>
 			</div>
-			<div class="yazyk">
-				<ul>
-					<li class="yazyk-active"><a href="<?php echo home_url('/novosti/', 'https') ?>">Рус</a></li>
-					<li><a href="https://www.kdts.kz/zhanalyktar/"> Қаз</a></li>
-					<li><a href="https://www.kdts.kz/en/novosti/">Eng</a></li>
-				</ul>
-			</div>
-    	</div>
+			<?php
+			global $wp_query;
+			$links = paginate_links( array(
+				'base'      => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+				'format'    => '?paged=%#%',
+				'current'   => max( 1, get_query_var( 'paged' ) ),
+				'total'     => $wp_query->max_num_pages,
+				'prev_text' => '‹',
+				'next_text' => '›',
+			) );
+			if ( $links ) {
+				echo '<nav class="tender-pagination">' . $links . '</nav>';
+			}
+			?>
+		<?php else : ?>
+			<p class="page-lead">Новостей нет.</p>
+		<?php endif; ?>
+	</div>
+</section>
 
-
- 		<main class="novosti">
-            <div class="novosti-container">
-                <h1 class="novosti-title">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/tLine.svg" class="novosti-title__line" alt="#" /> 
-					Новости
-                </h1>
-                <div class="novosti-items">
-					<?php if (have_posts()) : while ( have_posts() ) : the_post();  ?>
-                    <div class="novosti-item">
-                         <a href="<?php the_permalink(); ?>">
-                            <div class="novosti-photo">
-                                <?php the_post_thumbnail() ?>
-                            </div>
-                            <p class="novosti-head">
-                                <?php the_title(); ?>
-                            </p>
-                            <p class="novosti-open">
-                                Подробнее <svg class="icon" style="width:12px;height:12px;"><use href="#icon-chevron-right"></use></svg>
-                            </p>
-                            <p class="novosti-data">
-                                <?php echo get_the_date(); ?>
-                            </p>
-                        </a>
-                    </div> <!-- novosti-item / -->
-				
-                        <?php endwhile; ?>
-                        <div class="news-number">
-							<span>
-								страница
-							</span>
-                                <?php
-//global $wp_query;
-
-                            $big = 999999999; // need an unlikely integer
-                             
-                            echo paginate_links( array(
-                                'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                                'format' => '?paged=%#%',
-                                'current' => max( 1, get_query_var('paged') ),
-								'prev_text'    => __(''),
-								'next_text'    => __(''),
-                                'total' => $wp_query->max_num_pages
-                            ) );
-                            ?>
-                        </div>
-                        <?php else: ?>
-                        <?php endif; ?>
-                  </div>
-            </div>
-        </main>
 <?php get_footer(); ?>
-

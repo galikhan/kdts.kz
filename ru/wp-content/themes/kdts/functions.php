@@ -150,22 +150,34 @@ add_action( 'widgets_init', 'kdts_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kdts_scripts() {
-	wp_enqueue_style( 'kdts-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'kdts-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
 	wp_style_add_data( 'kdts-style', 'rtl', 'replace' );
 
 	if ( ! is_front_page() ) {
-		wp_enqueue_style( 'mtk-normalize', get_template_directory_uri(). '/css/main.min.css');
+		wp_enqueue_style( 'mtk-normalize', get_template_directory_uri(). '/css/main.min.css', array(), filemtime( get_template_directory() . '/css/main.min.css' ) );
 	}
 
-	wp_enqueue_script( 'kdts-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'kdts-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime( get_template_directory() . '/js/navigation.js' ), true );
 	wp_enqueue_script( 'mtk-main', get_template_directory_uri() . '/js/main.js', array(), '', true );
 	wp_enqueue_script( 'swiper-bundle-my', get_template_directory_uri() . '/js/swiper-bundle.js', array(), '', true );
-	wp_enqueue_script( 'kdts-new-design', get_template_directory_uri() . '/js/new-design.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'kdts-new-design', get_template_directory_uri() . '/js/new-design.js', array(), filemtime( get_template_directory() . '/js/new-design.js' ), true );
 
 	wp_enqueue_script( 'jquery3-3-1', "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" );
 	/*wp_enqueue_script( 'swiper-bundle-my', "https://unpkg.com/swiper/swiper-bundle.min.js" ); */
 	wp_enqueue_script( 'slick-carousel-my', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js" );
-	
+
+	// Phone mask for the callback-request form in the footer (present on every page).
+	wp_enqueue_script( 'kdts-maskedinput', get_template_directory_uri() . '/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ), null, true );
+
+	// Interactive route maps — homepage only (and only while the section is switched on).
+	if ( is_front_page() && kdts_show_routes() ) {
+		wp_enqueue_script( 'amcharts5', 'https://cdn.amcharts.com/lib/5/index.js', array(), null, true );
+		wp_enqueue_script( 'amcharts5-map', 'https://cdn.amcharts.com/lib/5/map.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'amcharts5-geodata-world', 'https://cdn.amcharts.com/lib/5/geodata/worldLow.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'amcharts5-theme-animated', 'https://cdn.amcharts.com/lib/5/themes/Animated.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'kdts-route-maps', get_template_directory_uri() . '/js/route-maps.js', array( 'amcharts5-map', 'amcharts5-geodata-world', 'amcharts5-theme-animated' ), null, true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -794,3 +806,96 @@ function my_func_remove_menu(){
  remove_submenu_page( 'index.php', 'update-core.php' );
 }
 add_action( 'admin_menu', 'my_func_remove_menu' );
+
+/**
+ * Renders the "Языки" nav menu as flat pill buttons (site's own design —
+ * see redesign_kdts.html's .lang-switch), instead of a <ul><li> list.
+ */
+/* "Message to HR" popup (footer): validates the form and mails it to hr@kdts.kz.
+   The visitor's address goes into Reply-To so HR can answer directly. */
+function kdts_hr_message_handler() {
+	// Honeypot: bots fill the hidden field; pretend success and drop it.
+	if ( ! empty( $_POST['website'] ) ) {
+		wp_send_json_success();
+	}
+
+	$email   = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+	$phone   = isset( $_POST['hr_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['hr_phone'] ) ) : '';
+	$subject = isset( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+	$message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
+
+	if ( ! is_email( $email ) || '' === $phone || '' === $subject || '' === $message
+		|| strlen( $phone ) > 40 || strlen( $subject ) > 200 || strlen( $message ) > 5000
+		|| ! preg_match( '/[0-9]{5,}/', preg_replace( '/\D+/', '', $phone ) . '' ) ) {
+		wp_send_json_error( array( 'code' => 'invalid' ) );
+	}
+
+	// Simple per-IP throttle: 5 messages per hour.
+	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+	$key = 'kdts_hr_' . md5( $ip );
+	$cnt = (int) get_transient( $key );
+	if ( $cnt >= 5 ) {
+		wp_send_json_error( array( 'code' => 'rate' ) );
+	}
+	set_transient( $key, $cnt + 1, HOUR_IN_SECONDS );
+
+	$body  = "Сообщение с сайта " . home_url( '/' ) . "\n\n";
+	$body .= "Email: " . $email . "\n";
+	$body .= "Телефон: " . $phone . "\n";
+	$body .= "Тема: " . $subject . "\n\n";
+	$body .= $message . "\n";
+
+	$headers = array(
+		'Content-Type: text/plain; charset=UTF-8',
+		'Reply-To: ' . $email,
+	);
+	$sent = wp_mail( 'hr@kdts.kz', '[kdts.kz] ' . $subject, $body, $headers );
+
+	if ( $sent ) {
+		wp_send_json_success();
+	}
+	wp_send_json_error( array( 'code' => 'fail' ) );
+}
+add_action( 'wp_ajax_nopriv_kdts_hr_message', 'kdts_hr_message_handler' );
+add_action( 'wp_ajax_kdts_hr_message', 'kdts_hr_message_handler' );
+
+/* Homepage "Транспортные маршруты" section (+ the hero "Маршруттар" button and the
+   amCharts scripts). Switched off for now; flip to true to bring it back. */
+function kdts_show_routes() {
+	return (bool) apply_filters( 'kdts_show_routes', false );
+}
+
+/* Language switcher: keep a fixed KZ / RU / EN order on every site; only the
+   active language gets highlighted (by the walker below). */
+add_filter( 'wp_nav_menu_objects', function ( $items, $args ) {
+	if ( ! isset( $args->theme_location ) || 'yazyk-menu' !== $args->theme_location ) {
+		return $items;
+	}
+	$order = array( 'KZ' => 1, 'RU' => 2, 'EN' => 3 );
+	usort( $items, function ( $a, $b ) use ( $order ) {
+		$oa = isset( $order[ strtoupper( trim( $a->title ) ) ] ) ? $order[ strtoupper( trim( $a->title ) ) ] : 99;
+		$ob = isset( $order[ strtoupper( trim( $b->title ) ) ] ) ? $order[ strtoupper( trim( $b->title ) ) ] : 99;
+		return $oa <=> $ob;
+	} );
+	return $items;
+}, 10, 2 );
+
+class Kdts_Lang_Switch_Walker extends Walker_Nav_Menu {
+	function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		// Each language lives in its own install (/ , /ru , /en): the active language is the one this site serves,
+		// on every page — not only where the current page happens to be a menu item.
+		$home_path = trim( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ), '/' );
+		$site_lang = in_array( $home_path, array( 'ru', 'en' ), true ) ? strtoupper( $home_path ) : 'KZ';
+		$active    = ( strtoupper( trim( $item->title ) ) === $site_lang ) ? ' is-active' : '';
+		$output .= '<a class="lang-btn' . $active . '" href="' . esc_url( $item->url ) . '">' . esc_html( trim( $item->title ) ) . '</a>';
+	}
+	function end_el( &$output, $item, $depth = 0, $args = null ) {}
+}
+
+/* news list: 12 per page (fills the 3- and 2-column grids) */
+add_action( 'pre_get_posts', 'kdts_news_per_page' );
+function kdts_news_per_page( $query ) {
+	if ( ! is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'novosti' ) ) {
+		$query->set( 'posts_per_page', 12 );
+	}
+}

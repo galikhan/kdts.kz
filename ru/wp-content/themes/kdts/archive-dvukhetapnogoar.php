@@ -1,39 +1,6 @@
 <?php
- /*
- * Template name: dvukhetapnogoAr
- */
-?>
-<?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-            <?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/arkhivy/dvukhetapnogo-tendera/', 'https') ?>">Рус </a></li>
-                <li><a href="<?php echo home_url('https://www.kdts.kz/satyp-alul/muragat/ashyk-eki-kezendi/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('https://www.kdts.kz/en/zakupki/arkhivy/dvukhetapnogo-tendera/', 'https') ?>">Eng</a></li>
-            </ul>
-		</div>
-    </div>
-<main class="container-rukovodstvo">
-	<section class="zakupki-navbar">
-   		<?php include "zakup-menu.php" ?>
-   	</section> <!-- rukovodstvo-navbar / -->
-     <section class="zakupki-content">
-            <h1 class="partnery-title">
-                <?php echo CFS()->get('zagolovka',311); ?>
-            </h1>
-             <p>
-				 Тендеры не найдены
-			 </p>
-	
-        </section> <!-- rukovodstvo-content / -->     
-</main>
- 		
-<?php get_footer(); ?>
-
-
-
-
-
+/* Procurement list: dvukhetapnogo (archive) */
+get_header();
+$tl = array( 'pills' => array( 305, 307, 309, 311 ), 'title_id' => 311, 'archive' => true );
+include locate_template( 'template-parts/tender-list.php' );
+get_footer();

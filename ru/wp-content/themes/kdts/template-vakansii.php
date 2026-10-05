@@ -1,86 +1,61 @@
-﻿
 <?php
 /*
  * Template name: vakansii
  */
 ?>
 <?php get_header(); ?>
-<div class="pagination-block">
-    <div class="sdfsdfjsdf">
-        <?php get_template_part('breadcrumbs') ?>
-    </div>
-    <div class="yazyk">
-       <ul>
-        <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/vakansii/', 'https') ?>"> Рус</a></li>
-        <li><a href="https://www.kdts.kz/kompaniya-turaly/bos-zhumys-oryndary/">Қаз</a></li>
-        <li><a href="https://www.kdts.kz/en/o-kompanii/vakansii/">Eng</a></li>
-    </ul>
-</div>
-</div>
-<style type="text/css">
-    .card{
-        border: 1px solid var(--c-line);
-        border-radius: 16px;
-        padding: 32px;
-        background: var(--c-bg-card);
-        box-shadow: var(--shadow-sm);
-    }
 
-    .card h2{
-        font-size: 26px;
-        margin-bottom: 1rem;
-        text-align: left;
-        color: var(--c-dark);
-    }
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Вакансии</span>
+		</div>
+		<h1>Вакансии</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">О компании</a>
+			<a href="<?php echo esc_url( home_url( '/rukovodstvo' ) ); ?>">Руководство</a>
+			<a href="<?php echo esc_url( home_url( '/istoriya-kompanii' ) ); ?>">История компании</a>
+			<a href="<?php echo esc_url( home_url( '/sovet-direktorov' ) ); ?>">Совет директоров</a>
+			<a href="<?php echo esc_url( home_url( '/filialy-i-predstavitelstv' ) ); ?>">Филиалы и представительства</a>
+			<a href="<?php echo esc_url( home_url( '/vakansii' ) ); ?>" class="is-active">Вакансии</a>
+			<a href="<?php echo esc_url( home_url( '/razvitie-yazykov' ) ); ?>">Развитие языков</a>
+		</div>
+	</div>
+</section>
 
-    .card .row{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 0;
-    }
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">С актуальными вакансиями АО «Кедентранссервис» можно ознакомиться здесь.</p>
 
-    @media screen and (max-width: 767px){
-        .card .row{
-            flex-wrap: wrap;
+		<div class="page-section">
+			<p>Полную информацию об открытых вакансиях АО «Кедентранссервис» можно найти на едином портале трудоустройства АО «НК «Қазақстан темір жолы». В настоящее время отдельного списка вакансий на официальном сайте компании не публикуется — все актуальные вакансии размещаются на указанном портале.</p>
 
-        }
-        .card .data{
+			<div class="doc-list">
+				<div class="doc-item">
+					<span>Вакансии на едином портале трудоустройства АО «НК «Қазақстан темір жолы»</span>
+					<a href="https://job.railways.kz/kz/vacancy" target="_blank" rel="noopener">СМОТРЕТЬ</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-            margin-bottom: 3rem
-        }
-    }
-
-    .card .info{
-            color: var(--c-grey);
-            margin-bottom: 0;
-        }
-
-</style>
-<main class="container-rukovodstvo">
-    <section class="rukovodstvo-navbar">
-        <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
-            О КОМПАНИИ
-        </a>
-        <div class="rukovodstvo-navbar__block">
-            <?php wp_nav_menu ( array (
-                'theme_location' => 'okompanii-menu',
-                'container' => false,
-                'menu_class'      => '',
-            )) ?>
-        </div>
-    </section> <!-- rukovodstvo-navbar / -->
-
-    <section class="rukovodstvo-content">
-        <h1 class="partnery-title">
-            Вакансии
-        </h1>
-        <div class="aktsioneram-text" style="text-indent: 0px;">
-            <?php the_post(); ?>
-            <?php the_content() ?>
-        </div>
-    </section> <!-- rukovodstvo-content / -->
-</main>
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ГОТОВЫ ДОСТАВИТЬ ВАШ ГРУЗ</h2>
+		<p>
+			<span>Оставьте заявку для расчёта тарифа или свяжитесь напрямую:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">РАССЧИТАТЬ ТАРИФ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">СВЯЗАТЬСЯ</a>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>

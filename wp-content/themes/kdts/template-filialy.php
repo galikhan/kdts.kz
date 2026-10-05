@@ -4,687 +4,171 @@
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
 
-<div>
-<?php get_template_part('breadcrumbs') ?>
-</div>
-<div class="yazyk">
-    <ul>
-        <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/filialdar-zh-ne-kildikter/', 'https') ?>">Қаз</a></li>
-        <li><a href="<?php echo home_url('/ru/o-kompanii/filialy-i-predstavitelstv', 'https') ?>">Рус</a></li>
-        <li><a href="<?php echo home_url('/en/o-kompanii/filialy-i-predstavitelstv/', 'https') ?>">Eng</a></li>
-    </ul>
-</div>
-</div>
-<main>
-    <div class="container-rukovodstvo">
-        <div class="rukovodstvo-top">
-            <section class="rukovodstvo-navbar">
-                <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-                    Компания туралы
-                </a>
-                <div class="rukovodstvo-navbar__block">
-                    <?php wp_nav_menu(array(
-                        'theme_location' => 'okompanii-menu',
-                        'container' => false,
-                        'menu_class' => '',
-                    )) ?>
-                </div>
-            </section> <!-- rukovodstvo-navbar / -->
-            <section class="rukovodstvo-content">
-                <h1 class="partnery-title">
-                    <?php the_title(); ?>
-                </h1>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/mapsnoname.png" class="filMap" alt="#" />
-            </section> <!-- rukovodstvo-content / -->
-        </div>
-    </div>
-    <div class="dell-container">
-        <div class="filialy-items">
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text1'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text2'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text3'); ?> <br />
-                            <?php echo CFS()->get('text4'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email1'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code1') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code1'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text5'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text6'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text7'); ?> <br />
-                            <?php echo CFS()->get('text8'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email2'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code2') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code2'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text9'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text10'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text11'); ?> <br />
-                            <?php echo CFS()->get('text12'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email3'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code3') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code3'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text13'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text14'); ?>
-                        </p>
-                    </div>
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Филиалдар және өкілдіктер</span>
+		</div>
+		<h1>Филиалдар және өкілдіктер</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/kompaniya-turaly' ) ); ?>">Компания туралы</a>
+			<a href="<?php echo esc_url( home_url( '/basshyly' ) ); ?>">Басшылық</a>
+			<a href="<?php echo esc_url( home_url( '/kompaniyanyn-tarihy' ) ); ?>">Компанияның тарихы</a>
+			<a href="<?php echo esc_url( home_url( '/direktorlar-kenesi' ) ); ?>">Директорлар кеңесі</a>
+			<a href="<?php echo esc_url( home_url( '/filialdar-zh-ne-kildikter' ) ); ?>" class="is-active">Филиалдар және өкілдіктер</a>
+			<a href="<?php echo esc_url( home_url( '/bos-zhumys-oryndary' ) ); ?>">Бос жұмыс орындары</a>
+			<a href="<?php echo esc_url( home_url( '/tilderdi-damytu' ) ); ?>">Тілдерді дамыту</a>
+		</div>
+	</div>
+</section>
 
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">«Кедентранссервис» АҚ-ның Қазақстан Республикасы бойынша филиалдары мен шетелдегі өкілдіктерінің мекенжайлары мен байланыс деректері.</p>
 
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php
-                            $fields = CFS()->get('loop-tel4');
-                            if (!empty($fields)):
-                                foreach ($fields as $field) {
-                                    ?>
-                                    <?php echo $field["nomer4"] ?> <br />
-                                    <?php
-                                }
-                                ;
-                            endif;
-                            ?>
-                        </p>
+		<div class="info-grid">
+			<div class="info-card">
+				<h3>Астана қаласы, орталық кеңсе</h3>
+				<p>Астана қ., Есіл ауданы, Достық к-сі, 18</p>
+				<p>+7 (7172) 94 26 26, +7 778 097 97 97</p>
+				<p>kense@kdts.kz</p>
+			</div>
+			<div class="info-card">
+				<h3>Алматы қаласы және Алматы облысы бойынша филиалы (Алматы 1)</h3>
+				<p>Алматы қ., Солтүстік Сақина к-сі, 57</p>
+				<p>+7 (7272) 296 35 91, +7 (7272) 296 75 96</p>
+				<p>almaty@kdts.kz</p>
+				<p>Алматы 1 станциясы, ст. коды 700007</p>
+			</div>
+			<div class="info-card">
+				<h3>Алматы қаласы және Алматы облысы бойынша филиалы (Алматы 2)</h3>
+				<p>Алматы қ., Өнеркәсіптік к-сі, 1</p>
+				<p>+7 (7272) 296 15 59</p>
+				<p>almaty@kdts.kz</p>
+				<p>Алматы 2 станциясы, ст. коды 700100</p>
+			</div>
+			<div class="info-card">
+				<h3>Алтынкөл станциясы бойынша филиалы</h3>
+				<p>Алматы облысы, Панфилов ауданы, Бидайық ауылы, Алтынкөл станциясы, теміржол вокзалы ғимараты, Б корпусы</p>
+				<p>+7 (72831) 6 33 12</p>
+				<p>kdts-altynkol@mail.ru</p>
+				<p>Алтынкөл станциясы, ст. коды 707608</p>
+			</div>
+			<div class="info-card">
+				<h3>Астана қаласы және Ақмола облысы бойынша филиалы</h3>
+				<p>Астана қ., Алматы ауданы, Жұбанова к-сі, 29а</p>
+				<p>+7 (7172) 93 42 97, +7 778 097 9282</p>
+				<p>astana@kdts.kz</p>
+				<p>Нұр-Сұлтан 1 станциясы, ст. коды 690002</p>
+			</div>
+			<div class="info-card">
+				<h3>Атырау аймақтық филиалы</h3>
+				<p>Атырау қ., Товарный двор аумағы</p>
+				<p>+7 (7122) 95 52 51</p>
+				<p>atyrau@kdts.kz</p>
+				<p>Атырау станциясы, ст. коды 661705</p>
+			</div>
+			<div class="info-card">
+				<h3>Батыс Қазақстан аймақтық филиалы</h3>
+				<p>Ақтөбе қ., 41-разъезд, тауар ауласы</p>
+				<p>+7 (7132) 97 66 09, +7 (7132) 97 60 27</p>
+				<p>aktobe@kdts.kz</p>
+				<p>Ақтөбе 2 станциясы, ст. коды 689607</p>
+			</div>
+			<div class="info-card">
+				<h3>Достық станциясы бойынша филиалы</h3>
+				<p>Достық кенті, Бәкіров к-сі, 5А, ППК7</p>
+				<p>+7 (7283) 33 10 32</p>
+				<p>dostyk@kdts.kz</p>
+				<p>Достық станциясы, ст. коды 708507 / 708403</p>
+			</div>
+			<div class="info-card">
+				<h3>Қарағанды облысы бойынша филиалы</h3>
+				<p>Қарағанды қ., Складская к-сі, 13</p>
+				<p>+7 778 097 9277, +7 (7212) 60 40 11</p>
+				<p>karaganda@kdts.kz</p>
+				<p>Қарағанды станциясы, ст. коды 673905</p>
+			</div>
+			<div class="info-card">
+				<h3>Қостанай облысы бойынша филиалы</h3>
+				<p>Қостанай қ., Перрон к-сі, 1</p>
+				<p>+7 (7142) 90 05 78</p>
+				<p>kostanay@kdts.kz</p>
+				<p>Қостанай станциясы, ст. коды 684001</p>
+			</div>
+			<div class="info-card">
+				<h3>Көкшетау қаласы, Ақмола облысы бойынша филиалы</h3>
+				<p>Көкшетау қ., Шығыс өнеркәсіп аймағы, 18-өткел, 2-учаске</p>
+				<p>8 (7162) 29 41 69, +7 778 097 9675</p>
+				<p>astana@kdts.kz</p>
+				<p>Көкшетау-1 станциясы, ст. коды 687008</p>
+			</div>
+			<div class="info-card">
+				<h3>«Орал жүк аймағы» филиалы</h3>
+				<p>Батыс Қазақстан облысы, Жайлаево кенті, 20-өнеркәсіптік аймақ</p>
+				<p>+7 (7112) 27 44 60</p>
+				<p>oral@kdts.kz</p>
+				<p>Жайлаево станциясы, ст. коды 666003</p>
+			</div>
+			<div class="info-card">
+				<h3>Өскемен қаласы, Шығыс Қазақстан облысы бойынша филиалы</h3>
+				<p>Өскемен қ., Делегатская к-сі, 36</p>
+				<p>+7 (7232) 50 21 37</p>
+				<p>vko@kdts.kz</p>
+				<p>Өскемен-1 станциясы, ст. коды 713007</p>
+			</div>
+			<div class="info-card">
+				<h3>Павлодар облысы бойынша филиалы</h3>
+				<p>Павлодар қ., Тауар к-сі, 25</p>
+				<p>+7 (7182) 50 14 02</p>
+				<p>pavlodar@kdts.kz</p>
+				<p>Павлодар-Оңтүстік станциясы, ст. коды 696206</p>
+			</div>
+			<div class="info-card">
+				<h3>Семей қаласы, Шығыс Қазақстан облысы бойынша филиалы</h3>
+				<p>Семей қ., Шығыс сол жақ массив к-сі, 3009А</p>
+				<p>+7 (7222) 38 13 38</p>
+				<p>vko@kdts.kz</p>
+				<p>Семей-Грузовой станциясы, ст. коды 709508</p>
+			</div>
+			<div class="info-card">
+				<h3>Шымкент қаласы бойынша аймақтық филиалы</h3>
+				<p>Шымкент қ., Мұминов к-сі, 26</p>
+				<p>+7 (7252) 95 45 02</p>
+				<p>shymkent@kdts.kz</p>
+				<p>Шымкент станциясы, ст. коды 698606</p>
+			</div>
+			<div class="info-card">
+				<h3>«Қытай-Қазақстан Сауда-логистикалық компаниясы» ЖШҚ (Сиань қ., ҚХР)</h3>
+				<p>Ганьянь жолы, Халықаралық порт аймағы, Сиань қаласы, Шэньси провинциясы, 3369, 8-қабат, 837-кеңсе</p>
+				<p>+7 (7172) 94 26 26, +7 778 097 97 97</p>
+			</div>
+			<div class="info-card">
+				<h3>«Қазақстанның көлік холдингі» ЖШС</h3>
+				<p>Астана қ., Достық к-сі, 18, 9193-кеңсе</p>
+				<p>+7 (7172) 666-548</p>
+			</div>
+		</div>
+	</div>
+</section>
 
-                    </div>
-
-
-
-
-
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email4'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code4') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code4'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text17'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text18'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php
-                            $fields = CFS()->get('loop-tel5');
-                            if (!empty($fields)):
-                                foreach ($fields as $field) {
-                                    ?>
-                                    <?php echo $field["nomer5"] ?> <br />
-                                    <?php
-                                }
-                                ;
-                            endif;
-                            ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email5'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code5') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code5'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text21'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text22'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text23'); ?> <br />
-                            <?php echo CFS()->get('text24'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email6'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code6') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code6'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text25'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text26'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text27'); ?> <br />
-                            <?php echo CFS()->get('text28'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email7'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code7') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code7'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text29'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text30'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text31'); ?> <br />
-                            <?php echo CFS()->get('text32'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email8'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code8') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code8'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text33'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text34'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text35'); ?> <br />
-                            <?php echo CFS()->get('text36'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email9'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code9') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code9'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text37'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text40'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text38'); ?> <br />
-                            <?php echo CFS()->get('text39'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email10'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code10') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code10'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text41'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text42'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text43'); ?> <br />
-                            <?php echo CFS()->get('text44'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email11'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code11') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code11'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text45'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text46'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text47'); ?> <br />
-                            <?php echo CFS()->get('text48'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email12'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code12') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code12'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text49'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text50'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text51'); ?> <br />
-                            <?php echo CFS()->get('text52'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email13'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code13') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code13'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text53'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text54'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text55'); ?> <br />
-                            <?php echo CFS()->get('text56'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email14'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code14') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code14'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text57'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text58'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text59'); ?> <br />
-                            <?php echo CFS()->get('text60'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email15'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code15') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code15'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('text61'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text62'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('text63'); ?> <br />
-                            <?php echo CFS()->get('text64'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email16'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code16') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code16'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('name17'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('adr17'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('phone17_1'); ?> <br />
-                            <?php echo CFS()->get('phone17_2'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email17'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code17') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code17'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-            <div class="filialy-item filialy-item__rigth">
-                <p class="filialy-item__title">
-                    <?php echo CFS()->get('name18'); ?>
-                </p>
-                <div class="filialy-item__info">
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-map-pin"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('adr18'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-phone"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('phone18_1'); ?> <br />
-                            <?php echo CFS()->get('phone18_2'); ?>
-                        </p>
-                    </div>
-                    <div class="filialy-item__inner">
-                        <svg class="icon filialy-item__icon"><use href="#icon-mail"></use></svg>
-                        <p class="filialy-item__p">
-                            <?php echo CFS()->get('email18'); ?>
-                        </p>
-                    </div>
-                    <?php if (CFS()->get('code18') != '') { ?>
-                        <div class="filialy-item__inner">
-                            <svg class="icon filialy-item__icon"><use href="#icon-file"></use></svg>
-                            <p class="filialy-item__p">
-                                <?php echo CFS()->get('code18'); ?>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div> <!-- filialy-item / -->
-        </div>
-    </div>
-
-</main>
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>ЖҮКТЕРІҢІЗДІ ЖЕТКІЗУГЕ ДАЙЫНБЫЗ</h2>
+		<p>
+			<span>Тарифті есептеу үшін өтінім қалдырыңыз немесе тікелей байланысыңыз:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">ТАРИФТІ ЕСЕПТЕУ</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">БАЙЛАНЫСУ</a>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>

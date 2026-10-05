@@ -1,127 +1,47 @@
-﻿<?php
+<?php
 /*
  * Template name: zakupki_new
  */
 ?>
 <?php get_header(); ?>
-<div class="pagination-block">
-    <div class="sdfsdfjsdf">
-        <?php get_template_part('breadcrumbs') ?>
-    </div>
-    <div class="yazyk">
-        <ul>
-            <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/tenders/', 'https') ?>">Рус</a></li>
-            <li><a href="https://www.kdts.kz/satyp-alul/tender/">Қаз</a></li>
-            <li><a href="https://www.kdts.kz/en/zakupki/tenders/">Eng</a></li>
-        </ul>
-    </div>
-</div>
-<main class="container-rukovodstvo">
-    <section class="zakupki-navbar">
-        <?php include "zakup-menu.php" ?>
-    </section> <!-- rukovodstvo-navbar / -->
-    <section class="rukovodstvo-content">
-        <h1 class="partnery-title">
-            <?php the_title(); ?>
-        </h1>
-        <div class="aktsioneram-text" style="text-indent: 0px;">
-            <?php the_post(); ?>
-            <?php the_content() ?>
+<?php the_post(); ?>
+<section class="page-hero page-hero-zakupki">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span class="crumb-sep">/</span>
+			<span><?php echo esc_html( get_the_title( 263 ) ); ?></span>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
+		</div>
+		<h1><?php the_title(); ?></h1>
+	</div>
+</section>
 
-            <?php if (strstr($_SERVER['REQUEST_URI'], '/zakupki-po-realizatsii-investitsionnyh-proektov/')) { ?>
-                <div class="rukovodstvo-wrapper">
-                    <div class="swiper-container istoriya-thumbs">
-                        <div class="swiper-wrapper">
-
-
-                            <div class="swiper-slide">
-                                <div class="swiper-slide__godovaya">
-                                    <p class="swiper-slide__godovaya-text"> 2021 </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div> <!-- istoriya-thumbs / -->
-                    <div class="godovaya-next">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
-                    </div>
-                    <div class="godovaya-prev">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
-                    </div>
-                </div> <!-- rukovodstvo-wrapper / -->
-                <div class="swiper-container istoriya-top">
-                    <div class="swiper-wrapper" style="height: auto;">
-
-                        <div class="swiper-slide">
-                            <div class="godovaya-items">
-
-                                <!---------------------->
-                                <div class="godovaya-item">
-                                    <a href="https://www.kdts.kz/ru/wp-content/uploads/2022/04/Zakupki-po-realizatsii-investitsionnyh-proektov-za-2021g.xlsx" download="">
-                                        <div class="godovaya-item__photo">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#">
-                                        </div>
-                                        <div class="godovaya-item__text">
-                                            Закупки по реализации инвестиционных проектов за 2021г.</div>
-                                    </a>
-                                </div> <!-- godovaya-item / -->
-
-
-                                <!-------------------->
-                            </div> <!-- swiper-slide / -->
-                        </div>
-
-                    </div>
-                <?php } ?>
-                <?php if (strstr($_SERVER['REQUEST_URI'], '/poryadok-osushhestvleniya-zakupok/')) { ?>
-                    <div class="rukovodstvo-wrapper">
-                        <div class="swiper-container istoriya-thumbs">
-                            <div class="swiper-wrapper">
-
-
-                                <div class="swiper-slide">
-                                    <div class="swiper-slide__godovaya">
-                                        <p class="swiper-slide__godovaya-text"> 2022 </p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div> <!-- istoriya-thumbs / -->
-                        <div class="godovaya-next">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowNext.png" class="godovaya-next__icon" alt="#" />
-                        </div>
-                        <div class="godovaya-prev">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/ArrowPrev.png" class="godovaya-next__icon" alt="#" />
-                        </div>
-                    </div> <!-- rukovodstvo-wrapper / -->
-                    <div class="swiper-container istoriya-top">
-                        <div class="swiper-wrapper" style="height: auto;">
-
-                            <div class="swiper-slide">
-                                <div class="godovaya-items">
-
-                                    <!---------------------->
-                                    <div class="godovaya-item">
-                                        <a href="https://www.kdts.kz/ru/wp-content/uploads/2022/09/Poryadok_zakupok_s_izmeneniyami_i_dopolneniyami_26-avg-2022-goda.doc" download="">
-                                            <div class="godovaya-item__photo">
-                                                <img src="<?php echo get_template_directory_uri(); ?>/img/tipovye-dogovora__icon.png" alt="#">
-                                            </div>
-                                            <div class="godovaya-item__text">
-                                                Порядок осуществления закупок акционерным обществом «Фонд национального благосостояния «Самрук-Қазына»
-                                            </div>
-                                        </a>
-                                    </div> <!-- godovaya-item / -->
-
-
-                                    <!-------------------->
-                                </div> <!-- swiper-slide / -->
-                            </div>
-
-                        </div>
-                    <?php } ?>
-
-                    </div>
-    </section> <!-- rukovodstvo-content / -->
-</main>
+<section class="page-content">
+	<div class="container">
+		<?php $zs_active = 263; ?>
+		<div class="zakupki-layout">
+			<?php include locate_template( 'template-parts/zakupki-sidebar.php' ); ?>
+			<div class="zakupki-main">
+		<?php if ( trim( wp_strip_all_tags( get_the_content() ) ) ) : ?>
+			<div class="page-section"><?php the_content(); ?></div>
+		<?php endif; ?>
+		<div class="page-section">
+			<h2>2021</h2>
+			<div class="doc-card-grid">
+				<?php
+				$file = 'https://www.kdts.kz/ru/wp-content/uploads/2022/04/Zakupki-po-realizatsii-investitsionnyh-proektov-za-2021g.xlsx';
+				$u    = wp_upload_dir();
+				$rel  = '2022/04/Zakupki-po-realizatsii-investitsionnyh-proektov-za-2021g.xlsx';
+				$url  = file_exists( $u['basedir'] . '/' . $rel ) ? $u['baseurl'] . '/' . $rel : $file;
+				?>
+				<a class="doc-card" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><div class="doc-card-top"><span class="doc-card-icon">XLSX</span></div><p>Закупки по реализации инвестиционных проектов за 2021г.</p></a>
+			</div>
+		</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>
