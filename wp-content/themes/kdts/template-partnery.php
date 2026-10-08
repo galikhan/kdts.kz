@@ -4,55 +4,36 @@
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
-  		<div class="sdfsdfjsdf">
-<?php get_template_part('breadcrumbs') ?>
-        </div>
-		<div class="yazyk">
-			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/seriktester/', 'https') ?>">Қаз</a></li>
-                <li><a href="<?php echo home_url('/ru/o-kompanii/partnery', 'https') ?>">Рус</a></li>
-                <li><a href="<?php echo home_url('/en/o-kompanii/partnery/', 'https') ?>">Eng</a></li>
-            </ul>
+<?php $partners = (array) CFS()->get( 'partnery' ); ?>
+
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Басты бет</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
 		</div>
-    </div>
- 	<main class="container-rukovodstvo">
-        <section class="rukovodstvo-navbar">
-            <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
-             	КОМПАНИЯ ТУРАЛЫ
-           	</a>
-         	<div class="rukovodstvo-navbar__block">
-                <?php wp_nav_menu ( array (
-					'theme_location' => 'okompanii-menu',
-					'container' => false,
-					'menu_class'      => '', 
-				)) ?>
-         	</div>        
-        </section>
-      	<section class="rukovodstvo-content">
-       		<h1 class="partnery-title">
-            	<?php the_title(); ?>
-       		</h1>
-           	<div class="partnery-items">
-			
-				<?php $dokumentyi = CFS()->get('partnery');
-							foreach ($dokumentyi as $dokumenty) {
-								echo '
-								<div class="partnery-item">
-								   <div class="partnery-item__block">
-										<div class="partnery-item__photo">
-											<img src="'.$dokumenty["partnery-foto"].'" alt="#" class="partnery-item__icon" />
-										</div>
-										<p class="partnery-item__text">
-											'.$dokumenty["partnery-tekst"].'
-										</p>
-									</div>
-								</div> <!-- partnery-item /-->
-								';
-							 }
-						?>
-          	</div>
-   		</section>
-    </main>
- 
+		<h1><?php the_title(); ?></h1>
+	</div>
+</section>
+
+<section class="page-content is-wide">
+	<div class="container">
+		<div class="partner-cards">
+			<?php foreach ( $partners as $p ) :
+				$logo = isset( $p['partnery-foto'] ) ? $p['partnery-foto'] : '';
+				$name = isset( $p['partnery-tekst'] ) ? trim( wp_strip_all_tags( $p['partnery-tekst'] ) ) : '';
+				if ( ! $logo && ! $name ) { continue; }
+				?>
+				<div class="partner-card">
+					<div class="partner-card-logo">
+						<?php if ( $logo ) : ?><img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy"><?php endif; ?>
+					</div>
+					<p><?php echo esc_html( $name ); ?></p>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>
