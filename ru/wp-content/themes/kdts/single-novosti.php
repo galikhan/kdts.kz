@@ -22,7 +22,7 @@ $thumb = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 			<span class="crumb-sep">/</span>
 			<a href="<?php echo esc_url( $archive_url ); ?>">Новости</a>
 			<span class="crumb-sep">/</span>
-			<span class="crumb-current"><?php echo esc_html( get_the_date( 'd.m.Y' ) ); ?></span>
+			<span class="crumb-current"><?php echo esc_html( html_entity_decode( get_the_title(), ENT_QUOTES ) ); ?></span>
 		</div>
 		<h1>Новости</h1>
 	</div>
