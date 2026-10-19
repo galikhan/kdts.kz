@@ -785,7 +785,7 @@ add_filter( 'get_the_archive_title', function( $title ){
 });
 require_once get_template_directory() . '/Law_Header_Menu.php';
 
-add_filter('pre_site_transient_update_core',create_function('$a', "return null;"));
+add_filter('pre_site_transient_update_core', '__return_null');
 wp_clear_scheduled_hook('wp_version_check');
 function my_func_remove_menu(){
  remove_submenu_page( 'index.php', 'update-core.php' );
