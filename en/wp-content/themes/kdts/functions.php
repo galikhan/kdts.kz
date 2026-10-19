@@ -150,18 +150,34 @@ add_action( 'widgets_init', 'kdts_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kdts_scripts() {
-	wp_enqueue_style( 'kdts-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'kdts-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
 	wp_style_add_data( 'kdts-style', 'rtl', 'replace' );
 
-	wp_enqueue_style( 'mtk-normalize', get_template_directory_uri(). '/css/main.min.css');
+	if ( ! is_front_page() ) {
+		wp_enqueue_style( 'mtk-normalize', get_template_directory_uri(). '/css/main.min.css', array(), filemtime( get_template_directory() . '/css/main.min.css' ) );
+	}
 
-	wp_enqueue_script( 'kdts-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'kdts-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime( get_template_directory() . '/js/navigation.js' ), true );
 	wp_enqueue_script( 'mtk-main', get_template_directory_uri() . '/js/main.js', array(), '', true );
-	wp_enqueue_script( 'swiper-bundle-my', get_template_directory_uri() . '/js/swiper-bundle.js', array(), '', true );
+		wp_enqueue_script( 'swiper-bundle-my', get_template_directory_uri() . '/js/swiper-bundle.js', array(), '', true );
+	wp_enqueue_script( 'kdts-new-design', get_template_directory_uri() . '/js/new-design.js', array(), filemtime( get_template_directory() . '/js/new-design.js' ), true );
+
 	wp_enqueue_script( 'jquery3-3-1', "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" );
 	/*wp_enqueue_script( 'swiper-bundle-my', "https://unpkg.com/swiper/swiper-bundle.min.js" ); */
 	wp_enqueue_script( 'slick-carousel-my', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js" );
-	
+
+	// Phone mask for the callback-request form in the footer (present on every page).
+	wp_enqueue_script( 'kdts-maskedinput', get_template_directory_uri() . '/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ), null, true );
+
+	// Interactive route maps — homepage only (and only while the section is switched on).
+	if ( is_front_page() && kdts_show_routes() ) {
+		wp_enqueue_script( 'amcharts5', 'https://cdn.amcharts.com/lib/5/index.js', array(), null, true );
+		wp_enqueue_script( 'amcharts5-map', 'https://cdn.amcharts.com/lib/5/map.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'amcharts5-geodata-world', 'https://cdn.amcharts.com/lib/5/geodata/worldLow.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'amcharts5-theme-animated', 'https://cdn.amcharts.com/lib/5/themes/Animated.js', array( 'amcharts5' ), null, true );
+		wp_enqueue_script( 'kdts-route-maps', get_template_directory_uri() . '/js/route-maps.js', array( 'amcharts5-map', 'amcharts5-geodata-world', 'amcharts5-theme-animated' ), null, true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -201,16 +217,17 @@ function Novosti_create_post_type() {
 	register_post_type( 'novosti',
 		array(
 			'labels' => array(
-				'name' => __('news'),
+				'name' => __('Жаңалықтар'),
 				'singluar_name' => __('novosti'),
-				'add_new' => 'News add',
+				'add_new' => 'жаңалықты қосу',
 			),
 			'public'             => true,
 		'publicly_queryable' => true,
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite'            => true,
+		
+		'rewrite' => array('slug' => 'zhanalyktar','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -230,9 +247,9 @@ function Obyavleniya_create_post_type() {
 	register_post_type( 'obyavleniya',
 		array(
 			'labels' => array(
-				'name' => __('Announcement'),
+				'name' => __('Хабарландыру'),
 				'singluar_name' => __('obyavleniya'),
-				'add_new' => 'Add Announcement',
+				'add_new' => 'Хабарландыру қосу',
 			),
 			'public'             => true,
 		'publicly_queryable' => true,
@@ -252,7 +269,6 @@ function Obyavleniya_create_post_type() {
 
 add_action('init', 'Obyavleniya_create_post_type');
 /****************/
-
 
 /*
 function Tenders_create_post_type() {
@@ -299,7 +315,7 @@ function Tsenovykh_predlozheniy_create_post_type() {
 	register_post_type( 'tsenovykh',
 		array(
 			'labels' => array(
-				'name' => __('Request for quotations'),
+				'name' => __('Баға ұсыныстарын сұрату'),
 				'singluar_name' => __('tsenovykh'),
 				'add_new' => 'Добавить',
 			),
@@ -308,7 +324,7 @@ function Tsenovykh_predlozheniy_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/tenders/tsenovykh','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/tender/baga-usynystary','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -325,7 +341,7 @@ function Tsenovykhar_predlozheniy_create_post_type() {
 	register_post_type( 'tsenovykhar',
 		array(
 			'labels' => array(
-				'name' => __('Archive request for quotations'),
+				'name' => __('Мұрағат баға ұсыныстарын сұрату'),
 				'singluar_name' => __('tsenovykhar'),
 				'add_new' => 'Добавить',
 			),
@@ -334,7 +350,7 @@ function Tsenovykhar_predlozheniy_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/arkhivy/tsenovykh','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/muragat/baga-usynystary','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -352,7 +368,7 @@ function Otkrytogo_predlozheniy_create_post_type() {
 	register_post_type( 'otkrytogo',
 		array(
 			'labels' => array(
-				'name' => __('Open tender method'),
+				'name' => __('Ашық тендер'),
 				'singluar_name' => __('otkrytogo'),
 				'add_new' => 'Добавить',
 			),
@@ -361,7 +377,7 @@ function Otkrytogo_predlozheniy_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/tenders/otkrytogo-tendera','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/tender/ashyk-tender-tasilimen','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -378,7 +394,7 @@ function Otkrytogoar_predlozheniy_create_post_type() {
 	register_post_type( 'otkrytogoar',
 		array(
 			'labels' => array(
-				'name' => __('Archive open tender method'),
+				'name' => __('Мұрағат ашық тендер'),
 				'singluar_name' => __('otkrytogoar'),
 				'add_new' => 'Добавить',
 			),
@@ -387,7 +403,7 @@ function Otkrytogoar_predlozheniy_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/arkhivy/otkrytogo-tendera','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/muragat/ashyk-tender-tasilimen','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -405,7 +421,7 @@ function Odnogo_istochnika_create_post_type() {
 	register_post_type( 'odnogo',
 		array(
 			'labels' => array(
-				'name' => __('Using a single source method'),
+				'name' => __('Бір көзден алу'),
 				'singluar_name' => __('odnogo'),
 				'add_new' => 'Добавить',
 			),
@@ -414,7 +430,7 @@ function Odnogo_istochnika_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/tenders/odnogo-istochnika','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/tender/bir-kozden-alu','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -433,7 +449,7 @@ function Odnogoar_istochnika_create_post_type() {
 	register_post_type( 'odnogoar',
 		array(
 			'labels' => array(
-				'name' => __('Archive using a single source method'),
+				'name' => __('Мұрағат бір көзден алу'),
 				'singluar_name' => __('odnogoar'),
 				'add_new' => 'Добавить',
 			),
@@ -442,7 +458,7 @@ function Odnogoar_istochnika_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/arkhivy/odnogo-istochnika','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/muragat/bir-kozden-alu','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -460,7 +476,7 @@ function Dvukhetapnogo_tendera_create_post_type() {
 	register_post_type( 'dvukhetapnogo',
 		array(
 			'labels' => array(
-				'name' => __('Two-stage tender'),
+				'name' => __('Ашық екі кезеңді тендер'),
 				'singluar_name' => __('dvukhetapnogo'),
 				'add_new' => 'Добавить',
 			),
@@ -469,7 +485,7 @@ function Dvukhetapnogo_tendera_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/tenders/dvukhetapnogo-tendera','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/tender/ashyk-eki-kezendi','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -486,7 +502,7 @@ function Dvukhetapnogoar_tendera_create_post_type() {
 	register_post_type( 'dvukhetapnogoar',
 		array(
 			'labels' => array(
-				'name' => __('Archive two-stage tender'),
+				'name' => __('Мұрағат ашық екі кезеңді тендер'),
 				'singluar_name' => __('dvukhetapnogoar'),
 				'add_new' => 'Добавить',
 			),
@@ -495,7 +511,7 @@ function Dvukhetapnogoar_tendera_create_post_type() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite' => array('slug' => 'zakupki/arkhivy/dvukhetapnogo-tendera','with_front' => false),
+		'rewrite' => array('slug' => 'satyp-alul/muragat/ashyk-eki-kezendi','with_front' => false),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
@@ -512,20 +528,32 @@ add_action('init', 'Dvukhetapnogoar_tendera_create_post_type');
 
 	
 /*
+ * Truncates the current-page breadcrumb label so very long post/page
+ * titles don't blow out the breadcrumb bar.
+*/
+function dimox_bc_trim( $text, $length = 30 ) {
+	$text = wp_strip_all_tags( $text );
+	if ( mb_strlen( $text ) > $length ) {
+		$text = mb_substr( $text, 0, $length ) . '…';
+	}
+	return $text;
+}
+
+/*
  * "Хлебные крошки" для WordPress
  * лицензия: MIT
 */
 function dimox_breadcrumbs() {
 
 	/* === ОПЦИИ === */
-	$text['home']     = 'Home'; // текст ссылки "Главная"
+	$text['home']     = 'Басты бет'; // текст ссылки "Главная"
 	$text['category'] = '%s'; // текст для страницы рубрики
-	$text['search']   = 'Search results for the query "%s"'; // текст для страницы с результатами поиска
+	$text['search']   = 'Сұрау бойынша іздеу нәтижелері "%s"'; // текст для страницы с результатами поиска
 	$text['tag']      = 'Записи с тегом "%s"'; // текст для страницы тега
 	$text['author']   = 'Статьи автора %s'; // текст для страницы автора
-	$text['404']      = 'Error 404'; // текст для страницы 404
-	$text['page']     = 'Page %s'; // текст 'Страница N'
-	$text['cpage']    = 'Comments page %s'; // текст 'Страница комментариев N'
+	$text['404']      = 'Ошибка 404'; // текст для страницы 404
+	$text['page']     = 'Бет %s'; // текст 'Страница N'
+	$text['cpage']    = 'Страница комментариев %s'; // текст 'Страница комментариев N'
 
 	$wrap_before    = ''; // открывающий тег обертки
 	$wrap_after     = ''; // закрывающий тег обертки
@@ -622,7 +650,7 @@ function dimox_breadcrumbs() {
 				$post_type = get_post_type_object( get_post_type() );
 				if ( $position > 1 ) echo $sep;
 				echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->labels->name, $position );
-				if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+				if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 				elseif ( $show_last_sep ) echo $sep;
 			} else {
 				$cat = get_the_category(); $catID = $cat[0]->cat_ID;
@@ -639,7 +667,7 @@ function dimox_breadcrumbs() {
 					echo $sep . sprintf( $link, get_permalink(), get_the_title(), $position );
 					echo $sep . $before . sprintf( $text['cpage'], get_query_var( 'cpage' ) ) . $after;
 				} else {
-					if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+					if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 					elseif ( $show_last_sep ) echo $sep;
 				}
 			}
@@ -670,12 +698,12 @@ function dimox_breadcrumbs() {
 			}
 			$position += 1;
 			echo $sep . sprintf( $link, get_permalink( $parent ), $parent->post_title, $position );
-			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_last_sep ) echo $sep;
 
 		} elseif ( is_page() && ! $parent_id ) {
 			if ( $show_home_link && $show_current ) echo $sep;
-			if ( $show_current ) echo $before . get_the_title() . $after;
+			if ( $show_current ) echo $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_home_link && $show_last_sep ) echo $sep;
 
 		} elseif ( is_page() && $parent_id ) {
@@ -685,7 +713,7 @@ function dimox_breadcrumbs() {
 				if ( $position > 1 ) echo $sep;
 				echo sprintf( $link, get_page_link( $pageID ), get_the_title( $pageID ), $position );
 			}
-			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			if ( $show_current ) echo $sep . $before . dimox_bc_trim( get_the_title() ) . $after;
 			elseif ( $show_last_sep ) echo $sep;
 
 		} elseif ( is_tag() ) {
@@ -763,3 +791,105 @@ function my_func_remove_menu(){
  remove_submenu_page( 'index.php', 'update-core.php' );
 }
 add_action( 'admin_menu', 'my_func_remove_menu' );
+
+/**
+ * Renders the "Языки" nav menu as flat pill buttons (site's own design —
+ * see redesign_kdts.html's .lang-switch), instead of a <ul><li> list.
+ */
+/* "Message to HR" popup (footer): validates the form and mails it to hr@kdts.kz.
+   The visitor's address goes into Reply-To so HR can answer directly. */
+function kdts_hr_message_handler() {
+	// Honeypot: bots fill the hidden field; pretend success and drop it.
+	if ( ! empty( $_POST['website'] ) ) {
+		wp_send_json_success();
+	}
+
+	$email   = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+	$phone   = isset( $_POST['hr_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['hr_phone'] ) ) : '';
+	$subject = isset( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+	$message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
+
+	if ( ! is_email( $email ) || '' === $phone || '' === $subject || '' === $message
+		|| strlen( $phone ) > 40 || strlen( $subject ) > 200 || strlen( $message ) > 5000
+		|| ! preg_match( '/[0-9]{5,}/', preg_replace( '/\D+/', '', $phone ) . '' ) ) {
+		wp_send_json_error( array( 'code' => 'invalid' ) );
+	}
+
+	// Simple per-IP throttle: 5 messages per hour.
+	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+	$key = 'kdts_hr_' . md5( $ip );
+	$cnt = (int) get_transient( $key );
+	if ( $cnt >= 5 ) {
+		wp_send_json_error( array( 'code' => 'rate' ) );
+	}
+	set_transient( $key, $cnt + 1, HOUR_IN_SECONDS );
+
+	$body  = "Сообщение с сайта " . home_url( '/' ) . "\n\n";
+	$body .= "Email: " . $email . "\n";
+	$body .= "Телефон: " . $phone . "\n";
+	$body .= "Тема: " . $subject . "\n\n";
+	$body .= $message . "\n";
+
+	$headers = array(
+		'Content-Type: text/plain; charset=UTF-8',
+		'Reply-To: ' . $email,
+	);
+	$sent = wp_mail( 'hr@kdts.kz', '[kdts.kz] ' . $subject, $body, $headers );
+
+	if ( $sent ) {
+		wp_send_json_success();
+	}
+	wp_send_json_error( array( 'code' => 'fail' ) );
+}
+add_action( 'wp_ajax_nopriv_kdts_hr_message', 'kdts_hr_message_handler' );
+add_action( 'wp_ajax_kdts_hr_message', 'kdts_hr_message_handler' );
+
+/* Homepage "Транспортные маршруты" section (+ the hero "Маршруттар" button and the
+   amCharts scripts). Switched off for now; flip to true to bring it back. */
+function kdts_show_routes() {
+	return (bool) apply_filters( 'kdts_show_routes', false );
+}
+
+/* Language switcher: keep a fixed KZ / RU / EN order on every site; only the
+   active language gets highlighted (by the walker below). */
+add_filter( 'wp_nav_menu_objects', function ( $items, $args ) {
+	if ( ! isset( $args->theme_location ) || 'yazyk-menu' !== $args->theme_location ) {
+		return $items;
+	}
+	$order = array( 'KZ' => 1, 'RU' => 2, 'EN' => 3 );
+	usort( $items, function ( $a, $b ) use ( $order ) {
+		$oa = isset( $order[ strtoupper( trim( $a->title ) ) ] ) ? $order[ strtoupper( trim( $a->title ) ) ] : 99;
+		$ob = isset( $order[ strtoupper( trim( $b->title ) ) ] ) ? $order[ strtoupper( trim( $b->title ) ) ] : 99;
+		return $oa <=> $ob;
+	} );
+	return $items;
+}, 10, 2 );
+
+class Kdts_Lang_Switch_Walker extends Walker_Nav_Menu {
+	function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		// Each language lives in its own install (/ , /ru , /en): the active language is the one this site serves,
+		// on every page — not only where the current page happens to be a menu item.
+		$home_path = trim( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ), '/' );
+		$site_lang = in_array( $home_path, array( 'ru', 'en' ), true ) ? strtoupper( $home_path ) : 'KZ';
+		$active    = ( strtoupper( trim( $item->title ) ) === $site_lang ) ? ' is-active' : '';
+		$output .= '<a class="lang-btn' . $active . '" href="' . esc_url( $item->url ) . '">' . esc_html( trim( $item->title ) ) . '</a>';
+	}
+	function end_el( &$output, $item, $depth = 0, $args = null ) {}
+}
+
+/* news list: 12 per page (fills the 3- and 2-column grids) */
+add_action( 'pre_get_posts', 'kdts_news_per_page' );
+function kdts_news_per_page( $query ) {
+	if ( ! is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'novosti' ) ) {
+		$query->set( 'posts_per_page', 12 );
+	}
+}
+
+
+/* preload the Roboto subsets used on every page (Cyrillic, Cyrillic-Extended for Kazakh letters, Latin) */
+add_action( 'wp_head', 'kdts_preload_fonts', 1 );
+function kdts_preload_fonts() {
+	foreach ( array( 'cyrillic', 'cyrillic-ext', 'latin' ) as $subset ) {
+		printf( "<link rel=\"preload\" href=\"%s\" as=\"font\" type=\"font/woff2\" crossorigin>\n", esc_url( get_template_directory_uri() . '/fonts/roboto-' . $subset . '.woff2' ) );
+	}
+}

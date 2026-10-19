@@ -6,7 +6,6 @@
 <?php get_header(); ?>
 	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
             <?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
@@ -87,7 +86,7 @@
 								echo '
 									<div class="anti-download__item">
 										<a href="'.$dokumenty["dokument"].'" download>
-											<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
+											<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 										</a>
 										<p class="anti-download__item-text">
 											'.$dokumenty["tekst"].'

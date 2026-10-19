@@ -6,14 +6,13 @@
 <?php get_header(); ?>
     <div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
-                <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/fitingtik-platformalar/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/o-kompanii/uslugi/fitingovykh-platform/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/fitingtik-platformalar/', 'https') ?>"> Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi/fitingovykh-platform/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>

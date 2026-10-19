@@ -2,7 +2,6 @@
 <!--
 	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
         </div>
 		<div class="yazyk">
 			<?php wp_nav_menu ( array (

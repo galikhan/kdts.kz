@@ -4,19 +4,19 @@
  */
 ?>
 <?php get_header(); ?>
-	<div class="pagination-block">
+    	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/kontakty/virtualnaya-priemnaya/', 'https') ?>">Eng </a></li>
-                <li><a href="https://www.kdts.kz/bailanystar/undeu/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/kontakty/virtualnaya-priemnaya/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/bailanystar/undeu/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('ru/kontakty/virtualnaya-priemnaya/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('en/kontakty/virtualnaya-priemnaya/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
-    </div>
+    	</div>
+
 	<main>
         <div class="dell-container">
             <div class="uslugi-peregruza__h1">

@@ -6,14 +6,13 @@
 <?php get_header(); ?>
 	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/zakupki/arkhivy/', 'https') ?>">Eng</a></li>
-                <li><a href="https://www.kdts.kz/satyp-alul/muragat/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/zakupki/arkhivy/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/satyp-alul/muragat', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/zakupki/arkhivy/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/zakupki/arkhivy/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -28,20 +27,20 @@
             <div class="zakupki-items">
 				
 				  <div class="zakupki-item">
-                    <h2 class="zakupki-item__title"> Способом запроса ценовых предложений </h2>
+                    <h2 class="zakupki-item__title"> Баға ұсыныстарын сұрату тәсілімен </h2>
                
                     <div class="zakupki-head">
                         <div class="zakupki-name">
-                            Название
+                            Атауы
                         </div>
                         <div class="zakupki-nachalo">
-                            Начало
+                            Басталуы
                         </div>
                         <div class="zakupki-okonchanie">
-                            Окончание
+                            Аяқталуы
                         </div>
                     </div> <!-- zakupki-head / -->
-                        <?
+                        <?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -55,7 +54,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
@@ -76,28 +75,28 @@
         
                     
                     <p class="vse-zakupki">
-						<a href="<?php echo home_url('/zakupki/arkhivy/tsenovykh', 'https') ?>"> 
-							Показать все закупки 
+						<a href="<?php echo home_url('satyp-alul/muragat/baga-usynystary', 'https') ?>"> 
+							Барлық сатып алуларды көрсету
 						</a>
                     </p>
                 </div>
               
                 <div class="zakupki-item">
-                    <h2 class="zakupki-item__title">Способом из одного источника</h2>
+                    <h2 class="zakupki-item__title"> Бір көзден алу тәсілімен </h2>
                
                     <div class="zakupki-head">
                         <div class="zakupki-name">
-                            Название
+                            Атауы
                         </div>
                         <div class="zakupki-nachalo">
-                            Начало
+                            Басталуы
                         </div>
                         <div class="zakupki-okonchanie">
-                            Окончание
+                            Аяқталуы
                         </div>
                     </div> <!-- zakupki-head / -->
 		
-                   <?
+                   <?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -111,7 +110,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
@@ -132,28 +131,28 @@
         
                     
                     <p class="vse-zakupki">
-						<a href="<?php echo home_url('/zakupki/arkhivy/odnogo-istochnika', 'https') ?>"> 
-							Показать все закупки 
+						<a href="<?php echo home_url('satyp-alul/muragat/bir-kozden-alu', 'https') ?>"> 
+							Барлық сатып алуларды көрсету
 						</a>
                     </p>
                 </div>
                 
                 <div class="zakupki-item">
-                    <h2 class="zakupki-item__title">Способом открытого тендера</h2>
+                    <h2 class="zakupki-item__title"> Ашық тендер тәсілімен </h2>
                
                     <div class="zakupki-head">
                         <div class="zakupki-name">
-                            Название
+                            Атауы
                         </div>
                         <div class="zakupki-nachalo">
-                            Начало
+                            Басталуы
                         </div>
                         <div class="zakupki-okonchanie">
-                            Окончание
+                            Аяқталуы
                         </div>
                     </div> <!-- zakupki-head / -->
                    
-					<?
+					<?php
 						$post_id = get_the_ID();
 							$posts = get_posts( array(
 							'numberposts' => 6,
@@ -167,7 +166,7 @@
 							'suppress_filters' => true, 
 							)); 
 						?>
-				<?
+				<?php
 					foreach( $posts as $post ){
 						setup_postdata($post); ?>
 				
@@ -188,8 +187,8 @@
 					
 					
                     <p class="vse-zakupki">
-                       <a href="<?php echo home_url('/zakupki/arkhivy/otkrytogo-tendera', 'https') ?>"> 
-							Показать все закупки 
+                       <a href="<?php echo home_url('satyp-alul/muragat/ashyk-tender-tasilimen', 'https') ?>"> 
+							Барлық сатып алуларды көрсету
 						</a>
                     </p>
                 </div>

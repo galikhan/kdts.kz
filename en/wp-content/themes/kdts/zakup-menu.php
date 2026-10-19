@@ -1,6 +1,6 @@
  		<div class="navBar-zakupki">
     			<div class="godovoy-plan__nav">
-					<a href="<?php echo home_url('/zakupki/godovoy-plan-zakupok', 'https') ?>" class="godovoy-plan__nav-text"> Annual procurement plan </a>
+					<a href="<?php echo home_url('/satyp-alul/zhyldyk-satyp-alu-zhospary', 'https') ?>" class="godovoy-plan__nav-text"> Сатып алудың жылдық жоспары </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'plan-menu',
 						'container' => false,
@@ -9,7 +9,7 @@
 				</div>
     
 				<div class="godovoy-plan__nav">
-					<a href="<?php echo home_url('/zakupki/tenders', 'https') ?>" class="godovoy-plan__nav-text"> Purchases </a>
+					<a href="<?php echo home_url('satyp-alul/tender', 'https') ?>" class="godovoy-plan__nav-text"> Сатып алулар </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'zakupki-menu',
 						'container' => false,
@@ -18,7 +18,7 @@
 				</div>
     
 				<div class="godovoy-plan__nav">
-					<a href="<?php echo home_url('/zakupki/arkhivy', 'https') ?>" class="godovoy-plan__nav-text"> Archives </a>
+					<a href="<?php echo home_url('satyp-alul/muragat', 'https') ?>" class="godovoy-plan__nav-text"> Мұрағат </a>
 					<?php wp_nav_menu ( array (
 						'theme_location' => 'arkhivy-menu',
 						'container' => false,

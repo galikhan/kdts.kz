@@ -4,89 +4,57 @@
  */
 ?>
 <?php get_header(); ?>
-<div class="pagination-block">
-    <div class="sdfsdfjsdf">
-        <div class="header-logo1"></div>
-        <?php get_template_part('breadcrumbs') ?>
-    </div>
-    <div class="yazyk">
-     <ul>
-        <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/vakansii/', 'https') ?>"> Eng</a></li>
-        <li><a href="https://www.kdts.kz/kompaniya-turaly/bos-zhumys-oryndary/">Қаз</a></li>
-        <li><a href="https://www.kdts.kz/ru/o-kompanii/vakansii/"> Рус</a></li>
-    </ul>
-</div>
-</div>
-<style type="text/css">
-    .card{
-        border: 1px solid #717171;
-        padding: 25px;
-    }
 
-    .card h2{
-        font-size: 26px;
-        margin-bottom: 1rem;
-        text-align: left;
-    }
+<section class="page-hero">
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+			<span class="crumb-sep">/</span>
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">About Company</a>
+			<span class="crumb-sep">/</span>
+			<span class="crumb-current">Careers</span>
+		</div>
+		<h1>Careers</h1>
+		<div class="subnav-pills">
+			<a href="<?php echo esc_url( home_url( '/o-kompanii' ) ); ?>">About Company</a>
+			<a href="<?php echo esc_url( home_url( '/rukovodstvo' ) ); ?>">Management</a>
+			<a href="<?php echo esc_url( home_url( '/istoriya-kompanii' ) ); ?>">History</a>
+			<a href="<?php echo esc_url( home_url( '/sovet-direktorov' ) ); ?>">Board of Directors</a>
+			<a href="<?php echo esc_url( home_url( '/filialy-i-predstavitelstv' ) ); ?>">Branches</a>
+			<a href="<?php echo esc_url( home_url( '/vakansii' ) ); ?>" class="is-active">Careers</a>
+		</div>
+	</div>
+</section>
 
-    .card .row{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 3rem
-    }
+<section class="page-content">
+	<div class="container">
+		<p class="page-lead">Current vacancies at Kedentransservice JSC can be found here.</p>
 
-    @media screen and (max-width: 767px){
-        .card .row{
-            flex-wrap: wrap;
+		<div class="page-section">
+			<p>Full information on open positions at Kedentransservice JSC is available on the unified recruitment portal of NC Kazakhstan Temir Zholy JSC. At present, no separate list of vacancies is published on the company's official website — all current openings are posted on the portal below.</p>
 
-        }
-        .card .data{
+			<div class="doc-list">
+				<div class="doc-item">
+					<span>Vacancies on the unified recruitment portal of NC Kazakhstan Temir Zholy JSC</span>
+					<a href="https://job.railways.kz/kz/vacancy" target="_blank" rel="noopener">VIEW</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-            margin-bottom: 3rem
-        }
-    }
-
-    .card .btn-primary{
-        display: block;
-        width: 100%;
-        height: 45px;
-        line-height: 45px;
-        color: #fff;
-        text-decoration: none;
-        background: #0B2335;
-        text-align: center;
-        min-width: 200px;
-    }
-
-    .card .info{
-            color: #000;
-            margin-bottom: 1.5rem
-        }
-
-</style>
-<main class="container-rukovodstvo">
-    <section class="rukovodstvo-navbar">
-        <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
-            About company
-        </a>
-        <div class="rukovodstvo-navbar__block">
-            <?php wp_nav_menu ( array (
-                'theme_location' => 'okompanii-menu',
-                'container' => false,
-                'menu_class'      => '',
-            )) ?>
-        </div>
-    </section> <!-- rukovodstvo-navbar / -->
-    <section class="rukovodstvo-content">
-        <h1 class="partnery-title">
-            <?php the_title(); ?>
-        </h1>
-        <div class="aktsioneram-text" style="text-indent: 0px;">
-            <?php the_post(); ?>
-            <?php the_content() ?>
-        </div>
-    </section> <!-- rukovodstvo-content / -->
-</main>
+<section class="cta-banner">
+	<div class="container cta-inner">
+		<h2>READY TO DELIVER YOUR CARGO</h2>
+		<p>
+			<span>Submit a request to calculate the tariff or contact us directly:</span>
+			<span class="cta-phones"><?php echo esc_html( CFS()->get( 'telefon1', 606 ) ); ?></span>
+		</p>
+		<div class="cta-buttons">
+			<a href="https://my.kdts.kz/" target="_blank" rel="noopener" class="btn btn-primary">CALCULATE TARIFF</a>
+			<a href="<?php echo esc_url( get_permalink( 606 ) ); ?>" class="btn btn-outline-light">CONTACT US</a>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>

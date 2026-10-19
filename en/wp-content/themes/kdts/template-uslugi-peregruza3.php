@@ -6,18 +6,16 @@
 <?php get_header(); ?>
      <div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/zheleznodorozhnyh-perevozok/', 'https') ?>">Eng</a></li>
-                <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/temir-zhol-tasymaly/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/o-kompanii/uslugi/zheleznodorozhnyh-perevozok/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/temir-zhol-tasymaly/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi/zheleznodorozhnyh-perevozok/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi/zheleznodorozhnyh-perevozok/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
-
 	<main>
         <div class="dell-container">
             <div class="uslugi-peregruza__h1">

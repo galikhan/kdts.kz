@@ -7,6 +7,6 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="0;URL=https://www.kdts.kz/en/klientam/stavki-i-tarify/" />
+	<meta http-equiv="refresh" content="0;URL=https://www.kdts.kz/klientterge/molsherlemeler-zhane-tarifter/" />
 </head>
 </html>

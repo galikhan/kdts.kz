@@ -6,17 +6,17 @@
 <?php get_header(); ?>
     <div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol/"', 'https') ?>">Eng</a></li>
-                <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/o-kompanii/uslugi/dostyk-i-altynkol/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
+
 	<main>
         <div class="dell-container">
             <div class="uslugi-peregruza__h1">
@@ -46,8 +46,8 @@
 										<span>
 											<?php echo $blokLoop["tsifr"] ?>
 										</span>
-										wagons /<br/>
-										day
+										Вагон /
+										тәулігіне
 									</div>
 									<p class="peregruz-dostyk__item-title">
 										<?php echo $blokLoop["zagolovka2"] ?>
@@ -76,31 +76,6 @@
            <?php the_post(); ?>
 			<?php the_content() ?>      
         </section>
-       <!-- <section class="uslugi-vklyuchayut">
-		    <div class="dell-container">
-		        <div class="uslugi-vklyuchayut__block">
-		            <h3 class="uslugi-vklyuchayut__title">
-						<?php echo CFS()->get('zagolovka3'); ?>
-					</h3>
-		            <div class="uslugi-vklyuchayut__items">
-		            	
-		                 <?php $blokloopi = CFS()->get('blok1-loop');
-							foreach ($blokloopi as $blokloop) {
-								echo '<div class="uslugi-vklyuchayut__item">
-										<div class="uslugi-vklyuchayut__item-line">
-
-										</div>
-										<p class="uslugi-vklyuchayut__item-text">
-											'.$blokloop["text2"].'
-										</p>
-									</div>';
-								}
-						?>
-		          
-		            </div>
-		        </div>
-		    </div>
-		</section> -->
     </main>
     <img src="<?php echo get_template_directory_uri(); ?>/img/uslugi-peregruza.png" alt="#" class="uslugi-peregruza__bg" />
 <?php get_footer(); ?>

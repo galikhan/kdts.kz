@@ -6,12 +6,11 @@
 <?php get_header(); ?>
     <div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
             <?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol/"', 'https') ?>"> Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/o-kompanii/uslugi/dostyk-i-altynkol/', 'https') ?>"> Рус</a></li>
                 <li><a href="https://www.kdts.kz/kompaniya-turaly/kyzmetter/dostyk-i-altynkol/">Қаз</a></li>
                 <li><a href="https://www.kdts.kz/en/o-kompanii/uslugi/dostyk-i-altynkol/">Eng</a></li>
             </ul>

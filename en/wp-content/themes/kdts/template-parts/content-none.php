@@ -11,7 +11,7 @@
 
 <section class="no-results not-found">
 	<div class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing found', 'kdts' ); ?></h1>
+		<h1 class="page-title"><?php esc_html_e( 'Ештеңе табылмады', 'kdts' ); ?></h1>
 	</div><!-- .page-header -->
 
 	<div class="page-content">
@@ -34,14 +34,14 @@
 		elseif ( is_search() ) :
 			?>
 
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search. Please try again with different keywords.', 'kdts' ); ?></p>
+			<p><?php esc_html_e( 'Кешіріңіз, бірақ ештеңе сіздің іздеуіңізге сәйкес келмеді. Әр түрлі кілт сөздермен қайталап көріңіз.', 'kdts' ); ?></p>
 			<?php
 			/*get_search_form();*/
 
 		else :
 			?>
 
-			<p><?php esc_html_e( 'We can t seem to find what you re looking for.', 'kdts' ); ?></p>
+			<p><?php esc_html_e( 'Сіздің іздегеніңізді таба алмайтын сияқтымыз.', 'kdts' ); ?></p>
 			<?php
 		/*	get_search_form(); */
 

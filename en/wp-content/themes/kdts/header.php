@@ -1,285 +1,160 @@
 <!doctype html>
-	<html <?php language_attributes(); ?>>
-	<head>
-		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="profile" href="https://gmpg.org/xfn/11">
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <?php wp_head(); ?>
+</head>
 
-		<?php wp_head(); ?>
-		<style type="text/css">
+<body <?php body_class(); ?>>
 
-		</style>
-	</head>
+<?php include get_template_directory() . '/icons/sprite.svg'; ?>
 
-	<body class="page<?php the_ID(); ?> body-bc">
-		<!-- Yandex.Metrika counter -->
-		<script type="text/javascript" >
-			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-				m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+    ym(79124866,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/79124866" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
-			ym(79124866, "init", {
-				clickmap:true,
-				trackLinks:true,
-				accurateTrackBounce:true,
-				webvisor:true
-			});
-		</script>
-		<noscript><div><img src="https://mc.yandex.ru/watch/79124866" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-		<!-- /Yandex.Metrika counter -->
-		<header class="header">
-			<div class="header-phone">
-				<div class="header-top__left" style="flex-wrap:wrap">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel" alt="#" />
-					<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text"><?php echo CFS()->get('telefon1',606); ?>,</a>
-                    <a href="tel:+7 778 097 91 87" class="header-top__tel-text">+7 778 097 91 87,</a>
-					
+<?php
+/**
+ * Header Menu — real, admin-editable WP menu (Appearance → Menus → Header Menu).
+ * Top-level items WITHOUT children render in the always-visible main-nav strip;
+ * top-level items WITH children become the mega-menu columns (in menu order),
+ * matching the site's own design (see redesign_kdts.html).
+ */
+$header_flat_items   = array();
+$header_column_items = array();
+$header_menu_locations = get_nav_menu_locations();
+if ( ! empty( $header_menu_locations['header-menu'] ) ) {
+	$header_menu_items = wp_get_nav_menu_items( $header_menu_locations['header-menu'] );
+	if ( $header_menu_items ) {
+		$header_children = array();
+		$header_top      = array();
+		foreach ( $header_menu_items as $item ) {
+			if ( (int) $item->menu_item_parent === 0 ) {
+				$header_top[] = $item;
+			} else {
+				$header_children[ $item->menu_item_parent ][] = $item;
+			}
+		}
+		usort( $header_top, function ( $a, $b ) { return $a->menu_order <=> $b->menu_order; } );
+		foreach ( $header_children as &$kids ) {
+			usort( $kids, function ( $a, $b ) { return $a->menu_order <=> $b->menu_order; } );
+		}
+		unset( $kids );
+		foreach ( $header_top as $item ) {
+			if ( ! empty( $header_children[ $item->ID ] ) ) {
+				$header_column_items[] = array( 'item' => $item, 'children' => $header_children[ $item->ID ] );
+			} else {
+				$header_flat_items[] = $item;
+			}
+		}
+	}
+}
+$phone     = CFS()->get( 'telefon1', 606 );
+$phones    = $phone ? array_map( 'trim', explode( ',', $phone ) ) : array();
+$address   = CFS()->get( 'adres1', 606 );
+?>
+
+<header class="site-header" id="header">
+	<div class="header-inner">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
+			<?php
+			$custom_logo_id = get_theme_mod( 'custom_logo' );
+			if ( $custom_logo_id ) {
+				echo wp_get_attachment_image( $custom_logo_id, 'full', false, array( 'class' => 'custom-logo' ) );
+			} else {
+				echo '<img src="' . esc_url( get_template_directory_uri() . '/img/logo.png' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="custom-logo">';
+			}
+			?>
+			<span class="logo-text">
+				<strong>KDTS</strong>
+				<em>Kedentransservice</em>
+			</span>
+		</a>
+
+		<button class="burger" id="burgerBtn" aria-label="Menu">
+			<span></span><span></span><span></span>
+		</button>
+
+		<nav class="main-nav" id="mainNav">
+			<?php /* first two flat items (Закупки, Устойчивое развитие) live only in the burger menu's quicklinks */ foreach ( array_slice( $header_flat_items, 2 ) as $item ) : ?>
+				<?php $item_url = $item->url; ?>
+				<a href="<?php echo esc_url( $item_url ); ?>"><?php echo esc_html( $item->title ); ?></a>
+			<?php endforeach; ?>
+		</nav>
+
+		<div class="header-actions">
+			<?php if ( $phones ) : ?>
+				<a class="phone" href="tel:<?php echo esc_attr( preg_replace( '/\s+/', '', $phones[0] ) ); ?>"><?php echo esc_html( $phones[0] ); ?></a>
+			<?php endif; ?>
+
+			<div class="lang-switch" id="langSwitch">
+				<?php wp_nav_menu( array(
+					'theme_location' => 'yazyk-menu',
+					'container'      => false,
+					'menu_class'     => '',
+					'items_wrap'     => '%3$s',
+					'walker'         => new Kdts_Lang_Switch_Walker(),
+				) ); ?>
+			</div>
+
+			<a class="btn btn-outline cabinet-btn" href="https://my.kdts.kz/" target="_blank" rel="noopener">Personal Account</a>
+		</div>
+	</div>
+	<div class="header-line" aria-hidden="true"></div>
+
+	<!-- ============ MEGA MENU ============ -->
+	<div class="mega-menu" id="megaMenu">
+		<div class="mega-menu-inner">
+			<div class="mega-col mega-col-contact">
+				<div class="mega-contacts">
+					<?php foreach ( $phones as $p ) : if ( ! $p ) continue; ?>
+						<a href="tel:<?php echo esc_attr( preg_replace( '/\s+/', '', $p ) ); ?>"><?php echo esc_html( $p ); ?></a>
+					<?php endforeach; ?>
+					<a href="mailto:kense@kdts.kz">kense@kdts.kz</a>
 				</div>
-				<div class="header-top__right">
-					<p> <?php echo do_shortcode( '[bvi text="Version for the visually impaired"]' ); ?>  </p>
+				<?php if ( $address ) : ?>
+					<p class="mega-address"><?php echo esc_html( trim( $address ) ); ?></p>
+				<?php endif; ?>
+				<div class="mega-social">
+					<a href="https://t.me/ao_kdts_bot" target="_blank" rel="noopener" aria-label="Telegram">
+						<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.2L2.9 11.6c-1.2.5-1.2 1.2-.2 1.5l4.9 1.5 1.9 5.8c.2.6.4.9.9.9.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8l3-14.1c.3-1.2-.4-1.7-1.4-1.4zM8.4 13.6l9.3-5.9c.5-.3.9-.1.5.2l-7.7 7-0.3 3.2-1.6-4.5z"/></svg>
+					</a>
+					<a href="https://www.facebook.com/Kedentransservice.kz" target="_blank" rel="noopener" aria-label="Facebook">
+						<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.4-1.5 1.6-1.5H16.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V10.5H8v3h2.3V21h3.2z"/></svg>
+					</a>
+				</div>
+				<div class="mega-quicklinks">
+					<?php foreach ( array_slice( $header_flat_items, 0, 2 ) as $item ) : ?>
+						<a href="<?php echo esc_url( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a>
+					<?php endforeach; ?>
 				</div>
 			</div>
-			<div class="header-phone1">
-				<div class="header-top__logo">
-					<?php the_custom_logo();?>
+
+			<?php foreach ( $header_column_items as $col ) : ?>
+				<div class="mega-col">
+					<?php if ( (int) $col['item']->object_id === 176 ) : /* "Клиенттерге" is a heading only — not clickable */ ?>
+						<span class="mega-col-title"><?php echo esc_html( $col['item']->title ); ?></span>
+					<?php else : ?>
+						<a class="mega-col-title" href="<?php echo esc_url( $col['item']->url ); ?>"><?php echo esc_html( $col['item']->title ); ?></a>
+					<?php endif; ?>
+					<?php foreach ( $col['children'] as $child ) : ?>
+						<?php if ( (int) $child->object_id === 183 ) : /* routes page is not published yet — show as plain text */ ?>
+							<span class="mega-link-static"><?php echo esc_html( $child->title ); ?></span>
+						<?php else : ?>
+							<a href="<?php echo esc_url( $child->url ); ?>"><?php echo esc_html( $child->title ); ?></a>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</div>
-				<div class="header-top__right">
-					<div class="yazyk">
-						<?php wp_nav_menu ( array (
-							'theme_location' => 'yazyk-menu',
-							'container' => false,
-							'menu_class'      => '',
-						)) ?>
-					</div>
-				</div>
-			</div>
-			<div class="headerV-top">
-				<div class="header-search">
-					<?php get_search_form(); ?>
-				</div>
-				<div class="header-top__wrapper">
-					<div class="search-phone">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/searchFfff.png" class="search-phone" />
-					</div>
-					<div class="header-phone__logo">
-						<?php the_custom_logo();?>
-					</div>
-					<div class="phone-menu">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/menu.png" alt="#" class="phone-menu__img" />
-					</div>
-				</div>
-			</div>
-			<div class="header-top">
-				<div class="header-top__wrapper">
-					<div class="header-top__left">
-						Call center:
-						<a href="tel:<?php echo CFS()->get('telefon1', 606); ?>" class="header-top__tel-text">
-							<!--	<img src="<?php echo get_template_directory_uri(); ?>/img/tel.svg" class="header-top__tel-img" alt="#" /> -->
-							<?php echo CFS()->get('telefon1', 606); ?>
-						</a>
-						<!--
-						<a href="tel:+7 778 097 91 87" class="header-top__tel-text">
-							 +7 778 097 91 87
-						</a>
-						,
-                    <a href="tel:+7 778 097 91 80" class="header-top__tel-text">
-                    +7 778 097 91 8000
-                    </a>-->
-					</div>
-					<div class="header-top__right">
-						<div class="d-flex">
-							<div class="hotline">
-								<a href="">
-									<img src="<?php echo get_template_directory_uri(); ?>/img/hot.jpg"> hotline
-								</a>
-							</div>
-							<?php echo do_shortcode( '[bvi text="Version for the visually impaired"]' ); ?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="header-menu">
-				<div class="header-menu__wrapper">
-					<div class="header-left">
-						<div class="header-logo">
-							<a href="<?php echo home_url() ?>">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/Group4444446666.png"/>
-							</a>
-						</div>
-						<nav class="nav-menu">
-							<?php wp_nav_menu ( array (
-								'theme_location' => 'header-menu',
-								'container' => false,
-								'menu_class'      => 'menu',
-								'walker' => new Law_Header_Menu,
-							)) ?>
-						</nav>
-						<style type="text/css">
-						@media screen and (min-width:1600px) {
-						  .footer-rigth {
-						      display: flex;
-						      align-items: flex-start;
-						      padding-top: 3rem;
-						  }
-						}
-						.d-flex{
-							display: flex;
-							flex-wrap: nowrap;
-							align-items: center;
-						}
-						.search-icon{
-							margin-right: 20px;
-
-						}
-						.header-right{
-							align-items: center;
-						}
-
-						@media screen and (min-width: 768px){
-							.hotline{
-								margin-left: 20px;
-							}
-							.header-left, .header-right__block{
-								align-items: flex-end;
-							}
-							.header-right{
-								padding-bottom: 0px;
-							}
-						}
-
-						.header-menu .hotline a{
-							display: none;
-							align-items: center;
-							padding: 0px 15px;
-							border: 1px solid #005bbf;
-							text-transform: uppercase;
-							color: #676767;
-							height: 37px;
-							line-height: 37px;
-							font-family: Roboto,sans-serif;
-							font-style: normal;
-							font-weight: 600;
-							font-size: 16px;
-							justify-content: center;
-							max-width: 300px;
-							margin: 0 auto
-						}
-						.header-menu .hotline a img{
-							margin-right: 10px;
-						}
-
-						.header-top .hotline a{
-							display: flex;
-							align-items: center;
-							padding: 0px 15px;
-							border: 1px solid #fff;
-							background-color: #fff;
-							text-transform: uppercase;
-							color: #676767;
-							height: 37px;
-							line-height: 37px;
-							font-family: Roboto,sans-serif;
-							font-style: normal;
-							font-weight: 500;
-							font-size: 16px;
-							justify-content: center;
-							max-width: 300px;
-							margin: 0 15px 0 0
-						}
-						.header-top .hotline a img{
-							margin-right: 10px;
-						}
-
-						.header-right .search.active{
-							display: block !important;
-						}
-						.hot-img{
-							position: fixed;
-							left: 50%;
-							top: 50%;
-							transform: translate(-50%, -50%);
-							z-index: 1000;display: none;
-						}
-
-						.hot-img.active{
-							display: block;
-						}
-						.hot-opaco{
-							position: fixed;
-							left: 0%;
-							top: 0%;
-							width: 100%;
-							height: 100%;
-							background: rgba(0,0,0,0.2);
-							z-index: 999;display: none;
-						}
-						.hot-opaco.active{
-							display: block;
-						}
-
-						.menu li {
-							font-weight: 600;
-							font-size: 16px;
-						}
-						@media screen and (max-width:1320px){
-							.menu li {
-								font-weight: 600;
-								font-size: 15px;
-							}
-						}
-
-						@media screen and (max-width: 768px){
-							.search-icon{
-								display: none;
-							}
-							.hotline{
-								margin-top: 20px;
-							}
-						}
-					</style>
-					<script type="text/javascript">
-						$(function() {
-							$('.search-icon').on('click', function(e) {
-								e.preventDefault();
-								$('.header-right .search').toggleClass("active")
-							})
-							$('.hotline a').on('click', function(e) {
-								e.preventDefault();
-								$('.hot-img').toggleClass("active")
-								$('.hot-opaco').toggleClass("active")
-							})
-							$('.hot-opaco').on('click', function(e) {
-								e.preventDefault();
-								$('.hot-img').toggleClass("active")
-								$('.hot-opaco').toggleClass("active")
-							})
-						})
-					</script>
-					<div class="header-right" style="position: relative;">
-						<a href="" class="search-icon"><img src="https://www.kdts.kz/wp-content/themes/kdts/img/search.png"></a>
-						<div class="search" style="position: absolute;  top: 100%; right: 88%; width: 185px; display: none;">
-							<form role="search" method="get" id="searchform" action="https://www.kdts.kz/en/">
-								<input type="text" value="" name="s" id="s" class="">
-								<input type="submit" id="searchsubmit" value="">
-							</form>
-
-						</div>
-
-						<div class="personal-area">
-							<a href="https://my.kdts.kz/">
-								Personal area
-							</a>
-						</div>
-						<div class="hotline">
-							<a href="">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/hot.jpg"> hotline
-							</a>
-						</div>
-						<div class="hot-opaco"></div>
-						<div class="hot-img">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/h2.jpg">
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</header>
+<div class="mega-menu-backdrop" id="megaBackdrop"></div>

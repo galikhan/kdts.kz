@@ -6,17 +6,16 @@
 <?php get_header(); ?>
     <div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/o-sajte/', 'https') ?>">Eng </a></li>
-                <li><a href="https://www.kdts.kz/sajt-turaly/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/o-sajte/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/sajt-turaly', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/o-sajte/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/o-sajte/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
-    </div>
+    	</div>
 
 	<main>
         <div class="dell-container">
@@ -25,9 +24,9 @@
                     <?php the_title(); ?>
                 </h1>
             </div>
-			 <section class="uslugi-peregruza__text">
-			   	<?php the_post(); ?>
-				<?php the_content() ?>      
+			<section class="uslugi-peregruza__text uslugi-peregruza__text--full">
+			   <?php the_post(); ?>
+				<?php the_content() ?>
 			</section>
         </div>
     </main>

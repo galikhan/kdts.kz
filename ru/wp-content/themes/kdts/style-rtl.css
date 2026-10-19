@@ -519,7 +519,6 @@ object {
 img {
 	height: auto;
 	max-width: 100%;
-	height: auto !important;
 }
 
 figure {

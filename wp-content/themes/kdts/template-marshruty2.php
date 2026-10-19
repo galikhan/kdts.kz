@@ -6,8 +6,7 @@
 <?php get_header(); ?>
 	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
@@ -34,8 +33,8 @@
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly/', 'https') ?>"> 
                             Еуропа-Ресей (Брест арқылы)
                         </a> 
-                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly', 'https') ?>"> 
-                            Еуропа-Орталық Азия (Рига арқылы)
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly', 'https') ?>">
+                            Еуропа-Ресей (Рига арқылы)
                         </a>
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly', 'https') ?>"> 
                             Еуропа-Орталық Азия (Брест арқылы) 

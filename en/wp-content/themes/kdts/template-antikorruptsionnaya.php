@@ -7,8 +7,8 @@
 	<?php include "template-breadcrumbs.php" ?>
   	<main class="container-rukovodstvo">
         <section class="rukovodstvo-navbar">
-            <a href="<?php echo home_url('/o-kompanii', 'https') ?>" class="rukovodstvo-navbar__title">
-               	About company
+            <a href="<?php echo home_url('/kompaniya-turaly', 'https') ?>" class="rukovodstvo-navbar__title">
+               	КОМПАНИЯ ТУРАЛЫ
             </a>
           	<div class="rukovodstvo-navbar__block">
              	<?php wp_nav_menu ( array (
@@ -26,7 +26,6 @@
             	<?php the_post(); ?>
             	<?php the_content() ?>
            	</div>
-
                     <div class="anti-tabli">
                         <table class="iksweb">
                             <tbody>
@@ -43,70 +42,28 @@
                         </table>
                         <table class="antiTabel1">
                             <tbody>
-                                <tr>
+                         
+							<?php $sotrudniki = CFS()->get('tablitsa');
+								foreach ($sotrudniki as $sotrudnik) {
+									echo '
+									 <tr>
                                     <th style="width: 7%"> 
-                                        1
+                                        '.$sotrudnik["nomer"].'
                                     </th>
                                     <th style="width: 43%; padding: 10px 12px;" class="antiTabel-text"> 
-                                        Размещение информации об итогах конкурсного отбора на замещение вакантных должнона официальном сайте АО «Кедентранссервис»
+                                       '.$sotrudnik["naimenovanie-meropriyatiya"].'
                                     </th>
                                     <th style="width: 25%"> 
-                                        Информация на сайте 
+                                        '.$sotrudnik["forma-zaversheniya"].'
                                     </th>
                                     <th style="width: 25%">
-                                         постоянно
-                                         </th>
-                                </tr>
-
-                                <tr>
-                                    <th style="width: 7%"> 
-                                        2
-                                    </th>
-                                    <th style="width: 43%; padding: 10px 12px;" class="antiTabel-text"> 
-                                        Организация информационно-пропагандистской работы в целях формирования у персонала антикоррупционного сознания:
-                                            <p>
-                                                1. Организация проведения круглых столов, семинаров и других мероприятий с участием представителей антикоррупционных ведомств страны и неправительственных организаций;
-                                            </p> 
-                                            <p>
-                                                2. Организация публикации в отраслевых СМИ специальных материалов о принимаемых Обществом мерах по противодействию коррупции;
-                                            </p>
-                                            <p>
-                                                3. Обеспечение информирования населения о наличии телефона доверия и электронного почтового ящика для приема информации по нарушениям антикоррупционного законодательства РК
-                                            </p>
-                                    </th>
-                                    <th style="width: 25%"> 
-                                        Планы по организации информационно-пропагандистской работы, публикации в СМИ статей, отчет	 
-                                    </th>
-                                    <th style="width: 25%"> 
-                                        ежегодно 
+                                         '.$sotrudnik["sroki-ispolneniya"].'
                                     </th>
                                 </tr>
-
-                                <tr>
-                                    <th style="width: 7%"> 
-                                        3
-                                    </th>
-                                    <th style="width: 43%; padding: 10px 12px;" class="antiTabel-text"> 
-                                        Обеспечение функционирования специальных разделов на официальном сайте Общества о деятельности по противодействию коррупции
-                                    </th>
-                                    <th style="width: 25%"> Разделы на сайте </th>
-                                    <th style="width: 25%"> постоянно </th>
-                                </tr>
-
-                                <tr>
-                                    <th style="width: 7%"> 
-                                        4
-                                    </th>
-                                    <th style="width: 43%; padding: 10px 12px;" class="antiTabel-text"> 
-                                        Размещение на официальном сайте Общества ежегодного отчета об исполнении Плана
-                                    </th>
-                                    <th style="width: 25%"> 
-                                        Информация на сайте	 
-                                    </th>
-                                    <th style="width: 25%"> 
-                                        Ежегодно, по итогам года, не позднее 15 марта
-                                    </th>
-                                </tr>
+									';
+								 }
+							?>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -119,7 +76,7 @@
 								echo '
 									<div class="anti-download__item">
 										<a href="'.$dokumenty["dokument"].'" download>
-											<img src="https://work.almazvoda.kz/wp-content/themes/kdts/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
+											<img src="'.get_template_directory_uri().'/img/tipovye-dogovora__icon.png" alt="#" class="anti-download__item-icon"/>
 										</a>
 										<p class="anti-download__item-text">
 											'.$dokumenty["tekst"].'

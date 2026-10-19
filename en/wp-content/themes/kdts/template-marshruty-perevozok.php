@@ -7,6 +7,6 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="0;URL=https://www.kdts.kz/en/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha" />
+	<meta http-equiv="refresh" content="0;URL=/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha" />
 </head>
 </html>

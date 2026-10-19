@@ -6,14 +6,13 @@
 <?php get_header(); ?>
 	<div class="pagination-block">
   		<div class="sdfsdfjsdf">
-      		<div class="header-logo1"></div>
-            <?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
         </div>
 		<div class="yazyk">
 			<ul>
-                <li class="yazyk-active"><a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Eng</a></li>
-                <li><a href="https://www.kdts.kz/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly/">Қаз</a></li>
-                <li><a href="https://www.kdts.kz/ru/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/">Рус</a></li>
+                <li class="yazyk-active"><a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-ortalyk-aziya-brest-arkyly/', 'https') ?>">Қаз</a></li>
+                <li><a href="<?php echo home_url('/ru/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Рус</a></li>
+                <li><a href="<?php echo home_url('/en/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-brest/', 'https') ?>">Eng</a></li>
             </ul>
 		</div>
     </div>
@@ -22,33 +21,33 @@
             <div class="marshruty-head">
                 <div class="marshruty-head__left">
                     <p class="marshruty-head__title">
-                        Transportation routes
+                        Тасымалдау бағыттары
                     </p>
                 </div>
                 <div class="marshruty-head__right">
                     <div class="accordion"> <?php the_title(); ?> </div>
                  
 					<div class="panel">
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-rigu', 'https') ?>"> 
-                            Europe - Russia (via Riga)
+						<a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-riga-arkyly', 'https') ?>"> 
+                            Еуропа-Ресей (Рига арқылы)
                         </a> 
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-rossiya-cherez-brest', 'https') ?>"> 
-                            Europe - Russia (via Brest)
-                        </a> 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/europa-resej-brest-arkyly', 'https') ?>"> 
+                            Еуропа-Ресей (Брест арқылы)
+                        </a>
                         <a href="<?php echo home_url('/klientam/marshruty-perevozok/evropa-tsentr-aziya-cherez-rigu', 'https') ?>"> 
-                            Europe-The Center Asia (via Riga)
+                            Еуропа-Орталық Азия (Рига арқылы)
                         </a>
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-kitay-varshava-polsha', 'https') ?>"> 
-                           Suzhou (China) — Warsaw (Poland) 
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha/', 'https') ?>"> 
+                           Сучжоу (Қытай) - Варшава (Польша)
                         </a>
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/yoensuu-finlyandiya-korla-kitay', 'https') ?>">
-                           Joensuu (Finland) - Korla (China)
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/joensuu-finlyandiya-korla-kytaj', 'https') ?>">
+                            Йоэнсуу (Финляндия) - Корла (Қытай)
                         </a> 
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/kitay-evropa', 'https') ?>"> 
-                            China - Europe
+                        <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/kytai-europa/', 'https') ?>"> 
+                            Қытай-Еуропа
                         </a>
-                        <a href="<?php echo home_url('/klientam/marshruty-perevozok/suchzhou-varshava-polsha', 'https') ?>"> 
-                            Suzhou (China) — Warsaw (Poland)
+                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha-2', 'https') ?>"> 
+                           Сучжоу (Қытай) - Варшава (Польша)
                         </a>
                     </div>
 					

@@ -20,16 +20,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'p-319092_en' );
+define( 'DB_NAME', 'kdts_en' );
 
 /** MySQL database username */
-define( 'DB_USER', 'p-319092_en' );
+define( 'DB_USER', 'root' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'Hgz3y34~' );
+define( 'DB_PASSWORD', 'root' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'localhost:3306' );
+define( 'DB_HOST', 'localhost:/Applications/MAMP/tmp/mysql/mysql.sock' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -67,7 +67,7 @@ $table_prefix = 'ZKN5mzvzJ_';
 define('WP_ALLOW_MULTISITE', true);
 
 define( 'WP_AUTO_UPDATE_CORE', false );
-define('ALLOW_UNFILTERED_UPLOADS', true);
+// define('ALLOW_UNFILTERED_UPLOADS', true);
 define('ALLOW_UNFILTERED_UPLOADS', true);
 
 

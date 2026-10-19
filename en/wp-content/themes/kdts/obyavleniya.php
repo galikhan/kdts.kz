@@ -2,7 +2,7 @@
 			<div class="news-container">
 				<div class="title">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/uslugiPP.svg" alt="#" class="title-icon"/> 
-					Объявления
+					Хабарландырулар
 				</div>
 				<div class="news-bottom">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/news-bottom.png" class="news-bottom__img"/>

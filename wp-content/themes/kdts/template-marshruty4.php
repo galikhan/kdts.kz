@@ -6,8 +6,7 @@
 <?php get_header(); ?>
 		<div class="pagination-block">
 			<div class="sdfsdfjsdf">
-				<div class="header-logo1"></div>
-				<?php get_template_part('breadcrumbs') ?>
+<?php get_template_part('breadcrumbs') ?>
 			</div>
 			<div class="yazyk">
 				<ul>
@@ -45,7 +44,7 @@
                             Йоэнсуу (Финляндия) - Корла (Қытай)
                         </a> 
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha', 'https') ?>"> 
-                            Сучжоу (Китай) - Варшава (Польша)
+                            Сучжоу (Қытай) - Варшава (Польша)
                         </a>
                         <a href="<?php echo home_url('/klientterge/tasymaldaulardy-marshruttary/suchzhou-kytaj-varshava-polsha-2', 'https') ?>"> 
                            Сучжоу (Қытай) - Варшава (Польша)
