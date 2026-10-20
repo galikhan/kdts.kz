@@ -11,7 +11,7 @@
 		<div class="hero-slide is-active" data-slide="0">
 	<div class="hero-bg">
 		<video class="hero-video" autoplay muted playsinline webkit-playsinline poster="<?php echo esc_url( get_template_directory_uri() . '/img/hero-poster-1.jpg?v=' . filemtime( get_template_directory() . '/img/hero-poster-1.jpg' ) ); ?>">
-			<source src="<?php echo esc_url( get_template_directory_uri() . '/img/hero-bg.mp4?v=' . filemtime( get_template_directory() . '/img/hero-bg.mp4' ) ); ?>" type="video/mp4">
+			<source src="<?php echo esc_url( get_template_directory_uri() . '/img/hero-bg-2.mp4?v=' . filemtime( get_template_directory() . '/img/hero-bg-2.mp4' ) ); ?>" type="video/mp4">
 		</video>
 		<img class="hero-fallback-img" src="<?php echo esc_url( get_template_directory_uri() . '/img/hero-poster-1.jpg?v=' . filemtime( get_template_directory() . '/img/hero-poster-1.jpg' ) ); ?>" alt="">
 		<div class="hero-overlay"></div>
