@@ -20,7 +20,11 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'kdts' );
+define( 'DB_NAME', 'p-319092_kaz' );
+
+/** LOCAL ONLY (MAMP on :8888) — do not deploy */
+define( 'WP_HOME', 'http://localhost:8888' );
+define( 'WP_SITEURL', 'http://localhost:8888' );
 
 /** MySQL database username */
 define( 'DB_USER', 'root' );

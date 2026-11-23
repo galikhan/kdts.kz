@@ -20,7 +20,11 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'kdts_ru' );
+define( 'DB_NAME', 'p-319092_rus' );
+
+/** LOCAL ONLY (MAMP on :8888) — do not deploy */
+define( 'WP_HOME', 'http://localhost:8888/ru' );
+define( 'WP_SITEURL', 'http://localhost:8888/ru' );
 
 /** MySQL database username */
 define( 'DB_USER', 'root' );
@@ -67,7 +71,7 @@ $table_prefix = 'ZKN5mzvzJ_';
 define('WP_ALLOW_MULTISITE', true);
 
 define( 'WP_AUTO_UPDATE_CORE', false );
-define('ALLOW_UNFILTERED_UPLOADS', true);
+// define('ALLOW_UNFILTERED_UPLOADS', true);
 define('ALLOW_UNFILTERED_UPLOADS', true);
 
 
