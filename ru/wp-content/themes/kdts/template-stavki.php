@@ -6,40 +6,61 @@
 <?php get_header(); ?>
 <?php
 /*
- * Files on the original site live under /wp-content/uploads/. Use the local copy when it
- * exists (so the page works from this server), otherwise point to the original file.
+ * All page content comes from the database (edit the page in wp-admin):
+ *   - intro text            → page editor (the_content)
+ *   - numbered tariff steps → CFS group "Ставки и тарифы" (tekst2…tekst11, files, blok1-loop, Tablitsy)
+ *   - tariff conditions     → CFS loop blok2-loop
+ *
+ * NB: the CFS file-field names contain a CYRILLIC "е" (dokumenеt1 …), hence "\u{0435}" below.
  */
 if ( ! function_exists( 'kdts_stavki_card' ) ) {
-	function kdts_stavki_local_url( $live_url ) {
-		if ( false !== ( $pos = strpos( $live_url, '/wp-content/uploads/' ) ) ) {
-			$rel = substr( $live_url, $pos + strlen( '/wp-content/uploads/' ) );
-			$u   = wp_upload_dir();
-			if ( file_exists( $u['basedir'] . '/' . $rel ) ) {
-				return $u['baseurl'] . '/' . $rel;
+	/* Prefer the local copy of an uploaded file (so the page works on any server), else keep the stored URL. */
+	function kdts_stavki_file( $url ) {
+		$u = wp_upload_dir();
+		if ( preg_match( '#/wp-content/uploads/(.+)$#', (string) $url, $m ) ) {
+			$path = rawurldecode( $m[1] );
+			if ( file_exists( $u['basedir'] . '/' . $path ) ) {
+				return array( $u['baseurl'] . '/' . $path, filesize( $u['basedir'] . '/' . $path ) );
 			}
 		}
-		return $live_url;
+		return array( $url, 0 );
 	}
-	function kdts_stavki_card( $live_url, $title ) {
-		$ext = strtoupper( pathinfo( parse_url( $live_url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
-		if ( ! $live_url ) {
-			echo '<div class="doc-card is-disabled"><div class="doc-card-top"><span class="doc-card-icon">' . esc_html( $ext ?: 'DOC' ) . '</span></div><p>' . esc_html( $title ) . '</p></div>';
+	function kdts_stavki_card( $url, $title ) {
+		if ( ! $url ) {
+			if ( '' !== trim( (string) $title ) ) {
+				echo '<div class="doc-card is-disabled"><div class="doc-card-top"><span class="doc-card-icon">DOC</span></div><p>' . esc_html( wp_strip_all_tags( $title ) ) . '</p></div>';
+			}
 			return;
 		}
-		$url   = $live_url;
-		$bytes = 0;
-		if ( false !== ( $pos = strpos( $live_url, '/wp-content/uploads/' ) ) ) {
-			$rel = substr( $live_url, $pos + strlen( '/wp-content/uploads/' ) );
-			$u   = wp_upload_dir();
-			if ( file_exists( $u['basedir'] . '/' . $rel ) ) {
-				$url   = $u['baseurl'] . '/' . $rel;
-				$bytes = filesize( $u['basedir'] . '/' . $rel );
-			}
-		}
+		list( $href, $bytes ) = kdts_stavki_file( $url );
+		$ext  = strtoupper( pathinfo( wp_parse_url( $href, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
 		$size = $bytes ? ( $bytes >= 1048576 ? round( $bytes / 1048576, 1 ) . ' MB' : round( $bytes / 1024 ) . ' KB' ) : '';
-		echo '<a class="doc-card" href="' . esc_url( $url ) . '" target="_blank" rel="noopener"><div class="doc-card-top"><span class="doc-card-icon">' . esc_html( $ext ) . '</span><span class="doc-card-size">' . esc_html( $size ) . '</span></div><p>' . esc_html( $title ) . '</p></a>';
+		echo '<a class="doc-card" href="' . esc_url( $href ) . '" target="_blank" rel="noopener"><div class="doc-card-top"><span class="doc-card-icon">' . esc_html( $ext ) . '</span><span class="doc-card-size">' . esc_html( $size ) . '</span></div><p>' . esc_html( wp_strip_all_tags( $title ) ) . '</p></a>';
 	}
 }
+
+the_post();
+
+$doc  = function ( $n ) { return CFS()->get( 'dokumen' . "\u{0435}" . 't' . $n ); };
+$txt  = function ( $key ) { return trim( (string) CFS()->get( $key ) ); };
+$rows = function ( $key ) { $v = CFS()->get( $key ); return is_array( $v ) ? $v : array(); };
+
+/* Numbered steps — each is [text, [ [file url, card title], … ] ]; empty steps are skipped. */
+$blok1 = array();
+foreach ( $rows( 'blok1-loop' ) as $r ) {
+	$title   = trim( ( $r['tekst5'] ?? '' ) . ( ! empty( $r['tekst6'] ) ? ' — ' . $r['tekst6'] : '' ) );
+	$blok1[] = array( $r[ 'dokumen' . "\u{0435}" . 't3' ] ?? '', $title );
+}
+$steps = array(
+	array( $txt( 'tekst2' ), $blok1 ),
+	array( $txt( 'tekst7' ), array() ),
+	array( $txt( 'tekst8' ), array( array( $doc( 5 ) ?: $doc( 4 ), 'Форма заявки' ) ), 'form' ),
+	array( $txt( 'tekst11' ), array() ),
+);
+$steps = array_values( array_filter( $steps, function ( $s ) { return '' !== $s[0]; } ) );
+
+$form_rows = array_filter( $rows( 'Tablitsy' ), function ( $r ) { return '' !== trim( (string) ( $r['tekst9'] ?? '' ) ); } );
+$blok2     = array_filter( $rows( 'blok2-loop' ), function ( $r ) { return ! empty( $r[ 'dokumen' . "\u{0435}" . 't6' ] ) || '' !== trim( (string) ( $r['tekst12'] ?? '' ) ); } );
 ?>
 
 <section class="page-hero">
@@ -47,9 +68,9 @@ if ( ! function_exists( 'kdts_stavki_card' ) ) {
 		<div class="breadcrumb">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
 			<span class="crumb-sep">/</span>
-			<span class="crumb-current">Ставки и тарифы</span>
+			<span class="crumb-current"><?php the_title(); ?></span>
 		</div>
-		<h1>Ставки и тарифы</h1>
+		<h1><?php the_title(); ?></h1>
 		<div class="subnav-pills">
 			<a href="<?php echo esc_url( home_url( '/obyavleniya' ) ); ?>">Объявления</a>
 			<a href="<?php echo esc_url( home_url( '/stavki-i-tarify' ) ); ?>" class="is-active">Ставки и тарифы</a>
@@ -62,89 +83,73 @@ if ( ! function_exists( 'kdts_stavki_card' ) ) {
 
 <section class="page-content">
 	<div class="container">
-		<p class="page-lead"><strong>Уведомление об изменении тарифов</strong></p>
+		<?php if ( $txt( 'tekst1' ) ) : ?>
+			<p class="page-lead"><?php echo wp_kses_post( $txt( 'tekst1' ) ); ?></p>
+		<?php endif; ?>
 
-		<div class="page-section">
-			<p>Уважаемые партнеры!</p>
-			<p>Акционерное общество «Кедентранссервис» (далее – Общество) выражает Вам благодарность за сотрудничество и настоящим уведомляет, что с <strong>1 сентября 2026</strong> года вводятся в действие дополнительные услуги по перегрузочной деятельности, оказываемые филиалами Общества по станциям Достык и Алтынколь.</p>
-			<p>Мы рады расширять спектр предоставляемых услуг и надеемся, что данные изменения будут способствовать повышению удобства и эффективности Вашей работы с Обществом.</p>
-			<p>В связи с введением дополнительных услуг просим учитывать указанные изменения при планировании перевозок и пользовании услугами Общества. С действующими тарифами на оказываемые услуги Вы можете ознакомиться в разделе «<strong>Ставки и Тарифы</strong>» на официальном сайте Общества.</p>
-			<p>Настоящим извещаем Вас о ставках АО «Кедентрассервис» на услуги организации перевозок контейнеров в составе регулярных контейнерных поездов сообщение Казахстан – Китай, действующих с 01.09.2026г. до 30.09.2026г. включительно. Ставки размещены в разделе <strong>Ставки и Тарифы.</strong></p>
-			<p>При возникновении дополнительных вопросов просим Вас отправить все письменные запросы на <a href="mailto:wagon@kdts.kz">wagon@kdts.kz</a></p>
-			<p><a href="https://my.kdts.kz/login" target="_blank" rel="noopener" class="btn btn-primary">Рассчитать ставку и тарифы</a></p>
-		</div>
+		<?php if ( trim( get_the_content() ) ) : ?>
+			<div class="page-section stavki-intro">
+				<?php the_content(); ?>
+			</div>
+		<?php endif; ?>
 
+		<?php
+		/*
+		 * These two documents were hardcoded in the template even before the redesign — there is
+		 * no DB field for them. TODO: move them into the page editor content so they can be edited.
+		 */
+		?>
 		<div class="doc-card-grid cols-2">
 			<?php
-			kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/08/KP-Klienty-SENTYABR-2026-selh-produ.pdf', 'АО "Кедентрассервис" оказывает сервис контейнерных поездов в экспортном сообщении Казахстан - Китай.' );
-			kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/05/KP-FTG-Almaty-NOD-GP-12-Mai.pdf', 'Организация экспортных зерновых перевозок с задействованием фитинговых платформ по направлению Алматы-1 – нод-2/нод-1 - кнр' );
+			kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/11/KP-Klienty-DEKABR-2026-selh-produ-rus.pdf', 'АО "Кедентрассервис" оказывает сервис контейнерных поездов в экспортном сообщении Казахстан - Китай.' );
+			kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/11/KP-FTG-Almaty-ZHE-Kost-KNR-Dekabr-rus.pdf', 'Организация экспортных зерновых перевозок с задействованием фитинговых платформ по направлению Алматы-1 – нод-2/нод-1 - кнр' );
 			?>
 		</div>
 
-		<div class="page-section">
-			<h2>Приложения к тарифам</h2>
-			<ol class="tariff-steps">
-				<li>
-					<span class="goal-num">1</span>
-					<div class="tariff-step-body">
-						<p>Обращаем ваше внимание, что с <strong>1 января 2026 года</strong> обновлены приложения тарифов оператора вагона прейскурантом:</p>
-						<div class="doc-card-grid">
-							<?php
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/1.-Tarify-operatora-vo-vnutrirespublikanskom-soobshhenii.xlsx', 'Приложение №1 — Внутриреспубликанское сообщение перевозок (за искл. станций Алматинского узла)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/2.-import-cherez-Dostyk-eksp.Altynkol-eksp.-na-KZH.xlsx', 'Приложение №2 — Импорт через ст. Достык/ Алтынколь' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/3.-Alt-eksp.-na-UTJ-cherez-st.Saryagash-eksp.-za-isklyucheniem-st.Tashkentskogo-uzlaTashkentSergeliCHukursaj-1.xlsx', 'Приложение №3 — со станции Алтынколь эксп. назначением на Республику Узбекистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/4.-Dostyk-eksp.-na-UTJ-cherez-st.Saryagash-eksp.za-isklyucheniem-st.Tashkentskogo-uzlaTashkentSergeliCHukursaj.xlsx', 'Приложение №4 — со станции Достык эксп. назначением на Республику Узбекистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/5.-Altynkol-eksp.-na-KRG-cherez-st.Turksib-eksp..xlsx', 'Приложение №5 — со станции Алтынколь эксп. назначением на Кыргызскую Республику (через ст. Турксиб эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/6.-Dostyk-eksp.-na-KRG-cherez-st.Turksib-eksp..xlsx', 'Приложение №6 — со станции Достык эксп. назначением на Кыргызскую Республику (через ст. Турксиб эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/7.-Alt-eksp.-na-KRG-cherez-st.Saryagash-eksp..xlsx', 'Приложение №7 — со станции Алтынколь эксп. назначением на Кыргызскую Республику (через ст. Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/8.-Dostyk-eksp.-na-KRG-cherez-st.Saryagash-eksp..xlsx', 'Приложение №8 — со станции Достык эксп. назначением на Кыргызскую Республику (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/9.-Altynkol-eksp.-na-Turkmenistan-cherez-st.Bolashak-eksp..xlsx', 'Приложение №9 — со станции Алтынколь эксп. назначением на Республику Туркменистан (через ст.Болашак эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/10.-Dostyk-eksp.-na-Turkmenistan-cherez-st.Bolashak-eksp..xlsx', 'Приложение №10 — со станции Достык эксп. назначением на Республику Туркменистан (через ст.Болашак эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/11.-Altynkol-eksp.-na-Turkmenistan-cherez-st.Saryagash-eksp..xlsx', 'Приложение №11 — со станции Алтынколь эксп. назначением на Республику Туркменистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/12.-Dostyk-eksp.-na-Turkmenistan-cherez-st.Saryagash-eksp.-1.xlsx', 'Приложение №12 — со станции Достык эксп. назначением на Республику Туркменистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/13.-Altynkol-eksp.-na-Tadzhikistan-cherez-st.Saryagash-eksp.-1.xlsx', 'Приложение №13 — со станции Алтынколь эксп. назначением на Республику Таджикистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/14.-Dostyk-eksp.-na-Tadzhikistan-cherez-st.Saryagash-eksp..xlsx', 'Приложение №14 — со станции Достык эксп. назначением на Республику Таджикистан (через ст.Сарыагаш эксп.)' );
-							kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/01/15.-So-stantsij-Almatinskogo-uzla-vo-vnutrirespublikanskom-soobshhenii.xlsx', 'Приложение №15 — Внутриреспубликанское сообщение перевозок со станций Алматинского узла' );
-							?>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span class="goal-num">2</span>
-					<div class="tariff-step-body">
-						<p>Дополнительно Вы можете рассчитать тарифы оперирования и экспедирования, обратившись в АО «Кедентранссервис» на электронный адрес wagon@kdts.kz</p>
-					</div>
-				</li>
-				<li>
-					<span class="goal-num">3</span>
-					<div class="tariff-step-body">
-						<p>Форма заявки на расчет тарифа:</p>
-						<div class="doc-card-grid"><?php kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2022/01/Forma-zayavki-na-raschet-tarifa.xlsx', 'Форма заявки' ); ?></div>
-					</div>
-				</li>
-				<li>
-					<span class="goal-num">4</span>
-					<div class="tariff-step-body">
-						<p>Для сокращения времени на обработку ответа на запрос, ставки предоставляются на электронную почту. Обращаем Ваше внимание, официальные ставки направляются менеджерами АО «Кедентранссервис» только с электронных адресов корпоративного домена kdts.kz</p>
-					</div>
-				</li>
-			</ol>
-		</div>
-
-		<div class="page-section">
-			<h2>Тарифные условия</h2>
-			<div class="doc-card-grid">
-				<?php
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2025/01/Uslugi-po-predostavleniyu-podezdnyh-putej-storonnih-organizatsij-AO-TSTS.pdf', 'Услуги по предоставлению подъездных путей сторонних организаций АО ЦТС' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2025/09/Terminalnoe-obsluzhivanie-kontejnerov-po-kompleksnoj-stavke-na-2025-god.pdf', 'Терминальное обслуживание контейнеров по комплексной ставке на 2025 год' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2025/09/Terminalnoe-obsluzhivanie-vagonov-po-kompleksnoj-stavke-na-2025-god.pdf', 'Терминальное обслуживание вагонов по комлексной ставке на 2025 год' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/04/Terminalnoe-obsluzhivanie-vagonov-po-kompleksnoj-stavke-na-2026-god-1.pdf', 'Терминальное обслуживание вагонов по комплексной ставке на 2026 год' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/04/Terminalnoe-obsluzhivanie-kontejnerov-po-kompleksnoj-stavke-na-2026-god-1.pdf', 'Терминальное обслуживание контейнеров по комплексной ставке на 2026 год' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2025/12/Uslugi-po-predostavleniyu-podezdnyh-putej-storonnih-organizatsij-AO-TSTS-na-2026-god-1.pdf', 'Услуги по предоставлению подъездных путей сторонних организаций АО ЦТС на 2026 год' );
-				kdts_stavki_card( 'https://www.kdts.kz/ru/wp-content/uploads/2026/10/Prilozhenie.docx', 'Тарифы по перегрузочной деятельности на станциях Достык и Алтынколь' );
-				?>
+		<?php if ( $steps ) : ?>
+			<div class="page-section">
+				<h2>Приложения к тарифам</h2>
+				<ol class="tariff-steps">
+					<?php foreach ( $steps as $i => $s ) : ?>
+						<li>
+							<span class="goal-num"><?php echo (int) $i + 1; ?></span>
+							<div class="tariff-step-body">
+								<p><?php echo wp_kses_post( make_clickable( $s[0] ) ); ?></p>
+								<?php
+								$cards = array_filter( $s[1], function ( $c ) { return ! empty( $c[0] ) || '' !== trim( (string) $c[1] ); } );
+								if ( $cards ) :
+									?>
+									<div class="doc-card-grid">
+										<?php foreach ( $cards as $c ) { kdts_stavki_card( $c[0], $c[1] ); } ?>
+									</div>
+								<?php endif; ?>
+								<?php if ( isset( $s[2] ) && 'form' === $s[2] && $form_rows ) : ?>
+									<table class="tariff-form" style="margin-top:18px">
+										<tbody>
+											<?php foreach ( $form_rows as $r ) : ?>
+												<tr>
+													<th><?php echo esc_html( $r['tekst9'] ); ?></th>
+													<td><?php echo esc_html( $r['tekst10'] ?? '' ); ?></td>
+												</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								<?php endif; ?>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ol>
 			</div>
-		</div>
+		<?php endif; ?>
+
+		<?php if ( $blok2 ) : ?>
+			<div class="page-section">
+				<h2>Тарифные условия</h2>
+				<div class="doc-card-grid">
+					<?php foreach ( $blok2 as $r ) { kdts_stavki_card( $r[ 'dokumen' . "\u{0435}" . 't6' ], $r['tekst12'] ?? '' ); } ?>
+				</div>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>
 

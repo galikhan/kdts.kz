@@ -1783,3 +1783,7 @@ html { scroll-behavior: smooth; }
 html body, html body h1, html body h2, html body h3, html body h4, html body h5, html body p, html body li, html body a, html body span, html body div, html body td, html body th, html body dt, html body dd, html body button, html body input, html body textarea, html body select {
   font-family: Roboto, Helvetica, Arial, 'Segoe UI', 'Noto Sans', 'DejaVu Sans', sans-serif;
 }
+
+/* ---------- tariffs page: normalise the editor-made button inside the_content (has legacy inline styles) ---------- */
+.stavki-intro a.btn { display: inline-flex !important; align-items: center; height: auto !important; line-height: 1.2 !important; min-width: 0 !important; padding: 14px 28px !important; animation: none !important; background: var(--c-dark) !important; color: #fff !important; }
+.stavki-intro p[style*="visibility:hidden"] { display: none; }

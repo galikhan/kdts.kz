@@ -27,6 +27,9 @@ if ( ! function_exists( 'kdts_stavki_card' ) ) {
 	}
 	function kdts_stavki_card( $url, $title ) {
 		if ( ! $url ) {
+			if ( '' !== trim( (string) $title ) ) {
+				echo '<div class="doc-card is-disabled"><div class="doc-card-top"><span class="doc-card-icon">DOC</span></div><p>' . esc_html( wp_strip_all_tags( $title ) ) . '</p></div>';
+			}
 			return;
 		}
 		list( $href, $bytes ) = kdts_stavki_file( $url );
@@ -60,7 +63,7 @@ $steps = array(
 $steps = array_values( array_filter( $steps, function ( $s ) { return '' !== $s[0]; } ) );
 
 $form_rows = array_filter( $rows( 'Tablitsy' ), function ( $r ) { return '' !== trim( (string) ( $r['tekst9'] ?? '' ) ); } );
-$blok2     = array_filter( $rows( 'blok2-loop' ), function ( $r ) { return ! empty( $r[ 'dokumen' . "\u{0435}" . 't6' ] ); } );
+$blok2     = array_filter( $rows( 'blok2-loop' ), function ( $r ) { return ! empty( $r[ 'dokumen' . "\u{0435}" . 't6' ] ) || '' !== trim( (string) ( $r['tekst12'] ?? '' ) ); } );
 ?>
 
 <section class="page-hero">
@@ -101,8 +104,8 @@ $blok2     = array_filter( $rows( 'blok2-loop' ), function ( $r ) { return ! emp
 		?>
 		<div class="doc-card-grid cols-2">
 			<?php
-			kdts_stavki_card( 'https://www.kdts.kz/wp-content/uploads/2026/08/KP-Klientam-KAZ-SENTYABR2026-selh-produ.pdf', '«Кедентрассервис» АҚ Қазақстан – Қытай экспорттық қатынасында контейнерлік пойыздардың сервисін көрсетеді.' );
-			kdts_stavki_card( 'https://www.kdts.kz/wp-content/uploads/2026/02/K-FTG-Almaty-NOD-GP-12-SAUIR.pdf', 'Алматы-1 – нод-2/түйінді-1 – ҚХР бағыты бойынша контейнерлік платформаларды пайдалана отырып, экспорттық астық тасымалдауды ұйымдастыру' );
+			kdts_stavki_card( 'https://www.kdts.kz/wp-content/uploads/2026/11/KP-Kaz.Klienty-dekabr-2026-selh-produ-.pdf', '«Кедентрассервис» АҚ Қазақстан – Қытай экспорттық қатынасында контейнерлік пойыздардың сервисін көрсетеді.' );
+			kdts_stavki_card( 'https://www.kdts.kz/wp-content/uploads/2026/11/KP-FTG-Almaty-ZHE-Kost-KNR-Dekabr-kaz.pdf', 'Алматы-1 – нод-2/түйінді-1 – ҚХР бағыты бойынша контейнерлік платформаларды пайдалана отырып, экспорттық астық тасымалдауды ұйымдастыру' );
 			?>
 		</div>
 
@@ -116,7 +119,7 @@ $blok2     = array_filter( $rows( 'blok2-loop' ), function ( $r ) { return ! emp
 							<div class="tariff-step-body">
 								<p><?php echo wp_kses_post( make_clickable( $s[0] ) ); ?></p>
 								<?php
-								$cards = array_filter( $s[1], function ( $c ) { return ! empty( $c[0] ); } );
+								$cards = array_filter( $s[1], function ( $c ) { return ! empty( $c[0] ) || '' !== trim( (string) $c[1] ); } );
 								if ( $cards ) :
 									?>
 									<div class="doc-card-grid">
